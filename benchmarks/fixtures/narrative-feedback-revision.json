@@ -1,0 +1,6 @@
+{
+  "fixture_id": "FIX-NAR-002",
+  "prior": "narratives/synthetic-base.json",
+  "revised": "narratives/synthetic-revised.json",
+  "description": "Synthetic feedback revision preserving history and changing assumptions and value."
+}

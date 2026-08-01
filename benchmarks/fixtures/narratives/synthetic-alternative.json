@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1.0",
+  "id": "NAR-SYNTH-ALT",
+  "subject": "Synthetic Parcel Software",
+  "as_of_date": "2026-01-01",
+  "status": "valued",
+  "source_refs": ["SRC-DAMODARAN-NARRATIVE-NUMBERS-2017", "CLM-NAR-020", "CLM-NAR-021"],
+  "business_definition": {"business": "Synthetic logistics workflow software", "products_or_services": ["Subscription workflow platform"], "customer": "Synthetic regional parcel operators", "geography": ["Synthetic Region A"], "life_cycle_stage": "mature-growth"},
+  "market": {"definition": "Synthetic regional logistics workflow software", "size": 800.0, "growth": 0.05, "structure": "Competitive", "evidence_refs": ["EVD-SYN-ALT-MARKET"]},
+  "competition": {"current_competitors": ["Synthetic Rival A"], "potential_competitors": ["Synthetic Platform B"], "barriers_to_entry": [], "competitive_advantages": ["Workflow integration"], "evidence_refs": ["EVD-SYN-ALT-COMP"]},
+  "assertions": [
+    {"id": "NAR-A-001", "statement": "Synthetic adoption grows slowly.", "category": "growth", "supporting_evidence": ["EVD-SYN-ALT-MARKET"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-002", "statement": "Competition constrains synthetic margins.", "category": "profitability", "supporting_evidence": ["EVD-SYN-ALT-COMP"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-003", "statement": "Synthetic growth still requires reinvestment.", "category": "reinvestment", "supporting_evidence": ["EVD-SYN-ALT-REINVEST"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-004", "statement": "Synthetic competitive risk raises capital costs.", "category": "risk", "supporting_evidence": ["EVD-SYN-ALT-RISK"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-005", "statement": "Synthetic failure risk is higher.", "category": "failure", "supporting_evidence": ["EVD-SYN-ALT-FAIL"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-006", "statement": "Synthetic terminal growth is conservative.", "category": "growth", "supporting_evidence": ["EVD-SYN-ALT-TERM"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-007", "statement": "Synthetic tax and bridge inputs remain explicit.", "category": "other", "supporting_evidence": ["EVD-SYN-ALT-FIN"], "contradicting_evidence": [], "quantification_status": "mapped"}
+  ],
+  "three_p": {
+    "possible": {"result": "pass", "supporting_evidence": ["EVD-SYN-ALT-POSSIBLE"], "contradicting_evidence": [], "reasoning": "The slower path is coherent."},
+    "plausible": {"result": "pass", "supporting_evidence": ["EVD-SYN-ALT-PLAUSIBLE"], "contradicting_evidence": [], "reasoning": "Synthetic competition supports the slower path."},
+    "probable": {"result": "pass", "supporting_evidence": ["EVD-SYN-ALT-PROBABLE"], "contradicting_evidence": [], "reasoning": "The conservative case has synthetic scale evidence."},
+    "overall": "probable",
+    "reviewer_reasoning": "The conservative synthetic alternative passes all levels."
+  },
+  "value_driver_mappings": [
+    {"assertion_id": "NAR-A-001", "driver": "revenue-growth", "input_name": "revenues", "value": [96.0, 101.0, 106.0], "unit": "USDm", "rationale": "Slower adoption.", "evidence_refs": ["EVD-SYN-ALT-MARKET"]},
+    {"assertion_id": "NAR-A-002", "driver": "operating-margin", "input_name": "operating_margins", "value": [0.1, 0.105, 0.11], "unit": "decimal", "rationale": "Competitive margin pressure.", "evidence_refs": ["EVD-SYN-ALT-COMP"]},
+    {"assertion_id": "NAR-A-007", "driver": "other", "input_name": "tax_rates", "value": [0.25, 0.25, 0.25], "unit": "decimal", "rationale": "Synthetic tax.", "evidence_refs": ["EVD-SYN-ALT-FIN"]},
+    {"assertion_id": "NAR-A-003", "driver": "reinvestment", "input_name": "reinvestments", "value": [5.5, 5.5, 5.5], "unit": "USDm", "rationale": "Synthetic reinvestment.", "evidence_refs": ["EVD-SYN-ALT-REINVEST"]},
+    {"assertion_id": "NAR-A-004", "driver": "cost-of-capital", "input_name": "discount_rate", "value": 0.12, "unit": "decimal", "rationale": "Higher competitive risk.", "evidence_refs": ["EVD-SYN-ALT-RISK"]},
+    {"assertion_id": "NAR-A-005", "driver": "failure-risk", "input_name": "failure_probability", "value": 0.1, "unit": "probability", "rationale": "Retained disclosure.", "evidence_refs": ["EVD-SYN-ALT-FAIL"]},
+    {"assertion_id": "NAR-A-006", "driver": "terminal-growth", "input_name": "terminal_growth_rate", "value": 0.015, "unit": "decimal", "rationale": "Conservative stable growth.", "evidence_refs": ["EVD-SYN-ALT-TERM"]},
+    {"assertion_id": "NAR-A-004", "driver": "cost-of-capital", "input_name": "terminal_discount_rate", "value": 0.11, "unit": "decimal", "rationale": "Stable risk.", "evidence_refs": ["EVD-SYN-ALT-RISK"]},
+    {"assertion_id": "NAR-A-007", "driver": "other", "input_name": "cash_and_non_operating_assets", "value": 12.0, "unit": "USDm", "rationale": "Synthetic bridge cash.", "evidence_refs": ["EVD-SYN-ALT-FIN"]},
+    {"assertion_id": "NAR-A-007", "driver": "other", "input_name": "debt_and_debt_like_claims", "value": 25.0, "unit": "USDm", "rationale": "Synthetic debt.", "evidence_refs": ["EVD-SYN-ALT-FIN"]},
+    {"assertion_id": "NAR-A-007", "driver": "other", "input_name": "share_count", "value": 5.0, "unit": "million shares", "rationale": "Synthetic shares.", "evidence_refs": ["EVD-SYN-ALT-FIN"]}
+  ],
+  "alternatives": [],
+  "revision_history": [{"version": "1.0.0", "date": "2026-01-01", "classification": "initial", "triggering_evidence": ["EVD-SYN-ALT-INITIAL"], "changes": "Initial synthetic alternative.", "previous_version_ref": null}],
+  "review": {"status": "reviewed", "reviewer": "synthetic-reviewer", "reviewed_at": "2026-01-01T00:00:00Z", "notes": "Synthetic benchmark only."}
+}

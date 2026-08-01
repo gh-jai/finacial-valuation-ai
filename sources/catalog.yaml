@@ -25,7 +25,7 @@ sources:
     access: private
     private_locator: damodaran/narrative-and-numbers-2017.pdf
     status: available
-    notes: Planned M2 source for narrative-to-numbers translation, narrative testing, feedback loops, and corporate life-cycle framing.
+    notes: M2 primary source for Chapters 6-10, printed pages 70-166. Story break, change, and shift terminology continues on pages 167-183; the M2 scope note preserves that explicit extension.
 
   - id: SRC-DAMODARAN-DARK-SIDE-2018
     title: The Dark Side of Valuation

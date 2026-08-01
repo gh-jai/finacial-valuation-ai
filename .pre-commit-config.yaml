@@ -29,6 +29,12 @@ repos:
         language: python
         additional_dependencies: ["jsonschema>=4.21,<5", "PyYAML>=6.0,<7"]
         pass_filenames: false
+      - id: fvi-validate-narratives
+        name: Validate FVI narrative artifacts and cross-references
+        entry: python tools/validate_narratives.py
+        language: python
+        additional_dependencies: ["jsonschema>=4.21,<5", "PyYAML>=6.0,<7"]
+        pass_filenames: false
       - id: fvi-repository-policy
         name: Enforce FVI repository content policy
         entry: python tools/check_repository_policy.py

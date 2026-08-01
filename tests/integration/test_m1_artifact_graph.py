@@ -19,7 +19,10 @@ def test_m1_has_four_sourced_knowledge_artifacts() -> None:
 
 
 def test_eight_bounded_skills_are_unique_and_sourced() -> None:
-    metadata = [load_frontmatter(path) for path in sorted((ROOT / "skills").glob("*.md"))]
+    metadata = [
+        load_frontmatter(path)
+        for path in sorted((ROOT / "skills").glob("SKL-VAL-*.md"))
+    ]
     assert [document["id"] for document in metadata] == EXPECTED_SKILLS
     assert all(SOURCE_ID in document["source_refs"] for document in metadata)
     assert all(document["inputs"] and document["outputs"] for document in metadata)
@@ -37,7 +40,8 @@ def test_source_map_contains_every_m1_skill_and_workflow() -> None:
     mapping = next(item for item in source_map["mappings"] if item["source_id"] == SOURCE_ID)
     mapped = set(mapping["artifacts"])
     skill_paths = {
-        path.relative_to(ROOT).as_posix() for path in (ROOT / "skills").glob("*.md")
+        path.relative_to(ROOT).as_posix()
+        for path in (ROOT / "skills").glob("SKL-VAL-*.md")
     }
     assert skill_paths <= mapped
     assert "workflows/WFL-VAL-001-standard-company-valuation.md" in mapped

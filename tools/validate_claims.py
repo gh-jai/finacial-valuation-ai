@@ -1,4 +1,4 @@
-"""Validate the reviewed M1 claim collection and Knowledge claim references."""
+"""Validate all reviewed claim collections and Knowledge claim references."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ from jsonschema import Draft202012Validator, FormatChecker
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CLAIMS_PATH = Path("extraction/reviewed/M1-basic-dcf-claims.yaml")
+CLAIMS_ROOT = Path("extraction/reviewed")
 
 
 def load_yaml(path: Path) -> Any:
@@ -39,6 +39,7 @@ def validate_claim_collection(
     source_catalog: Any,
     knowledge_documents: Sequence[tuple[str, dict[str, Any]]],
     claim_schema: dict[str, Any],
+    claims_path: Path = Path("extraction/reviewed/M1-basic-dcf-claims.yaml"),
 ) -> tuple[list[str], int, int]:
     """Return errors, claim count, and Knowledge claim-reference count."""
     errors: list[str] = []
@@ -54,13 +55,13 @@ def validate_claim_collection(
 
     claims = claims_document.get("claims", []) if isinstance(claims_document, dict) else []
     if not isinstance(claims, list):
-        errors.append(f"{CLAIMS_PATH.as_posix()}: 'claims' must be a list")
+        errors.append(f"{claims_path.as_posix()}: 'claims' must be a list")
         claims = []
 
     validator = Draft202012Validator(claim_schema, format_checker=FormatChecker())
     claim_ids: set[str] = set()
     for index, claim in enumerate(claims):
-        label = f"{CLAIMS_PATH.as_posix()} claims[{index}]"
+        label = f"{claims_path.as_posix()} claims[{index}]"
         for error in sorted(validator.iter_errors(claim), key=lambda item: list(item.path)):
             location = ".".join(str(part) for part in error.path) or "<root>"
             errors.append(f"{label}.{location}: {error.message}")
@@ -114,12 +115,31 @@ def validate_repository(root: Path = ROOT) -> tuple[list[str], int, int]:
     claim_schema = json.loads(
         (root / "schemas" / "claim.schema.json").read_text(encoding="utf-8")
     )
-    claims_document = load_yaml(root / CLAIMS_PATH)
     source_catalog = load_yaml(root / "sources" / "catalog.yaml")
     knowledge_documents = list(iter_knowledge_frontmatter(root))
-    return validate_claim_collection(
-        claims_document, source_catalog, knowledge_documents, claim_schema
+    claim_paths = sorted((root / CLAIMS_ROOT).glob("*.yaml"))
+    combined_claims: dict[str, Any] = {"claims": []}
+    errors: list[str] = []
+    total_claims = 0
+    for path in claim_paths:
+        document = load_yaml(path)
+        relative = path.relative_to(root)
+        collection_errors, count, _ = validate_claim_collection(
+            document, source_catalog, [], claim_schema, relative
+        )
+        errors.extend(collection_errors)
+        total_claims += count
+        if isinstance(document, dict) and isinstance(document.get("claims"), list):
+            combined_claims["claims"].extend(document["claims"])
+    cross_errors, _, reference_count = validate_claim_collection(
+        combined_claims,
+        source_catalog,
+        knowledge_documents,
+        claim_schema,
+        Path("extraction/reviewed/*.yaml"),
     )
+    errors.extend(cross_errors)
+    return errors, total_claims, reference_count
 
 
 def main() -> int:

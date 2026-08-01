@@ -28,6 +28,8 @@ jobs:
         run: python tools/validate_sources.py
       - name: Validate atomic claims and Knowledge references
         run: python tools/validate_claims.py
+      - name: Validate narrative artifacts and cross-references
+        run: python tools/validate_narratives.py
       - name: Enforce repository policy
         run: python tools/check_repository_policy.py
       - name: Run tests

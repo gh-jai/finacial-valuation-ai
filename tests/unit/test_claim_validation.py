@@ -17,7 +17,10 @@ def repository_inputs() -> tuple[dict, dict, list[tuple[str, dict]], dict]:
         )
     )
     sources = yaml.safe_load((ROOT / "sources" / "catalog.yaml").read_text(encoding="utf-8"))
-    knowledge = list(iter_knowledge_frontmatter(ROOT))
+    knowledge = [
+        item for item in iter_knowledge_frontmatter(ROOT)
+        if item[1].get("domain") == "valuation"
+    ]
     schema = json.loads((ROOT / "schemas" / "claim.schema.json").read_text(encoding="utf-8"))
     return claims, sources, knowledge, schema
 

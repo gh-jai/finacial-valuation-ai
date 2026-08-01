@@ -1,0 +1,223 @@
+schema_version: 1.0.0
+claims:
+  - id: CLM-NAR-001
+    claim_type: source_statement
+    statement: Constructing a business narrative requires prior work on the company, the market in which it operates, and the competitors it faces.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 6, printed pages 70-80
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-002
+    claim_type: source_statement
+    statement: Identifying the business a company is actually in is a foundational narrative choice because it frames the market, competitors, and growth possibilities.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 6, printed pages 71-72
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-003
+    claim_type: source_statement
+    statement: Market analysis for a valuation narrative should address market definition, current size, expected growth, and structural characteristics.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 6, printed pages 72-73
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-004
+    claim_type: source_statement
+    statement: Competitive analysis should examine existing and potential competitors, barriers to entry, competitive advantages, and likely effects on market share and profitability.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 6, printed pages 73-74
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-005
+    claim_type: source_statement
+    statement: A business narrative should connect the company's history and management choices to its current position and future possibilities without treating the past as destiny.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 6, printed pages 74-80
+    confidence: 0.96
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-006
+    claim_type: source_statement
+    statement: A useful valuation narrative should be focused and parsimonious enough that its key components can be linked to valuation inputs.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 6, printed pages 81-91
+    confidence: 0.97
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-007
+    claim_type: source_statement
+    statement: The 3P test evaluates whether a narrative is possible, plausible, and probable, with each successive test demanding stronger evidence.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 7, printed pages 92-109
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-008
+    claim_type: source_statement
+    statement: The possibility test asks whether a coherent pathway exists for the narrative and whether it avoids being a fairy tale.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 7, printed pages 92-96
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-009
+    claim_type: source_statement
+    statement: The plausibility test requires evidence that the business model or narrative has worked on at least a smaller scale, such as in a test market or geography.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 7, printed pages 96-102
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-010
+    claim_type: source_statement
+    statement: The probability test requires evidence that the narrative can scale and that claimed barriers to entry or competitive advantages can hold.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 7, printed pages 102-109
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-011
+    claim_type: derived_rule
+    statement: A 3P assessment must record supporting and contradicting evidence and reviewer reasoning rather than outputting an unsupported label.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 7, printed pages 92-109
+    derivation: The source defines progressively stricter evidentiary tests, so an auditable implementation must preserve the evidence and judgment used at each level.
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-012
+    claim_type: source_statement
+    statement: A valuation becomes a bridge between story and numbers only when every material valuation input has a narrative explanation and material narrative claims are reflected in numbers.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 8, printed pages 110-114
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-013
+    claim_type: source_statement
+    statement: Revenue growth should reflect the market definition, market size and growth, the company's expected market share, and pricing or unit-volume assumptions.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 8, printed pages 110-122
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-014
+    claim_type: source_statement
+    statement: Expected operating margins should reflect unit economics, cost structure, scale effects, and competitive intensity.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 8, printed pages 112-122
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-015
+    claim_type: source_statement
+    statement: Reinvestment assumptions should reflect the capital required to deliver the revenue growth embedded in the narrative and the efficiency of that investment.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 8, printed pages 112-122
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-016
+    claim_type: source_statement
+    statement: Risk assumptions should reflect operating risk, financial risk, country exposure, and the possibility that the business may fail.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 8, printed pages 112-127
+    confidence: 0.97
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-017
+    claim_type: source_statement
+    statement: Parsimonious valuation models make story-to-input connections easier to understand and audit than models with excessive inputs and outputs.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 8, printed pages 110-114
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-018
+    claim_type: derived_rule
+    statement: Every material narrative assertion must map to an observable, a valuation input, or an explicit unquantified limitation.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 8, printed pages 110-127
+    derivation: The source requires two-way linkage between stories and numbers; assertions that cannot be represented must remain visible rather than disappearing from the audit trail.
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-019
+    claim_type: source_statement
+    statement: Valuation inputs derived from a narrative can be passed into an intrinsic valuation model to produce a value estimate, but that value remains conditional on the narrative and inputs.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 9, printed pages 128-150
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-020
+    claim_type: source_statement
+    statement: Alternative narratives for the same company can legitimately produce materially different input sets and values, but the narratives are not necessarily equally credible.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 9, printed pages 138-150
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-021
+    claim_type: derived_rule
+    statement: Alternative narratives must remain separate versioned objects and must not be silently averaged or merged before valuation.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 9, printed pages 138-150
+    derivation: The source demonstrates that distinct stories generate distinct assumptions and values and evaluates their credibility separately.
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-022
+    claim_type: source_statement
+    statement: A valuation process should remain open to feedback, especially from informed disagreement, because criticism can expose weak assumptions and improve the narrative.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 10, printed pages 151-166
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-NAR-023
+    claim_type: source_statement
+    statement: New information may break the business model, change the core narrative, or shift the contours of an otherwise intact narrative.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapter 10, printed pages 167-183, terminology boundary noted for later extension
+    confidence: 0.95
+    status: reviewed
+    reviewer: fvi-maintainers
+    review_notes: The classification terminology is introduced at the end of the selected feedback-loop sequence and extends immediately beyond the original page cap; M2 may use the categories but must keep this scope note visible.
+  - id: CLM-NAR-024
+    claim_type: derived_rule
+    statement: Every narrative revision must preserve the prior version, identify the triggering evidence, classify the revision, and show the resulting changes to valuation inputs and value.
+    source_refs:
+      - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+        location: Chapters 9-10, printed pages 138-166; classification terminology continues on pages 167-183
+    derivation: The feedback-loop method requires learning from disagreement and updating story and value without erasing the previous narrative or rationale.
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers

@@ -1,0 +1,8 @@
+schema_version: 1.0.0
+aliases:
+  - alias: DCF
+    concept_id: CON-VALUATION-DCF
+    context: Standard abbreviation
+  - alias: present value discount rate
+    concept_id: CON-RISK-DISCOUNT-RATE
+    context: Valuation context

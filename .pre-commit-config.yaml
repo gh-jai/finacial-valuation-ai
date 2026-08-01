@@ -1,0 +1,28 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-json
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-added-large-files
+        args: ["--maxkb=500"]
+      - id: detect-private-key
+  - repo: local
+    hooks:
+      - id: fvi-validate-schemas
+        name: Validate FVI schemas and sample artifacts
+        entry: python tools/validate_schemas.py
+        language: system
+        pass_filenames: false
+      - id: fvi-validate-sources
+        name: Validate FVI source metadata
+        entry: python tools/validate_sources.py
+        language: system
+        pass_filenames: false
+      - id: fvi-repository-policy
+        name: Enforce FVI repository content policy
+        entry: python tools/check_repository_policy.py
+        language: system
+        pass_filenames: false

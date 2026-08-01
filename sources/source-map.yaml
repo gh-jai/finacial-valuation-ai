@@ -1,0 +1,6 @@
+schema_version: 1.0.0
+mappings:
+  - source_id: SRC-PRIVATE-001
+    artifacts: []
+    extraction_manifest: null
+    notes: Placeholder mapping; sample framework documents are original and do not rely on this source.

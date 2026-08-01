@@ -28,19 +28,19 @@ One M1 FCFF input contract per narrative ID.
 Call `tools.dcf.run_fcff_dcf` for each isolated contract; retain calculation trails and traceability; compare values only after valuation.
 
 ## Decision rules
-Do not apply failure probability unless an approved method exists; disclose it as an unmapped model limitation.
+Do not apply failure probability unless an approved method exists. Preserve it as a mapped but unapplied input and emit an explicit model limitation stating that it does not alter M1 value.
 
 ## Output schema
-Narrative ID keyed valuation results and input traces.
+Narrative ID keyed valuation results, input traces, and model limitations.
 
 ## Controls
 M1 human gates remain authoritative for DCF mechanics.
 
 ## Failure modes
-Duplicated formulas, cross-contaminated inputs, unsupported probability adjustment, or lost narrative IDs.
+Duplicated formulas, cross-contaminated inputs, unsupported probability adjustment, undisclosed unapplied risk, or lost narrative IDs.
 
 ## Source evidence
 Implements `CLM-NAR-019` through `CLM-NAR-021` and composes with the M1 FCFF claims.
 
 ## Tests or test expectations
-Verify separate valuations, deterministic results, and explicit `WFL-VAL-001` composition.
+Verify separate valuations, deterministic results, explicit `WFL-VAL-001` composition, and mapped-but-unapplied failure-risk disclosure.

@@ -1,0 +1,6 @@
+{
+  "fixture_id": "FIX-NAR-001",
+  "current": "narratives/synthetic-base.json",
+  "alternatives": ["narratives/synthetic-alternative.json"],
+  "description": "Synthetic base narrative with one separately valued plausible alternative."
+}

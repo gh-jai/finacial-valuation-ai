@@ -55,12 +55,16 @@ python -m pip install -e ".[dev]"
 python tools/validate_schemas.py
 python tools/validate_sources.py
 python tools/validate_claims.py
+python tools/validate_narratives.py
 python tools/check_repository_policy.py
 pytest
 ```
 
 Run `pre-commit install` once to enable local checks. See [CONTRIBUTING.md](CONTRIBUTING.md) before adding artifacts.
 
-## Status
+## Implemented vertical slices
 
-FVI is at M0 and is not investment advice. Interfaces and schemas may change before v1.0.
+- M1: traceable basic FCFF DCF, enterprise-to-equity bridge, sensitivity review, structured output, and synthetic benchmarks.
+- M2: evidence-backed narrative construction, 3P review, assertion-to-value-driver mapping, separate alternative valuations, and feedback revision composed with the M1 workflow.
+
+FVI remains pre-v1.0 and is not investment advice. Interfaces and schemas may change before release.

@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.1.0",
+  "id": "NAR-SYNTH-REVISED",
+  "subject": "Synthetic Parcel Software",
+  "as_of_date": "2026-04-01",
+  "status": "revised",
+  "source_refs": ["SRC-DAMODARAN-NARRATIVE-NUMBERS-2017", "CLM-NAR-022", "CLM-NAR-023", "CLM-NAR-024"],
+  "business_definition": {"business": "Synthetic logistics workflow software", "products_or_services": ["Subscription workflow platform"], "customer": "Synthetic regional parcel operators", "geography": ["Synthetic Region A"], "life_cycle_stage": "high-growth"},
+  "market": {"definition": "Synthetic regional logistics workflow software", "size": 1100.0, "growth": 0.12, "structure": "Fragmented buyers and several suppliers", "evidence_refs": ["EVD-SYN-FEEDBACK-001"]},
+  "competition": {"current_competitors": ["Synthetic Rival A"], "potential_competitors": ["Synthetic Platform B"], "barriers_to_entry": ["Workflow integration"], "competitive_advantages": ["Synthetic customer retention"], "evidence_refs": ["EVD-SYN-COMP-001"]},
+  "assertions": [
+    {"id": "NAR-A-001", "statement": "New synthetic evidence supports faster adoption.", "category": "growth", "supporting_evidence": ["EVD-SYN-FEEDBACK-001"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-002", "statement": "Synthetic retention supports improved margins.", "category": "profitability", "supporting_evidence": ["EVD-SYN-FEEDBACK-002"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-003", "statement": "Faster synthetic growth requires more reinvestment.", "category": "reinvestment", "supporting_evidence": ["EVD-SYN-FEEDBACK-003"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-004", "statement": "Synthetic risk assumptions remain unchanged.", "category": "risk", "supporting_evidence": ["EVD-SYN-RISK-001"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-005", "statement": "Synthetic failure possibility remains explicit.", "category": "failure", "supporting_evidence": ["EVD-SYN-FAIL-001"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-006", "statement": "Synthetic stable growth remains constrained.", "category": "growth", "supporting_evidence": ["EVD-SYN-TERM-001"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-007", "statement": "Synthetic tax and bridge inputs remain explicit.", "category": "other", "supporting_evidence": ["EVD-SYN-FIN-001"], "contradicting_evidence": [], "quantification_status": "mapped"}
+  ],
+  "three_p": {
+    "possible": {"result": "pass", "supporting_evidence": ["EVD-SYN-POSSIBLE-001"], "contradicting_evidence": [], "reasoning": "The revised synthetic path is coherent."},
+    "plausible": {"result": "pass", "supporting_evidence": ["EVD-SYN-FEEDBACK-001"], "contradicting_evidence": [], "reasoning": "New synthetic adoption evidence supports the revision."},
+    "probable": {"result": "pass", "supporting_evidence": ["EVD-SYN-FEEDBACK-002"], "contradicting_evidence": ["EVD-SYN-COMP-001"], "reasoning": "Retention evidence strengthens scale confidence while competition remains visible."},
+    "overall": "probable",
+    "reviewer_reasoning": "New synthetic feedback upgrades the revised narrative."
+  },
+  "value_driver_mappings": [
+    {"assertion_id": "NAR-A-001", "driver": "revenue-growth", "input_name": "revenues", "value": [104.0, 120.0, 138.0], "unit": "USDm", "rationale": "Revised synthetic adoption.", "evidence_refs": ["EVD-SYN-FEEDBACK-001"]},
+    {"assertion_id": "NAR-A-002", "driver": "operating-margin", "input_name": "operating_margins", "value": [0.13, 0.155, 0.18], "unit": "decimal", "rationale": "Revised synthetic retention and scale.", "evidence_refs": ["EVD-SYN-FEEDBACK-002"]},
+    {"assertion_id": "NAR-A-007", "driver": "other", "input_name": "tax_rates", "value": [0.25, 0.25, 0.25], "unit": "decimal", "rationale": "Synthetic tax.", "evidence_refs": ["EVD-SYN-FIN-001"]},
+    {"assertion_id": "NAR-A-003", "driver": "reinvestment", "input_name": "reinvestments", "value": [6.5, 8.0, 10.0], "unit": "USDm", "rationale": "Revised growth investment.", "evidence_refs": ["EVD-SYN-FEEDBACK-003"]},
+    {"assertion_id": "NAR-A-004", "driver": "cost-of-capital", "input_name": "discount_rate", "value": [0.11, 0.105, 0.1], "unit": "decimal", "rationale": "Synthetic risk convergence.", "evidence_refs": ["EVD-SYN-RISK-001"]},
+    {"assertion_id": "NAR-A-005", "driver": "failure-risk", "input_name": "failure_probability", "value": 0.04, "unit": "probability", "rationale": "Retained disclosure.", "evidence_refs": ["EVD-SYN-FAIL-001"]},
+    {"assertion_id": "NAR-A-006", "driver": "terminal-growth", "input_name": "terminal_growth_rate", "value": 0.025, "unit": "decimal", "rationale": "Stable growth unchanged.", "evidence_refs": ["EVD-SYN-TERM-001"]},
+    {"assertion_id": "NAR-A-004", "driver": "cost-of-capital", "input_name": "terminal_discount_rate", "value": 0.095, "unit": "decimal", "rationale": "Stable risk unchanged.", "evidence_refs": ["EVD-SYN-RISK-001"]},
+    {"assertion_id": "NAR-A-007", "driver": "other", "input_name": "cash_and_non_operating_assets", "value": 12.0, "unit": "USDm", "rationale": "Synthetic bridge cash.", "evidence_refs": ["EVD-SYN-FIN-001"]},
+    {"assertion_id": "NAR-A-007", "driver": "other", "input_name": "debt_and_debt_like_claims", "value": 25.0, "unit": "USDm", "rationale": "Synthetic debt.", "evidence_refs": ["EVD-SYN-FIN-001"]},
+    {"assertion_id": "NAR-A-007", "driver": "other", "input_name": "share_count", "value": 5.0, "unit": "million shares", "rationale": "Synthetic shares.", "evidence_refs": ["EVD-SYN-FIN-001"]}
+  ],
+  "alternatives": [],
+  "revision_history": [
+    {"version": "1.0.0", "date": "2026-01-01", "classification": "initial", "triggering_evidence": ["EVD-SYN-INITIAL-001"], "changes": "Preserved initial synthetic narrative reference.", "previous_version_ref": null},
+    {"version": "1.1.0", "date": "2026-04-01", "classification": "shift", "triggering_evidence": ["EVD-SYN-FEEDBACK-001", "EVD-SYN-FEEDBACK-002"], "changes": "Shifted adoption, margins, reinvestment, and failure risk while preserving the core business narrative.", "previous_version_ref": "1.0.0"}
+  ],
+  "review": {"status": "reviewed", "reviewer": "synthetic-reviewer", "reviewed_at": "2026-04-01T00:00:00Z", "notes": "Synthetic feedback benchmark only."}
+}

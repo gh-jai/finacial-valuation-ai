@@ -1,0 +1,16 @@
+{
+  "fixture_id": "FIX-NAR-002",
+  "three_p_result": "probable",
+  "revision_classification": "shift",
+  "mapped_fcff_assumptions": {
+    "cash_flows": [3.6400000000000006, 5.950000000000001, 8.629999999999999],
+    "discount_rate": [0.11, 0.105, 0.1],
+    "terminal_growth_rate": 0.025,
+    "failure_probability": 0.04
+  },
+  "valuation_output": {"operating_asset_value": 108.18761948173709, "per_share_value": 19.037523896347416},
+  "prior_per_share_value": 14.670223152576089,
+  "revision_delta": 4.367300743771327,
+  "traceability": {"required": true, "prior_versions_preserved": true, "triggering_evidence_retained": true},
+  "tolerance": 1e-09
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1.0",
+  "id": "NAR-SYNTH-BASE",
+  "subject": "Synthetic Parcel Software",
+  "as_of_date": "2026-01-01",
+  "status": "valued",
+  "source_refs": ["SRC-DAMODARAN-NARRATIVE-NUMBERS-2017", "CLM-NAR-012", "CLM-NAR-019"],
+  "business_definition": {
+    "business": "Synthetic logistics workflow software",
+    "products_or_services": ["Subscription workflow platform"],
+    "customer": "Synthetic regional parcel operators",
+    "geography": ["Synthetic Region A"],
+    "life_cycle_stage": "high-growth"
+  },
+  "market": {
+    "definition": "Synthetic regional logistics workflow software",
+    "size": 1000.0,
+    "growth": 0.1,
+    "structure": "Fragmented buyers and several software suppliers",
+    "evidence_refs": ["EVD-SYN-MARKET-001"]
+  },
+  "competition": {
+    "current_competitors": ["Synthetic Rival A"],
+    "potential_competitors": ["Synthetic Platform B"],
+    "barriers_to_entry": ["Workflow integration"],
+    "competitive_advantages": ["Synthetic customer retention"],
+    "evidence_refs": ["EVD-SYN-COMP-001"]
+  },
+  "assertions": [
+    {"id": "NAR-A-001", "statement": "The synthetic addressable market supports the revenue path.", "category": "growth", "supporting_evidence": ["EVD-SYN-MARKET-001"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-002", "statement": "Synthetic scale efficiencies improve operating margins.", "category": "profitability", "supporting_evidence": ["EVD-SYN-MARGIN-001"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-003", "statement": "Synthetic growth requires explicit reinvestment.", "category": "reinvestment", "supporting_evidence": ["EVD-SYN-REINVEST-001"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-004", "statement": "Synthetic operating and financing risk supports the discount rate.", "category": "risk", "supporting_evidence": ["EVD-SYN-RISK-001"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-005", "statement": "The synthetic company retains a nonzero failure possibility.", "category": "failure", "supporting_evidence": ["EVD-SYN-FAIL-001"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-006", "statement": "Synthetic stable growth converges below the terminal discount rate.", "category": "growth", "supporting_evidence": ["EVD-SYN-TERM-001"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-007", "statement": "Synthetic taxes and bridge values are explicit model inputs.", "category": "other", "supporting_evidence": ["EVD-SYN-FIN-001"], "contradicting_evidence": [], "quantification_status": "mapped"},
+    {"id": "NAR-A-008", "statement": "Management execution quality remains an unquantified limitation.", "category": "management", "supporting_evidence": ["EVD-SYN-MGMT-001"], "contradicting_evidence": [], "quantification_status": "unquantified-limitation"}
+  ],
+  "three_p": {
+    "possible": {"result": "pass", "supporting_evidence": ["EVD-SYN-POSSIBLE-001"], "contradicting_evidence": [], "reasoning": "A coherent synthetic operating path exists."},
+    "plausible": {"result": "pass", "supporting_evidence": ["EVD-SYN-PLAUSIBLE-001"], "contradicting_evidence": [], "reasoning": "Synthetic pilot evidence supports smaller-scale viability."},
+    "probable": {"result": "uncertain", "supporting_evidence": ["EVD-SYN-PROBABLE-001"], "contradicting_evidence": ["EVD-SYN-COMP-001"], "reasoning": "Scale is supported but competitive durability remains uncertain."},
+    "overall": "plausible",
+    "reviewer_reasoning": "The synthetic story passes possibility and plausibility but not probability."
+  },
+  "value_driver_mappings": [
+    {"assertion_id": "NAR-A-001", "driver": "revenue-growth", "input_name": "revenues", "value": [100.0, 112.0, 124.0], "unit": "USDm", "rationale": "Synthetic market and share path.", "evidence_refs": ["EVD-SYN-MARKET-001"]},
+    {"assertion_id": "NAR-A-002", "driver": "operating-margin", "input_name": "operating_margins", "value": [0.12, 0.14, 0.16], "unit": "decimal", "rationale": "Synthetic scale efficiency.", "evidence_refs": ["EVD-SYN-MARGIN-001"]},
+    {"assertion_id": "NAR-A-007", "driver": "other", "input_name": "tax_rates", "value": [0.25, 0.25, 0.25], "unit": "decimal", "rationale": "Synthetic normalized tax rate.", "evidence_refs": ["EVD-SYN-FIN-001"]},
+    {"assertion_id": "NAR-A-003", "driver": "reinvestment", "input_name": "reinvestments", "value": [6.0, 7.0, 8.0], "unit": "USDm", "rationale": "Synthetic growth investment.", "evidence_refs": ["EVD-SYN-REINVEST-001"]},
+    {"assertion_id": "NAR-A-004", "driver": "cost-of-capital", "input_name": "discount_rate", "value": [0.11, 0.105, 0.1], "unit": "decimal", "rationale": "Synthetic risk convergence.", "evidence_refs": ["EVD-SYN-RISK-001"]},
+    {"assertion_id": "NAR-A-005", "driver": "failure-risk", "input_name": "failure_probability", "value": 0.05, "unit": "probability", "rationale": "Retained for disclosure; not applied by M1.", "evidence_refs": ["EVD-SYN-FAIL-001"]},
+    {"assertion_id": "NAR-A-006", "driver": "terminal-growth", "input_name": "terminal_growth_rate", "value": 0.025, "unit": "decimal", "rationale": "Synthetic stable growth.", "evidence_refs": ["EVD-SYN-TERM-001"]},
+    {"assertion_id": "NAR-A-004", "driver": "cost-of-capital", "input_name": "terminal_discount_rate", "value": 0.095, "unit": "decimal", "rationale": "Synthetic stable risk.", "evidence_refs": ["EVD-SYN-RISK-001"]},
+    {"assertion_id": "NAR-A-007", "driver": "other", "input_name": "cash_and_non_operating_assets", "value": 12.0, "unit": "USDm", "rationale": "Synthetic bridge cash.", "evidence_refs": ["EVD-SYN-FIN-001"]},
+    {"assertion_id": "NAR-A-007", "driver": "other", "input_name": "debt_and_debt_like_claims", "value": 25.0, "unit": "USDm", "rationale": "Synthetic bridge claims.", "evidence_refs": ["EVD-SYN-FIN-001"]},
+    {"assertion_id": "NAR-A-007", "driver": "other", "input_name": "share_count", "value": 5.0, "unit": "million shares", "rationale": "Synthetic share denominator.", "evidence_refs": ["EVD-SYN-FIN-001"]}
+  ],
+  "alternatives": [{"narrative_id": "NAR-SYNTH-ALT", "title": "Slower synthetic adoption", "difference_summary": "Lower revenue and margin path with higher risk.", "status": "active"}],
+  "revision_history": [{"version": "1.0.0", "date": "2026-01-01", "classification": "initial", "triggering_evidence": ["EVD-SYN-INITIAL-001"], "changes": "Initial synthetic narrative.", "previous_version_ref": null}],
+  "review": {"status": "reviewed", "reviewer": "synthetic-reviewer", "reviewed_at": "2026-01-01T00:00:00Z", "notes": "Synthetic benchmark only."}
+}

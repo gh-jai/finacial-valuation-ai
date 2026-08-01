@@ -32,9 +32,40 @@ mappings:
     notes: M1 covers Chapter 3, PDF pages 50-81, using 12 original atomic claims, four sourced Knowledge artifacts, eight bounded skills, and synthetic public benchmarks.
 
   - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
-    artifacts: []
-    extraction_manifest: null
-    notes: Reserved for M2 narrative-to-numbers artifacts.
+    artifacts:
+      - extraction/reviewed/M2-narrative-to-numbers-claims.yaml
+      - knowledge/narrative/NAR-001-narrative-prework.md
+      - knowledge/narrative/NAR-002-three-p-test.md
+      - knowledge/narrative/NAR-003-value-driver-mapping.md
+      - knowledge/narrative/NAR-004-parsimony-consistency.md
+      - knowledge/narrative/NAR-005-alternative-narratives.md
+      - knowledge/narrative/NAR-006-feedback-revision.md
+      - skills/SKL-NAR-001-gather-narrative-evidence.md
+      - skills/SKL-NAR-002-define-business-market.md
+      - skills/SKL-NAR-003-construct-business-narrative.md
+      - skills/SKL-NAR-004-apply-three-p-test.md
+      - skills/SKL-NAR-005-map-assertions-to-value-drivers.md
+      - skills/SKL-NAR-006-generate-alternative-narratives.md
+      - skills/SKL-NAR-007-run-narrative-linked-fcff.md
+      - skills/SKL-NAR-008-process-feedback-revision.md
+      - workflows/WFL-NAR-001-narrative-to-numbers.md
+      - schemas/narrative.schema.json
+      - tools/narrative.py
+      - tools/validate_narratives.py
+      - benchmarks/fixtures/narratives/synthetic-base.json
+      - benchmarks/fixtures/narratives/synthetic-alternative.json
+      - benchmarks/fixtures/narratives/synthetic-revised.json
+      - benchmarks/fixtures/narrative-base-with-alternative.json
+      - benchmarks/fixtures/narrative-feedback-revision.json
+      - benchmarks/expected/narrative-base-with-alternative-output.json
+      - benchmarks/expected/narrative-feedback-revision-output.json
+      - tests/unit/test_narrative_validation.py
+      - tests/unit/test_narrative_mapping.py
+      - tests/integration/test_narrative_benchmarks.py
+      - tests/integration/test_m2_artifact_graph.py
+      - templates/m2-narrative-review-checklist.md
+    extraction_manifest: extraction/manifests/M2-narrative-to-numbers.yaml
+    notes: M2 covers Chapters 6-10, printed pages 70-166, with the explicit pages 167-183 classification-terminology extension preserved; it uses 24 claims, six Knowledge artifacts, eight skills, and synthetic benchmarks.
 
   - source_id: SRC-DAMODARAN-DARK-SIDE-2018
     artifacts: []

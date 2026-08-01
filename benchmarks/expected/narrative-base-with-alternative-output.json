@@ -1,0 +1,14 @@
+{
+  "fixture_id": "FIX-NAR-001",
+  "three_p_result": "plausible",
+  "mapped_fcff_assumptions": {
+    "cash_flows": [3.0, 4.760000000000002, 6.879999999999999],
+    "discount_rate": [0.11, 0.105, 0.1],
+    "terminal_growth_rate": 0.025,
+    "failure_probability": 0.05
+  },
+  "valuation_output": {"operating_asset_value": 86.35111576288044, "per_share_value": 14.670223152576089},
+  "alternative": {"narrative_id": "NAR-SYNTH-ALT", "three_p_result": "probable", "operating_asset_value": 30.461307026334968, "per_share_value": 3.492261405266993},
+  "traceability": {"required": true, "assertion_ids_retained": true, "evidence_refs_retained": true},
+  "tolerance": 1e-09
+}

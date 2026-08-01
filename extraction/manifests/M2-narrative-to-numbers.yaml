@@ -1,0 +1,48 @@
+id: EXT-M2-NARRATIVE-TO-NUMBERS
+source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+scope:
+  chapters:
+    - number: 6
+      title: Building a Narrative
+      printed_pages:
+        start: 70
+        end: 91
+    - number: 7
+      title: Test-Driving a Narrative
+      printed_pages:
+        start: 92
+        end: 109
+    - number: 8
+      title: From Narratives to Numbers
+      printed_pages:
+        start: 110
+        end: 127
+    - number: 9
+      title: Numbers to Value
+      printed_pages:
+        start: 128
+        end: 150
+    - number: 10
+      title: Improving and Modifying Your Narrative — The Feedback Loop
+      printed_pages:
+        start: 151
+        end: 166
+artifact_goal: Narrative-to-Numbers vertical slice composed with the M1 FCFF workflow
+review_status: in_progress
+copyright_controls:
+  raw_text_committed: false
+  tables_or_figures_reproduced: false
+  sequential_extract_committed: false
+coverage:
+  - narrative_prework
+  - business_market_and_competition
+  - three_p_test
+  - narrative_to_value_driver_mapping
+  - valuation_input_translation
+  - alternative_and_counter_narratives
+  - feedback_and_revision
+  - narrative_linked_valuation
+limitations:
+  - Chapters 11–16 are outside M2 and must not be silently imported into M2 claims.
+  - Public examples and benchmarks must use synthetic companies and evidence.
+  - M2 composes with the existing FCFF engine and does not redefine DCF mechanics.

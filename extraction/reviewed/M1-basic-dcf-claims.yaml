@@ -1,0 +1,111 @@
+schema_version: 1.0.0
+claims:
+  - id: CLM-VAL-DCF-001
+    claim_type: source_statement
+    statement: A business-level intrinsic valuation values operating assets and then bridges from firm value to equity value by accounting for debt and other non-equity claims.
+    source_refs:
+      - source_id: SRC-DAMODARAN-LBV-2024
+        location: Chapter 3, PDF pages 50-52
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-VAL-DCF-002
+    claim_type: source_statement
+    statement: Free cash flow to the firm is an unlevered cash flow available to all capital providers after taxes and reinvestment.
+    source_refs:
+      - source_id: SRC-DAMODARAN-LBV-2024
+        location: Chapter 3, PDF pages 60-62
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-VAL-DCF-003
+    claim_type: source_statement
+    statement: Cash-flow definition and discount rate must be matched; FCFF is discounted at the cost of capital rather than the cost of equity.
+    source_refs:
+      - source_id: SRC-DAMODARAN-LBV-2024
+        location: Chapter 3, PDF pages 63-68
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-VAL-DCF-004
+    claim_type: source_statement
+    statement: The cost of capital combines the cost of equity and after-tax cost of debt using capital-structure weights.
+    source_refs:
+      - source_id: SRC-DAMODARAN-LBV-2024
+        location: Chapter 3, PDF pages 63-68
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-VAL-DCF-005
+    claim_type: source_statement
+    statement: Sustainable operating-income growth depends on both the share of after-tax operating income reinvested and the return earned on invested capital.
+    source_refs:
+      - source_id: SRC-DAMODARAN-LBV-2024
+        location: Chapter 3, PDF pages 69-71
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-VAL-DCF-006
+    claim_type: source_statement
+    statement: Revenue growth, operating margins, tax rates, and reinvestment jointly determine forecast FCFF.
+    source_refs:
+      - source_id: SRC-DAMODARAN-LBV-2024
+        location: Chapter 3, PDF pages 71-73
+    confidence: 0.97
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-VAL-DCF-007
+    claim_type: source_statement
+    statement: A going-concern terminal value can be estimated with a perpetual-growth model when cash flows are expected to grow at a constant rate after the explicit forecast period.
+    source_refs:
+      - source_id: SRC-DAMODARAN-LBV-2024
+        location: Chapter 3, PDF pages 74-76
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-VAL-DCF-008
+    claim_type: source_statement
+    statement: Increasing terminal growth also requires additional reinvestment, so the effect of higher growth on terminal value cannot be assessed independently of return on capital.
+    source_refs:
+      - source_id: SRC-DAMODARAN-LBV-2024
+        location: Chapter 3, PDF pages 74-76
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-VAL-DCF-009
+    claim_type: source_statement
+    statement: Forecast cash flows and terminal value must be discounted to the valuation date using cumulative discount factors when discount rates vary over time.
+    source_refs:
+      - source_id: SRC-DAMODARAN-LBV-2024
+        location: Chapter 3, PDF pages 77-79
+    confidence: 0.97
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-VAL-DCF-010
+    claim_type: source_statement
+    statement: The enterprise-to-equity bridge adds cash and non-operating assets and subtracts debt and other debt-like or non-equity claims.
+    source_refs:
+      - source_id: SRC-DAMODARAN-LBV-2024
+        location: Chapter 3, PDF pages 79-81
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-VAL-DCF-011
+    claim_type: source_statement
+    statement: Per-share value is obtained only after the equity-value bridge and division by an appropriate share count.
+    source_refs:
+      - source_id: SRC-DAMODARAN-LBV-2024
+        location: Chapter 3, PDF pages 80-81
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+  - id: CLM-VAL-DCF-012
+    claim_type: derived_rule
+    statement: A Gordon-growth terminal-value implementation must reject a terminal growth rate at or above the terminal discount rate.
+    source_refs:
+      - source_id: SRC-DAMODARAN-LBV-2024
+        location: Chapter 3, PDF pages 74-76
+    derivation: The perpetual-growth denominator is the terminal discount rate minus terminal growth; a non-positive denominator is not economically coherent for this workflow.
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers

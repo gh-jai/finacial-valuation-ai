@@ -51,6 +51,10 @@ def extract_fcff_input_contract(narrative: Mapping[str, Any]) -> dict[str, Any]:
     if missing:
         raise ValueError(f"missing material narrative mappings: {', '.join(missing)}")
 
+    failure_probability = float(by_name["failure_probability"]["value"])
+    if not 0.0 <= failure_probability <= 1.0:
+        raise ValueError("failure_probability must be between 0 and 1")
+
     cash_flows = forecast_fcff(
         by_name["revenues"]["value"],
         by_name["operating_margins"]["value"],
@@ -62,7 +66,17 @@ def extract_fcff_input_contract(narrative: Mapping[str, Any]) -> dict[str, Any]:
         "cash_flows": list(cash_flows),
         "discount_rate": deepcopy(by_name["discount_rate"]["value"]),
         "terminal_growth_rate": by_name["terminal_growth_rate"]["value"],
-        "failure_probability": by_name["failure_probability"]["value"],
+        "failure_probability": failure_probability,
+        "model_limitations": [
+            {
+                "input_name": "failure_probability",
+                "status": "mapped-not-applied",
+                "reason": (
+                    "M1 FCFF does not include an approved probability-of-failure adjustment; "
+                    "the mapped risk remains disclosed and traceable but does not alter value."
+                ),
+            }
+        ],
         "traceability": {},
     }
     for optional in (
@@ -109,7 +123,9 @@ def value_narrative_set(
 ) -> dict[str, tuple[dict[str, Any], DCFResult]]:
     """Value current and active alternatives as isolated input sets."""
     expected = {
-        item["narrative_id"] for item in current.get("alternatives", []) if item["status"] == "active"
+        item["narrative_id"]
+        for item in current.get("alternatives", [])
+        if item["status"] == "active"
     }
     supplied = {item["id"] for item in alternatives}
     if current["id"] in supplied:

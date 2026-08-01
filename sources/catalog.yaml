@@ -1,11 +1,15 @@
 schema_version: 1.0.0
 sources:
-  - id: SRC-PRIVATE-001
-    title: Private valuation source placeholder
+  - id: SRC-DAMODARAN-LBV-2024
+    title: The Little Book of Valuation
     authors:
-      - Unspecified author
+      - Aswath Damodaran
     source_type: book
+    publication_year: 2024
+    publisher: John Wiley & Sons, Inc.
+    edition: Updated Edition
+    identifier: ISBN 9781394244409
     access: private
-    private_locator: placeholder-source.pdf
-    status: planned
-    notes: Replace this metadata with a lawfully accessed source for the M1 vertical slice; never commit the file.
+    private_locator: damodaran/the-little-book-of-valuation-2024.pdf
+    status: available
+    notes: M1 uses Chapter 3, PDF pages 50-81. The source file is private and must never be committed.

@@ -1,6 +1,11 @@
 schema_version: 1.0.0
 mappings:
-  - source_id: SRC-PRIVATE-001
-    artifacts: []
-    extraction_manifest: null
-    notes: Placeholder mapping; sample framework documents are original and do not rely on this source.
+  - source_id: SRC-DAMODARAN-LBV-2024
+    artifacts:
+      - extraction/reviewed/M1-basic-dcf-claims.yaml
+      - tools/dcf.py
+      - tests/unit/test_dcf.py
+      - benchmarks/fixtures/basic-dcf-input.json
+      - benchmarks/expected/basic-dcf-output.json
+    extraction_manifest: extraction/manifests/M1-basic-dcf.yaml
+    notes: M1 covers Chapter 3, PDF pages 50-81, using original paraphrases and synthetic public benchmarks.

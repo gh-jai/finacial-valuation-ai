@@ -14,15 +14,23 @@ repos:
       - id: fvi-validate-schemas
         name: Validate FVI schemas and sample artifacts
         entry: python tools/validate_schemas.py
-        language: system
+        language: python
+        additional_dependencies: ["jsonschema>=4.21,<5", "PyYAML>=6.0,<7"]
         pass_filenames: false
       - id: fvi-validate-sources
         name: Validate FVI source metadata
         entry: python tools/validate_sources.py
-        language: system
+        language: python
+        additional_dependencies: ["jsonschema>=4.21,<5", "PyYAML>=6.0,<7"]
+        pass_filenames: false
+      - id: fvi-validate-claims
+        name: Validate FVI atomic claims and Knowledge references
+        entry: python tools/validate_claims.py
+        language: python
+        additional_dependencies: ["jsonschema>=4.21,<5", "PyYAML>=6.0,<7"]
         pass_filenames: false
       - id: fvi-repository-policy
         name: Enforce FVI repository content policy
         entry: python tools/check_repository_policy.py
-        language: system
+        language: python
         pass_filenames: false

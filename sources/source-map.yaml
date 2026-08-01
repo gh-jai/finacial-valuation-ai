@@ -3,12 +3,33 @@ mappings:
   - source_id: SRC-DAMODARAN-LBV-2024
     artifacts:
       - extraction/reviewed/M1-basic-dcf-claims.yaml
+      - knowledge/valuation/VAL-002-cash-flow-discount-rate-consistency.md
+      - knowledge/valuation/VAL-003-growth-reinvestment-and-returns.md
+      - knowledge/valuation/VAL-004-terminal-value-and-stable-growth.md
+      - knowledge/valuation/VAL-005-enterprise-to-equity-bridge.md
+      - skills/SKL-VAL-001-validate-dcf-inputs.md
+      - skills/SKL-VAL-002-forecast-fcff.md
+      - skills/SKL-VAL-003-estimate-sustainable-growth.md
+      - skills/SKL-VAL-004-calculate-terminal-value.md
+      - skills/SKL-VAL-005-discount-forecast-cash-flows.md
+      - skills/SKL-VAL-006-bridge-enterprise-to-equity.md
+      - skills/SKL-VAL-007-calculate-per-share-value.md
+      - skills/SKL-VAL-008-run-dcf-sensitivity-review.md
+      - workflows/WFL-VAL-001-standard-company-valuation.md
       - tools/dcf.py
+      - tools/validate_claims.py
       - tests/unit/test_dcf.py
+      - tests/unit/test_claim_validation.py
+      - tests/integration/test_basic_dcf_benchmark.py
+      - tests/integration/test_m1_artifact_graph.py
       - benchmarks/fixtures/basic-dcf-input.json
+      - benchmarks/fixtures/varying-rate-dcf-input.json
       - benchmarks/expected/basic-dcf-output.json
+      - benchmarks/expected/varying-rate-dcf-output.json
+      - schemas/valuation-output.schema.json
+      - templates/m1-fcff-review-checklist.md
     extraction_manifest: extraction/manifests/M1-basic-dcf.yaml
-    notes: M1 covers Chapter 3, PDF pages 50-81, using original paraphrases and synthetic public benchmarks.
+    notes: M1 covers Chapter 3, PDF pages 50-81, using 12 original atomic claims, four sourced Knowledge artifacts, eight bounded skills, and synthetic public benchmarks.
 
   - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
     artifacts: []

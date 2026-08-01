@@ -1,0 +1,16 @@
+{
+  "fixture_id": "FIX-DCF-002",
+  "description": "Synthetic varying-rate FCFF fixture with an equity and per-share bridge.",
+  "subject": "Synthetic Transition Company",
+  "as_of_date": "2026-01-01",
+  "cash_flows": [8.0, 10.0, 13.0],
+  "discount_rate": [0.08, 0.09, 0.1],
+  "terminal_growth_rate": 0.025,
+  "terminal_discount_rate": 0.095,
+  "cash_and_non_operating_assets": 15.0,
+  "debt_and_debt_like_claims": 40.0,
+  "share_count": 5.0,
+  "currency": "USD",
+  "evidence_refs": ["CLM-VAL-DCF-009", "CLM-VAL-DCF-010", "CLM-VAL-DCF-011"],
+  "limitations": ["Synthetic fixture; bridge items do not represent a real company."]
+}

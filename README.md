@@ -54,6 +54,7 @@ Python 3.10 or newer is required.
 python -m pip install -e ".[dev]"
 python tools/validate_schemas.py
 python tools/validate_sources.py
+python tools/validate_claims.py
 python tools/check_repository_policy.py
 pytest
 ```

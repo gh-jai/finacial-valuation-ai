@@ -69,6 +69,35 @@ def main() -> int:
         artifacts = mapping.get("artifacts", [])
         if not isinstance(artifacts, list) or not all(isinstance(item, str) for item in artifacts):
             errors.append(f"sources/source-map.yaml: artifacts for {source_id} must be strings")
+        else:
+            for artifact in artifacts:
+                normalized = artifact.replace("\\", "/")
+                artifact_path = PurePosixPath(normalized)
+                if artifact_path.is_absolute() or ".." in artifact_path.parts:
+                    errors.append(
+                        f"sources/source-map.yaml: unsafe artifact path {artifact} for {source_id}"
+                    )
+                elif not (ROOT / Path(*artifact_path.parts)).is_file():
+                    errors.append(
+                        f"sources/source-map.yaml: missing artifact {artifact} for {source_id}"
+                    )
+        manifest = mapping.get("extraction_manifest")
+        if manifest is not None:
+            if not isinstance(manifest, str):
+                errors.append(
+                    f"sources/source-map.yaml: extraction_manifest for {source_id} must be a string or null"
+                )
+            else:
+                normalized = manifest.replace("\\", "/")
+                manifest_path = PurePosixPath(normalized)
+                if manifest_path.is_absolute() or ".." in manifest_path.parts:
+                    errors.append(
+                        f"sources/source-map.yaml: unsafe extraction_manifest for {source_id}"
+                    )
+                elif not (ROOT / Path(*manifest_path.parts)).is_file():
+                    errors.append(
+                        f"sources/source-map.yaml: missing extraction_manifest {manifest} for {source_id}"
+                    )
 
     if errors:
         print("Source metadata validation failed:")

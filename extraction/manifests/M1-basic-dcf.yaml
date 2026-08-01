@@ -7,7 +7,7 @@ scope:
     start: 50
     end: 81
 artifact_goal: Basic FCFF discounted cash flow vertical slice
-review_status: in_progress
+review_status: ready_for_human_review
 copyright_controls:
   raw_text_committed: false
   tables_or_figures_reproduced: false
@@ -19,7 +19,12 @@ coverage:
   - growth_and_reinvestment
   - terminal_value
   - enterprise_to_equity_bridge
+  - per_share_value
+  - sensitivity_review
+  - structured_valuation_output
 limitations:
   - This slice does not cover FCFE implementation.
-  - This slice uses a constant discount rate and end-of-period timing.
+  - This slice uses end-of-period timing and supports constant or period-specific discount rates.
+  - This slice uses only a Gordon-growth going-concern terminal value.
+  - Sensitivity analysis is deterministic and is not a probability distribution.
   - Source examples are not reproduced; public tests use synthetic data only.

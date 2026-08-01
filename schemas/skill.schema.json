@@ -4,7 +4,7 @@
   "title": "FVI Skill Document Frontmatter",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "title", "type", "status", "version", "domain", "source_refs", "dependencies", "owner", "last_updated"],
+  "required": ["id", "title", "type", "status", "version", "domain", "source_refs", "dependencies", "owner", "last_updated", "inputs", "outputs"],
   "properties": {
     "id": {"type": "string", "pattern": "^SKL-[A-Z]+-[0-9]{3}$"},
     "title": {"type": "string", "minLength": 1},

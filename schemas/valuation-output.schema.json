@@ -4,9 +4,9 @@
   "title": "FVI Valuation Output",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "as_of_date", "subject", "currency", "method", "value", "assumptions", "evidence_refs", "limitations"],
+  "required": ["schema_version", "as_of_date", "subject", "currency", "method", "value", "assumptions", "evidence_refs", "limitations", "sensitivity", "review", "calculation_trail"],
   "properties": {
-    "schema_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "schema_version": {"const": "1.1.0"},
     "as_of_date": {"type": "string", "format": "date"},
     "subject": {"type": "string", "minLength": 1},
     "currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
@@ -39,14 +39,48 @@
     },
     "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
     "limitations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
-    "sensitivity": {"type": "array", "items": {"type": "object"}},
+    "sensitivity": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["scenario", "point_estimate"],
+        "properties": {
+          "scenario": {"type": "string", "minLength": 1},
+          "terminal_discount_rate": {"type": "number"},
+          "terminal_growth_rate": {"type": "number"},
+          "point_estimate": {"type": "number"}
+        }
+      }
+    },
     "review": {
       "type": "object",
       "additionalProperties": false,
+      "required": ["status", "reviewer", "reviewed_at"],
       "properties": {
         "status": {"enum": ["unreviewed", "reviewed", "approved", "rejected"]},
         "reviewer": {"type": ["string", "null"]},
         "reviewed_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "calculation_trail": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["step", "value"],
+        "properties": {
+          "step": {"type": "string", "minLength": 1},
+          "period": {"type": "integer", "minimum": 1},
+          "fcff": {"type": "number"},
+          "discount_rate": {"type": "number"},
+          "cumulative_discount_factor": {"type": "number"},
+          "cash_and_non_operating_assets": {"type": "number"},
+          "debt_and_debt_like_claims": {"type": "number"},
+          "share_count": {"type": "number"},
+          "value": {"type": "number"}
+        }
       }
     }
   }

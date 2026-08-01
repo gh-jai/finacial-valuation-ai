@@ -1,0 +1,17 @@
+schema_version: 1.0.0
+concepts:
+  - id: CON-VALUATION-INTRINSIC-VALUE
+    label: Intrinsic value
+    domain: valuation
+    definition: An estimate of an asset's value based on expected future economic benefits and the risk attached to them.
+    status: draft
+  - id: CON-VALUATION-DCF
+    label: Discounted cash flow
+    domain: valuation
+    definition: A valuation method that converts forecast cash flows into present value using a risk-adjusted discount rate.
+    status: draft
+  - id: CON-RISK-DISCOUNT-RATE
+    label: Discount rate
+    domain: risk
+    definition: A rate used to translate future cash flows into present value while reflecting time value and relevant risk.
+    status: draft

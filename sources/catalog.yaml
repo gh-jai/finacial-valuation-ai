@@ -1,0 +1,11 @@
+schema_version: 1.0.0
+sources:
+  - id: SRC-PRIVATE-001
+    title: Private valuation source placeholder
+    authors:
+      - Unspecified author
+    source_type: book
+    access: private
+    private_locator: placeholder-source.pdf
+    status: planned
+    notes: Replace this metadata with a lawfully accessed source for the M1 vertical slice; never commit the file.

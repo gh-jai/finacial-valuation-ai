@@ -1,0 +1,42 @@
+# Private and copyrighted source material
+sources/private/
+*.[pP][dD][fF]
+*.[eE][pP][uU][bB]
+*.[mM][oO][bB][iI]
+extraction/raw-notes/*
+!extraction/raw-notes/.gitkeep
+**/raw-copyrighted-extracts/
+**/copyrighted-extracts/
+*.[eE][xX][tT][rR][aA][cC][tT].[tT][xX][tT]
+
+# Local data and secrets
+data/
+local-data/
+*.local.*
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite3
+*.db
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.pre-commit-cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+dist/
+build/
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

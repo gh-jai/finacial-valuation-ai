@@ -1,0 +1,18 @@
+schema_version: 1.0.0
+relationship_types:
+  - id: REL-USES
+    label: uses
+    inverse: used_by
+    description: The subject directly uses the object.
+  - id: REL-DEPENDS-ON
+    label: depends on
+    inverse: supports
+    description: The subject requires the object to be interpreted or executed.
+  - id: REL-REFINES
+    label: refines
+    inverse: refined_by
+    description: The subject adds precision or scope to the object.
+relationships:
+  - subject: CON-VALUATION-DCF
+    predicate: REL-USES
+    object: CON-RISK-DISCOUNT-RATE

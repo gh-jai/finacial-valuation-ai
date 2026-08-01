@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fvi.example/schemas/source.schema.json",
+  "title": "FVI Source",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "source_type", "access", "status"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+    "title": {"type": "string", "minLength": 1},
+    "authors": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "source_type": {"enum": ["book", "article", "paper", "filing", "dataset", "website", "interview", "internal", "other"]},
+    "publication_year": {"type": "integer", "minimum": 1000, "maximum": 9999},
+    "publisher": {"type": "string", "minLength": 1},
+    "edition": {"type": "string", "minLength": 1},
+    "identifier": {"type": "string", "minLength": 1},
+    "url": {"type": "string", "format": "uri"},
+    "access": {"enum": ["private", "public", "licensed", "open"]},
+    "private_locator": {"type": "string", "pattern": "^(?![A-Za-z]:)(?![/\\\\]).+"},
+    "status": {"enum": ["planned", "available", "processed", "retired"]},
+    "notes": {"type": "string"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"access": {"const": "private"}}, "required": ["access"]},
+      "then": {"properties": {"private_locator": {"type": "string", "minLength": 1}}}
+    }
+  ]
+}

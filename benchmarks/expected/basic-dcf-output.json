@@ -1,0 +1,5 @@
+{
+  "fixture_id": "FIX-DCF-001",
+  "expectation": "A future implementation should return a finite enterprise value and reject terminal growth greater than or equal to the discount rate.",
+  "status": "placeholder"
+}

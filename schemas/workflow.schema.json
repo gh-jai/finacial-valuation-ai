@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fvi.example/schemas/workflow.schema.json",
+  "title": "FVI Workflow Document Frontmatter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "type", "status", "version", "domain", "source_refs", "dependencies", "owner", "last_updated"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^WFL-[A-Z]+-[0-9]{3}$"},
+    "title": {"type": "string", "minLength": 1},
+    "type": {"const": "workflow"},
+    "status": {"enum": ["draft", "reviewed", "approved", "deprecated"]},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "domain": {"enum": ["accounting", "valuation", "risk", "narrative", "lifecycle", "market-pricing", "special-situations", "cross-domain"]},
+    "source_refs": {"$ref": "#/$defs/idList"},
+    "dependencies": {"$ref": "#/$defs/idList"},
+    "owner": {"type": "string", "minLength": 1},
+    "last_updated": {"type": "string", "format": "date"},
+    "skill_refs": {"$ref": "#/$defs/idList"},
+    "review_gates": {"type": "array", "items": {"type": "string", "minLength": 1}}
+  },
+  "$defs": {
+    "idList": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+  }
+}

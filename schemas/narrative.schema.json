@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fvi.example/schemas/narrative.schema.json",
+  "title": "FVI Narrative-to-Numbers Artifact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "subject",
+    "as_of_date",
+    "status",
+    "source_refs",
+    "business_definition",
+    "market",
+    "competition",
+    "assertions",
+    "three_p",
+    "value_driver_mappings",
+    "alternatives",
+    "revision_history",
+    "review"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "id": {"type": "string", "pattern": "^NAR-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+    "subject": {"type": "string", "minLength": 1},
+    "as_of_date": {"type": "string", "format": "date"},
+    "status": {"enum": ["draft", "tested", "valued", "revised", "approved", "rejected"]},
+    "source_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "business_definition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["business", "products_or_services", "customer", "geography", "life_cycle_stage"],
+      "properties": {
+        "business": {"type": "string", "minLength": 1},
+        "products_or_services": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "customer": {"type": "string", "minLength": 1},
+        "geography": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "life_cycle_stage": {"enum": ["startup", "young-growth", "high-growth", "mature-growth", "mature-stable", "decline", "unknown"]}
+      }
+    },
+    "market": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["definition", "size", "growth", "structure", "evidence_refs"],
+      "properties": {
+        "definition": {"type": "string", "minLength": 1},
+        "size": {"type": ["number", "null"]},
+        "growth": {"type": ["number", "null"]},
+        "structure": {"type": "string", "minLength": 1},
+        "evidence_refs": {"$ref": "#/$defs/evidenceRefs"}
+      }
+    },
+    "competition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["current_competitors", "potential_competitors", "barriers_to_entry", "competitive_advantages", "evidence_refs"],
+      "properties": {
+        "current_competitors": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "potential_competitors": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "barriers_to_entry": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "competitive_advantages": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "evidence_refs": {"$ref": "#/$defs/evidenceRefs"}
+      }
+    },
+    "assertions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "statement", "category", "supporting_evidence", "contradicting_evidence", "quantification_status"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^NAR-A-[0-9]{3}$"},
+          "statement": {"type": "string", "minLength": 1},
+          "category": {"enum": ["business", "market", "competition", "growth", "profitability", "reinvestment", "risk", "management", "failure", "other"]},
+          "supporting_evidence": {"$ref": "#/$defs/evidenceRefs"},
+          "contradicting_evidence": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+          "quantification_status": {"enum": ["mapped", "observable-only", "unquantified-limitation"]}
+        }
+      }
+    },
+    "three_p": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["possible", "plausible", "probable", "overall", "reviewer_reasoning"],
+      "properties": {
+        "possible": {"$ref": "#/$defs/assessment"},
+        "plausible": {"$ref": "#/$defs/assessment"},
+        "probable": {"$ref": "#/$defs/assessment"},
+        "overall": {"enum": ["fails-possible", "possible", "plausible", "probable"]},
+        "reviewer_reasoning": {"type": "string", "minLength": 1}
+      }
+    },
+    "value_driver_mappings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["assertion_id", "driver", "input_name", "value", "unit", "rationale", "evidence_refs"],
+        "properties": {
+          "assertion_id": {"type": "string", "pattern": "^NAR-A-[0-9]{3}$"},
+          "driver": {"enum": ["revenue-growth", "operating-margin", "reinvestment", "cost-of-capital", "failure-risk", "terminal-growth", "other"]},
+          "input_name": {"type": "string", "minLength": 1},
+          "value": {},
+          "unit": {"type": "string", "minLength": 1},
+          "rationale": {"type": "string", "minLength": 1},
+          "evidence_refs": {"$ref": "#/$defs/evidenceRefs"}
+        }
+      }
+    },
+    "alternatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["narrative_id", "title", "difference_summary", "status"],
+        "properties": {
+          "narrative_id": {"type": "string", "pattern": "^NAR-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+          "title": {"type": "string", "minLength": 1},
+          "difference_summary": {"type": "string", "minLength": 1},
+          "status": {"enum": ["active", "rejected", "superseded"]}
+        }
+      }
+    },
+    "revision_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "date", "classification", "triggering_evidence", "changes", "previous_version_ref"],
+        "properties": {
+          "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+          "date": {"type": "string", "format": "date"},
+          "classification": {"enum": ["initial", "tweak", "shift", "change", "break"]},
+          "triggering_evidence": {"$ref": "#/$defs/evidenceRefs"},
+          "changes": {"type": "string", "minLength": 1},
+          "previous_version_ref": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reviewer", "reviewed_at", "notes"],
+      "properties": {
+        "status": {"enum": ["unreviewed", "reviewed", "approved", "rejected"]},
+        "reviewer": {"type": ["string", "null"]},
+        "reviewed_at": {"type": ["string", "null"], "format": "date-time"},
+        "notes": {"type": "string"}
+      }
+    }
+  },
+  "$defs": {
+    "evidenceRefs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result", "supporting_evidence", "contradicting_evidence", "reasoning"],
+      "properties": {
+        "result": {"enum": ["pass", "fail", "uncertain"]},
+        "supporting_evidence": {"$ref": "#/$defs/evidenceRefs"},
+        "contradicting_evidence": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "reasoning": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

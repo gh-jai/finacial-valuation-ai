@@ -12,4 +12,127 @@ sources:
     access: private
     private_locator: damodaran/the-little-book-of-valuation-2024.pdf
     status: available
-    notes: M1 uses Chapter 3, PDF pages 50-81. The source file is private and must never be committed.
+    notes: M1 primary source. Chapter 3, PDF pages 50-81, supports the basic intrinsic valuation and FCFF vertical slice.
+
+  - id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+    title: Narrative and Numbers
+    authors:
+      - Aswath Damodaran
+    source_type: book
+    publication_year: 2017
+    publisher: Columbia University Press
+    identifier: ISBN 9780231180481
+    access: private
+    private_locator: damodaran/narrative-and-numbers-2017.pdf
+    status: available
+    notes: Planned M2 source for narrative-to-numbers translation, narrative testing, feedback loops, and corporate life-cycle framing.
+
+  - id: SRC-DAMODARAN-DARK-SIDE-2018
+    title: The Dark Side of Valuation
+    authors:
+      - Aswath Damodaran
+    source_type: book
+    publication_year: 2018
+    publisher: Pearson Education, Inc.
+    edition: Third Edition
+    identifier: ISBN 9780134854106
+    access: private
+    private_locator: damodaran/the-dark-side-of-valuation-2018.pdf
+    status: available
+    notes: Planned M3 source for probabilistic valuation, macro inputs, life-cycle adaptations, and special-company valuation.
+
+  - id: SRC-DAMODARAN-INVESTMENT-FABLES
+    title: Investment Fables
+    authors:
+      - Aswath Damodaran
+    source_type: book
+    publisher: FT Press
+    edition: First Edition
+    identifier: ISBN 9780131403123
+    access: private
+    private_locator: damodaran/investment-fables.pdf
+    status: available
+    notes: Planned M4 source for empirical strategy testing, base-rate discipline, portfolio inspection, and investment-fable failure modes.
+
+  - id: SRC-MARKS-MOST-IMPORTANT-THING-ZH-2019
+    title: 投资最重要的事：顶尖价值投资者的忠告
+    authors:
+      - Howard Marks
+    source_type: book
+    publication_year: 2019
+    publisher: 中信出版社
+    edition: Simplified Chinese, Third Edition
+    identifier: ISBN 9787521700602
+    access: private
+    private_locator: marks/the-most-important-thing-illuminated-zh-2019.pdf
+    status: available
+    notes: Planned source for second-level thinking, price-value discipline, risk control, defensive investing, and market psychology. Treat translation wording as edition-specific.
+
+  - id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+    title: Mastering the Market Cycle
+    authors:
+      - Howard Marks
+    source_type: book
+    publication_year: 2018
+    publisher: Houghton Mifflin Harcourt
+    identifier: ISBN 9781328479259
+    access: private
+    private_locator: marks/mastering-the-market-cycle-2018.pdf
+    status: available
+    notes: Planned M3 source for economic, profit, psychology, risk-attitude, credit, distressed-debt, real-estate, and market-cycle knowledge.
+
+  - id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+    title: 複利的喜悅
+    authors:
+      - Gautam Baid
+    source_type: book
+    publication_year: 2024
+    publisher: 大牌出版
+    edition: Traditional Chinese Edition
+    access: private
+    private_locator: baid/the-joys-of-compounding-zh-2024.pdf
+    status: available
+    notes: Planned M4 source for multidisciplinary mental models, temperament, checklists, intrinsic value, margin of safety, portfolio sizing, decision journals, and compounding.
+
+  - id: SRC-GRAHAM-DODD-SECURITY-ANALYSIS-2008-EXTRACT
+    title: Security Analysis
+    authors:
+      - Benjamin Graham
+      - David L. Dodd
+    source_type: book
+    publication_year: 2008
+    publisher: McGraw-Hill
+    edition: Sixth Edition, Uploaded Extract
+    identifier: ISBN 9780071592536
+    access: private
+    private_locator: graham-dodd/security-analysis-sixth-edition-extract-2008.pdf
+    status: available
+    notes: Uploaded file appears to be a 66-page extract focused on Part VII rather than the complete volume. Verify coverage before creating artifacts and label all claims as extract-derived.
+
+  - id: SRC-PYSH-BRODERSEN-INTELLIGENT-INVESTOR-SUMMARY-2014
+    title: The Intelligent Investor — 100 Page Summary
+    authors:
+      - Preston Pysh
+      - Stig Brodersen
+    source_type: book
+    publication_year: 2014
+    publisher: 100 Page Summaries
+    identifier: ISBN 9781939370112
+    access: private
+    private_locator: summaries/intelligent-investor-100-page-summary-2014.pdf
+    status: available
+    notes: Secondary summary of Benjamin Graham's work, not the primary text. Use for navigation or comparison only; do not attribute its paraphrases directly to Graham without a primary source.
+
+  - id: SRC-BAKER-TRADE-LIFECYCLE-2015
+    title: The Trade Lifecycle
+    authors:
+      - Robert P. Baker
+    source_type: book
+    publication_year: 2015
+    publisher: John Wiley & Sons, Ltd.
+    edition: Second Edition
+    identifier: ISBN 9781118999462
+    access: private
+    private_locator: trading/the-trade-lifecycle-2015.pdf
+    status: available
+    notes: Operations-track source for traded products, execution, booking, confirmation, settlement, lifecycle events, controls, and operational risk. It is not a core intrinsic-valuation source.

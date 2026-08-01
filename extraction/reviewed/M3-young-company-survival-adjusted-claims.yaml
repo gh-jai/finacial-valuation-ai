@@ -1,0 +1,305 @@
+schema_version: 1.0.0
+source_id: SRC-DAMODARAN-DARK-SIDE-2018
+claims:
+  - id: CLM-YNG-001
+    claim_type: source_statement
+    statement: Young-company valuation in Chapter 9 covers businesses ranging from ideas without commercial products to early businesses with limited revenues and market evidence; established high-growth companies belong to the next life-cycle stage.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, overview and life-cycle boundary, printed pages 259-263; Chapter 10 begins on printed page 323"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-002
+    claim_type: source_statement
+    statement: Young companies generally have very short operating and financing histories, and the youngest may have only an idea rather than a product.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Characteristics of Young Companies, printed pages 260-263"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-003
+    claim_type: source_statement
+    statement: Young companies commonly have small or no revenues and significant operating losses because many current expenses are incurred to establish the business and create future growth.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Characteristics of Young Companies, printed pages 260-263"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-004
+    claim_type: source_statement
+    statement: Young companies are commonly dependent on private equity from founders, friends, family, and later venture-capital investors as their capital needs grow.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Characteristics of Young Companies, printed pages 260-263"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-005
+    claim_type: source_statement
+    statement: Failure rates for young companies are material, are highest in the early years, and decline substantially after a company survives its first several years.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Characteristics of Young Companies and survival evidence, printed pages 261-263"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-006
+    claim_type: source_statement
+    statement: Equity investments in young private businesses are generally illiquid, and even publicly traded young firms can have low float and concentrated ownership.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Characteristics of Young Companies, printed pages 260-263"
+    confidence: 0.97
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-007
+    claim_type: source_statement
+    statement: Repeated equity financing can create unequal equity claims with different cash-flow priorities, liquidation rights, voting rights, and protections.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Characteristics of Young Companies and multiple claims on equity, printed pages 262-263"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-008
+    claim_type: source_statement
+    statement: Young companies use stock and options disproportionately as employee compensation because they often lack cash, so stock-based compensation and outstanding options must remain visible in valuation.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Characteristics of Young Companies and equity-claim valuation, printed pages 262-263 and 303-312"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-009
+    claim_type: source_statement
+    statement: Historical financial statements for young companies are weak guides to future revenues, margins, and risk, and they often mix expenses for current operations with expenses intended to create future growth.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Valuation Issues—Existing Assets, printed pages 263-265"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-010
+    claim_type: source_statement
+    statement: Existing assets often represent only a small portion of a young company's value, so valuation effort should focus primarily on growth assets and future operations.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Valuation Issues—Existing Assets and Growth Assets, printed pages 263-266"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-011
+    claim_type: source_statement
+    statement: A credible young-company valuation must combine a business narrative with numbers because sparse historical data is a poor indicator of future earnings and cash flows.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, The Light Side—Discounted Cash Flow Valuation, The Importance of Narrative, printed pages 275-278"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-012
+    claim_type: source_statement
+    statement: The young-company narrative process should understand the business and competition, test the story for possibility, plausibility, and probability, map the story to revenue growth, margins, reinvestment, and risk, value the mapped inputs, and remain open to feedback.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, The Importance of Narrative and valuation sequence, printed pages 275-278"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-013
+    claim_type: source_statement
+    statement: Forecasting a young company should go beyond short-term revenue and earnings forecasts to estimate operating expenses, reinvestment, and free cash flows despite long-term uncertainty.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Estimating Future Cash Flows, printed pages 278-280"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-014
+    claim_type: source_statement
+    statement: In a top-down forecast, the analyst defines and estimates the total potential market, forecasts its evolution, estimates the company's market share, and derives revenues before estimating the capacity and capital needed to support them.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, The Top-Down Approach, printed pages 279-286"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-015
+    claim_type: source_statement
+    statement: In a bottom-up forecast, the analyst begins with operating capacity and unit economics, estimates units sold, and derives revenues, earnings, and cash flows subject to the business's capacity constraints.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, The Bottom-Up Approach, printed pages 286-292"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-016
+    claim_type: source_statement
+    statement: A young company's forecast should specify a defensible mature operating margin, often informed by established companies in the business, and an explicit path from current losses or low margins toward that target.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Estimating revenues, margins, and earnings, printed pages 283-294"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-017
+    claim_type: source_statement
+    statement: Net operating losses should be tracked through the forecast because they can shelter future taxable operating income before the marginal tax rate becomes applicable.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Estimating taxes and net operating losses, printed pages 289-295"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-018
+    claim_type: source_statement
+    statement: Reinvestment required for forecast revenue growth can be estimated from the change in revenues and a sales-to-capital ratio, with an appropriate timing lag where investment precedes growth.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Estimating reinvestment, printed pages 292-297"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-019
+    claim_type: source_statement
+    statement: Forecast consistency should be checked by tracking invested capital and comparing the implied future return on capital with the narrative, industry economics, and cost of capital.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Internal consistency check and return on capital, printed pages 295-298"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-020
+    claim_type: source_statement
+    statement: Because a young company's risk, investor diversification, profitability, and financing mix change as it matures, its cost of equity, debt, and capital should be allowed to change over time toward mature-company levels.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Estimating discount rates, printed pages 298-303"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-021
+    claim_type: source_statement
+    statement: The going-concern value of a young company should first be estimated using conventional discounted cash flow mechanics, including cumulative discounting when discount rates vary by period and stable-growth constraints at the terminal date.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Estimating value today and terminal value, printed pages 302-306"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-022
+    claim_type: source_statement
+    statement: When failure risk is material, expected operating-asset value should combine the going-concern value and the failure or distress-sale value using their respective probabilities.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Adjusting for the probability and consequences of failure, printed pages 304-308"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-023
+    claim_type: derived_rule
+    statement: Failure probability must be modeled as a discrete expected-value adjustment and must not also be embedded through an unsupported survival premium in the going-concern discount rate.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, discount-rate estimation and survival adjustment, printed pages 298-308"
+    derivation: The source separately estimates operating risk through the going-concern cost of capital and truncation risk through failure probability and failure value; applying both to the same failure exposure would double count risk.
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-024
+    claim_type: source_statement
+    statement: Survival itself can increase a young company's value over time because the probability of failure normally decreases as the company advances through its life cycle, even if the operating narrative is unchanged.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, survival adjustment discussion, printed pages 305-308"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-025
+    claim_type: derived_rule
+    statement: A failure scenario must document the basis, evidence, and beneficiary level for failure value rather than assume that failure value is automatically zero or a fixed fraction of going-concern value.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, probability of failure and distress-sale value examples, printed pages 304-308"
+    derivation: The source uses case-specific failure probabilities and distress-sale outcomes; an auditable implementation must expose the recovery assumption and whether it belongs to operating assets, firm value, or a particular claim.
+    confidence: 0.97
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-026
+    claim_type: source_statement
+    statement: Key-person risk should be measured by valuing a separate operating scenario in which the person's absence changes revenues, margins, or cash flows, rather than by applying an arbitrary percentage discount after valuation.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Key Person Discounts, printed pages 308-311"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-027
+    claim_type: source_statement
+    statement: Forecast negative FCFF already lowers today's operating-asset value and thereby captures the economic effect of future financing needs, so mechanically increasing today's share count for expected future equity issuance double counts dilution.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, future capital needs and dilution, printed pages 311-315"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-028
+    claim_type: source_statement
+    statement: The young-company equity bridge should start from survival-adjusted operating-asset value, add existing cash and financing proceeds retained by the company, subtract debt and other senior claims, deduct explicitly valued employee options or other equity claims, and divide common-equity value by the current applicable share count.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, valuing equity claims and pre-money/post-money value, printed pages 311-318"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-029
+    claim_type: derived_rule
+    statement: Alternative M2 narratives and materially different equity-claim structures must remain separate valuation objects because each can produce a different going-concern value, survival adjustment, and distribution of equity value.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, narrative valuation sequence and multiple equity claims, printed pages 262-263, 275-278, and 311-318"
+    derivation: The source ties distinct stories to distinct inputs and recognizes that equity claims can have different economic rights; silently combining them would erase both operating and claim-level differences.
+    confidence: 0.97
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-YNG-030
+    claim_type: source_statement
+    statement: Real-option premiums for young companies should be limited to opportunities where the company has meaningful exclusivity or a defensible right to exploit the opportunity.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9, Real Options and Conclusion, printed pages 318-321"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers

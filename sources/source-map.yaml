@@ -9,3 +9,48 @@ mappings:
       - benchmarks/expected/basic-dcf-output.json
     extraction_manifest: extraction/manifests/M1-basic-dcf.yaml
     notes: M1 covers Chapter 3, PDF pages 50-81, using original paraphrases and synthetic public benchmarks.
+
+  - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
+    artifacts: []
+    extraction_manifest: null
+    notes: Reserved for M2 narrative-to-numbers artifacts.
+
+  - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+    artifacts: []
+    extraction_manifest: null
+    notes: Reserved for M3 probabilistic, lifecycle, macro-input, and special-situation valuation artifacts.
+
+  - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
+    artifacts: []
+    extraction_manifest: null
+    notes: Reserved for M4 evidence-testing and investment-strategy failure-mode artifacts.
+
+  - source_id: SRC-MARKS-MOST-IMPORTANT-THING-ZH-2019
+    artifacts: []
+    extraction_manifest: null
+    notes: Reserved for risk, second-level thinking, price-value, and market-psychology artifacts.
+
+  - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+    artifacts: []
+    extraction_manifest: null
+    notes: Reserved for market-cycle and risk-attitude artifacts.
+
+  - source_id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+    artifacts: []
+    extraction_manifest: null
+    notes: Reserved for decision-process, checklist, temperament, compounding, and portfolio-management artifacts.
+
+  - source_id: SRC-GRAHAM-DODD-SECURITY-ANALYSIS-2008-EXTRACT
+    artifacts: []
+    extraction_manifest: null
+    notes: Do not create complete-book claims until uploaded coverage is verified; current file appears to be a Part VII extract.
+
+  - source_id: SRC-PYSH-BRODERSEN-INTELLIGENT-INVESTOR-SUMMARY-2014
+    artifacts: []
+    extraction_manifest: null
+    notes: Secondary-source navigation only unless explicitly labeled as summary-derived.
+
+  - source_id: SRC-BAKER-TRADE-LIFECYCLE-2015
+    artifacts: []
+    extraction_manifest: null
+    notes: Reserved for the future trading-operations and operational-risk track, separate from valuation methodology.

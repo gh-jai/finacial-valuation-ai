@@ -1,0 +1,25 @@
+id: EXT-M1-BASIC-DCF
+source_id: SRC-DAMODARAN-LBV-2024
+scope:
+  chapter: 3
+  title: Yes, Virginia, Every Asset Has an Intrinsic Value
+  pdf_pages:
+    start: 50
+    end: 81
+artifact_goal: Basic FCFF discounted cash flow vertical slice
+review_status: in_progress
+copyright_controls:
+  raw_text_committed: false
+  tables_or_figures_reproduced: false
+  sequential_extract_committed: false
+coverage:
+  - enterprise_vs_equity_valuation
+  - fcff
+  - cost_of_capital
+  - growth_and_reinvestment
+  - terminal_value
+  - enterprise_to_equity_bridge
+limitations:
+  - This slice does not cover FCFE implementation.
+  - This slice uses a constant discount rate and end-of-period timing.
+  - Source examples are not reproduced; public tests use synthetic data only.

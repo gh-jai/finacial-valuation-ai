@@ -1,0 +1,15 @@
+{
+  "fixture_id": "FIX-DCF-002",
+  "method": "fcff-gordon-growth",
+  "cumulative_discount_factors": [0.9259259259259258, 0.8494733265375466, 0.7722484786704968],
+  "discounted_cash_flows": [7.4074074074074066, 8.494733265375466, 10.039230222716458],
+  "forecast_present_value": 25.941370895499333,
+  "terminal_cash_flow": 13.325,
+  "terminal_value": 190.35714285714283,
+  "terminal_present_value": 147.003013975491,
+  "operating_asset_value": 172.94438487099035,
+  "equity_value": 147.94438487099035,
+  "per_share_value": 29.58887697419807,
+  "tolerance": 1e-09,
+  "status": "active"
+}

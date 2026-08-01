@@ -1,5 +1,10 @@
 {
   "fixture_id": "FIX-DCF-001",
-  "expectation": "A future implementation should return a finite enterprise value and reject terminal growth greater than or equal to the discount rate.",
-  "status": "placeholder"
+  "method": "fcff-gordon-growth",
+  "forecast_present_value": 27.1975957926,
+  "terminal_value": 153.0,
+  "terminal_present_value": 114.9511645379,
+  "enterprise_value": 142.1487603306,
+  "tolerance": 1e-09,
+  "status": "active"
 }

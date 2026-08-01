@@ -1,8 +1,13 @@
 {
   "fixture_id": "FIX-DCF-001",
   "description": "Synthetic, dimensionless DCF fixture for public validation.",
+  "subject": "Synthetic Stable Company",
+  "as_of_date": "2026-01-01",
   "cash_flows": [10.0, 11.0, 12.0],
   "discount_rate": 0.1,
   "terminal_growth_rate": 0.02,
-  "currency": "USD"
+  "terminal_discount_rate": 0.1,
+  "currency": "USD",
+  "evidence_refs": ["CLM-VAL-DCF-003", "CLM-VAL-DCF-007", "CLM-VAL-DCF-012"],
+  "limitations": ["Synthetic fixture; not an investment recommendation."]
 }

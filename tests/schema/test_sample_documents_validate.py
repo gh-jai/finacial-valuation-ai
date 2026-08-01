@@ -8,7 +8,7 @@ from jsonschema import Draft202012Validator, FormatChecker
 ROOT = Path(__file__).resolve().parents[2]
 SAMPLES = [
     (ROOT / "knowledge" / "valuation" / "VAL-001-intrinsic-value.md", "knowledge"),
-    (ROOT / "skills" / "SKL-VAL-001-run-basic-dcf.md", "skill"),
+    (ROOT / "skills" / "SKL-VAL-001-validate-dcf-inputs.md", "skill"),
     (ROOT / "workflows" / "WFL-VAL-001-standard-company-valuation.md", "workflow"),
 ]
 

@@ -1,6 +1,77 @@
 schema_version: 1.0.0
 mappings:
-  - source_id: SRC-PRIVATE-001
+  - source_id: SRC-DAMODARAN-LBV-2024
+    artifacts:
+      - extraction/reviewed/M1-basic-dcf-claims.yaml
+      - knowledge/valuation/VAL-002-cash-flow-discount-rate-consistency.md
+      - knowledge/valuation/VAL-003-growth-reinvestment-and-returns.md
+      - knowledge/valuation/VAL-004-terminal-value-and-stable-growth.md
+      - knowledge/valuation/VAL-005-enterprise-to-equity-bridge.md
+      - skills/SKL-VAL-001-validate-dcf-inputs.md
+      - skills/SKL-VAL-002-forecast-fcff.md
+      - skills/SKL-VAL-003-estimate-sustainable-growth.md
+      - skills/SKL-VAL-004-calculate-terminal-value.md
+      - skills/SKL-VAL-005-discount-forecast-cash-flows.md
+      - skills/SKL-VAL-006-bridge-enterprise-to-equity.md
+      - skills/SKL-VAL-007-calculate-per-share-value.md
+      - skills/SKL-VAL-008-run-dcf-sensitivity-review.md
+      - workflows/WFL-VAL-001-standard-company-valuation.md
+      - tools/dcf.py
+      - tools/validate_claims.py
+      - tests/unit/test_dcf.py
+      - tests/unit/test_claim_validation.py
+      - tests/integration/test_basic_dcf_benchmark.py
+      - tests/integration/test_m1_artifact_graph.py
+      - benchmarks/fixtures/basic-dcf-input.json
+      - benchmarks/fixtures/varying-rate-dcf-input.json
+      - benchmarks/expected/basic-dcf-output.json
+      - benchmarks/expected/varying-rate-dcf-output.json
+      - schemas/valuation-output.schema.json
+      - templates/m1-fcff-review-checklist.md
+    extraction_manifest: extraction/manifests/M1-basic-dcf.yaml
+    notes: M1 covers Chapter 3, PDF pages 50-81, using 12 original atomic claims, four sourced Knowledge artifacts, eight bounded skills, and synthetic public benchmarks.
+
+  - source_id: SRC-DAMODARAN-NARRATIVE-NUMBERS-2017
     artifacts: []
     extraction_manifest: null
-    notes: Placeholder mapping; sample framework documents are original and do not rely on this source.
+    notes: Reserved for M2 narrative-to-numbers artifacts.
+
+  - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+    artifacts: []
+    extraction_manifest: null
+    notes: Reserved for M3 probabilistic, lifecycle, macro-input, and special-situation valuation artifacts.
+
+  - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
+    artifacts: []
+    extraction_manifest: null
+    notes: Reserved for M4 evidence-testing and investment-strategy failure-mode artifacts.
+
+  - source_id: SRC-MARKS-MOST-IMPORTANT-THING-ZH-2019
+    artifacts: []
+    extraction_manifest: null
+    notes: Reserved for risk, second-level thinking, price-value, and market-psychology artifacts.
+
+  - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+    artifacts: []
+    extraction_manifest: null
+    notes: Reserved for market-cycle and risk-attitude artifacts.
+
+  - source_id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+    artifacts: []
+    extraction_manifest: null
+    notes: Reserved for decision-process, checklist, temperament, compounding, and portfolio-management artifacts.
+
+  - source_id: SRC-GRAHAM-DODD-SECURITY-ANALYSIS-2008-EXTRACT
+    artifacts: []
+    extraction_manifest: null
+    notes: Do not create complete-book claims until uploaded coverage is verified; current file appears to be a Part VII extract.
+
+  - source_id: SRC-PYSH-BRODERSEN-INTELLIGENT-INVESTOR-SUMMARY-2014
+    artifacts: []
+    extraction_manifest: null
+    notes: Secondary-source navigation only unless explicitly labeled as summary-derived.
+
+  - source_id: SRC-BAKER-TRADE-LIFECYCLE-2015
+    artifacts: []
+    extraction_manifest: null
+    notes: Reserved for the future trading-operations and operational-risk track, separate from valuation methodology.

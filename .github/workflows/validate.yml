@@ -26,6 +26,8 @@ jobs:
         run: python tools/validate_schemas.py
       - name: Validate source metadata
         run: python tools/validate_sources.py
+      - name: Validate atomic claims and Knowledge references
+        run: python tools/validate_claims.py
       - name: Enforce repository policy
         run: python tools/check_repository_policy.py
       - name: Run tests

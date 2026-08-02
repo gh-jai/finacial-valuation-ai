@@ -1,0 +1,95 @@
+{
+  "schema_version": "0.1.0",
+  "id": "GCV-SYNTH-CAPACITY",
+  "narrative_id": "NAR-SYNTH-ALT",
+  "as_of_date": "2026-01-01",
+  "subject": "Synthetic Capacity-led Growth Company",
+  "currency": "USD",
+  "growth_company_profile": {
+    "classification": "growth-company", "m3_boundary_cleared": true,
+    "classification_reasoning": "The synthetic producer has sustained commercial revenue, profitable operations, and reviewed capacity evidence beyond the M3 profile.",
+    "commercial_evidence_refs": ["EVD-SYN-GRW-COMMERCIAL-002"],
+    "growth_asset_reasoning": "Value depends on using prebuilt capacity and resuming investment before mature growth.",
+    "financial_dynamism": "high", "evidence_refs": ["EVD-SYN-GRW-CLASS-002"]
+  },
+  "base_period": {
+    "period_end": "2025-12-31", "as_of_date": "2026-01-01", "staleness_days": 1,
+    "revenues": 500.0, "operating_income": 60.0, "cash": 80.0, "debt": 150.0,
+    "net_operating_loss": 0.0, "invested_capital": 600.0,
+    "normalization_adjustments": [{"field": "invested_capital", "amount": 0.0, "rationale": "Synthetic installed capacity is already included in invested capital.", "evidence_refs": ["EVD-SYN-GRW-BASE-002"]}],
+    "evidence_refs": ["EVD-SYN-GRW-BASE-002"]
+  },
+  "forecast": {
+    "years": [1,2,3,4,5,6,7,8,9,10],
+    "revenue_growth_rates": [0.18,0.16,0.14,0.12,0.10,0.09,0.08,0.07,0.05,0.03],
+    "revenues": [590.0,684.4,780.216,873.84192,961.226112,1047.73646208,1131.5553790464,1210.7642555796485,1271.302468358631,1309.44154240939],
+    "absolute_revenue_changes": [90.0,94.4,95.816,93.62592,87.384192,86.51035008,83.8189169664,79.208876533248,60.53821277898237,38.13907405075906],
+    "operating_margins": [0.124,0.128,0.132,0.136,0.14,0.144,0.148,0.152,0.156,0.16],
+    "operating_incomes": [73.16,87.6032,102.988512,118.84250112,134.57165568,150.87405053952,167.47019609886726,184.03616684810657,198.32318506394643,209.5106467855024],
+    "margin_convergence": {"method": "linear", "current_margin": 0.12, "target_margin": 0.16, "start_year": 1, "end_year": 10, "supporting_refs": ["EVD-SYN-GRW-MARGIN-002"]},
+    "marginal_tax_rate": 0.25,
+    "tax_rates": [0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25],
+    "cash_taxes": [18.29,21.9008,25.747128,29.71062528,33.64291392,37.71851263488,41.867549024716816,46.009041712026644,49.580796265986606,52.3776616963756],
+    "nol_balances": [0,0,0,0,0,0,0,0,0,0],
+    "after_tax_operating_incomes": [54.87,65.7024,77.241384,89.13187584,100.92874176,113.15553790464,125.60264707415044,138.02712513607992,148.74238879795982,157.1329850891268],
+    "reinvestment_method": ["capacity-holiday","capacity-holiday","revenue-change","revenue-change","revenue-change","revenue-change","revenue-change","revenue-change","revenue-change","revenue-change"],
+    "sales_to_capital_ratios": [null,null,2,2,2,2,2,2,2,2],
+    "fundamental_reinvestment_rates": [null,null,null,null,null,null,null,null,null,null],
+    "capacity_reinvestments": [5,5,null,null,null,null,null,null,null,null],
+    "reinvestments": [5.0,5.0,47.908,46.81296,43.692096,43.25517504,41.9094584832,39.604438266624,30.269106389491185,19.06953702537953],
+    "invested_capital": [605.0,610.0,657.908,704.72096,748.413056,791.66823104,833.5776895232,873.1821277898242,903.4512341793154,922.5207712046949],
+    "implied_returns_on_capital": [0.09145,0.10859900826446281,0.12662521967213114,0.1354777200459639,0.1432180217259325,0.15119396568175317,0.15865566173995455,0.1655839963939418,0.1703452052717257,0.1739252536766576],
+    "discount_rates": [0.13,0.125,0.12,0.115,0.11,0.105,0.10,0.095,0.09,0.085],
+    "assumption_trace": [
+      {"input_name": "revenue_growth_rates", "assertion_id": "NAR-A-001", "evidence_refs": ["EVD-SYN-GRW-SCALE-002"], "rationale": "Growth fades as capacity fills and competition increases."},
+      {"input_name": "operating_margins", "assertion_id": "NAR-A-002", "evidence_refs": ["EVD-SYN-GRW-MARGIN-002"], "rationale": "A modest linear path reaches the mature operating margin."},
+      {"input_name": "reinvestments", "assertion_id": "NAR-A-003", "evidence_refs": ["EVD-SYN-GRW-CAPACITY-001"], "rationale": "A two-year capacity holiday is followed by revenue-change reinvestment."},
+      {"input_name": "discount_rates", "assertion_id": "NAR-A-004", "evidence_refs": ["EVD-SYN-GRW-RISK-002"], "rationale": "Operating risk fades more slowly than in the asset-light benchmark."},
+      {"input_name": "stable_state", "assertion_id": "NAR-A-007", "evidence_refs": ["EVD-SYN-GRW-STABLE-002"], "rationale": "Stable growth, return, reinvestment, margin, tax, and leverage are reconciled."}
+    ]
+  },
+  "stable_state": {"mature_year": 10, "growth_rate": 0.025, "operating_margin": 0.16, "tax_rate": 0.25, "return_on_capital": 0.095, "reinvestment_rate": 0.2631578947368421, "cost_of_capital": 0.085, "excess_return": 0.01, "supporting_refs": ["EVD-SYN-GRW-STABLE-002"]},
+  "going_concern": {
+    "engine": "WFL-VAL-001",
+    "fcff": [49.87,60.7024,29.333384,42.31891584,57.23664576,69.90036286464,83.69318859095037,98.4226868694559,118.47328240846863,138.06344806374727],
+    "cumulative_discount_factors": [0.8849557522123894,0.7866273352999018,0.7023458350891979,0.6299065785553345,0.5674834041039049,0.5135596417229908,0.46687240156635523,0.4263674900149363,0.39116283487608833,0.3605187418212796],
+    "forecast_present_value": 384.6759854766845, "terminal_fcff": 118.6767545278405,
+    "terminal_value": 1977.9459087973414, "terminal_present_value": 713.0865704301649,
+    "operating_asset_value": 1097.7625559068495, "terminal_value_share": 0.6495817939801126,
+    "calculation_trail": [{"step": "rebuilt_terminal_fcff", "value": 118.6767545278405},{"step": "terminal_value", "value": 1977.9459087973414},{"step": "operating_asset_value", "value": 1097.7625559068495}]
+  },
+  "market_context": {
+    "addressable_market": [4200.0,4410.0,4630.5,4862.025,5105.12625,5360.3825625,5628.401690625,5909.821775156252,6205.312863914065,6515.578507109768],
+    "market_growth_rates": [0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05],
+    "market_shares": [0.14047619047619048,0.15519274376417233,0.1684949789439585,0.17972797754022243,0.1882864526611854,0.19545926990542106,0.2010438204741474,0.20487322657841683,0.20487322657841683,0.20097087940549463],
+    "mature_peer_evidence_refs": ["EVD-SYN-GRW-PEER-002"], "competition_notes": "Synthetic demand and competition cap share while the sector grows five percent."
+  },
+  "capacity_holiday": {
+    "available_capacity": 700.0,
+    "utilization_rates": [0.8428571428571429,0.9777142857142858,1,1,1,1,1,1,1,1],
+    "maximum_supported_output": 700.0, "start_year": 1, "end_year": 2, "reinvestment_resumption_year": 3,
+    "rationale": "Synthetic installed capacity supports the first two years before expansion resumes.",
+    "evidence_refs": ["EVD-SYN-GRW-CAPACITY-001"]
+  },
+  "failure_handoff": {
+    "material": true, "adjustment_input_ref": "YCV-SYNTH-CAPITAL", "failure_probability": 0.05,
+    "survival_probability": 0.95, "failure_value": 100.0,
+    "adjusted_operating_asset_value": 1047.8744281115069,
+    "failure_premium_in_discount_rate": false, "failure_loss_in_cash_flows": false,
+    "applied_once": true, "evidence_refs": ["EVD-SYN-GRW-FAIL-001"]
+  },
+  "equity_bridge_handoff": {"path": "M3-claim-controls", "operating_asset_value": 1047.8744281115069, "cash": 80.0, "debt": 150.0, "future_shares_added_to_current_denominator": false, "input_refs": ["EVD-SYN-GRW-BASE-002", "YCV-SYNTH-CAPITAL"]},
+  "sensitivity": {
+    "scenario_ids": ["SCN-GRW-B-LOW", "SCN-GRW-B-HIGH"],
+    "driver_grid": [{"scenario_id": "SCN-GRW-B-LOW", "driver_one": 0.02, "driver_two": 0.09, "operating_asset_value": 900.0},{"scenario_id": "SCN-GRW-B-HIGH", "driver_one": 0.03, "driver_two": 0.08, "operating_asset_value": 1320.0}],
+    "break_even_values": [{"driver": "sales_to_capital_ratio", "value": 1.7}],
+    "market_price_observation": 950.0, "base_case_unchanged": true
+  },
+  "traceability": {
+    "source_refs": ["SRC-DAMODARAN-DARK-SIDE-2018"],
+    "claim_refs": ["CLM-GRW-001","CLM-GRW-002","CLM-GRW-003","CLM-GRW-005","CLM-GRW-006","CLM-GRW-007","CLM-GRW-010","CLM-GRW-011","CLM-GRW-012","CLM-GRW-013","CLM-GRW-017","CLM-GRW-018","CLM-GRW-019","CLM-GRW-020","CLM-GRW-022","CLM-GRW-023","CLM-GRW-024","CLM-GRW-025","CLM-GRW-026","CLM-GRW-027","CLM-GRW-028","CLM-GRW-029","CLM-GRW-030"],
+    "narrative_assertion_refs": ["NAR-A-001","NAR-A-002","NAR-A-003","NAR-A-004","NAR-A-007"]
+  },
+  "limitations": ["Synthetic benchmark; not investment advice.", "Failure inputs exercise M3-compatible semantics and are not statistical estimates."],
+  "review": {"status": "reviewed", "reviewer": "synthetic-reviewer", "reviewed_at": "2026-01-01T00:00:00Z", "classification_approved": true, "scale_approved": true, "reinvestment_approved": true, "risk_fade_approved": true, "stable_state_approved": true, "failure_risk_reviewed": true, "notes": "Synthetic benchmark review."}
+}

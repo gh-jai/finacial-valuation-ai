@@ -10,9 +10,11 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 - M1 basic FCFF vertical slice with 12 reviewed claims, four sourced Knowledge artifacts, eight bounded skills, an explicit workflow, claim-reference validation, deterministic DCF calculations, structured valuation output, and two synthetic benchmarks.
 - M2 Narrative-to-Numbers vertical slice with 24 reviewed claims, six Knowledge artifacts, eight bounded skills, a compositional narrative workflow, cross-document validation, isolated alternatives, feedback history, and two synthetic benchmark cases.
 - M3 young-company survival-adjusted valuation vertical slice with 30 reviewed claims, seven Knowledge artifacts, nine bounded Skills, top-down and bottom-up forecasting, NOL and reinvestment handling, time-varying rates, survival adjustment, equity-bridge controls, and two synthetic benchmarks.
+- M4 growth-company scaling-and-fade vertical slice with 30 reviewed claims, seven Knowledge artifacts, nine bounded Skills, current-base normalization, explicit scale and margin paths, three reinvestment methods, implied-return checks, risk convergence, stable-state terminal rebuild, bounded M3 failure handoff, strict recomputation validation, and two deterministic synthetic benchmarks.
 
 ### Changed
 
 - Valuation output contract advanced to `1.1.0` with required sensitivity, review status, and deterministic calculation trail fields.
 - Claim validation now covers every reviewed claim collection and narrative validation is enforced locally and in CI.
 - Young-company schema and cross-field controls are enforced through pytest, pre-commit, and the Python 3.10/3.12 CI matrix.
+- Growth-company schema, cross-field recomputation, adversarial controls, and M1–M3 regressions are enforced through pytest, pre-commit, and the Python 3.10/3.12 CI matrix.

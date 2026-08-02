@@ -1,0 +1,93 @@
+{
+  "schema_version": "0.1.0",
+  "id": "GCV-SYNTH-ASSET-LIGHT",
+  "narrative_id": "NAR-SYNTH-BASE",
+  "as_of_date": "2026-01-01",
+  "subject": "Synthetic Asset-light Growth Platform",
+  "currency": "USD",
+  "growth_company_profile": {
+    "classification": "growth-company",
+    "m3_boundary_cleared": true,
+    "classification_reasoning": "The synthetic platform has a demonstrated commercial product, profitable operations, and enough evidence to clear the M3 early-stage boundary.",
+    "commercial_evidence_refs": ["EVD-SYN-GRW-COMMERCIAL-001"],
+    "growth_asset_reasoning": "A material share of synthetic value depends on scaling the installed platform before mature growth.",
+    "financial_dynamism": "high",
+    "evidence_refs": ["EVD-SYN-GRW-CLASS-001"]
+  },
+  "base_period": {
+    "period_end": "2025-12-31", "as_of_date": "2026-01-01", "staleness_days": 1,
+    "revenues": 1000.0, "operating_income": 100.0, "cash": 200.0, "debt": 100.0,
+    "net_operating_loss": 0.0, "invested_capital": 500.0,
+    "normalization_adjustments": [
+      {"field": "revenues", "amount": 0.0, "rationale": "Synthetic current-period revenue already matches the valuation date.", "evidence_refs": ["EVD-SYN-GRW-BASE-001"]}
+    ],
+    "evidence_refs": ["EVD-SYN-GRW-BASE-001"]
+  },
+  "forecast": {
+    "years": [1,2,3,4,5,6,7,8,9,10],
+    "revenue_growth_rates": [0.30,0.26,0.22,0.18,0.15,0.12,0.10,0.08,0.06,0.04],
+    "revenues": [1300.0,1638.0,1998.36,2358.0648,2711.77452,3037.1874624,3340.90620864,3608.1787053312,3824.669427651072,3977.656204757115],
+    "absolute_revenue_changes": [300.0,338.0,360.36,359.7048,353.70972,325.4129424,303.71874624,267.2724966912,216.490722319872,152.986777106043],
+    "operating_margins": [0.112,0.124,0.136,0.148,0.16,0.172,0.184,0.196,0.208,0.22],
+    "operating_incomes": [145.6,203.112,271.77696,348.9935904,433.8839232,522.3962435328,614.72674238976,707.2030262449152,795.531240951423,875.0843650465654],
+    "margin_convergence": {"method": "linear", "current_margin": 0.10, "target_margin": 0.22, "start_year": 1, "end_year": 10, "supporting_refs": ["EVD-SYN-GRW-MARGIN-001"]},
+    "marginal_tax_rate": 0.25,
+    "tax_rates": [0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25],
+    "cash_taxes": [36.4,50.778,67.94424,87.2483976,108.4709808,130.5990608832,153.68168559744,176.8007565612288,198.88281023785575,218.77109126164135],
+    "nol_balances": [0,0,0,0,0,0,0,0,0,0],
+    "after_tax_operating_incomes": [109.2,152.334,203.83272,261.7451928,325.4129424,391.7971826496,461.04505679232,530.4022696836864,596.6484307135672,656.313273784924],
+    "reinvestment_method": ["revenue-change","revenue-change","revenue-change","revenue-change","revenue-change","revenue-change","revenue-change","revenue-change","revenue-change","revenue-change"],
+    "sales_to_capital_ratios": [4,4,4,4,4,4,4,4,4,4],
+    "fundamental_reinvestment_rates": [null,null,null,null,null,null,null,null,null,null],
+    "capacity_reinvestments": [null,null,null,null,null,null,null,null,null,null],
+    "reinvestments": [75.0,84.5,90.09,89.9262,88.42743,81.3532356,75.92968656,66.8181241728,54.122680579968,38.246694276510766],
+    "invested_capital": [575.0,659.5,749.59,839.5162,927.94363,1009.2968656,1085.22655216,1152.0446763328,1206.167356912768,1244.4140511892788],
+    "implied_returns_on_capital": [0.2184,0.2649286956521739,0.30907159969674,0.3491844779145934,0.3876196104375353,0.42222088711315364,0.4567982647189151,0.48874796569250073,0.5179038998841821,0.5441311854640001],
+    "discount_rates": [0.12,0.115,0.11,0.105,0.10,0.095,0.09,0.085,0.0825,0.08],
+    "assumption_trace": [
+      {"input_name": "revenue_growth_rates", "assertion_id": "NAR-A-001", "evidence_refs": ["EVD-SYN-GRW-SCALE-001"], "rationale": "Growth fades as absolute scale and market share rise."},
+      {"input_name": "operating_margins", "assertion_id": "NAR-A-002", "evidence_refs": ["EVD-SYN-GRW-MARGIN-001"], "rationale": "Margin converges to a reviewed synthetic mature-peer target."},
+      {"input_name": "reinvestments", "assertion_id": "NAR-A-003", "evidence_refs": ["EVD-SYN-GRW-REINVEST-001"], "rationale": "Revenue changes use a synthetic sales-to-capital ratio of four."},
+      {"input_name": "discount_rates", "assertion_id": "NAR-A-004", "evidence_refs": ["EVD-SYN-GRW-RISK-001"], "rationale": "Operating risk fades to the mature endpoint without a failure premium."},
+      {"input_name": "stable_state", "assertion_id": "NAR-A-007", "evidence_refs": ["EVD-SYN-GRW-STABLE-001"], "rationale": "Growth, return, reinvestment, margin, tax, and risk describe one mature company."}
+    ]
+  },
+  "stable_state": {"mature_year": 10, "growth_rate": 0.03, "operating_margin": 0.22, "tax_rate": 0.25, "return_on_capital": 0.12, "reinvestment_rate": 0.25, "cost_of_capital": 0.08, "excess_return": 0.04, "supporting_refs": ["EVD-SYN-GRW-STABLE-001"]},
+  "going_concern": {
+    "engine": "WFL-VAL-001",
+    "fcff": [34.2,67.834,113.74272,171.8189928,236.9855124,310.4439470496,385.11537023232,463.5841455108864,542.5257501335992,618.0665795084133],
+    "cumulative_discount_factors": [0.8928571428571428,0.8007687379884688,0.7214132774670889,0.6528626945403521,0.5935115404912291,0.5420196716814878,0.49726575383622723,0.45830945054030164,0.4233805547716412,0.39201903219596407],
+    "forecast_present_value": 1463.9635379900235, "terminal_fcff": 507.00200399885375,
+    "terminal_value": 10140.040079977074, "terminal_present_value": 3975.088698580899,
+    "operating_asset_value": 5439.052236570922, "terminal_value_share": 0.7308421625101018,
+    "calculation_trail": [
+      {"step": "rebuilt_terminal_fcff", "value": 507.00200399885375},
+      {"step": "terminal_value", "value": 10140.040079977074},
+      {"step": "operating_asset_value", "value": 5439.052236570922}
+    ]
+  },
+  "market_context": {
+    "addressable_market": [5400.0,5832.0,6298.56,6802.4448,7346.640384,7934.37161472,8569.121343897605,9254.651051409413,9995.023135522166,10794.62498636394],
+    "market_growth_rates": [0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08],
+    "market_shares": [0.24074074074074073,0.28086419753086417,0.3172725194330132,0.34664960456569954,0.36911763449125407,0.3827886579909302,0.38987733684261405,0.38987733684261405,0.38265738616034345,0.36848489037662696],
+    "mature_peer_evidence_refs": ["EVD-SYN-GRW-PEER-001"],
+    "competition_notes": "Synthetic competition prevents market share from increasing indefinitely."
+  },
+  "equity_bridge_handoff": {"path": "M1-standard", "operating_asset_value": 5439.052236570922, "cash": 200.0, "debt": 100.0, "future_shares_added_to_current_denominator": false, "input_refs": ["EVD-SYN-GRW-BASE-001"]},
+  "sensitivity": {
+    "scenario_ids": ["SCN-GRW-A-LOW", "SCN-GRW-A-HIGH"],
+    "driver_grid": [
+      {"scenario_id": "SCN-GRW-A-LOW", "driver_one": 0.02, "driver_two": 0.085, "operating_asset_value": 4800.0},
+      {"scenario_id": "SCN-GRW-A-HIGH", "driver_one": 0.035, "driver_two": 0.075, "operating_asset_value": 6200.0}
+    ],
+    "break_even_values": [{"driver": "stable_growth_rate", "value": 0.026}],
+    "market_price_observation": null, "base_case_unchanged": true
+  },
+  "traceability": {
+    "source_refs": ["SRC-DAMODARAN-DARK-SIDE-2018"],
+    "claim_refs": ["CLM-GRW-001","CLM-GRW-002","CLM-GRW-003","CLM-GRW-005","CLM-GRW-006","CLM-GRW-007","CLM-GRW-009","CLM-GRW-010","CLM-GRW-012","CLM-GRW-017","CLM-GRW-018","CLM-GRW-019","CLM-GRW-020","CLM-GRW-023","CLM-GRW-024","CLM-GRW-025","CLM-GRW-026","CLM-GRW-028","CLM-GRW-029"],
+    "narrative_assertion_refs": ["NAR-A-001","NAR-A-002","NAR-A-003","NAR-A-004","NAR-A-007"]
+  },
+  "limitations": ["Synthetic benchmark; not investment advice.", "The market and mature-peer evidence are deterministic test inputs."],
+  "review": {"status": "reviewed", "reviewer": "synthetic-reviewer", "reviewed_at": "2026-01-01T00:00:00Z", "classification_approved": true, "scale_approved": true, "reinvestment_approved": true, "risk_fade_approved": true, "stable_state_approved": true, "failure_risk_reviewed": true, "notes": "Synthetic benchmark review."}
+}

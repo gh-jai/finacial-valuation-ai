@@ -13,7 +13,7 @@ The repository has completed and merged four milestones:
 - M2 — Narrative-to-Numbers vertical slice
 - M3 — Young-company survival-adjusted valuation vertical slice
 
-The M4 contract is approved for implementation. Its source boundary, 30 reviewed atomic claims, schema and workflow responsibilities, risk placement, benchmark designs, and acceptance criteria are locked as the implementation baseline. No M4 engine, schema, benchmark output, or executable workflow has been implemented yet.
+The M4 contract and repository-wide implementation are approved on `codex/m4-implementation`. The implementation includes the locked source boundary and 30 claims, seven Knowledge artifacts, nine Skills, `WFL-GRW-001`, a strict schema, deterministic engine, independent recomputation validator, two synthetic benchmarks, adversarial controls, and CI/pre-commit integration. Human checklist review and local validation are complete; publication and remote Python 3.10/3.12 CI remain pending.
 
 Current mainline architecture:
 
@@ -22,9 +22,10 @@ Evidence
 → Narrative
 → 3P Review
 → Value Drivers
+→ Life-cycle Routing / Scaling / Reinvestment / Risk Fade
 → FCFF Inputs
 → Going-concern DCF
-→ Survival / Failure Adjustment
+→ Optional Survival / Failure Adjustment
 → Equity and Claim Bridge
 → Per-share Value
 → Feedback Revision
@@ -205,7 +206,7 @@ The equity contract also requires that financing proceeds be authorized and reta
 
 ### M4 — Growth-company scaling and fade
 
-Status: Contract approved; implementation-ready
+Status: Implementation approved; publication and remote CI pending
 
 Primary source:
 
@@ -224,7 +225,26 @@ Approved contract artifacts:
 - `extraction/reviewed/M4-growth-company-scaling-and-fade-claims.yaml`
 - `templates/m4-growth-company-review-checklist.md`
 
-Repository-wide implementation may proceed on a dedicated feature branch. It must preserve the approved source split, all 30 claims, M3/M4 life-cycle routing, schema and formula contract, M3 survival handoff, benchmark designs, and acceptance criteria.
+Completed implementation review:
+
+- `docs/milestones/M4-implementation-human-review.md`
+
+Implemented on `codex/m4-implementation`:
+
+- Seven `GRW-*` Knowledge artifacts covering all 30 reviewed claims
+- Nine `SKL-GRW-*` Skills
+- `WFL-GRW-001` growth-company scaling-and-fade workflow
+- `schemas/growth-company-valuation.schema.json` with strict governed objects
+- `tools/growth_company.py` for scale, margin, taxes, reinvestment, invested capital, implied ROC, FCFF, stable-state rebuild, M1 discounting, and optional M3 failure handoff
+- `tools/validate_growth_company_valuations.py` for independent numeric and cross-field recomputation
+- Asset-light platform and capacity-led expansion deterministic benchmarks
+- Adversarial coverage for boundary, stale base, scale, reinvestment, capacity, margin, risk, terminal state, failure, dilution, and market-price controls
+- M1–M3 composition regressions and local/CI validation integration
+
+Remaining acceptance gates:
+
+- Pass the full remote Python 3.10 and Python 3.12 CI matrix
+- Commit, publish, review, and merge the implementation through a separate PR
 
 ## Current governed artifact graph
 
@@ -248,15 +268,18 @@ Important workflow dependencies:
 ```text
 WFL-NAR-001 → WFL-VAL-001
 WFL-NAR-001 + WFL-VAL-001 → WFL-YNG-001
+WFL-NAR-001 + WFL-VAL-001 + bounded WFL-YNG-001 handoff → WFL-GRW-001
 ```
 
 ## Validation and CI
 
-Latest reviewed M3 branch CI before merge:
+Latest merged contract CI:
 
-- GitHub Actions run 27
+- GitHub Actions run 30
 - Python 3.10: Passed
 - Python 3.12: Passed
+
+The M4 implementation has passed local validation on Python 3.12. Remote matrix CI is pending publication.
 
 Validated controls include:
 
@@ -270,6 +293,11 @@ Validated controls include:
 - FCFF and DCF recomputation
 - Terminal growth and discount-rate constraints
 - Reinvestment support for growth
+- Revenue scale and market-share reconciliation
+- Margin convergence and current-base normalization
+- Invested-capital and implied-return recomputation
+- Stable-state reinvestment and terminal-FCFF rebuild
+- Capacity-holiday limits and resumption
 - Negative-FCFF dilution controls
 - Financing authorization and retention
 - Post-money share-count consistency
@@ -278,7 +306,7 @@ Validated controls include:
 - Repository copyright policy
 - Unit, integration, benchmark, and regression tests
 
-At M3 completion, the full suite reported 88 passing tests before the additional human-review control commits. The post-review GitHub Actions run passed the complete updated test suite on both supported Python versions.
+At M3 completion, the full suite reported 88 passing tests. The M4 implementation adds 30 focused engine, validator, benchmark, artifact-graph, adversarial, and composition tests; the complete local suite reports 118 passing tests.
 
 ## Source and copyright policy
 
@@ -322,13 +350,13 @@ M3 failure probabilities and recovery values are deterministic reviewed assumpti
 
 The next milestone should remain a bounded vertical slice rather than a broad platform expansion.
 
-The approved M4 direction is growth-company valuation using `SRC-DAMODARAN-DARK-SIDE-2018`, Chapter 10. The contract is implementation-ready; repository-wide implementation should proceed as a separate focused change.
+M4 implementation is approved for publication. The next milestone contract should not begin until the remote matrix CI, implementation PR review, and merge are complete.
 
 Recommended sequencing:
 
 ```text
-M4: Growth-company scaling and fade
-→ M5: Distress / decline and contingent survival
+M4: Complete publication, CI, PR review, and implementation merge
+→ M5: Distress / decline and contingent survival contract
 → M6: Cycle-aware judgment layer
 ```
 
@@ -375,10 +403,10 @@ Minimum startup instruction:
 
 ```text
 Read PROJECT_STATUS.md, README.md, sources/source-coverage-plan.md,
-sources/catalog.yaml, sources/source-map.yaml, and the existing M1–M3
+sources/catalog.yaml, sources/source-map.yaml, and the existing M1–M4
 workflows before proposing or implementing the next milestone.
 
 Do not alter completed milestone contracts without identifying a concrete defect.
 Do not commit private source material.
-Preserve composition with WFL-NAR-001, WFL-VAL-001, and WFL-YNG-001.
+Preserve composition with WFL-NAR-001, WFL-VAL-001, WFL-YNG-001, and WFL-GRW-001.
 ```

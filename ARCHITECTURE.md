@@ -27,3 +27,16 @@ Promotion between stages requires validation and review. Rejected material remai
 Private sources and local financial data sit outside version control. Extraction is untrusted until reviewed. Prompts and agents cannot upgrade an inference into a sourced fact. Release artifacts must be reproducible from redistributable fixtures without access to private works.
 
 The pipeline operates on the source metadata record, not directly on a committed source file. Private inputs are local trust-boundary inputs and must never become release dependencies.
+
+## Valuation workflow composition
+
+Life-cycle routing selects one top-level operating forecast before valuation:
+
+```text
+WFL-NAR-001
+├─ WFL-YNG-001 for young and early-commercial companies
+├─ WFL-GRW-001 for established growth companies
+└─ later milestone for mature, declining, or distressed companies
+```
+
+`WFL-GRW-001` owns revenue scale and fade, margin convergence, reinvestment, invested-capital and implied-return checks, and risk convergence. It delegates cumulative FCFF discounting and Gordon-growth arithmetic to `WFL-VAL-001`. Material discrete failure is applied once through the expected-value semantics of `WFL-YNG-001` without running a second young-company forecast.

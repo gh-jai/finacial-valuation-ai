@@ -207,7 +207,9 @@ The equity contract also requires that financing proceeds be authorized and reta
 
 ### M4 — Growth-company scaling and fade
 
-Status: Complete (delivery PR #10)
+Status: Complete and merged
+
+Merge commit: `d8fec65ce1b1edbde733d74fc42b6bdb3837a64d`
 
 Primary source:
 
@@ -230,7 +232,7 @@ Completed implementation review:
 
 - `docs/milestones/M4-implementation-human-review.md`
 
-Implemented on `codex/m4-implementation`:
+Delivered through PR #10:
 
 - Seven `GRW-*` Knowledge artifacts covering all 30 reviewed claims
 - Nine `SKL-GRW-*` Skills
@@ -276,13 +278,13 @@ WFL-NAR-001 + WFL-VAL-001 + bounded WFL-YNG-001 handoff → WFL-GRW-001
 
 ## Validation and CI
 
-Latest merged contract CI:
+Latest merged implementation CI:
 
-- GitHub Actions run 30
+- GitHub Actions run 33
 - Python 3.10: Passed
 - Python 3.12: Passed
 
-The M4 implementation has passed local validation on Python 3.12. Remote matrix CI is pending publication.
+The M4 implementation passed local validation on Python 3.12 and remote matrix validation on Python 3.10 and Python 3.12 before merge.
 
 Validated controls include:
 
@@ -309,7 +311,7 @@ Validated controls include:
 - Repository copyright policy
 - Unit, integration, benchmark, and regression tests
 
-At M3 completion, the full suite reported 88 passing tests. The M4 implementation adds 30 focused engine, validator, benchmark, artifact-graph, adversarial, and composition tests; the complete local suite reports 118 passing tests.
+At M3 completion, the full suite reported 88 passing tests. The M4 implementation and final review fixes add 37 focused engine, validator, benchmark, artifact-graph, adversarial, mutation, and composition tests; the complete local and CI suite reports 125 passing tests.
 
 ## Source and copyright policy
 
@@ -353,13 +355,12 @@ M3 failure probabilities and recovery values are deterministic reviewed assumpti
 
 The next milestone should remain a bounded vertical slice rather than a broad platform expansion.
 
-M4 implementation is approved for publication. The next milestone contract should not begin until the remote matrix CI, implementation PR review, and merge are complete.
+M4 implementation is complete and merged. The next milestone is the M5 distress / decline and contingent-survival contract.
 
 Recommended sequencing:
 
 ```text
-M4: Complete publication, CI, PR review, and implementation merge
-→ M5: Distress / decline and contingent survival contract
+M5: Distress / decline and contingent survival contract
 → M6: Cycle-aware judgment layer
 ```
 

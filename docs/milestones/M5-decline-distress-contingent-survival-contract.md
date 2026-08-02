@@ -198,8 +198,31 @@ Every method exposes the asset perimeter, valuation date, direct sale costs, ind
 The conditional going-concern rate path may reflect high current financing and operating risk and a reviewed transition if survival includes deleveraging or recovery. It must not include an additional discrete cessation premium.
 
 ```text
+taxable_operating_income_available[t]
+= max(0, operating_income[t])
+
 cash_interest_tax_benefit[t]
 = min(cash_interest[t], taxable_operating_income_available[t]) * tax_rate[t]
+
+opening_face_debt[1] = base_period.face_debt
+closing_face_debt[t]
+= opening_face_debt[t] + debt_issuances[t] - debt_repayments[t]
+opening_face_debt[t + 1] = closing_face_debt[t]
+
+capital_value[t] = market_value_debt[t] + market_value_equity[t]
+debt_to_capital_ratio[t] = market_value_debt[t] / capital_value[t]
+equity_to_capital_ratio[t] = market_value_equity[t] / capital_value[t]
+
+effective_interest_tax_rate[t]
+= 0 if cash_interest[t] = 0
+  else cash_interest_tax_benefit[t] / cash_interest[t]
+
+after_tax_cost_of_debt[t]
+= pretax_cost_of_debt[t] * (1 - effective_interest_tax_rate[t])
+
+cost_of_capital[t]
+= equity_to_capital_ratio[t] * cost_of_equity[t]
++ debt_to_capital_ratio[t] * after_tax_cost_of_debt[t]
 
 cumulative_discount_denominator[t]
 = product(1 + cost_of_capital[i]) for i = 1..t
@@ -207,7 +230,9 @@ cumulative_discount_denominator[t]
 present_value[t] = fcff[t] / cumulative_discount_denominator[t]
 ```
 
-Book interest rates, book capital weights, and a healthy target debt ratio applied from year one are prohibited without a documented reconciliation.
+`cash_interest[t]` is a nonnegative, dated contractual cash-obligation input and must map to the debt schedule and evidence. `taxable_operating_income_available[t]` is a derived nonnegative series; a loss therefore produces no negative tax benefit. `capital_value[t]` must be positive, both market-value capital components must be nonnegative, and the two capital weights must sum to one within tolerance. Every `financing_path` series must align one-for-one with `status_quo_forecast.years`, and `status_quo_forecast.discount_rates[t]` must equal `financing_path.costs_of_capital[t]` exactly.
+
+Book interest rates, book capital weights, unsupported negative market equity, and a healthy target debt ratio applied from year one are prohibited without a documented reconciliation. The validator must roll face debt forward, recompute capital weights, tax benefits, effective tax rates, after-tax debt costs, and costs of capital from the governed inputs. This financing path is part of the conditional going-concern case; it does not add a separate cessation premium.
 
 ### Terminal or closure state
 
@@ -216,7 +241,8 @@ Exactly one mode is selected:
 - `finite_life`: all remaining operating cash flows and closure proceeds are explicitly valued; no perpetuity is added.
 - `stabilized_smaller_company`: revenue decline ends at a reviewed point and the M4 stable-state rebuild applies.
 - `negative_perpetuity`: a reviewed negative nominal growth rate remains above `-1`, is below the terminal cost of capital, and describes a viable indefinitely shrinking business.
-- `orderly_liquidation`: asset sales and retained operations are reconciled through closure; no overlapping terminal value remains.
+
+`closure` belongs only to the status-quo going-concern valuation. A full `orderly_liquidation` is a separate conditional alternative, never a `closure.mode`. When the irreversible/low-distress route compares the two, the status-quo case still uses exactly one of the three modes above; the orderly-liquidation object separately reconciles all sale proceeds and retained operations. If orderly liquidation is selected, its value replaces the status-quo alternative only after both have been computed, and no terminal value may remain inside the full-liquidation alternative. A partial liquidation is modeled as governed divestitures within a retained going concern, not as a fourth closure mode.
 
 Any terminal FCFF is rebuilt from the terminal operating state, return on capital, and reinvestment. Crisis-level discount rates, current leverage, and expiring tax losses cannot be frozen into perpetuity without evidence.
 
@@ -226,11 +252,12 @@ The M5 implementation will add `schemas/decline-distress-valuation.schema.json` 
 
 | Object | Required fields |
 |---|---|
-| Root | `schema_version`, `id`, `narrative_id`, `as_of_date`, `subject`, `currency`, `decline_profile`, `routing`, `base_period`, `status_quo_forecast`, `closure`, `going_concern`, `traceability`, `limitations`, `review` |
+| Root | `schema_version`, `id`, `narrative_id`, `as_of_date`, `subject`, `currency`, `decline_profile`, `routing`, `base_period`, `status_quo_forecast`, `financing_path`, `closure`, `going_concern`, `traceability`, `limitations`, `review` |
 | `decline_profile` | `classification`, `m4_boundary_cleared`, `decline_evidence`, `sector_condition`, `reversibility`, `reversibility_reasoning`, `evidence_refs` |
 | `routing` | `distress_level`, `quadrant`, `distress_reasoning`, `fixed_obligation_evidence_refs`, `route_approved` |
 | `base_period` | `period_end`, `staleness_days`, `continuing_revenues`, `continuing_operating_income`, `cash`, `book_debt`, `market_debt`, `face_debt`, `invested_capital`, `fixed_obligations`, `normalization_adjustments`, `evidence_refs` |
 | `status_quo_forecast` | `years`, `revenue_growth_rates`, `revenues`, `operating_margins`, `operating_incomes`, `tax_rates`, `cash_taxes`, `after_tax_operating_incomes`, `reinvestments`, `invested_capital`, `implied_returns_on_capital`, `discount_rates`, `assumption_trace` |
+| `financing_path` | `opening_face_debt`, `debt_issuances`, `debt_repayments`, `closing_face_debt`, `cash_interest`, `taxable_operating_income_available`, `cash_interest_tax_benefits`, `market_value_debt`, `market_value_equity`, `debt_to_capital_ratios`, `equity_to_capital_ratios`, `pretax_costs_of_debt`, `effective_interest_tax_rates`, `after_tax_costs_of_debt`, `costs_of_equity`, `costs_of_capital`, `assumption_trace` |
 | `closure` | `mode`, `closure_year`, `terminal_growth_rate`, `terminal_return_on_capital`, `terminal_reinvestment_rate`, `terminal_cost_of_capital`, `supporting_refs` |
 | `going_concern` | `engine`, `fcff`, `cumulative_discount_factors`, `forecast_present_value`, `terminal_or_closure_value`, `terminal_or_closure_present_value`, `operating_asset_value`, `calculation_trail` |
 | `traceability` | `source_refs`, `claim_refs`, `narrative_assertion_refs` |
@@ -240,11 +267,11 @@ Conditional governed objects:
 
 - `divestitures`: required when reinvestment or capital removal includes sale proceeds; asset IDs, timing, capital removed, operating contributions removed, gross/net proceeds, costs, taxes, sale condition, method, and double-count reconciliation.
 - `turnaround_case`: required for reversible decline; separate valuation ID, operating changes, value, change probability, probability basis, and no-input-averaging attestation.
-- `orderly_liquidation`: required for irreversible low distress when compared; asset perimeter, schedule, proceeds, retained operations, urgency assessment, value, and selection result.
+- `orderly_liquidation`: required for every irreversible low-distress comparison; asset perimeter, schedule, proceeds, retained operations, urgency assessment, value, and selection result. It is forbidden in every other quadrant and cannot also appear as `closure.mode`.
 - `distress_case`: required for high distress; event, horizon, probability date/source/mapping, probabilities, recovery method, distress-sale value, aggregation basis, components, calculation trail, and double-count attestations.
 - `claim_bridge`: required when the aggregation basis is not already common equity; cash, debt, senior claims, hybrid claims, option claims, basis date, and per-claim or per-share result.
 
-The validator must recompute every numeric series, divestiture reconciliation, alternative-value weight, probability component, distress-sale method, claim bridge, terminal or closure amount, and calculation-trail step. It must reject unknown or one-way traceability, inconsistent bases, stale claims, probability/event mismatches, retained disposed earnings, duplicated proceeds, hidden book-value proxies, risk double counting, merged alternatives, and undeclared properties.
+The validator must recompute every derived numeric series from governed inputs, including the financing roll-forward, leverage weights, interest-tax-benefit path, divestiture reconciliation, alternative-value weight, probability component, distress-sale method, claim bridge, terminal or closure amount, and calculation-trail step. It must validate each non-derived numeric input against its declared bounds, dated evidence, and bidirectional traceability. It must reject unknown or one-way traceability, inconsistent bases, stale claims, probability/event mismatches, retained disposed earnings, duplicated proceeds, hidden book-value proxies, risk double counting, merged alternatives, and undeclared properties.
 
 ## Workflow contract
 
@@ -322,8 +349,10 @@ Required assertions include probability reconciliation, default-versus-cessation
 - Book asset value used directly as liquidation value.
 - Book debt or a stale claim inventory used for the equity bridge.
 - Full interest tax shield during periods without taxable operating income.
+- A debt balance, capital weight, tax benefit, or cost-of-capital series altered without changing its governed inputs.
 - Current crisis discount rate frozen into the terminal state.
 - Perpetual terminal value retained after complete liquidation.
+- Full orderly liquidation encoded as `closure.mode` instead of a separate alternative.
 - Default probability used as cessation probability without a mapping.
 - Probability horizon shorter than the valuation horizon.
 - Going-concern operating value mixed with distress equity value.
@@ -340,7 +369,7 @@ M5 implementation is complete only when all of the following pass:
 - All 32 `CLM-DST-*` claims are maintainer-reviewed and mapped to M5 Knowledge artifacts.
 - The extraction manifest and source-map relationships validate without private-source content.
 - The new schema loads under JSON Schema 2020-12 and rejects undeclared properties.
-- The validator independently recomputes base normalization, forecast series, divestitures, negative reinvestment, invested capital, implied ROC, FCFF, cumulative discount factors, terminal or closure value, alternative aggregation, distress-sale value, contingent-survival components, claim bridge, and audit trail.
+- The validator independently recomputes base normalization, forecast series, financing roll-forward, leverage weights, interest tax benefits, after-tax debt costs, costs of capital, divestitures, negative reinvestment, invested capital, implied ROC, FCFF, cumulative discount factors, terminal or closure value, alternative aggregation, distress-sale value, contingent-survival components, claim bridge, and audit trail.
 - Both deterministic benchmarks match committed expected outputs within documented tolerances.
 - Every adversarial case fails for the intended reason.
 - M1-M4 artifact, benchmark, and regression tests remain unchanged in behavior and pass.

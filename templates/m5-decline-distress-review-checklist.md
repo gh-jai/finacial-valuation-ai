@@ -35,7 +35,8 @@ Valuation ID/version: `<id>/<version>`
 - [ ] Any probability of management or policy change has a dated evidence basis.
 - [ ] Orderly liquidation is distinguished from a forced sale and has an asset-by-asset or governed portfolio basis.
 - [ ] Book value is not used directly as liquidation value.
-- [ ] Exactly one finite-life, smaller stable company, negative-perpetuity, or liquidation closure mode applies.
+- [ ] The status-quo going concern uses exactly one finite-life, smaller stable company, or negative-perpetuity closure mode.
+- [ ] Any full orderly liquidation is a separate conditional alternative, not a status-quo closure mode.
 - [ ] No terminal value overlaps a complete liquidation program.
 
 ## Distress and probability controls
@@ -50,7 +51,9 @@ Valuation ID/version: `<id>/<version>`
 ## Risk, claims, and decision integrity
 
 - [ ] Going-concern rates, leverage, and tax benefits are conditional on the same survival path.
-- [ ] Interest tax benefits do not exceed available taxable operating income.
+- [ ] Face debt rolls forward from opening debt, issuances, and repayments; market-value debt and equity weights recompute to one.
+- [ ] Taxable operating income available equals `max(0, operating income)` and interest tax benefits are never negative or above the lesser of cash interest and available operating income times the tax rate.
+- [ ] After-tax debt costs and costs of capital recompute from the same leverage and tax-benefit series used by the forecast discount rates.
 - [ ] Current crisis rates or leverage are not frozen into a healthier terminal state without evidence.
 - [ ] Cash, debt, senior claims, hybrids, and options are dated and included or deducted exactly once.
 - [ ] Market value, not book debt, is used where the chosen bridge requires market value.

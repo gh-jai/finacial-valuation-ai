@@ -102,11 +102,11 @@
     "failure_scenario": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["failure_probability", "survival_probability", "failure_value", "failure_value_basis", "probability_basis", "evidence_refs"],
+      "required": ["failure_probability", "survival_probability", "failure_value", "failure_value_basis", "probability_basis", "recovery_basis", "evidence_refs"],
       "properties": {
         "failure_probability": {"type": "number", "minimum": 0, "maximum": 1},
         "survival_probability": {"type": "number", "minimum": 0, "maximum": 1},
-        "failure_value": {"type": "number"},
+        "failure_value": {"type": "number", "minimum": 0},
         "failure_value_basis": {"enum": ["operating-assets", "firm", "equity", "claim-specific"]},
         "probability_basis": {"type": "string", "minLength": 1},
         "recovery_basis": {"type": "string", "minLength": 1},
@@ -117,12 +117,13 @@
     "survival_adjustment": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["formula", "survival_component", "failure_component", "adjusted_operating_asset_value", "probability_tolerance", "double_counting_check"],
+      "required": ["formula", "survival_component", "failure_component", "adjusted_operating_asset_value", "failure_adjustment_delta", "probability_tolerance", "double_counting_check"],
       "properties": {
         "formula": {"const": "survival_probability * going_concern_value + failure_probability * failure_value"},
         "survival_component": {"type": "number"},
         "failure_component": {"type": "number"},
         "adjusted_operating_asset_value": {"type": "number"},
+        "failure_adjustment_delta": {"type": "number"},
         "probability_tolerance": {"type": "number", "exclusiveMinimum": 0, "maximum": 0.01},
         "double_counting_check": {
           "type": "object",
@@ -153,15 +154,19 @@
     "equity_bridge": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["adjusted_operating_asset_value", "existing_cash", "authorized_financing_proceeds", "debt_and_senior_claims", "option_and_other_equity_claim_value", "common_equity_value", "current_share_count", "per_share_value", "future_financing_dilution_handling"],
+      "required": ["adjusted_operating_asset_value", "existing_cash", "authorized_financing_proceeds", "financing_authorized", "financing_retained", "debt_and_senior_claims", "option_and_other_equity_claim_value", "pre_money_common_equity_value", "post_money_common_equity_value", "current_share_count", "current_share_count_includes_financing_shares", "per_share_value", "future_financing_dilution_handling"],
       "properties": {
         "adjusted_operating_asset_value": {"type": "number"},
-        "existing_cash": {"type": "number"},
-        "authorized_financing_proceeds": {"type": "number"},
-        "debt_and_senior_claims": {"type": "number"},
-        "option_and_other_equity_claim_value": {"type": "number"},
-        "common_equity_value": {"type": "number"},
+        "existing_cash": {"type": "number", "minimum": 0},
+        "authorized_financing_proceeds": {"type": "number", "minimum": 0},
+        "financing_authorized": {"type": "boolean"},
+        "financing_retained": {"type": "boolean"},
+        "debt_and_senior_claims": {"type": "number", "minimum": 0},
+        "option_and_other_equity_claim_value": {"type": "number", "minimum": 0},
+        "pre_money_common_equity_value": {"type": "number"},
+        "post_money_common_equity_value": {"type": "number"},
         "current_share_count": {"type": "number", "exclusiveMinimum": 0},
+        "current_share_count_includes_financing_shares": {"type": "boolean"},
         "per_share_value": {"type": "number"},
         "future_financing_dilution_handling": {
           "type": "object",

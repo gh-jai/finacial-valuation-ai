@@ -47,6 +47,12 @@ repos:
         language: python
         additional_dependencies: ["jsonschema>=4.21,<5", "PyYAML>=6.0,<7"]
         pass_filenames: false
+      - id: fvi-validate-decline-distress-valuations
+        name: Validate FVI decline-distress valuations and controls
+        entry: python tools/validate_decline_distress_valuations.py
+        language: python
+        additional_dependencies: ["jsonschema>=4.21,<5", "PyYAML>=6.0,<7"]
+        pass_filenames: false
       - id: fvi-repository-policy
         name: Enforce FVI repository content policy
         entry: python tools/check_repository_policy.py

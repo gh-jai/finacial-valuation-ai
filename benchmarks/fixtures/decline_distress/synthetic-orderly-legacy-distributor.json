@@ -1,0 +1,202 @@
+{
+  "schema_version": "0.1.0",
+  "id": "DDV-ORDERLY-LEGACY-DISTRIBUTOR",
+  "narrative_id": "NAR-SYN-BASE",
+  "as_of_date": "2026-01-01",
+  "subject": "Synthetic Legacy Distributor",
+  "currency": "USD",
+  "decline_profile": {
+    "classification": "declining-company",
+    "m3_boundary_cleared": true,
+    "m4_boundary_cleared": true,
+    "mature_boundary_cleared": true,
+    "cycle_boundary_cleared": true,
+    "decline_evidence": ["Five years of falling real revenue", "Sector capacity has contracted across peers"],
+    "sector_condition": "Synthetic sector evidence indicates structural substitution rather than a cycle trough.",
+    "reversibility": "irreversible",
+    "reversibility_reasoning": "The synthetic product category is shrinking and peers face the same substitution pressure.",
+    "evidence_refs": ["EVD-SYN-DST-A-DECLINE", "EVD-SYN-DST-A-SECTOR"]
+  },
+  "routing": {
+    "distress_level": "low",
+    "quadrant": "irreversible_low",
+    "distress_reasoning": "Debt amortizes within liquidity capacity and no near-term refinancing gap is assumed.",
+    "fixed_obligation_evidence_refs": ["EVD-SYN-DST-A-OBLIGATIONS"],
+    "route_approved": true
+  },
+  "base_period": {
+    "period_end": "2025-12-31",
+    "staleness_days": 1,
+    "continuing_revenues": 1000.0,
+    "continuing_operating_income": 60.0,
+    "cash": 80.0,
+    "book_debt": 200.0,
+    "market_debt": 180.0,
+    "face_debt": 200.0,
+    "invested_capital": 700.0,
+    "fixed_obligations": 30.0,
+    "reported_values": {
+      "continuing_revenues": 1025.0,
+      "continuing_operating_income": 60.0,
+      "cash": 80.0,
+      "book_debt": 200.0,
+      "market_debt": 180.0,
+      "face_debt": 200.0,
+      "invested_capital": 700.0,
+      "fixed_obligations": 30.0
+    },
+    "normalization_adjustments": [
+      {"field": "continuing_revenues", "amount": -25.0, "rationale": "Remove a completed site sale from continuing operations.", "evidence_refs": ["EVD-SYN-DST-A-BASE"]}
+    ],
+    "evidence_refs": ["EVD-SYN-DST-A-BASE"]
+  },
+  "status_quo_forecast": {
+    "years": [1, 2, 3, 4, 5],
+    "revenue_growth_rates": [-0.08, -0.07, -0.06, -0.05, -0.04],
+    "revenues": [920.0, 855.5999999999999, 804.2639999999999, 764.0507999999999, 733.4887679999998],
+    "operating_margins": [0.06, 0.062, 0.064, 0.066, 0.068],
+    "operating_incomes": [55.199999999999996, 53.0472, 51.47289599999999, 50.427352799999994, 49.877236223999994],
+    "tax_rates": [0.25, 0.25, 0.25, 0.25, 0.25],
+    "cash_taxes": [13.799999999999999, 13.2618, 12.868223999999998, 12.606838199999999, 12.469309055999998],
+    "after_tax_operating_incomes": [41.4, 39.785399999999996, 38.604671999999994, 37.820514599999996, 37.40792716799999],
+    "reinvestments": [-70.0, -60.0, -50.0, -40.0, -30.0],
+    "invested_capital": [630.0, 570.0, 520.0, 480.0, 450.0],
+    "implied_returns_on_capital": [0.05914285714285714, 0.06315142857142857, 0.0677274947368421, 0.07273175884615384, 0.07793318159999998],
+    "discount_rates": [0.1091875, 0.10759615384615387, 0.10605263157894737, 0.10456081081081081, 0.103125],
+    "negative_reinvestment_support": [
+      {"year": 1, "amount": -70.0, "source": "divestiture", "capital_reduction": 70.0, "working_capital_release": 0.0, "divestiture_ids": ["DIV-A-1"], "evidence_refs": ["EVD-SYN-DST-A-DIV-1"]},
+      {"year": 2, "amount": -60.0, "source": "divestiture", "capital_reduction": 60.0, "working_capital_release": 0.0, "divestiture_ids": ["DIV-A-2"], "evidence_refs": ["EVD-SYN-DST-A-DIV-2"]},
+      {"year": 3, "amount": -50.0, "source": "divestiture", "capital_reduction": 50.0, "working_capital_release": 0.0, "divestiture_ids": ["DIV-A-3"], "evidence_refs": ["EVD-SYN-DST-A-DIV-3"]},
+      {"year": 4, "amount": -40.0, "source": "divestiture", "capital_reduction": 40.0, "working_capital_release": 0.0, "divestiture_ids": ["DIV-A-4"], "evidence_refs": ["EVD-SYN-DST-A-DIV-4"]},
+      {"year": 5, "amount": -30.0, "source": "divestiture", "capital_reduction": 30.0, "working_capital_release": 0.0, "divestiture_ids": ["DIV-A-5"], "evidence_refs": ["EVD-SYN-DST-A-DIV-5"]}
+    ],
+    "assumption_trace": [
+      {"input_name": "revenue_growth_rates", "assertion_id": "NAR-A-001", "evidence_refs": ["EVD-SYN-DST-A-DECLINE"]},
+      {"input_name": "operating_margins", "assertion_id": "NAR-A-002", "evidence_refs": ["EVD-SYN-DST-A-MARGIN"]},
+      {"input_name": "reinvestments", "assertion_id": "NAR-A-003", "evidence_refs": ["EVD-SYN-DST-A-DIVESTITURES"]},
+      {"input_name": "tax_rates", "assertion_id": "NAR-A-004", "evidence_refs": ["EVD-SYN-DST-A-TAX"]},
+      {"input_name": "closure", "assertion_id": "NAR-A-007", "evidence_refs": ["EVD-SYN-DST-A-CLOSURE"]}
+    ]
+  },
+  "financing_path": {
+    "opening_face_debt": [200.0, 180.0, 160.0, 140.0, 120.0],
+    "debt_issuances": [0.0, 0.0, 0.0, 0.0, 0.0],
+    "debt_repayments": [20.0, 20.0, 20.0, 20.0, 20.0],
+    "closing_face_debt": [180.0, 160.0, 140.0, 120.0, 100.0],
+    "cash_interest": [18.0, 16.0, 14.0, 12.0, 10.0],
+    "taxable_operating_income_available": [55.199999999999996, 53.0472, 51.47289599999999, 50.427352799999994, 49.877236223999994],
+    "cash_interest_tax_benefits": [4.5, 4.0, 3.5, 3.0, 2.5],
+    "market_value_debt": [170.0, 150.0, 130.0, 110.0, 90.0],
+    "market_value_equity": [230.0, 240.0, 250.0, 260.0, 270.0],
+    "debt_to_capital_ratios": [0.425, 0.38461538461538464, 0.34210526315789475, 0.2972972972972973, 0.25],
+    "equity_to_capital_ratios": [0.575, 0.6153846153846154, 0.6578947368421053, 0.7027027027027027, 0.75],
+    "pretax_costs_of_debt": [0.09, 0.085, 0.08, 0.075, 0.07],
+    "effective_interest_tax_rates": [0.25, 0.25, 0.25, 0.25, 0.25],
+    "after_tax_costs_of_debt": [0.0675, 0.06375, 0.06, 0.056249999999999994, 0.052500000000000005],
+    "costs_of_equity": [0.14, 0.135, 0.13, 0.125, 0.12],
+    "costs_of_capital": [0.1091875, 0.10759615384615387, 0.10605263157894737, 0.10456081081081081, 0.103125],
+    "assumption_trace": [
+      {"input_name": "debt_schedule", "assertion_id": "NAR-A-003", "evidence_refs": ["EVD-SYN-DST-A-DEBT"]},
+      {"input_name": "cash_interest", "assertion_id": "NAR-A-004", "evidence_refs": ["EVD-SYN-DST-A-INTEREST"]},
+      {"input_name": "market_value_capital", "assertion_id": "NAR-A-007", "evidence_refs": ["EVD-SYN-DST-A-CAPITAL"]},
+      {"input_name": "costs_of_debt", "assertion_id": "NAR-A-007", "evidence_refs": ["EVD-SYN-DST-A-DEBT-COST"]},
+      {"input_name": "costs_of_equity", "assertion_id": "NAR-A-007", "evidence_refs": ["EVD-SYN-DST-A-EQUITY-COST"]}
+    ]
+  },
+  "closure": {
+    "mode": "stabilized_smaller_company",
+    "closure_year": 5,
+    "terminal_growth_rate": 0.01,
+    "terminal_operating_margin": 0.07,
+    "terminal_tax_rate": 0.25,
+    "terminal_return_on_capital": 0.06,
+    "terminal_reinvestment_rate": 0.16666666666666669,
+    "terminal_cost_of_capital": 0.103125,
+    "finite_life_proceeds": null,
+    "supporting_refs": ["EVD-SYN-DST-A-CLOSURE"]
+  },
+  "going_concern": {
+    "engine": "WFL-VAL-001-cumulative-fcff",
+    "basis": "operating-assets",
+    "fcff": [111.4, 99.7854, 88.604672, 77.8205146, 67.40792716799999],
+    "cumulative_discount_factors": [0.901560827182059, 0.8139797380582875, 0.7359321923915043, 0.6662667959868032, 0.6039812314894534],
+    "forecast_present_value": 339.4265482108792,
+    "terminal_or_closure_value": 348.03795904429523,
+    "terminal_or_closure_present_value": 210.20839510864937,
+    "operating_asset_value": 549.6349433195286,
+    "calculation_trail": [
+      {"step": "discount_fcff", "period": 1, "fcff": 111.4, "discount_rate": 0.1091875, "cumulative_discount_factor": 0.901560827182059, "value": 100.43387614808138},
+      {"step": "discount_fcff", "period": 2, "fcff": 99.7854, "discount_rate": 0.10759615384615387, "cumulative_discount_factor": 0.8139797380582875, "value": 81.22329375404144},
+      {"step": "discount_fcff", "period": 3, "fcff": 88.604672, "discount_rate": 0.10605263157894737, "cumulative_discount_factor": 0.7359321923915043, "value": 65.20703052109013},
+      {"step": "discount_fcff", "period": 4, "fcff": 77.8205146, "discount_rate": 0.10456081081081081, "cumulative_discount_factor": 0.6662667959868032, "value": 51.84922492458623},
+      {"step": "discount_fcff", "period": 5, "fcff": 67.40792716799999, "discount_rate": 0.103125, "cumulative_discount_factor": 0.6039812314894534, "value": 40.71312286308001},
+      {"step": "terminal_or_closure_value", "mode": "stabilized_smaller_company", "value": 348.03795904429523},
+      {"step": "terminal_or_closure_present_value", "cumulative_discount_factor": 0.6039812314894534, "value": 210.20839510864937},
+      {"step": "operating_asset_value", "value": 549.6349433195286}
+    ]
+  },
+  "divestitures": [
+    {"id": "DIV-A-1", "year": 1, "asset_id": "SITE-1", "capital_removed": 70.0, "pre_sale_revenue": 940.0, "disposed_revenue_contribution": 20.0, "remaining_revenue": 920.0, "pre_sale_operating_income": 56.199999999999996, "disposed_operating_income_contribution": 1.0, "remaining_operating_income": 55.199999999999996, "gross_sale_proceeds": 80.0, "transaction_costs": 5.0, "taxes_on_sale": 5.0, "net_sale_proceeds": 70.0, "sale_condition": "normal-market", "method": "Synthetic negotiated site sale", "proceeds_in_separate_cash_flow": false, "evidence_refs": ["EVD-SYN-DST-A-DIV-1"]},
+    {"id": "DIV-A-2", "year": 2, "asset_id": "SITE-2", "capital_removed": 60.0, "pre_sale_revenue": 875.5999999999999, "disposed_revenue_contribution": 20.0, "remaining_revenue": 855.5999999999999, "pre_sale_operating_income": 54.0472, "disposed_operating_income_contribution": 1.0, "remaining_operating_income": 53.0472, "gross_sale_proceeds": 68.0, "transaction_costs": 4.0, "taxes_on_sale": 4.0, "net_sale_proceeds": 60.0, "sale_condition": "normal-market", "method": "Synthetic negotiated site sale", "proceeds_in_separate_cash_flow": false, "evidence_refs": ["EVD-SYN-DST-A-DIV-2"]},
+    {"id": "DIV-A-3", "year": 3, "asset_id": "SITE-3", "capital_removed": 50.0, "pre_sale_revenue": 824.2639999999999, "disposed_revenue_contribution": 20.0, "remaining_revenue": 804.2639999999999, "pre_sale_operating_income": 52.47289599999999, "disposed_operating_income_contribution": 1.0, "remaining_operating_income": 51.47289599999999, "gross_sale_proceeds": 56.0, "transaction_costs": 3.0, "taxes_on_sale": 3.0, "net_sale_proceeds": 50.0, "sale_condition": "normal-market", "method": "Synthetic negotiated site sale", "proceeds_in_separate_cash_flow": false, "evidence_refs": ["EVD-SYN-DST-A-DIV-3"]},
+    {"id": "DIV-A-4", "year": 4, "asset_id": "SITE-4", "capital_removed": 40.0, "pre_sale_revenue": 784.0507999999999, "disposed_revenue_contribution": 20.0, "remaining_revenue": 764.0507999999999, "pre_sale_operating_income": 51.427352799999994, "disposed_operating_income_contribution": 1.0, "remaining_operating_income": 50.427352799999994, "gross_sale_proceeds": 45.0, "transaction_costs": 3.0, "taxes_on_sale": 2.0, "net_sale_proceeds": 40.0, "sale_condition": "normal-market", "method": "Synthetic negotiated site sale", "proceeds_in_separate_cash_flow": false, "evidence_refs": ["EVD-SYN-DST-A-DIV-4"]},
+    {"id": "DIV-A-5", "year": 5, "asset_id": "SITE-5", "capital_removed": 30.0, "pre_sale_revenue": 753.4887679999998, "disposed_revenue_contribution": 20.0, "remaining_revenue": 733.4887679999998, "pre_sale_operating_income": 50.877236223999994, "disposed_operating_income_contribution": 1.0, "remaining_operating_income": 49.877236223999994, "gross_sale_proceeds": 34.0, "transaction_costs": 2.0, "taxes_on_sale": 2.0, "net_sale_proceeds": 30.0, "sale_condition": "normal-market", "method": "Synthetic negotiated site sale", "proceeds_in_separate_cash_flow": false, "evidence_refs": ["EVD-SYN-DST-A-DIV-5"]}
+  ],
+  "orderly_liquidation": {
+    "basis": "operating-assets",
+    "asset_perimeter": ["All remaining distribution sites and working capital"],
+    "sale_schedule": [
+      {"year": 1, "gross_proceeds": 250.0, "transaction_costs": 10.0, "taxes_on_sale": 20.0, "net_proceeds": 220.0, "discount_rate": 0.08},
+      {"year": 2, "gross_proceeds": 200.0, "transaction_costs": 10.0, "taxes_on_sale": 15.0, "net_proceeds": 175.0, "discount_rate": 0.08},
+      {"year": 3, "gross_proceeds": 150.0, "transaction_costs": 8.0, "taxes_on_sale": 12.0, "net_proceeds": 130.0, "discount_rate": 0.08},
+      {"year": 4, "gross_proceeds": 120.0, "transaction_costs": 8.0, "taxes_on_sale": 12.0, "net_proceeds": 100.0, "discount_rate": 0.08},
+      {"year": 5, "gross_proceeds": 100.0, "transaction_costs": 8.0, "taxes_on_sale": 12.0, "net_proceeds": 80.0, "discount_rate": 0.08}
+    ],
+    "retained_operations": "None after the final scheduled sale; the status-quo case remains a separate smaller-company valuation.",
+    "urgency_assessment": "No forced-sale urgency or illiquidity haircut is assumed.",
+    "full_liquidation": true,
+    "status_quo_value": 549.6349433195286,
+    "value": 584.8858296314834,
+    "selected_alternative": "orderly_liquidation",
+    "selected_value": 584.8858296314834,
+    "evidence_refs": ["EVD-SYN-DST-A-ORDERLY"]
+  },
+  "claim_bridge": {
+    "input_basis": "operating-assets",
+    "input_value": 584.8858296314834,
+    "basis_date": "2026-01-01",
+    "cash": 80.0,
+    "market_value_debt": 180.0,
+    "senior_claims": 0.0,
+    "hybrid_claims": 0.0,
+    "option_claims": 0.0,
+    "limited_liability_floor": true,
+    "common_equity_value": 484.8858296314834,
+    "share_count": 50.0,
+    "per_share_value": 9.697716592629668,
+    "calculation_trail": [
+      {"step": "claim_bridge", "input_value": 584.8858296314834, "cash": 80.0, "market_value_debt": 180.0, "senior_claims": 0.0, "hybrid_claims": 0.0, "option_claims": 0.0, "value": 484.8858296314834},
+      {"step": "per_share_value", "share_count": 50.0, "value": 9.697716592629668}
+    ],
+    "evidence_refs": ["EVD-SYN-DST-A-CLAIMS"]
+  },
+  "traceability": {
+    "source_refs": ["SRC-DAMODARAN-DARK-SIDE-2018"],
+    "claim_refs": ["CLM-DST-001", "CLM-DST-002", "CLM-DST-003", "CLM-DST-005", "CLM-DST-006", "CLM-DST-007", "CLM-DST-008", "CLM-DST-009", "CLM-DST-011", "CLM-DST-015", "CLM-DST-016", "CLM-DST-017", "CLM-DST-019", "CLM-DST-020", "CLM-DST-021", "CLM-DST-031", "CLM-DST-032"],
+    "narrative_assertion_refs": ["NAR-A-001", "NAR-A-002", "NAR-A-003", "NAR-A-004", "NAR-A-007"]
+  },
+  "limitations": ["Synthetic benchmark; not investment advice.", "Sale proceeds and financing paths are deterministic test inputs."],
+  "review": {
+    "status": "reviewed",
+    "reviewer": "synthetic-reviewer",
+    "reviewed_at": "2026-01-01T00:00:00Z",
+    "classification_approved": true,
+    "quadrant_approved": true,
+    "divestiture_approved": true,
+    "probability_approved": true,
+    "basis_approved": true,
+    "risk_separation_approved": true,
+    "closure_approved": true,
+    "notes": "Synthetic irreversible/low-distress benchmark review."
+  }
+}

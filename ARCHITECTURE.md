@@ -36,7 +36,10 @@ Life-cycle routing selects one top-level operating forecast before valuation:
 WFL-NAR-001
 ├─ WFL-YNG-001 for young and early-commercial companies
 ├─ WFL-GRW-001 for established growth companies
-└─ later milestone for mature, declining, or distressed companies
+├─ WFL-DST-001 for structurally or potentially reversibly declining companies
+└─ WFL-VAL-001 for standard mature operating cases
 ```
 
 `WFL-GRW-001` owns revenue scale and fade, margin convergence, reinvestment, invested-capital and implied-return checks, and risk convergence. It delegates cumulative FCFF discounting and Gordon-growth arithmetic to `WFL-VAL-001`. Material discrete failure is applied once through the expected-value semantics of `WFL-YNG-001` without running a second young-company forecast.
+
+`WFL-DST-001` independently classifies reversibility and distress, owns negative-growth and capital-release paths, financing and tax-benefit recomputation, divestiture integrity, closure, orderly-liquidation, and forced-sale controls, and delegates cumulative FCFF discounting to `WFL-VAL-001`. Reversible operating alternatives remain separate final values. Material cessation or forced-sale risk is applied once through M3-compatible contingent-survival arithmetic before one dated claim bridge.

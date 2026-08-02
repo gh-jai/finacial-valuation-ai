@@ -6,7 +6,7 @@ Repository: `gh-jai/finacial-valuation-ai`
 
 ## Current state
 
-The repository has completed five milestones through delivery PR #10:
+The repository has completed five implementation milestones through delivery PR #10:
 
 - M0 — Repository foundation
 - M1 — Basic FCFF DCF vertical slice
@@ -16,7 +16,7 @@ The repository has completed five milestones through delivery PR #10:
 
 The M4 contract and repository-wide implementation were delivered through PR #10. The implementation includes the locked source boundary and 30 claims, seven Knowledge artifacts, nine Skills, `WFL-GRW-001`, a strict schema, deterministic engine, independent recomputation validator, two synthetic benchmarks, adversarial controls, and CI/pre-commit integration. Final review hardened registered bidirectional traceability and independent recomputation of market scale, capacity utilization, calculation trails, sensitivity points, and supported break-even values.
 
-The M5 contract is approved and implementation-ready on a feature branch. Its locked boundary is Chapter 12, printed pages 397-436 / PDF pages 445-484, with 32 reviewed atomic claims. No M5 implementation has begun.
+The M5 contract was approved and merged through PR #12. Its locked boundary is Chapter 12, printed pages 397-436 / PDF pages 445-484, with 32 reviewed atomic claims. The repository-wide M5 implementation is complete locally on `codex/m5-implementation`, passes 175 tests and all repository gates, and is approved for Draft PR publication; remote CI review remains pending.
 
 Current mainline architecture:
 
@@ -255,7 +255,7 @@ Acceptance evidence:
 
 ### M5 — Decline, distress, and contingent survival
 
-Status: Contract approved; implementation-ready
+Status: Implementation approved for Draft PR publication; remote CI pending
 
 Primary source:
 
@@ -288,7 +288,25 @@ Approved contract decisions:
 - Reuse M1 DCF, M4 forecast consistency, and M3 survival arithmetic without changing their public contracts
 - Exclude live data, statistical probability estimation, relative valuation, simulation, APV, and equity-as-option methods
 
-Implementation may begin on a separate feature branch within the approved 32-claim boundary, schema/workflow contract, benchmark design, and acceptance criteria.
+Local implementation delivered:
+
+- Eight `DST-*` Knowledge artifacts covering all 32 reviewed claims
+- Ten `SKL-DST-*` Skills and `WFL-DST-001`
+- Strict `decline-distress-valuation.schema.json`
+- Deterministic decline/distress engine and independent recomputation validator
+- Negative-growth, negative-reinvestment, divestiture, financing, loss-limited tax-benefit, WACC, and closure controls
+- Separate turnaround, orderly-liquidation, distress-sale, contingent-survival, and current-claim bridge calculations
+- Irreversible/low-distress and reversible/high-distress deterministic benchmarks
+- Adversarial mutation coverage and M1-M4 composition regressions
+- Pre-commit and Python 3.10/3.12 CI integration
+
+Local acceptance evidence:
+
+- 10 schemas, 10 sources, and 128 claims validate
+- Two M5 valuation documents independently recompute
+- Repository copyright policy passes with no private source content
+- Full local suite: 175 passed
+- Maintainer review approved on 2026-08-02; remote CI remains pending
 
 ## Current governed artifact graph
 
@@ -313,7 +331,7 @@ Important workflow dependencies:
 WFL-NAR-001 → WFL-VAL-001
 WFL-NAR-001 + WFL-VAL-001 → WFL-YNG-001
 WFL-NAR-001 + WFL-VAL-001 + bounded WFL-YNG-001 handoff → WFL-GRW-001
-WFL-NAR-001 + WFL-VAL-001 + bounded WFL-GRW-001/WFL-YNG-001 reuse → approved WFL-DST-001 contract
+WFL-NAR-001 + WFL-VAL-001 + bounded WFL-GRW-001/WFL-YNG-001 reuse → WFL-DST-001
 ```
 
 ## Validation and CI
@@ -324,7 +342,7 @@ Latest merged implementation CI:
 - Python 3.10: Passed
 - Python 3.12: Passed
 
-The M4 implementation passed local validation on Python 3.12 and remote matrix validation on Python 3.10 and Python 3.12 before merge.
+The M4 implementation passed local validation on Python 3.12 and remote matrix validation on Python 3.10 and Python 3.12 before merge. The M5 implementation passes the full local gate; its remote matrix remains pending until publication.
 
 Validated controls include:
 
@@ -348,10 +366,16 @@ Validated controls include:
 - Post-money share-count consistency
 - Explicit option and claim valuation
 - Alternative narrative and claim-structure isolation
+- Decline boundary and four-quadrant routing
+- Negative reinvestment and divestiture reconciliation
+- Face-debt, market-weight, interest-tax-benefit, after-tax debt-cost, and WACC recomputation
+- Finite-life, stabilized-smaller-company, and negative-perpetuity closure controls
+- Turnaround and orderly-liquidation alternative separation
+- Distress event, horizon, recovery, common-basis, and one-bridge controls
 - Repository copyright policy
 - Unit, integration, benchmark, and regression tests
 
-At M3 completion, the full suite reported 88 passing tests. The M4 implementation and final review fixes add 37 focused engine, validator, benchmark, artifact-graph, adversarial, mutation, and composition tests; the complete local and CI suite reports 125 passing tests.
+At M3 completion, the full suite reported 88 passing tests. M4 and its final review fixes brought the suite to 125. M5 adds 47 engine, validator, benchmark, artifact-graph, adversarial, mutation, and composition tests; the complete local suite reports 175 passing tests, including the three previously merged M5 contract regressions.
 
 ## Source and copyright policy
 
@@ -395,12 +419,12 @@ M3 failure probabilities and recovery values are deterministic reviewed assumpti
 
 The next milestone should remain a bounded vertical slice rather than a broad platform expansion.
 
-M4 implementation is complete and merged. The M5 decline, distress, and contingent-survival contract is approved and ready for implementation.
+M4 implementation is complete and merged. M5 implementation is approved for Draft PR publication and requires remote CI review and merge before M6 begins.
 
 Recommended sequencing:
 
 ```text
-M5: Decline, distress, and contingent-survival implementation
+M5: Draft implementation PR → Python 3.10/3.12 CI → final review → merge
 → M6: Cycle-aware judgment layer
 ```
 

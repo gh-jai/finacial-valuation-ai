@@ -1,0 +1,503 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fvi.example/schemas/decline-distress-valuation.schema.json",
+  "title": "FVI Decline, Distress, and Contingent-Survival Valuation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "id", "narrative_id", "as_of_date", "subject", "currency",
+    "decline_profile", "routing", "base_period", "status_quo_forecast", "financing_path",
+    "closure", "going_concern", "traceability", "limitations", "review"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "id": {"type": "string", "pattern": "^DDV-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+    "narrative_id": {"type": "string", "pattern": "^NAR-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+    "as_of_date": {"type": "string", "format": "date"},
+    "subject": {"type": "string", "minLength": 1},
+    "currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+    "decline_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "classification", "m3_boundary_cleared", "m4_boundary_cleared",
+        "mature_boundary_cleared", "cycle_boundary_cleared", "decline_evidence",
+        "sector_condition", "reversibility", "reversibility_reasoning", "evidence_refs"
+      ],
+      "properties": {
+        "classification": {"const": "declining-company"},
+        "m3_boundary_cleared": {"const": true},
+        "m4_boundary_cleared": {"const": true},
+        "mature_boundary_cleared": {"const": true},
+        "cycle_boundary_cleared": {"const": true},
+        "decline_evidence": {"type": "array", "minItems": 2, "items": {"type": "string", "minLength": 1}},
+        "sector_condition": {"type": "string", "minLength": 1},
+        "reversibility": {"enum": ["reversible", "irreversible"]},
+        "reversibility_reasoning": {"type": "string", "minLength": 1},
+        "evidence_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "routing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "distress_level", "quadrant", "distress_reasoning",
+        "fixed_obligation_evidence_refs", "route_approved"
+      ],
+      "properties": {
+        "distress_level": {"enum": ["low", "high"]},
+        "quadrant": {"enum": ["irreversible_low", "reversible_low", "irreversible_high", "reversible_high"]},
+        "distress_reasoning": {"type": "string", "minLength": 1},
+        "fixed_obligation_evidence_refs": {"$ref": "#/$defs/refList"},
+        "route_approved": {"const": true}
+      }
+    },
+    "base_period": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "period_end", "staleness_days", "continuing_revenues", "continuing_operating_income",
+        "cash", "book_debt", "market_debt", "face_debt", "invested_capital",
+        "fixed_obligations", "reported_values", "normalization_adjustments", "evidence_refs"
+      ],
+      "properties": {
+        "period_end": {"type": "string", "format": "date"},
+        "staleness_days": {"type": "integer", "minimum": 0},
+        "continuing_revenues": {"type": "number", "minimum": 0},
+        "continuing_operating_income": {"type": "number"},
+        "cash": {"type": "number", "minimum": 0},
+        "book_debt": {"type": "number", "minimum": 0},
+        "market_debt": {"type": "number", "minimum": 0},
+        "face_debt": {"type": "number", "minimum": 0},
+        "invested_capital": {"type": "number", "exclusiveMinimum": 0},
+        "fixed_obligations": {"type": "number", "minimum": 0},
+        "reported_values": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["continuing_revenues", "continuing_operating_income", "cash", "book_debt", "market_debt", "face_debt", "invested_capital", "fixed_obligations"],
+          "properties": {
+            "continuing_revenues": {"type": "number", "minimum": 0},
+            "continuing_operating_income": {"type": "number"},
+            "cash": {"type": "number", "minimum": 0},
+            "book_debt": {"type": "number", "minimum": 0},
+            "market_debt": {"type": "number", "minimum": 0},
+            "face_debt": {"type": "number", "minimum": 0},
+            "invested_capital": {"type": "number", "exclusiveMinimum": 0},
+            "fixed_obligations": {"type": "number", "minimum": 0}
+          }
+        },
+        "normalization_adjustments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["field", "amount", "rationale", "evidence_refs"],
+            "properties": {
+              "field": {"enum": ["continuing_revenues", "continuing_operating_income", "cash", "book_debt", "market_debt", "face_debt", "invested_capital", "fixed_obligations"]},
+              "amount": {"type": "number"},
+              "rationale": {"type": "string", "minLength": 1},
+              "evidence_refs": {"$ref": "#/$defs/refList"}
+            }
+          }
+        },
+        "evidence_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "status_quo_forecast": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "years", "revenue_growth_rates", "revenues", "operating_margins", "operating_incomes",
+        "tax_rates", "cash_taxes", "after_tax_operating_incomes", "reinvestments",
+        "invested_capital", "implied_returns_on_capital", "discount_rates",
+        "negative_reinvestment_support", "assumption_trace"
+      ],
+      "properties": {
+        "years": {"$ref": "#/$defs/yearSeries"},
+        "revenue_growth_rates": {"$ref": "#/$defs/rateSeries"},
+        "revenues": {"$ref": "#/$defs/nonnegativeSeries"},
+        "operating_margins": {"$ref": "#/$defs/rateSeries"},
+        "operating_incomes": {"$ref": "#/$defs/numberSeries"},
+        "tax_rates": {"$ref": "#/$defs/boundedRateSeries"},
+        "cash_taxes": {"$ref": "#/$defs/nonnegativeSeries"},
+        "after_tax_operating_incomes": {"$ref": "#/$defs/numberSeries"},
+        "reinvestments": {"$ref": "#/$defs/numberSeries"},
+        "invested_capital": {"$ref": "#/$defs/nonnegativeSeries"},
+        "implied_returns_on_capital": {"$ref": "#/$defs/numberSeries"},
+        "discount_rates": {"$ref": "#/$defs/rateSeries"},
+        "negative_reinvestment_support": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["year", "amount", "source", "capital_reduction", "working_capital_release", "divestiture_ids", "evidence_refs"],
+            "properties": {
+              "year": {"type": "integer", "minimum": 1},
+              "amount": {"type": "number", "exclusiveMaximum": 0},
+              "source": {"enum": ["capital-reduction", "working-capital-release", "divestiture", "mixed"]},
+              "capital_reduction": {"type": "number", "minimum": 0},
+              "working_capital_release": {"type": "number", "minimum": 0},
+              "divestiture_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^DIV-[A-Z0-9-]+$"}},
+              "evidence_refs": {"$ref": "#/$defs/refList"}
+            }
+          }
+        },
+        "assumption_trace": {"$ref": "#/$defs/assumptionTrace"}
+      }
+    },
+    "financing_path": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "opening_face_debt", "debt_issuances", "debt_repayments", "closing_face_debt",
+        "cash_interest", "taxable_operating_income_available", "cash_interest_tax_benefits",
+        "market_value_debt", "market_value_equity", "debt_to_capital_ratios",
+        "equity_to_capital_ratios", "pretax_costs_of_debt", "effective_interest_tax_rates",
+        "after_tax_costs_of_debt", "costs_of_equity", "costs_of_capital", "assumption_trace"
+      ],
+      "properties": {
+        "opening_face_debt": {"$ref": "#/$defs/nonnegativeSeries"},
+        "debt_issuances": {"$ref": "#/$defs/nonnegativeSeries"},
+        "debt_repayments": {"$ref": "#/$defs/nonnegativeSeries"},
+        "closing_face_debt": {"$ref": "#/$defs/nonnegativeSeries"},
+        "cash_interest": {"$ref": "#/$defs/nonnegativeSeries"},
+        "taxable_operating_income_available": {"$ref": "#/$defs/nonnegativeSeries"},
+        "cash_interest_tax_benefits": {"$ref": "#/$defs/nonnegativeSeries"},
+        "market_value_debt": {"$ref": "#/$defs/nonnegativeSeries"},
+        "market_value_equity": {"$ref": "#/$defs/nonnegativeSeries"},
+        "debt_to_capital_ratios": {"$ref": "#/$defs/boundedRateSeries"},
+        "equity_to_capital_ratios": {"$ref": "#/$defs/boundedRateSeries"},
+        "pretax_costs_of_debt": {"$ref": "#/$defs/rateSeries"},
+        "effective_interest_tax_rates": {"$ref": "#/$defs/boundedRateSeries"},
+        "after_tax_costs_of_debt": {"$ref": "#/$defs/rateSeries"},
+        "costs_of_equity": {"$ref": "#/$defs/rateSeries"},
+        "costs_of_capital": {"$ref": "#/$defs/rateSeries"},
+        "assumption_trace": {"$ref": "#/$defs/assumptionTrace"}
+      }
+    },
+    "closure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode", "closure_year", "terminal_growth_rate", "terminal_operating_margin",
+        "terminal_tax_rate", "terminal_return_on_capital", "terminal_reinvestment_rate",
+        "terminal_cost_of_capital", "finite_life_proceeds", "supporting_refs"
+      ],
+      "properties": {
+        "mode": {"enum": ["finite_life", "stabilized_smaller_company", "negative_perpetuity"]},
+        "closure_year": {"type": "integer", "minimum": 1},
+        "terminal_growth_rate": {"$ref": "#/$defs/nullableNumber"},
+        "terminal_operating_margin": {"$ref": "#/$defs/nullableNumber"},
+        "terminal_tax_rate": {"anyOf": [{"type": "number", "minimum": 0, "maximum": 1}, {"type": "null"}]},
+        "terminal_return_on_capital": {"$ref": "#/$defs/nullableNumber"},
+        "terminal_reinvestment_rate": {"$ref": "#/$defs/nullableNumber"},
+        "terminal_cost_of_capital": {"$ref": "#/$defs/nullableNumber"},
+        "finite_life_proceeds": {"anyOf": [{"type": "number", "minimum": 0}, {"type": "null"}]},
+        "supporting_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "going_concern": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "engine", "basis", "fcff", "cumulative_discount_factors", "forecast_present_value",
+        "terminal_or_closure_value", "terminal_or_closure_present_value", "operating_asset_value",
+        "calculation_trail"
+      ],
+      "properties": {
+        "engine": {"const": "WFL-VAL-001-cumulative-fcff"},
+        "basis": {"$ref": "#/$defs/valueBasis"},
+        "fcff": {"$ref": "#/$defs/numberSeries"},
+        "cumulative_discount_factors": {"$ref": "#/$defs/positiveSeries"},
+        "forecast_present_value": {"type": "number"},
+        "terminal_or_closure_value": {"type": "number"},
+        "terminal_or_closure_present_value": {"type": "number"},
+        "operating_asset_value": {"type": "number"},
+        "calculation_trail": {"$ref": "#/$defs/calculationTrail"}
+      }
+    },
+    "divestitures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id", "year", "asset_id", "capital_removed", "pre_sale_revenue",
+          "disposed_revenue_contribution", "remaining_revenue", "pre_sale_operating_income",
+          "disposed_operating_income_contribution", "remaining_operating_income",
+          "gross_sale_proceeds", "transaction_costs", "taxes_on_sale", "net_sale_proceeds",
+          "sale_condition", "method", "proceeds_in_separate_cash_flow", "evidence_refs"
+        ],
+        "properties": {
+          "id": {"type": "string", "pattern": "^DIV-[A-Z0-9-]+$"},
+          "year": {"type": "integer", "minimum": 1},
+          "asset_id": {"type": "string", "minLength": 1},
+          "capital_removed": {"type": "number", "exclusiveMinimum": 0},
+          "pre_sale_revenue": {"type": "number", "minimum": 0},
+          "disposed_revenue_contribution": {"type": "number", "minimum": 0},
+          "remaining_revenue": {"type": "number", "minimum": 0},
+          "pre_sale_operating_income": {"type": "number"},
+          "disposed_operating_income_contribution": {"type": "number"},
+          "remaining_operating_income": {"type": "number"},
+          "gross_sale_proceeds": {"type": "number", "minimum": 0},
+          "transaction_costs": {"type": "number", "minimum": 0},
+          "taxes_on_sale": {"type": "number", "minimum": 0},
+          "net_sale_proceeds": {"type": "number", "minimum": 0},
+          "sale_condition": {"enum": ["orderly", "normal-market", "forced"]},
+          "method": {"type": "string", "minLength": 1},
+          "proceeds_in_separate_cash_flow": {"type": "boolean"},
+          "evidence_refs": {"$ref": "#/$defs/refList"}
+        }
+      }
+    },
+    "turnaround_case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "valuation_id", "basis", "operating_changes", "status_quo_value", "turnaround_value",
+        "probability_of_change", "probability_of_no_change", "status_quo_component",
+        "turnaround_component", "no_distress_value", "probability_as_of_date",
+        "probability_basis", "no_input_averaging", "evidence_refs"
+      ],
+      "properties": {
+        "valuation_id": {"type": "string", "pattern": "^ALT-[A-Z0-9-]+$"},
+        "basis": {"$ref": "#/$defs/valueBasis"},
+        "operating_changes": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["driver", "status_quo", "turnaround", "rationale", "evidence_refs"],
+            "properties": {
+              "driver": {"type": "string", "minLength": 1},
+              "status_quo": {"type": "number"},
+              "turnaround": {"type": "number"},
+              "rationale": {"type": "string", "minLength": 1},
+              "evidence_refs": {"$ref": "#/$defs/refList"}
+            }
+          }
+        },
+        "status_quo_value": {"type": "number"},
+        "turnaround_value": {"type": "number"},
+        "probability_of_change": {"type": "number", "minimum": 0, "maximum": 1},
+        "probability_of_no_change": {"type": "number", "minimum": 0, "maximum": 1},
+        "status_quo_component": {"type": "number"},
+        "turnaround_component": {"type": "number"},
+        "no_distress_value": {"type": "number"},
+        "probability_as_of_date": {"type": "string", "format": "date"},
+        "probability_basis": {"type": "string", "minLength": 1},
+        "no_input_averaging": {"const": true},
+        "evidence_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "orderly_liquidation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "basis", "asset_perimeter", "sale_schedule", "retained_operations",
+        "urgency_assessment", "full_liquidation", "status_quo_value", "value",
+        "selected_alternative", "selected_value", "evidence_refs"
+      ],
+      "properties": {
+        "basis": {"$ref": "#/$defs/valueBasis"},
+        "asset_perimeter": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "sale_schedule": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["year", "gross_proceeds", "transaction_costs", "taxes_on_sale", "net_proceeds", "discount_rate"],
+            "properties": {
+              "year": {"type": "integer", "minimum": 1},
+              "gross_proceeds": {"type": "number", "minimum": 0},
+              "transaction_costs": {"type": "number", "minimum": 0},
+              "taxes_on_sale": {"type": "number", "minimum": 0},
+              "net_proceeds": {"type": "number", "minimum": 0},
+              "discount_rate": {"type": "number", "exclusiveMinimum": -1}
+            }
+          }
+        },
+        "retained_operations": {"type": "string", "minLength": 1},
+        "urgency_assessment": {"type": "string", "minLength": 1},
+        "full_liquidation": {"type": "boolean"},
+        "status_quo_value": {"type": "number"},
+        "value": {"type": "number"},
+        "selected_alternative": {"enum": ["status-quo", "orderly_liquidation"]},
+        "selected_value": {"type": "number"},
+        "evidence_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "distress_case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "probability_event", "probability_horizon_years", "probability_as_of_date",
+        "probability_source_ref", "probability_source_description", "source_event",
+        "default_to_cessation_mapping", "survival_probability", "distress_probability",
+        "recovery_method", "asset_perimeter", "reference_going_concern_asset_value",
+        "haircut", "existing_asset_after_tax_income", "existing_asset_cost_of_capital",
+        "eligible_book_assets", "economic_impairment", "forced_sale_discount",
+        "direct_sale_costs", "indirect_operating_costs", "gross_recovery_value",
+        "distress_sale_value", "excluded_growth_assets", "recovery_beneficiary",
+        "aggregation_basis", "no_distress_value", "survival_component", "distress_component",
+        "contingent_value", "distress_premium_in_discount_rates", "distress_loss_in_fcff",
+        "calculation_trail", "evidence_refs"
+      ],
+      "properties": {
+        "probability_event": {"enum": ["cessation", "forced-sale", "liquidation"]},
+        "probability_horizon_years": {"type": "integer", "minimum": 1},
+        "probability_as_of_date": {"type": "string", "format": "date"},
+        "probability_source_ref": {"type": "string", "minLength": 1},
+        "probability_source_description": {"type": "string", "minLength": 1},
+        "source_event": {"enum": ["cessation", "forced-sale", "liquidation", "bankruptcy", "bond-default"]},
+        "default_to_cessation_mapping": {"anyOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
+        "survival_probability": {"type": "number", "minimum": 0, "maximum": 1},
+        "distress_probability": {"type": "number", "minimum": 0, "maximum": 1},
+        "recovery_method": {"enum": ["going_concern_haircut", "existing_asset_value", "adjusted_book_assets"]},
+        "asset_perimeter": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "reference_going_concern_asset_value": {"$ref": "#/$defs/nullableNumber"},
+        "haircut": {"anyOf": [{"type": "number", "minimum": 0, "maximum": 1}, {"type": "null"}]},
+        "existing_asset_after_tax_income": {"$ref": "#/$defs/nullableNonnegative"},
+        "existing_asset_cost_of_capital": {"anyOf": [{"type": "number", "exclusiveMinimum": 0}, {"type": "null"}]},
+        "eligible_book_assets": {"$ref": "#/$defs/nullableNonnegative"},
+        "economic_impairment": {"anyOf": [{"type": "number", "minimum": 0, "maximum": 1}, {"type": "null"}]},
+        "forced_sale_discount": {"anyOf": [{"type": "number", "minimum": 0, "maximum": 1}, {"type": "null"}]},
+        "direct_sale_costs": {"type": "number", "minimum": 0},
+        "indirect_operating_costs": {"type": "number", "minimum": 0},
+        "gross_recovery_value": {"type": "number", "minimum": 0},
+        "distress_sale_value": {"type": "number", "minimum": 0},
+        "excluded_growth_assets": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "recovery_beneficiary": {"type": "string", "minLength": 1},
+        "aggregation_basis": {"$ref": "#/$defs/valueBasis"},
+        "no_distress_value": {"type": "number"},
+        "survival_component": {"type": "number"},
+        "distress_component": {"type": "number"},
+        "contingent_value": {"type": "number"},
+        "distress_premium_in_discount_rates": {"const": false},
+        "distress_loss_in_fcff": {"const": false},
+        "calculation_trail": {"$ref": "#/$defs/calculationTrail"},
+        "evidence_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "claim_bridge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_basis", "input_value", "basis_date", "cash", "market_value_debt",
+        "senior_claims", "hybrid_claims", "option_claims", "limited_liability_floor",
+        "common_equity_value", "share_count", "per_share_value", "calculation_trail", "evidence_refs"
+      ],
+      "properties": {
+        "input_basis": {"$ref": "#/$defs/valueBasis"},
+        "input_value": {"type": "number"},
+        "basis_date": {"type": "string", "format": "date"},
+        "cash": {"type": "number", "minimum": 0},
+        "market_value_debt": {"type": "number", "minimum": 0},
+        "senior_claims": {"type": "number", "minimum": 0},
+        "hybrid_claims": {"type": "number", "minimum": 0},
+        "option_claims": {"type": "number", "minimum": 0},
+        "limited_liability_floor": {"type": "boolean"},
+        "common_equity_value": {"type": "number"},
+        "share_count": {"anyOf": [{"type": "number", "exclusiveMinimum": 0}, {"type": "null"}]},
+        "per_share_value": {"$ref": "#/$defs/nullableNumber"},
+        "calculation_trail": {"$ref": "#/$defs/calculationTrail"},
+        "evidence_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "traceability": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_refs", "claim_refs", "narrative_assertion_refs"],
+      "properties": {
+        "source_refs": {"$ref": "#/$defs/refList"},
+        "claim_refs": {"$ref": "#/$defs/refList"},
+        "narrative_assertion_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "limitations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "review": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "status", "reviewer", "reviewed_at", "classification_approved", "quadrant_approved",
+        "divestiture_approved", "probability_approved", "basis_approved",
+        "risk_separation_approved", "closure_approved", "notes"
+      ],
+      "properties": {
+        "status": {"enum": ["unreviewed", "reviewed", "approved"]},
+        "reviewer": {"type": "string", "minLength": 1},
+        "reviewed_at": {"type": "string", "format": "date-time"},
+        "classification_approved": {"type": "boolean"},
+        "quadrant_approved": {"type": "boolean"},
+        "divestiture_approved": {"type": "boolean"},
+        "probability_approved": {"type": "boolean"},
+        "basis_approved": {"type": "boolean"},
+        "risk_separation_approved": {"type": "boolean"},
+        "closure_approved": {"type": "boolean"},
+        "notes": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"routing": {"properties": {"quadrant": {"enum": ["reversible_low", "reversible_high"]}}}}},
+      "then": {"required": ["turnaround_case"]},
+      "else": {"not": {"required": ["turnaround_case"]}}
+    },
+    {
+      "if": {"properties": {"routing": {"properties": {"quadrant": {"const": "irreversible_low"}}}}},
+      "then": {"required": ["orderly_liquidation"]},
+      "else": {"not": {"required": ["orderly_liquidation"]}}
+    },
+    {
+      "if": {"properties": {"routing": {"properties": {"distress_level": {"const": "high"}}}}},
+      "then": {"required": ["distress_case"]},
+      "else": {"not": {"required": ["distress_case"]}}
+    }
+  ],
+  "$defs": {
+    "nullableNumber": {"anyOf": [{"type": "number"}, {"type": "null"}]},
+    "nullableNonnegative": {"anyOf": [{"type": "number", "minimum": 0}, {"type": "null"}]},
+    "refList": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "yearSeries": {"type": "array", "minItems": 1, "items": {"type": "integer", "minimum": 1}},
+    "numberSeries": {"type": "array", "minItems": 1, "items": {"type": "number"}},
+    "nonnegativeSeries": {"type": "array", "minItems": 1, "items": {"type": "number", "minimum": 0}},
+    "positiveSeries": {"type": "array", "minItems": 1, "items": {"type": "number", "exclusiveMinimum": 0}},
+    "rateSeries": {"type": "array", "minItems": 1, "items": {"type": "number", "exclusiveMinimum": -1}},
+    "boundedRateSeries": {"type": "array", "minItems": 1, "items": {"type": "number", "minimum": 0, "maximum": 1}},
+    "valueBasis": {"enum": ["operating-assets", "firm", "common-equity", "named-claim"]},
+    "assumptionTrace": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["input_name", "assertion_id", "evidence_refs"],
+        "properties": {
+          "input_name": {"type": "string", "minLength": 1},
+          "assertion_id": {"type": "string", "pattern": "^NAR-A-[A-Z0-9-]+$"},
+          "evidence_refs": {"$ref": "#/$defs/refList"}
+        }
+      }
+    },
+    "calculationTrail": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["step", "value"],
+        "properties": {
+          "step": {"type": "string", "minLength": 1},
+          "period": {"type": "integer", "minimum": 1},
+          "fcff": {"type": "number"},
+          "discount_rate": {"type": "number"},
+          "cumulative_discount_factor": {"type": "number"},
+          "mode": {"type": "string"},
+          "probability": {"type": "number"},
+          "scenario_value": {"type": "number"},
+          "input_value": {"type": "number"},
+          "cash": {"type": "number"},
+          "market_value_debt": {"type": "number"},
+          "senior_claims": {"type": "number"},
+          "hybrid_claims": {"type": "number"},
+          "option_claims": {"type": "number"},
+          "share_count": {"type": "number"},
+          "value": {"type": "number"}
+        }
+      }
+    }
+  }
+}

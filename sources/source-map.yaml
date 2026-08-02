@@ -77,7 +77,38 @@ mappings:
       - extraction/manifests/M5-decline-distress-contingent-survival.yaml
       - extraction/reviewed/M5-decline-distress-contingent-survival-claims.yaml
       - docs/milestones/M5-decline-distress-contingent-survival-contract.md
+      - docs/milestones/M5-implementation-human-review.md
       - templates/m5-decline-distress-review-checklist.md
+      - knowledge/lifecycle/DST-001-boundary-routing-and-normalized-base.md
+      - knowledge/valuation/DST-002-declining-fcff-and-capital-release.md
+      - knowledge/valuation/DST-003-divestiture-and-orderly-liquidation.md
+      - knowledge/lifecycle/DST-004-reversibility-and-turnaround-alternatives.md
+      - knowledge/risk/DST-005-separate-contingent-survival.md
+      - knowledge/risk/DST-006-financing-tax-benefit-and-risk-path.md
+      - knowledge/valuation/DST-007-distress-sale-and-claim-basis.md
+      - knowledge/valuation/DST-008-closure-composition-and-exclusions.md
+      - skills/SKL-DST-001-classify-and-normalize-decline.md
+      - skills/SKL-DST-002-build-status-quo-decline.md
+      - skills/SKL-DST-003-reconcile-divestitures.md
+      - skills/SKL-DST-004-build-financing-and-risk-path.md
+      - skills/SKL-DST-005-build-closure-and-going-concern.md
+      - skills/SKL-DST-006-value-turnaround-alternative.md
+      - skills/SKL-DST-007-value-orderly-liquidation.md
+      - skills/SKL-DST-008-estimate-distress-sale-value.md
+      - skills/SKL-DST-009-apply-contingent-survival-and-bridge.md
+      - skills/SKL-DST-010-review-and-return-feedback.md
+      - workflows/WFL-DST-001-decline-distress-contingent-survival.md
+      - schemas/decline-distress-valuation.schema.json
+      - tools/decline_distress.py
+      - tools/validate_decline_distress_valuations.py
+      - benchmarks/fixtures/decline_distress/synthetic-orderly-legacy-distributor.json
+      - benchmarks/fixtures/decline_distress/synthetic-levered-service-operator.json
+      - benchmarks/expected/decline-orderly-legacy-distributor-output.json
+      - benchmarks/expected/decline-levered-service-operator-output.json
+      - tests/unit/test_decline_distress.py
+      - tests/unit/test_decline_distress_validation.py
+      - tests/integration/test_decline_distress_benchmarks.py
+      - tests/integration/test_m5_artifact_graph.py
       - knowledge/lifecycle/GRW-001-boundary-and-normalized-base.md
       - knowledge/lifecycle/GRW-002-revenue-scale-and-fade.md
       - knowledge/valuation/GRW-003-margin-convergence.md
@@ -136,7 +167,7 @@ mappings:
       - tests/integration/test_m3_artifact_graph.py
       - templates/m3-young-company-review-checklist.md
     extraction_manifest: extraction/manifests/M3-young-company-survival-adjusted.yaml
-    notes: M3 covers Chapter 9, printed pages 259-321, using 30 claims, seven Knowledge artifacts, nine Skills, a compositional workflow, survival controls, and two synthetic benchmarks. M4 covers Chapter 10, printed pages 323-357, using 30 reviewed claims, seven Knowledge artifacts, nine Skills, a compositional growth-and-fade workflow, a strict schema and validator, and two deterministic synthetic benchmarks. Approved M5 covers Chapter 12, printed pages 397-436, with 32 reviewed claims and a contract for decline, distress, and contingent survival; Chapter 11 is outside its boundary. The singular extraction_manifest field remains the M3 primary manifest, while the M4 and M5 manifests are explicitly listed in artifacts.
+    notes: M3 covers Chapter 9, printed pages 259-321, using 30 claims, seven Knowledge artifacts, nine Skills, a compositional workflow, survival controls, and two synthetic benchmarks. M4 covers Chapter 10, printed pages 323-357, using 30 reviewed claims, seven Knowledge artifacts, nine Skills, a compositional growth-and-fade workflow, a strict schema and validator, and two deterministic synthetic benchmarks. M5 covers Chapter 12, printed pages 397-436, using 32 reviewed claims, eight Knowledge artifacts, ten Skills, a compositional decline-and-distress workflow, a strict schema and independent validator, and two deterministic synthetic benchmarks; Chapter 11 is outside its boundary. The singular extraction_manifest field remains the M3 primary manifest, while the M4 and M5 manifests are explicitly listed in artifacts.
 
   - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
     artifacts: []

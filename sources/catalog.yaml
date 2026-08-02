@@ -39,7 +39,7 @@ sources:
     access: private
     private_locator: damodaran/the-dark-side-of-valuation-2018.pdf
     status: available
-    notes: M3 primary source for young-company survival-adjusted valuation, Chapter 9, printed pages 259-321. Chapter 10 begins on printed page 323 and remains outside M3.
+    notes: M3 primary source for young-company survival-adjusted valuation, Chapter 9, printed pages 259-321. Approved M4 primary source for growth-company scaling and fade, Chapter 10, printed pages 323-357.
 
   - id: SRC-DAMODARAN-INVESTMENT-FABLES
     title: Investment Fables
@@ -52,7 +52,7 @@ sources:
     access: private
     private_locator: damodaran/investment-fables.pdf
     status: available
-    notes: Planned M4 source for empirical strategy testing, base-rate discipline, portfolio inspection, and investment-fable failure modes.
+    notes: Planned post-M6 source for empirical strategy testing, base-rate discipline, portfolio inspection, and investment-fable failure modes.
 
   - id: SRC-MARKS-MOST-IMPORTANT-THING-ZH-2019
     title: 投资最重要的事：顶尖价值投资者的忠告
@@ -66,7 +66,7 @@ sources:
     access: private
     private_locator: marks/the-most-important-thing-illuminated-zh-2019.pdf
     status: available
-    notes: Planned source for second-level thinking, price-value discipline, risk control, defensive investing, and market psychology. Treat translation wording as edition-specific.
+    notes: Planned post-M6 source for second-level thinking, price-value discipline, risk control, defensive investing, and market psychology. Treat translation wording as edition-specific.
 
   - id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
     title: Mastering the Market Cycle
@@ -79,7 +79,7 @@ sources:
     access: private
     private_locator: marks/mastering-the-market-cycle-2018.pdf
     status: available
-    notes: Planned M3 source for economic, profit, psychology, risk-attitude, credit, distressed-debt, real-estate, and market-cycle knowledge.
+    notes: Planned M6 source for economic, profit, psychology, risk-attitude, credit, distressed-debt, real-estate, and market-cycle knowledge.
 
   - id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
     title: 複利的喜悅
@@ -92,7 +92,7 @@ sources:
     access: private
     private_locator: baid/the-joys-of-compounding-zh-2024.pdf
     status: available
-    notes: Planned M4 source for multidisciplinary mental models, temperament, checklists, intrinsic value, margin of safety, portfolio sizing, decision journals, and compounding.
+    notes: Planned post-M6 source for multidisciplinary mental models, temperament, checklists, intrinsic value, margin of safety, portfolio sizing, decision journals, and compounding.
 
   - id: SRC-GRAHAM-DODD-SECURITY-ANALYSIS-2008-EXTRACT
     title: Security Analysis

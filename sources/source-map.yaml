@@ -70,6 +70,10 @@ mappings:
   - source_id: SRC-DAMODARAN-DARK-SIDE-2018
     artifacts:
       - extraction/reviewed/M3-young-company-survival-adjusted-claims.yaml
+      - extraction/manifests/M4-growth-company-scaling-and-fade.yaml
+      - extraction/reviewed/M4-growth-company-scaling-and-fade-claims.yaml
+      - docs/milestones/M4-growth-company-scaling-and-fade-contract.md
+      - templates/m4-growth-company-review-checklist.md
       - knowledge/lifecycle/YNG-001-characteristics-and-consequences.md
       - knowledge/lifecycle/YNG-002-revenue-forecasting.md
       - knowledge/lifecycle/YNG-003-margin-tax-reinvestment.md
@@ -100,12 +104,12 @@ mappings:
       - tests/integration/test_m3_artifact_graph.py
       - templates/m3-young-company-review-checklist.md
     extraction_manifest: extraction/manifests/M3-young-company-survival-adjusted.yaml
-    notes: M3 covers Chapter 9, printed pages 259-321, using 30 claims, seven Knowledge artifacts, nine Skills, a compositional workflow, survival controls, and two synthetic benchmarks; Chapter 10 is excluded.
+    notes: M3 covers Chapter 9, printed pages 259-321, using 30 claims, seven Knowledge artifacts, nine Skills, a compositional workflow, survival controls, and two synthetic benchmarks. The approved M4 contract separately covers Chapter 10, printed pages 323-357, with 30 reviewed claims and is implementation-ready. The singular extraction_manifest field remains the M3 primary manifest, while the additional M4 manifest is explicitly listed in artifacts.
 
   - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
     artifacts: []
     extraction_manifest: null
-    notes: Reserved for M4 evidence-testing and investment-strategy failure-mode artifacts.
+    notes: Reserved for post-M6 evidence-testing and investment-strategy failure-mode artifacts.
 
   - source_id: SRC-MARKS-MOST-IMPORTANT-THING-ZH-2019
     artifacts: []

@@ -317,7 +317,7 @@
         },
         "retained_operations": {"type": "string", "minLength": 1},
         "urgency_assessment": {"type": "string", "minLength": 1},
-        "full_liquidation": {"type": "boolean"},
+        "full_liquidation": {"const": true},
         "status_quo_value": {"type": "number"},
         "value": {"type": "number"},
         "selected_alternative": {"enum": ["status-quo", "orderly_liquidation"]},
@@ -449,6 +449,18 @@
       "if": {"properties": {"routing": {"properties": {"distress_level": {"const": "high"}}}}},
       "then": {"required": ["distress_case"]},
       "else": {"not": {"required": ["distress_case"]}}
+    },
+    {
+      "if": {
+        "properties": {
+          "going_concern": {
+            "required": ["basis"],
+            "properties": {"basis": {"const": "common-equity"}}
+          }
+        }
+      },
+      "then": {"not": {"required": ["claim_bridge"]}},
+      "else": {"required": ["claim_bridge"]}
     }
   ],
   "$defs": {

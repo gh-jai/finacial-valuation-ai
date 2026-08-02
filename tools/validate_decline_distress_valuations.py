@@ -404,6 +404,19 @@ def validate_document(
             ):
                 errors.append("negative reinvestment does not recognize divestiture proceeds once")
 
+    for divestiture in divestitures:
+        matching_support = [
+            item
+            for item in support
+            if divestiture.get("id") in item.get("divestiture_ids", [])
+            and divestiture.get("year") == item.get("year")
+        ]
+        if len(matching_support) != 1:
+            errors.append(
+                f"divestiture {divestiture.get('id')} requires exactly one same-year "
+                "negative-reinvestment support"
+            )
+
     for item in divestitures:
         try:
             expected_net = net_divestiture_proceeds(
@@ -448,6 +461,13 @@ def validate_document(
         if turnaround.get("basis") != going.get("basis"):
             errors.append("turnaround alternative basis conflicts with going-concern basis")
         try:
+            probability_date = date.fromisoformat(str(turnaround.get("probability_as_of_date")))
+        except ValueError:
+            errors.append("turnaround probability date is invalid")
+        else:
+            if as_of_date is not None and probability_date > as_of_date:
+                errors.append("turnaround probability date is later than valuation date")
+        try:
             components = turnaround_expected_value(
                 turnaround.get("status_quo_value"),
                 turnaround.get("turnaround_value"),
@@ -473,6 +493,10 @@ def validate_document(
     if quadrant == "irreversible_low" and isinstance(orderly, Mapping):
         if orderly.get("basis") != going.get("basis"):
             errors.append("orderly-liquidation basis conflicts with going-concern basis")
+        if orderly.get("full_liquidation") is not True:
+            errors.append(
+                "partial liquidation must be modeled as governed divestitures within retained operations"
+            )
         schedule = orderly.get("sale_schedule", [])
         schedule_years = [item.get("year") for item in schedule]
         if schedule_years != list(range(1, len(schedule) + 1)):
@@ -603,7 +627,9 @@ def validate_document(
                 applicable_value = contingent.contingent_value
 
     bridge = document.get("claim_bridge")
-    if basis != "common-equity" and not isinstance(bridge, Mapping):
+    if basis == "common-equity" and isinstance(bridge, Mapping):
+        errors.append("common-equity aggregation basis forbids a claim bridge")
+    elif basis != "common-equity" and not isinstance(bridge, Mapping):
         errors.append("non-equity aggregation basis requires one claim bridge")
     elif isinstance(bridge, Mapping):
         if bridge.get("input_basis") != basis or not _close(bridge.get("input_value"), applicable_value):

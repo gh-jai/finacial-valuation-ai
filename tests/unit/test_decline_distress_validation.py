@@ -105,6 +105,14 @@ def test_divestiture_proceeds_cannot_be_added_twice() -> None:
     assert any("duplicates proceeds" in error for error in errors_for(document))
 
 
+def test_every_divestiture_requires_one_same_year_negative_reinvestment_link() -> None:
+    document = orderly()
+    orphan = copy.deepcopy(document["divestitures"][0])
+    orphan["id"] = "DIV-ORPHAN"
+    document["divestitures"].append(orphan)
+    assert any("exactly one same-year negative-reinvestment support" in error for error in errors_for(document))
+
+
 def test_loss_period_tax_benefit_is_recomputed_at_zero() -> None:
     document = distressed()
     document["financing_path"]["cash_interest_tax_benefits"][0] = -1
@@ -157,6 +165,12 @@ def test_turnaround_values_are_weighted_without_input_averaging() -> None:
     assert any("no_input_averaging" in error for error in errors)
 
 
+def test_turnaround_probability_date_cannot_be_later_than_valuation_date() -> None:
+    document = distressed()
+    document["turnaround_case"]["probability_as_of_date"] = "2026-01-02"
+    assert any("turnaround probability date is later than valuation date" in error for error in errors_for(document))
+
+
 def test_probability_event_horizon_date_and_mapping_are_governed() -> None:
     document = distressed()
     document["distress_case"]["probability_horizon_years"] = 2
@@ -172,6 +186,13 @@ def test_orderly_liquidation_schedule_years_are_recomputed() -> None:
     document = orderly()
     document["orderly_liquidation"]["sale_schedule"][1]["year"] = 3
     assert any("schedule years" in error for error in errors_for(document))
+
+
+def test_partial_liquidation_must_use_governed_divestitures_in_retained_operations() -> None:
+    document = orderly()
+    document["orderly_liquidation"]["full_liquidation"] = False
+    errors = errors_for(document)
+    assert any("partial liquidation must be modeled" in error for error in errors)
 
 
 def test_distress_probability_and_rate_premium_cannot_be_stacked() -> None:
@@ -212,6 +233,15 @@ def test_claim_bridge_uses_current_market_debt_once() -> None:
     errors = errors_for(document)
     assert any("current cash and market debt" in error for error in errors)
     assert any("applicable common-basis value" in error for error in errors)
+
+
+def test_common_equity_basis_forbids_a_second_claim_bridge() -> None:
+    document = distressed()
+    document["going_concern"]["basis"] = "common-equity"
+    document["turnaround_case"]["basis"] = "common-equity"
+    document["distress_case"]["aggregation_basis"] = "common-equity"
+    document["claim_bridge"]["input_basis"] = "common-equity"
+    assert any("common-equity aggregation basis forbids a claim bridge" in error for error in errors_for(document))
 
 
 def test_calculation_trails_are_independently_recomputed() -> None:

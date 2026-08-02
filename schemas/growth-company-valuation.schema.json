@@ -1,0 +1,338 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fvi.example/schemas/growth-company-valuation.schema.json",
+  "title": "FVI Growth-Company Scaling-and-Fade Valuation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "id", "narrative_id", "as_of_date", "subject", "currency",
+    "growth_company_profile", "base_period", "forecast", "stable_state", "going_concern",
+    "traceability", "limitations", "review"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "id": {"type": "string", "pattern": "^GCV-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+    "narrative_id": {"type": "string", "pattern": "^NAR-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+    "as_of_date": {"type": "string", "format": "date"},
+    "subject": {"type": "string", "minLength": 1},
+    "currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+    "growth_company_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "classification", "m3_boundary_cleared", "classification_reasoning",
+        "commercial_evidence_refs", "growth_asset_reasoning", "financial_dynamism", "evidence_refs"
+      ],
+      "properties": {
+        "classification": {"const": "growth-company"},
+        "m3_boundary_cleared": {"const": true},
+        "classification_reasoning": {"type": "string", "minLength": 1},
+        "commercial_evidence_refs": {"$ref": "#/$defs/refList"},
+        "growth_asset_reasoning": {"type": "string", "minLength": 1},
+        "financial_dynamism": {"enum": ["moderate", "high", "very-high"]},
+        "evidence_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "base_period": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "period_end", "as_of_date", "staleness_days", "revenues", "operating_income",
+        "cash", "debt", "net_operating_loss", "invested_capital",
+        "normalization_adjustments", "evidence_refs"
+      ],
+      "properties": {
+        "period_end": {"type": "string", "format": "date"},
+        "as_of_date": {"type": "string", "format": "date"},
+        "staleness_days": {"type": "integer", "minimum": 0},
+        "revenues": {"type": "number", "minimum": 0},
+        "operating_income": {"type": "number"},
+        "cash": {"type": "number", "minimum": 0},
+        "debt": {"type": "number", "minimum": 0},
+        "net_operating_loss": {"type": "number", "minimum": 0},
+        "invested_capital": {"type": "number", "exclusiveMinimum": 0},
+        "normalization_adjustments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["field", "amount", "rationale", "evidence_refs"],
+            "properties": {
+              "field": {"enum": ["revenues", "operating_income", "cash", "debt", "net_operating_loss", "invested_capital"]},
+              "amount": {"type": "number"},
+              "rationale": {"type": "string", "minLength": 1},
+              "evidence_refs": {"$ref": "#/$defs/refList"}
+            }
+          }
+        },
+        "evidence_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "forecast": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "years", "revenue_growth_rates", "revenues", "absolute_revenue_changes",
+        "operating_margins", "operating_incomes", "margin_convergence", "marginal_tax_rate",
+        "tax_rates", "cash_taxes", "nol_balances", "after_tax_operating_incomes",
+        "reinvestment_method", "sales_to_capital_ratios", "fundamental_reinvestment_rates",
+        "capacity_reinvestments", "reinvestments", "invested_capital",
+        "implied_returns_on_capital", "discount_rates", "assumption_trace"
+      ],
+      "properties": {
+        "years": {"$ref": "#/$defs/yearSeries"},
+        "revenue_growth_rates": {"$ref": "#/$defs/rateSeries"},
+        "revenues": {"$ref": "#/$defs/nonnegativeSeries"},
+        "absolute_revenue_changes": {"$ref": "#/$defs/numberSeries"},
+        "operating_margins": {"$ref": "#/$defs/rateSeries"},
+        "operating_incomes": {"$ref": "#/$defs/numberSeries"},
+        "margin_convergence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["method", "current_margin", "target_margin", "start_year", "end_year", "supporting_refs"],
+          "properties": {
+            "method": {"const": "linear"},
+            "current_margin": {"type": "number", "minimum": -1, "maximum": 1},
+            "target_margin": {"type": "number", "minimum": -1, "maximum": 1},
+            "start_year": {"type": "integer", "minimum": 1},
+            "end_year": {"type": "integer", "minimum": 1},
+            "supporting_refs": {"$ref": "#/$defs/refList"}
+          }
+        },
+        "marginal_tax_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "tax_rates": {"$ref": "#/$defs/rateSeries"},
+        "cash_taxes": {"$ref": "#/$defs/nonnegativeSeries"},
+        "nol_balances": {"$ref": "#/$defs/nonnegativeSeries"},
+        "after_tax_operating_incomes": {"$ref": "#/$defs/numberSeries"},
+        "reinvestment_method": {
+          "type": "array", "minItems": 1,
+          "items": {"enum": ["revenue-change", "fundamental", "capacity-holiday"]}
+        },
+        "sales_to_capital_ratios": {"$ref": "#/$defs/nullablePositiveSeries"},
+        "fundamental_reinvestment_rates": {"$ref": "#/$defs/nullableUnitRateSeries"},
+        "capacity_reinvestments": {"$ref": "#/$defs/nullableNonnegativeSeries"},
+        "reinvestments": {"$ref": "#/$defs/nonnegativeSeries"},
+        "invested_capital": {"$ref": "#/$defs/positiveSeries"},
+        "implied_returns_on_capital": {"$ref": "#/$defs/numberSeries"},
+        "discount_rates": {"$ref": "#/$defs/positiveRateSeries"},
+        "assumption_trace": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["input_name", "assertion_id", "evidence_refs", "rationale"],
+            "properties": {
+              "input_name": {"type": "string", "minLength": 1},
+              "assertion_id": {"type": "string", "pattern": "^NAR-A-[0-9]{3}$"},
+              "evidence_refs": {"$ref": "#/$defs/refList"},
+              "rationale": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    },
+    "stable_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mature_year", "growth_rate", "operating_margin", "tax_rate", "return_on_capital",
+        "reinvestment_rate", "cost_of_capital", "excess_return", "supporting_refs"
+      ],
+      "properties": {
+        "mature_year": {"type": "integer", "minimum": 1, "maximum": 10},
+        "growth_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "operating_margin": {"type": "number", "minimum": -1, "maximum": 1},
+        "tax_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "return_on_capital": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "reinvestment_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "cost_of_capital": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "excess_return": {"type": "number"},
+        "supporting_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "going_concern": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "engine", "fcff", "cumulative_discount_factors", "forecast_present_value",
+        "terminal_fcff", "terminal_value", "terminal_present_value", "operating_asset_value",
+        "terminal_value_share", "calculation_trail"
+      ],
+      "properties": {
+        "engine": {"const": "WFL-VAL-001"},
+        "fcff": {"$ref": "#/$defs/numberSeries"},
+        "cumulative_discount_factors": {"$ref": "#/$defs/nonnegativeSeries"},
+        "forecast_present_value": {"type": "number"},
+        "terminal_fcff": {"type": "number"},
+        "terminal_value": {"type": "number"},
+        "terminal_present_value": {"type": "number"},
+        "operating_asset_value": {"type": "number"},
+        "terminal_value_share": {"type": "number"},
+        "calculation_trail": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["step", "value"],
+            "properties": {
+              "step": {"type": "string", "minLength": 1},
+              "period": {"type": "integer", "minimum": 1},
+              "fcff": {"type": "number"},
+              "discount_rate": {"type": "number"},
+              "cumulative_discount_factor": {"type": "number"},
+              "value": {"type": "number"}
+            }
+          }
+        }
+      }
+    },
+    "market_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["base_addressable_market", "addressable_market", "market_growth_rates", "market_shares", "mature_peer_evidence_refs", "competition_notes"],
+      "properties": {
+        "base_addressable_market": {"type": "number", "exclusiveMinimum": 0},
+        "addressable_market": {"$ref": "#/$defs/positiveSeries"},
+        "market_growth_rates": {"$ref": "#/$defs/rateSeries"},
+        "market_shares": {"$ref": "#/$defs/unitRateSeries"},
+        "mature_peer_evidence_refs": {"$ref": "#/$defs/refList"},
+        "competition_notes": {"type": "string", "minLength": 1}
+      }
+    },
+    "capacity_holiday": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "available_capacity", "utilization_rates", "maximum_supported_output", "start_year",
+        "end_year", "reinvestment_resumption_year", "rationale", "evidence_refs"
+      ],
+      "properties": {
+        "available_capacity": {"type": "number", "exclusiveMinimum": 0},
+        "utilization_rates": {"$ref": "#/$defs/unitRateSeries"},
+        "maximum_supported_output": {"type": "number", "exclusiveMinimum": 0},
+        "start_year": {"type": "integer", "minimum": 1},
+        "end_year": {"type": "integer", "minimum": 1},
+        "reinvestment_resumption_year": {"type": "integer", "minimum": 1},
+        "rationale": {"type": "string", "minLength": 1},
+        "evidence_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "failure_handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "material", "adjustment_input_ref", "failure_probability", "survival_probability",
+        "failure_value", "adjusted_operating_asset_value", "failure_premium_in_discount_rate",
+        "failure_loss_in_cash_flows", "applied_once", "evidence_refs"
+      ],
+      "properties": {
+        "material": {"type": "boolean"},
+        "adjustment_input_ref": {"type": ["string", "null"]},
+        "failure_probability": {"type": "number", "minimum": 0, "maximum": 1},
+        "survival_probability": {"type": "number", "minimum": 0, "maximum": 1},
+        "failure_value": {"type": "number", "minimum": 0},
+        "adjusted_operating_asset_value": {"type": "number"},
+        "failure_premium_in_discount_rate": {"const": false},
+        "failure_loss_in_cash_flows": {"const": false},
+        "applied_once": {"const": true},
+        "evidence_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "equity_bridge_handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "operating_asset_value", "cash", "debt", "future_shares_added_to_current_denominator", "input_refs"],
+      "properties": {
+        "path": {"enum": ["M1-standard", "M3-claim-controls"]},
+        "operating_asset_value": {"type": "number"},
+        "cash": {"type": "number", "minimum": 0},
+        "debt": {"type": "number", "minimum": 0},
+        "future_shares_added_to_current_denominator": {"const": false},
+        "input_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "sensitivity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scenario_ids", "driver_one", "driver_two", "driver_grid", "break_even_values", "market_price_observation", "base_case_unchanged"],
+      "properties": {
+        "scenario_ids": {"$ref": "#/$defs/refList"},
+        "driver_one": {"const": "stable_growth_rate"},
+        "driver_two": {"const": "stable_cost_of_capital"},
+        "driver_grid": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["scenario_id", "driver_one", "driver_two", "operating_asset_value"],
+            "properties": {
+              "scenario_id": {"type": "string", "minLength": 1},
+              "driver_one": {"type": "number"},
+              "driver_two": {"type": "number"},
+              "operating_asset_value": {"type": "number"}
+            }
+          }
+        },
+        "break_even_values": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["driver", "value"],
+            "properties": {"driver": {"enum": ["stable_growth_rate", "sales_to_capital_ratio"]}, "value": {"type": "number"}}
+          }
+        },
+        "market_price_observation": {"type": ["number", "null"]},
+        "base_case_unchanged": {"const": true}
+      }
+    },
+    "traceability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_refs", "claim_refs", "narrative_assertion_refs"],
+      "properties": {
+        "source_refs": {"$ref": "#/$defs/refList"},
+        "claim_refs": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^CLM-GRW-[0-9]{3}$"}
+        },
+        "narrative_assertion_refs": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^NAR-A-[0-9]{3}$"}
+        }
+      }
+    },
+    "limitations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status", "reviewer", "reviewed_at", "classification_approved", "scale_approved",
+        "reinvestment_approved", "risk_fade_approved", "stable_state_approved", "failure_risk_reviewed"
+      ],
+      "properties": {
+        "status": {"enum": ["unreviewed", "reviewed", "approved", "rejected"]},
+        "reviewer": {"type": ["string", "null"]},
+        "reviewed_at": {"type": ["string", "null"], "format": "date-time"},
+        "classification_approved": {"type": "boolean"},
+        "scale_approved": {"type": "boolean"},
+        "reinvestment_approved": {"type": "boolean"},
+        "risk_fade_approved": {"type": "boolean"},
+        "stable_state_approved": {"type": "boolean"},
+        "failure_risk_reviewed": {"type": "boolean"},
+        "notes": {"type": "string"}
+      }
+    }
+  },
+  "$defs": {
+    "refList": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "numberSeries": {"type": "array", "minItems": 1, "items": {"type": "number"}},
+    "nonnegativeSeries": {"type": "array", "minItems": 1, "items": {"type": "number", "minimum": 0}},
+    "positiveSeries": {"type": "array", "minItems": 1, "items": {"type": "number", "exclusiveMinimum": 0}},
+    "rateSeries": {"type": "array", "minItems": 1, "items": {"type": "number", "minimum": -1, "maximum": 1}},
+    "positiveRateSeries": {"type": "array", "minItems": 1, "items": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}},
+    "unitRateSeries": {"type": "array", "minItems": 1, "items": {"type": "number", "minimum": 0, "maximum": 1}},
+    "yearSeries": {"type": "array", "minItems": 1, "items": {"type": "integer", "minimum": 1}},
+    "nullablePositiveSeries": {"type": "array", "minItems": 1, "items": {"type": ["number", "null"], "exclusiveMinimum": 0}},
+    "nullableUnitRateSeries": {"type": "array", "minItems": 1, "items": {"type": ["number", "null"], "minimum": 0, "maximum": 1}},
+    "nullableNonnegativeSeries": {"type": "array", "minItems": 1, "items": {"type": ["number", "null"], "minimum": 0}}
+  }
+}

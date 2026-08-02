@@ -41,6 +41,12 @@ repos:
         language: python
         additional_dependencies: ["jsonschema>=4.21,<5", "PyYAML>=6.0,<7"]
         pass_filenames: false
+      - id: fvi-validate-growth-company-valuations
+        name: Validate FVI growth-company valuations and controls
+        entry: python tools/validate_growth_company_valuations.py
+        language: python
+        additional_dependencies: ["jsonschema>=4.21,<5", "PyYAML>=6.0,<7"]
+        pass_filenames: false
       - id: fvi-repository-policy
         name: Enforce FVI repository content policy
         entry: python tools/check_repository_policy.py

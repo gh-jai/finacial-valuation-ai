@@ -186,13 +186,13 @@ The M4 implementation will add `schemas/growth-company-valuation.schema.json` wi
 
 Optional governed objects:
 
-- `market_context`: addressable market, market growth, market share, mature-peer evidence, and competition notes.
+- `market_context`: base addressable market, recomputable market growth and market share, mature-peer evidence, and competition notes.
 - `capacity_holiday`: capacity, utilization, maximum supported output, start/end years, and reinvestment resumption.
 - `failure_handoff`: whether failure risk is material, the M3-compatible adjustment input reference, and double-counting attestations.
 - `equity_bridge_handoff`: selected M1 or M3 bridge path and current-input references.
-- `sensitivity`: separate scenario IDs, driver grid, break-even values, and market-price observation used only as a comparison.
+- `sensitivity`: separate scenario IDs, named terminal-growth and terminal-cost drivers, a recomputable driver grid, optional recomputable break-even values, and a market-price observation used only as a comparison.
 
-The validator must recompute every numeric series and reject length mismatches, non-finite values, stale-base omissions, unsupported fade discontinuities, reinvestment-method conflicts, inconsistent terminal state, and risk double counting.
+The validator must recompute every numeric series, sensitivity point, supported break-even value, and calculation-trail step. It must reject length mismatches, non-finite values, unregistered or one-way traceability, stale-base omissions, unsupported fade discontinuities, reinvestment-method conflicts, inconsistent terminal state, and risk double counting.
 
 ## Workflow contract
 

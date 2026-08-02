@@ -74,6 +74,34 @@ mappings:
       - extraction/reviewed/M4-growth-company-scaling-and-fade-claims.yaml
       - docs/milestones/M4-growth-company-scaling-and-fade-contract.md
       - templates/m4-growth-company-review-checklist.md
+      - knowledge/lifecycle/GRW-001-boundary-and-normalized-base.md
+      - knowledge/lifecycle/GRW-002-revenue-scale-and-fade.md
+      - knowledge/valuation/GRW-003-margin-convergence.md
+      - knowledge/valuation/GRW-004-reinvestment-and-implied-returns.md
+      - knowledge/risk/GRW-005-risk-fade-and-discounting.md
+      - knowledge/valuation/GRW-006-stable-state-terminal-rebuild.md
+      - knowledge/valuation/GRW-007-handoffs-sensitivity-and-price.md
+      - skills/SKL-GRW-001-classify-and-normalize-base.md
+      - skills/SKL-GRW-002-build-revenue-scale-and-fade.md
+      - skills/SKL-GRW-003-build-margin-tax-and-nol-path.md
+      - skills/SKL-GRW-004-select-reinvestment-method.md
+      - skills/SKL-GRW-005-roll-forward-capital-and-fcff.md
+      - skills/SKL-GRW-006-build-risk-fade.md
+      - skills/SKL-GRW-007-rebuild-stable-state-and-value.md
+      - skills/SKL-GRW-008-apply-failure-and-equity-handoffs.md
+      - skills/SKL-GRW-009-run-sensitivity-and-feedback.md
+      - workflows/WFL-GRW-001-growth-company-scaling-and-fade.md
+      - schemas/growth-company-valuation.schema.json
+      - tools/growth_company.py
+      - tools/validate_growth_company_valuations.py
+      - benchmarks/fixtures/growth_company/synthetic-asset-light-platform.json
+      - benchmarks/fixtures/growth_company/synthetic-capacity-expansion.json
+      - benchmarks/expected/growth-asset-light-platform-output.json
+      - benchmarks/expected/growth-capacity-expansion-output.json
+      - tests/unit/test_growth_company.py
+      - tests/unit/test_growth_company_validation.py
+      - tests/integration/test_growth_company_benchmarks.py
+      - tests/integration/test_m4_artifact_graph.py
       - knowledge/lifecycle/YNG-001-characteristics-and-consequences.md
       - knowledge/lifecycle/YNG-002-revenue-forecasting.md
       - knowledge/lifecycle/YNG-003-margin-tax-reinvestment.md
@@ -104,7 +132,7 @@ mappings:
       - tests/integration/test_m3_artifact_graph.py
       - templates/m3-young-company-review-checklist.md
     extraction_manifest: extraction/manifests/M3-young-company-survival-adjusted.yaml
-    notes: M3 covers Chapter 9, printed pages 259-321, using 30 claims, seven Knowledge artifacts, nine Skills, a compositional workflow, survival controls, and two synthetic benchmarks. The approved M4 contract separately covers Chapter 10, printed pages 323-357, with 30 reviewed claims and is implementation-ready. The singular extraction_manifest field remains the M3 primary manifest, while the additional M4 manifest is explicitly listed in artifacts.
+    notes: M3 covers Chapter 9, printed pages 259-321, using 30 claims, seven Knowledge artifacts, nine Skills, a compositional workflow, survival controls, and two synthetic benchmarks. M4 covers Chapter 10, printed pages 323-357, using 30 reviewed claims, seven Knowledge artifacts, nine Skills, a compositional growth-and-fade workflow, a strict schema and validator, and two deterministic synthetic benchmarks. The singular extraction_manifest field remains the M3 primary manifest, while the M4 manifest is explicitly listed in artifacts.
 
   - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
     artifacts: []

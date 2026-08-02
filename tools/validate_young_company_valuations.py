@@ -16,11 +16,15 @@ FIXTURE_ROOT = ROOT / "benchmarks" / "fixtures" / "young_company"
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools.young_company import reconcile_probabilities
+from tools.young_company import reconcile_probabilities, run_going_concern_fcff
 
 
 def _finite_number(value: Any) -> bool:
     return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+
+
+def _close(actual: Any, expected: float, tolerance: float = 1e-8) -> bool:
+    return _finite_number(actual) and abs(float(actual) - expected) <= tolerance
 
 
 def validate_document(document: Mapping[str, Any], schema: Mapping[str, Any], source_ids: set[str], claim_ids: set[str], narrative_assertions: set[str]) -> list[str]:
@@ -39,6 +43,8 @@ def validate_document(document: Mapping[str, Any], schema: Mapping[str, Any], so
     for name, value in (("failure_value", failure.get("failure_value")), ("going_concern_value", going.get("operating_asset_value"))):
         if not _finite_number(value):
             errors.append(f"{name} must be finite")
+    if _finite_number(failure.get("failure_value")) and failure["failure_value"] < 0:
+        errors.append("failure value must be non-negative")
     if failure.get("failure_value_basis") != "operating-assets":
         errors.append("failure value basis must match going-concern operating-assets basis")
     if not failure.get("recovery_basis"):
@@ -46,22 +52,37 @@ def validate_document(document: Mapping[str, Any], schema: Mapping[str, Any], so
     controls = adjustment.get("double_counting_check", {})
     if controls.get("failure_premium_in_discount_rate") or controls.get("failure_loss_in_cash_flows") or not controls.get("passed"):
         errors.append("survival-risk double-counting control failed")
+
+    try:
+        recalculated_fcff, recalculated_going = run_going_concern_fcff(
+            forecast.get("revenues", []), forecast.get("operating_margins", []),
+            forecast.get("tax_rates", []), forecast.get("reinvestments", []),
+            forecast.get("discount_rates", []), forecast.get("terminal_growth_rate"),
+            forecast.get("terminal_discount_rate"),
+        )
+    except (TypeError, ValueError) as exc:
+        errors.append(f"going-concern valuation cannot be recomputed: {exc}")
+    else:
+        stored_fcff = going.get("fcff", [])
+        if len(stored_fcff) != len(recalculated_fcff) or any(not _close(actual, expected) for actual, expected in zip(stored_fcff, recalculated_fcff)):
+            errors.append("stored FCFF is inconsistent with forecast inputs")
+        if not _close(going.get("operating_asset_value"), recalculated_going.operating_asset_value):
+            errors.append("going-concern operating value is inconsistent with M1 DCF")
+        if not _close(going.get("terminal_value"), recalculated_going.terminal_value):
+            errors.append("terminal value is inconsistent with M1 DCF")
+        stored_factors = going.get("cumulative_discount_factors", [])
+        expected_factors = recalculated_going.cumulative_discount_factors
+        if len(stored_factors) != len(expected_factors) or any(not _close(actual, expected, 1e-10) for actual, expected in zip(stored_factors, expected_factors)):
+            errors.append("cumulative discount factors are inconsistent with period rates")
+
     if all(_finite_number(value) for value in (probability_failure, probability_survival, failure.get("failure_value"), going.get("operating_asset_value"))):
         survival_component = probability_survival * going["operating_asset_value"]
         failure_component = probability_failure * failure["failure_value"]
         adjusted = survival_component + failure_component
-        if abs(adjustment.get("survival_component", math.nan) - survival_component) > 1e-8 or abs(adjustment.get("failure_component", math.nan) - failure_component) > 1e-8 or abs(adjustment.get("adjusted_operating_asset_value", math.nan) - adjusted) > 1e-8:
+        delta = adjusted - going["operating_asset_value"]
+        if not _close(adjustment.get("survival_component"), survival_component) or not _close(adjustment.get("failure_component"), failure_component) or not _close(adjustment.get("adjusted_operating_asset_value"), adjusted) or not _close(adjustment.get("failure_adjustment_delta"), delta):
             errors.append("survival-adjustment arithmetic is inconsistent")
-    rates = forecast.get("discount_rates", [])
-    factors = going.get("cumulative_discount_factors", [])
-    expected_factors: list[float] = []
-    if isinstance(rates, list) and all(_finite_number(rate) and rate > -1 for rate in rates):
-        cumulative = 1.0
-        for rate in rates:
-            cumulative *= 1 + rate
-            expected_factors.append(1 / cumulative)
-    if not isinstance(factors, list) or not all(_finite_number(value) for value in factors) or len(factors) != len(expected_factors) or any(abs(a-b) > 1e-10 for a, b in zip(factors, expected_factors)):
-        errors.append("cumulative discount factors are inconsistent with period rates")
+
     if forecast.get("terminal_growth_rate", 0) >= forecast.get("terminal_discount_rate", 0):
         errors.append("terminal growth must be below terminal discount rate")
     margins = forecast.get("operating_margins", [])
@@ -72,24 +93,42 @@ def validate_document(document: Mapping[str, Any], schema: Mapping[str, Any], so
     lag = forecast.get("reinvestment_lag_periods", 0)
     for index in range(1, len(revenues)):
         support_index = index - lag
-        if revenues[index] > revenues[index-1] and support_index >= 0 and (support_index >= len(reinvestments) or reinvestments[support_index] <= 0):
+        if revenues[index] > revenues[index - 1] and support_index >= 0 and (support_index >= len(reinvestments) or reinvestments[support_index] <= 0):
             errors.append("forecast growth lacks reinvestment support")
             break
+
     dilution = bridge.get("future_financing_dilution_handling", {})
     if dilution.get("negative_fcff_present_value_included") and dilution.get("future_shares_added_to_current_denominator"):
         errors.append("future-share dilution double counts negative FCFF")
     option_value = bridge.get("option_and_other_equity_claim_value", 0)
+    financing = bridge.get("authorized_financing_proceeds", 0)
     trace_names = {item.get("input_name") for item in forecast.get("assumption_trace", [])}
     if option_value and "option_and_other_equity_claim_value" not in trace_names:
         errors.append("option deduction requires explicit option valuation trace")
-    if bridge.get("authorized_financing_proceeds", 0) and "authorized_financing_proceeds" not in trace_names:
+    if financing and "authorized_financing_proceeds" not in trace_names:
         errors.append("financing proceeds require authorization trace")
+    if financing and (not bridge.get("financing_authorized") or not bridge.get("financing_retained")):
+        errors.append("financing proceeds must be authorized and retained")
+    if financing and not bridge.get("current_share_count_includes_financing_shares"):
+        errors.append("post-money per-share value requires a share count including financing shares")
+    adjusted_value = adjustment.get("adjusted_operating_asset_value")
+    if _finite_number(adjusted_value) and not _close(bridge.get("adjusted_operating_asset_value"), adjusted_value):
+        errors.append("equity bridge does not start from survival-adjusted operating value")
+    bridge_inputs = (
+        bridge.get("adjusted_operating_asset_value"), bridge.get("existing_cash"), financing,
+        bridge.get("debt_and_senior_claims"), option_value, bridge.get("current_share_count"),
+    )
+    if all(_finite_number(value) for value in bridge_inputs) and bridge["current_share_count"] > 0:
+        pre_money = bridge["adjusted_operating_asset_value"] + bridge["existing_cash"] - bridge["debt_and_senior_claims"] - option_value
+        post_money = pre_money + financing
+        per_share = post_money / bridge["current_share_count"]
+        if not _close(bridge.get("pre_money_common_equity_value"), pre_money) or not _close(bridge.get("post_money_common_equity_value"), post_money) or not _close(bridge.get("per_share_value"), per_share):
+            errors.append("equity-bridge arithmetic is inconsistent")
+
     review = document.get("review", {})
     if review.get("status") == "unreviewed":
         errors.append("young-company valuation requires human review status")
-    if review.get("status") in {"reviewed", "approved"} and (
-        not review.get("risk_separation_approved") or not review.get("claim_structure_reviewed")
-    ):
+    if review.get("status") in {"reviewed", "approved"} and (not review.get("risk_separation_approved") or not review.get("claim_structure_reviewed")):
         errors.append("reviewed valuation requires risk-separation and claim-structure approval")
     for ref in trace.get("source_refs", []):
         if ref.startswith("SRC-") and ref not in source_ids:
@@ -102,10 +141,7 @@ def validate_document(document: Mapping[str, Any], schema: Mapping[str, Any], so
             errors.append(f"unknown narrative assertion reference {ref}")
     key_person = document.get("key_person_scenario")
     if key_person is not None:
-        key_values = (
-            key_person.get("status_quo_value"), key_person.get("scenario_value"),
-            key_person.get("discount_amount"),
-        )
+        key_values = (key_person.get("status_quo_value"), key_person.get("scenario_value"), key_person.get("discount_amount"))
         if not all(_finite_number(value) for value in key_values) or abs(key_values[0] - key_values[1] - key_values[2]) > 1e-8:
             errors.append("key-person risk must use a separately valued operating scenario")
     return errors

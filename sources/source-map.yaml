@@ -74,6 +74,10 @@ mappings:
       - extraction/reviewed/M4-growth-company-scaling-and-fade-claims.yaml
       - docs/milestones/M4-growth-company-scaling-and-fade-contract.md
       - templates/m4-growth-company-review-checklist.md
+      - extraction/manifests/M5-decline-distress-contingent-survival.yaml
+      - extraction/reviewed/M5-decline-distress-contingent-survival-claims.yaml
+      - docs/milestones/M5-decline-distress-contingent-survival-contract.md
+      - templates/m5-decline-distress-review-checklist.md
       - knowledge/lifecycle/GRW-001-boundary-and-normalized-base.md
       - knowledge/lifecycle/GRW-002-revenue-scale-and-fade.md
       - knowledge/valuation/GRW-003-margin-convergence.md
@@ -132,7 +136,7 @@ mappings:
       - tests/integration/test_m3_artifact_graph.py
       - templates/m3-young-company-review-checklist.md
     extraction_manifest: extraction/manifests/M3-young-company-survival-adjusted.yaml
-    notes: M3 covers Chapter 9, printed pages 259-321, using 30 claims, seven Knowledge artifacts, nine Skills, a compositional workflow, survival controls, and two synthetic benchmarks. M4 covers Chapter 10, printed pages 323-357, using 30 reviewed claims, seven Knowledge artifacts, nine Skills, a compositional growth-and-fade workflow, a strict schema and validator, and two deterministic synthetic benchmarks. The singular extraction_manifest field remains the M3 primary manifest, while the M4 manifest is explicitly listed in artifacts.
+    notes: M3 covers Chapter 9, printed pages 259-321, using 30 claims, seven Knowledge artifacts, nine Skills, a compositional workflow, survival controls, and two synthetic benchmarks. M4 covers Chapter 10, printed pages 323-357, using 30 reviewed claims, seven Knowledge artifacts, nine Skills, a compositional growth-and-fade workflow, a strict schema and validator, and two deterministic synthetic benchmarks. Approved M5 covers Chapter 12, printed pages 397-436, with 32 reviewed claims and a contract for decline, distress, and contingent survival; Chapter 11 is outside its boundary. The singular extraction_manifest field remains the M3 primary manifest, while the M4 and M5 manifests are explicitly listed in artifacts.
 
   - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
     artifacts: []

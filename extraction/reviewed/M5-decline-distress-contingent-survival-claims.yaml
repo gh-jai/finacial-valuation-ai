@@ -1,0 +1,325 @@
+schema_version: 1.0.0
+source_id: SRC-DAMODARAN-DARK-SIDE-2018
+claims:
+  - id: CLM-DST-001
+    claim_type: source_statement
+    statement: A declining company derives little or no value from growth assets, may destroy value through new investment below its cost of capital, and can be worth more through divestiture or liquidation than through unchanged operations.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, life-cycle view of declining companies, printed pages 397-398"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-002
+    claim_type: source_statement
+    statement: Persistent revenue stagnation or decline, especially below inflation and across the sector in otherwise favorable conditions, is stronger evidence of structural decline than a single weak period.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Characteristics of Declining Companies, printed page 398"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-003
+    claim_type: source_statement
+    statement: Declining companies often combine stagnant revenue with shrinking margins, deteriorating operating income, and occasional profits from asset sales or other nonrecurring items that should not be treated as recurring operations.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Characteristics of Declining Companies, printed page 398"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-004
+    claim_type: source_statement
+    statement: Asset divestitures, large payouts, and debt accumulated in healthier periods are common in decline, and fixed obligations become more dangerous because future earnings cannot be assumed to rescue an overlevered company.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Characteristics of Declining Companies, printed page 398"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-005
+    claim_type: source_statement
+    statement: Existing assets that earn less than the cost of capital can have an intrinsic value below invested capital or book value without implying a valuation error.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Valuation Issues - Existing Assets, printed pages 398-399"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-006
+    claim_type: source_statement
+    statement: Past and planned divestitures create discontinuities in revenue, earnings, reinvestment, and risk data, so the forecast must identify the assets removed, the operating contribution lost, the timing, and the expected proceeds.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Valuation Issues - Existing Assets, printed pages 398-399"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-007
+    claim_type: source_statement
+    statement: Reinvestment in new assets that are expected to earn below the cost of capital reduces value and must not be justified merely by a desire to restore positive growth.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Valuation Issues - Growth Assets, printed page 399"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-008
+    claim_type: source_statement
+    statement: When divestitures reduce invested capital, reinvestment can be negative, forecast growth can be negative, and FCFF can exceed after-tax operating income without being internally inconsistent.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Valuation Issues - Growth Assets, printed page 399"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-009
+    claim_type: source_statement
+    statement: Large dividends and buybacks can reduce equity value and raise leverage when debt is not repaid proportionately, so debt weights and financing risk must be recomputed rather than frozen.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Valuation Issues - Discount Rates, printed page 399"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-010
+    claim_type: source_statement
+    statement: Distress raises borrowing and equity risk, can eliminate interest tax benefits when operating income is insufficient, and can make lagged regression betas a misleading measure of current forward risk.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Valuation Issues - Discount Rates, printed page 399"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-011
+    claim_type: source_statement
+    statement: A declining or distressed company may fail before stable growth, stabilize at a negative perpetual growth rate, or continue earning below its cost of capital, while current crisis-level discount rates should not be carried mechanically into a healthier terminal state.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Valuation Issues - Terminal Value, printed pages 399-400"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-012
+    claim_type: source_statement
+    statement: A distressed equity bridge requires current cash adjusted for depletion, an updated market value and inventory of debt, and explicit treatment of options, convertibles, and other hybrid claims whose terms may change during restructuring.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, From Operating Assets to Equity Value per Share, printed page 400"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-013
+    claim_type: source_statement
+    statement: Assuming positive growth, predistress profitability, healthy-company discount rates, or an inevitable large terminal value can materially overstate a declining company's value.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, The Dark Side - Autopilot Optimism, printed pages 401-403"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-014
+    claim_type: source_statement
+    statement: Higher costs of debt and equity do not by themselves capture the truncation of all later cash flows when a company ceases to operate, so discrete distress cannot be represented only by a discount-rate premium.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, The Dark Side - Dealing with Distress and Distress in DCF, printed pages 405-406 and 412-413"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-015
+    claim_type: source_statement
+    statement: A divestiture forecast must not include sale proceeds while retaining the disposed asset's later earnings and cash flows; urgency and bargaining weakness should also reduce assumed proceeds in a forced sale.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, The Dark Side - Divestiture Follies, printed page 405"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-016
+    claim_type: source_statement
+    statement: Book asset value is not a default proxy for liquidation value, and book debt and equity weights can produce economically meaningless capital structures for a distressed company.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, The Dark Side - Book Capital, printed page 405"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-017
+    claim_type: source_statement
+    statement: Decline reversibility and the likelihood of distress are separate classification questions and jointly determine one of four valuation routes.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, A Framework for Dealing with Decline and Distress, printed pages 406-408"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-018
+    claim_type: source_statement
+    statement: Reversibility should be assessed from the company's recovery history, the health of sector peers, management-specific underperformance, and relevant macroeconomic cyclicality rather than from optimism alone.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, decline-reversibility framework and Reversible Decline, Low Distress, printed pages 406-407 and 410-411"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-019
+    claim_type: source_statement
+    statement: Distress assessment should begin with fixed obligations, debt load, refinancing capacity, credit quality, liquidity, and ability to fund operating needs; decline without heavy fixed obligations does not automatically imply distress.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, decline-and-distress framework and possibility of distress, printed pages 406-407 and 411"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-020
+    claim_type: source_statement
+    statement: Irreversible low-distress decline calls for comparison of status-quo going-concern value with orderly-liquidation value, while reversible low-distress decline calls for separate status-quo and turnaround values weighted by a reviewed probability of change.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, four-scenario framework, printed pages 407-408"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-021
+    claim_type: source_statement
+    statement: An orderly liquidation may occur over multiple years, should have no urgency-based illiquidity haircut without evidence, and is value-improving only when proceeds exceed the value of retaining the assets in their existing use.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Irreversible Decline, Low Distress, printed pages 408-410"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-022
+    claim_type: source_statement
+    statement: A reversible-decline valuation should keep the status-quo operating path separate from the turnaround path and use a reviewed probability of management or policy change rather than averaging their operating inputs.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Reversible Decline, Low Distress, printed pages 410-411"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-023
+    claim_type: source_statement
+    statement: Distress can impose direct legal and transaction costs and indirect operating losses through customers, employees, suppliers, and lenders, so a forced-sale value can be materially below going-concern value.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, The Consequences of Distress, printed pages 411-412"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-024
+    claim_type: source_statement
+    statement: When access to capital is constrained and forced-sale proceeds are below going-concern value, a conventional perpetual DCF can overstate value even if operating cash flows and discount rates are otherwise reasonable.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Distress in Discounted Cash Flow Valuation, printed pages 412-414"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-025
+    claim_type: source_statement
+    statement: A transparent contingent-survival method values the business conditionally as a going concern and then combines that value with a distress-sale value using mutually exclusive survival and distress probabilities.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Dealing with Distress Separately, printed page 415"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-026
+    claim_type: source_statement
+    statement: The going-concern case should include only survival-consistent cash flows and a coherent transition in profitability, debt ratios, tax benefits, and discount rates, without silently assuming an immediate costless return to health.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Going-Concern DCF and valuation example, printed pages 415 and 420-424"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-027
+    claim_type: source_statement
+    statement: A probability input must state its event definition and horizon because bond default, bankruptcy, cessation of operations, acquisition, and liquidation are not interchangeable outcomes.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, possibility and probability of distress, printed pages 411 and 415-418"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-028
+    claim_type: source_statement
+    statement: Distress-sale proceeds may be estimated from a haircut to going-concern asset value, the value of existing assets without growth, or an evidence-backed percentage of book assets, but book value alone is not an estimate and every haircut must be explicit.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Estimating Distress Sale Proceeds, printed page 418"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-029
+    claim_type: source_statement
+    statement: Distressed debt and hybrid claims should be inventoried at the valuation date, market-valued rather than proxied by book debt, and separated into debt and equity components when conversion or option features are material.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, The Shifting Debt Load, printed page 419"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-030
+    claim_type: derived_rule
+    statement: Simulation, modified expected-cash-flow DCF, separate distress adjustment, APV, equity-as-option, and relative valuation are alternative treatments whose outputs should not be stacked without an explicit reconciliation of overlapping distress effects.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, alternative distress valuation approaches, printed pages 413-435"
+    derivation: The chapter presents these as distinct ways to incorporate or price distress. Their cash-flow, rate, probability, bankruptcy-cost, option, and pricing adjustments overlap, so combining outputs without a reconciliation would count some effects more than once.
+    confidence: 0.97
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-031
+    claim_type: derived_rule
+    statement: M5 must mix going-concern and distress-sale values on the same declared operating-asset, firm, equity, or claim basis, with probabilities that sum to one and with claim deductions performed exactly once.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 12, Dealing with Distress Separately and operating-assets-to-equity discussion, printed pages 400, 415, 418-424"
+    derivation: The source applies probability weighting to alternative values and separately discusses the bridge across operating assets, debt, cash, and equity; a common basis and one claim deduction are required for dimensional consistency and to prevent double counting.
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-DST-032
+    claim_type: derived_rule
+    statement: M5 should reuse M1 cumulative DCF arithmetic, M4 forecast and terminal consistency, and M3 separate survival adjustment while adding only decline routing, divestiture, liquidation, event-definition, and claim-basis controls.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9 separate failure adjustment, printed pages 304-308; Chapter 10 cumulative DCF and terminal controls, printed pages 338-346; Chapter 12 separate distress adjustment and worked DCF, printed pages 415 and 420-424"
+    derivation: The completed workflows already govern standard FCFF, growth-to-maturity forecasts, and a separate discrete failure adjustment; composing those contracts avoids a second calculation engine while Chapter 12 supplies the missing declining-company and forced-sale controls.
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers

@@ -16,6 +16,8 @@ The repository has completed five milestones through delivery PR #10:
 
 The M4 contract and repository-wide implementation were delivered through PR #10. The implementation includes the locked source boundary and 30 claims, seven Knowledge artifacts, nine Skills, `WFL-GRW-001`, a strict schema, deterministic engine, independent recomputation validator, two synthetic benchmarks, adversarial controls, and CI/pre-commit integration. Final review hardened registered bidirectional traceability and independent recomputation of market scale, capacity utilization, calculation trails, sensitivity points, and supported break-even values.
 
+The M5 contract is approved and implementation-ready on a feature branch. Its locked boundary is Chapter 12, printed pages 397-436 / PDF pages 445-484, with 32 reviewed atomic claims. No M5 implementation has begun.
+
 Current mainline architecture:
 
 ```text
@@ -23,10 +25,10 @@ Evidence
 → Narrative
 → 3P Review
 → Value Drivers
-→ Life-cycle Routing / Scaling / Reinvestment / Risk Fade
+→ Life-cycle Routing / Scaling / Decline / Reinvestment / Risk Fade
 → FCFF Inputs
 → Going-concern DCF
-→ Optional Survival / Failure Adjustment
+→ Optional Survival / Distress-sale Adjustment
 → Equity and Claim Bridge
 → Per-share Value
 → Feedback Revision
@@ -251,6 +253,43 @@ Acceptance evidence:
 - Remote Python 3.10 and Python 3.12 CI on PR #10
 - Final adversarial review fixes for traceability, market/capacity series, calculation trail, sensitivity, and break-even recomputation
 
+### M5 — Decline, distress, and contingent survival
+
+Status: Contract approved; implementation-ready
+
+Primary source:
+
+- `SRC-DAMODARAN-DARK-SIDE-2018`
+
+Approved source boundary:
+
+- Chapter 12, “Winding Down: Declining Companies”
+- Printed pages 397-436
+- PDF pages 445-484 in the reviewed private edition
+- Chapter 11 mature-company methods are outside the M5 boundary
+- Chapter 13 begins on printed page 438 / PDF page 486
+
+Approved contract artifacts:
+
+- `docs/milestones/M5-decline-distress-contingent-survival-contract.md`
+- `extraction/manifests/M5-decline-distress-contingent-survival.yaml`
+- `extraction/reviewed/M5-decline-distress-contingent-survival-claims.yaml`
+- `templates/m5-decline-distress-review-checklist.md`
+
+Approved contract decisions:
+
+- Classify decline reversibility independently from financial distress
+- Route one of four reversible/irreversible and low/high-distress combinations
+- Keep status-quo, turnaround, orderly-liquidation, and forced-sale alternatives separate
+- Permit evidence-backed negative growth and negative reinvestment
+- Reconcile divestiture proceeds with capital and operating contribution removed
+- Apply deterministic distress probability once on a common declared valuation basis
+- Require probability event, horizon, as-of date, and default-to-cessation mapping
+- Reuse M1 DCF, M4 forecast consistency, and M3 survival arithmetic without changing their public contracts
+- Exclude live data, statistical probability estimation, relative valuation, simulation, APV, and equity-as-option methods
+
+Implementation may begin on a separate feature branch within the approved 32-claim boundary, schema/workflow contract, benchmark design, and acceptance criteria.
+
 ## Current governed artifact graph
 
 ```text
@@ -274,6 +313,7 @@ Important workflow dependencies:
 WFL-NAR-001 → WFL-VAL-001
 WFL-NAR-001 + WFL-VAL-001 → WFL-YNG-001
 WFL-NAR-001 + WFL-VAL-001 + bounded WFL-YNG-001 handoff → WFL-GRW-001
+WFL-NAR-001 + WFL-VAL-001 + bounded WFL-GRW-001/WFL-YNG-001 reuse → approved WFL-DST-001 contract
 ```
 
 ## Validation and CI
@@ -355,12 +395,12 @@ M3 failure probabilities and recovery values are deterministic reviewed assumpti
 
 The next milestone should remain a bounded vertical slice rather than a broad platform expansion.
 
-M4 implementation is complete and merged. The next milestone is the M5 distress / decline and contingent-survival contract.
+M4 implementation is complete and merged. The M5 decline, distress, and contingent-survival contract is approved and ready for implementation.
 
 Recommended sequencing:
 
 ```text
-M5: Distress / decline and contingent survival contract
+M5: Decline, distress, and contingent-survival implementation
 → M6: Cycle-aware judgment layer
 ```
 

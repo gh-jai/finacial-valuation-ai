@@ -1,0 +1,79 @@
+id: EXT-M5-DECLINE-DISTRESS-CONTINGENT-SURVIVAL
+source_id: SRC-DAMODARAN-DARK-SIDE-2018
+scope:
+  chapter:
+    number: 12
+    title: "Winding Down: Declining Companies"
+    printed_pages:
+      start: 397
+      end: 436
+    pdf_pages:
+      start: 445
+      end: 484
+  implementation_sections:
+    - title: Declining-company life-cycle boundary and characteristics
+      printed_pages: "397-398"
+    - title: Intrinsic valuation issues and dark-side controls
+      printed_pages: "398-406"
+    - title: Framework for decline and distress
+      printed_pages: "406-411"
+    - title: Distress in discounted cash flow valuation
+      printed_pages: "411-424"
+    - title: Conclusion
+      printed_pages: "435"
+  boundary_sections:
+    - title: Reversible decline and management change
+      printed_pages: "407 and 410-411"
+      treatment: A reviewed turnaround scenario and change probability may be composed, but Chapter 11 control-valuation mechanics are not implemented in M5.
+    - title: Modified discounted cash flow valuation
+      printed_pages: "414-415"
+      treatment: Documents an alternative placement of distress; M5 selects the separate contingent-survival method to preserve risk separation.
+    - title: Debt and hybrid claims
+      printed_pages: "400 and 419"
+      treatment: Current claim inventory, valuation basis, and equity-bridge handoff only; no generalized restructuring or waterfall engine.
+  excluded_sections:
+    - title: Relative valuation
+      printed_pages: "400-401, 406, and 432-435"
+      reason: M5 is a bounded intrinsic FCFF and contingent-survival vertical slice.
+    - title: Simulation
+      printed_pages: "413-414"
+      reason: Monte Carlo simulation remains outside the v1 roadmap.
+    - title: Statistical and market-implied distress-probability estimation
+      printed_pages: "415-418"
+      reason: M5 accepts only deterministic reviewed probabilities and does not implement a forecasting model.
+    - title: Adjusted present value
+      printed_pages: "424-426"
+      reason: APV is an alternative valuation engine and is outside this bounded slice.
+    - title: Equity as an option
+      printed_pages: "426-432"
+      reason: Generalized option valuation and complex claim decomposition remain outside the v1 roadmap.
+    - title: Chapter notes
+      printed_pages: "435-436"
+      reason: Used only to verify context; no executable claim depends on copied examples, tables, or historical estimates.
+artifact_goal: Declining-company and distress-adjusted intrinsic valuation composed with M2 narrative, M1 DCF, M4 forecast controls, and M3 survival semantics
+review_status: approved
+copyright_controls:
+  raw_text_committed: false
+  tables_or_figures_reproduced: false
+  sequential_extract_committed: false
+coverage:
+  - declining_company_classification
+  - reversibility_and_distress_quadrant
+  - current_base_and_claim_inventory
+  - negative_growth_and_negative_reinvestment
+  - divestiture_and_earnings_removal
+  - going_concern_and_turnaround_scenarios
+  - orderly_and_forced_liquidation
+  - deterministic_contingent_survival
+  - probability_event_and_horizon_controls
+  - recovery_and_claim_basis_consistency
+  - terminal_or_closure_consistency
+  - risk_and_double_counting_controls
+limitations:
+  - Chapter 11 mature-company and control-valuation methods are outside the source boundary and may be composed only through reviewed external inputs.
+  - M5 does not estimate statistical, ratings-based, or bond-implied probabilities of distress; probabilities are deterministic reviewed assumptions.
+  - Relative valuation, simulation, APV, equity-as-option valuation, generalized real options, and restructuring waterfalls are excluded.
+  - Public examples and benchmarks must use synthetic companies and synthetic evidence.
+  - M5 delegates narrative construction to WFL-NAR-001 and DCF arithmetic to WFL-VAL-001.
+  - M5 may reuse M4 series and terminal-state mechanics without modifying the approved M4 contract.
+  - Discrete cessation or forced-sale risk is applied once, on a declared valuation basis, and is not embedded again in FCFF or discount rates.

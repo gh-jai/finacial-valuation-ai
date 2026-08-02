@@ -39,7 +39,7 @@ sources:
     access: private
     private_locator: damodaran/the-dark-side-of-valuation-2018.pdf
     status: available
-    notes: M3 primary source for young-company survival-adjusted valuation, Chapter 9, printed pages 259-321. Approved M4 primary source for growth-company scaling and fade, Chapter 10, printed pages 323-357.
+    notes: M3 primary source for young-company survival-adjusted valuation, Chapter 9, printed pages 259-321. Approved M4 primary source for growth-company scaling and fade, Chapter 10, printed pages 323-357. Approved M5 source for decline, distress, and contingent survival, Chapter 12, printed pages 397-436; Chapter 11 mature-company methods are not part of the M5 boundary.
 
   - id: SRC-DAMODARAN-INVESTMENT-FABLES
     title: Investment Fables

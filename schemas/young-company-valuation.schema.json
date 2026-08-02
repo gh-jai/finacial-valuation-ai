@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fvi.example/schemas/young-company-valuation.schema.json",
+  "title": "FVI Young-Company Survival-Adjusted Valuation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "narrative_id",
+    "as_of_date",
+    "subject",
+    "currency",
+    "young_company_profile",
+    "forecast",
+    "going_concern",
+    "failure_scenario",
+    "survival_adjustment",
+    "equity_bridge",
+    "traceability",
+    "limitations",
+    "review"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "id": {"type": "string", "pattern": "^YCV-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+    "narrative_id": {"type": "string", "pattern": "^NAR-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+    "as_of_date": {"type": "string", "format": "date"},
+    "subject": {"type": "string", "minLength": 1},
+    "currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+    "young_company_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage", "classification_reasoning", "history_years", "commercial_status", "operating_loss", "private_capital_dependence", "equity_claim_complexity", "evidence_refs"],
+      "properties": {
+        "stage": {"enum": ["idea", "pre-revenue", "early-commercial", "second-stage"]},
+        "classification_reasoning": {"type": "string", "minLength": 1},
+        "history_years": {"type": "number", "minimum": 0},
+        "commercial_status": {"type": "string", "minLength": 1},
+        "operating_loss": {"type": "boolean"},
+        "private_capital_dependence": {"type": "boolean"},
+        "equity_claim_complexity": {"type": "boolean"},
+        "evidence_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "forecast": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "revenues", "operating_margins", "tax_rates", "reinvestments", "discount_rates", "terminal_growth_rate", "terminal_discount_rate", "mature_year", "assumption_trace"],
+      "properties": {
+        "method": {"enum": ["top-down", "bottom-up", "hybrid"]},
+        "revenues": {"$ref": "#/$defs/numberSeries"},
+        "operating_margins": {"$ref": "#/$defs/rateSeries"},
+        "tax_rates": {"$ref": "#/$defs/rateSeries"},
+        "reinvestments": {"$ref": "#/$defs/numberSeries"},
+        "discount_rates": {"$ref": "#/$defs/rateSeries"},
+        "terminal_growth_rate": {"type": "number", "minimum": -1, "maximum": 1},
+        "terminal_discount_rate": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "mature_year": {"type": "integer", "minimum": 1},
+        "net_operating_losses": {"$ref": "#/$defs/numberSeries"},
+        "sales_to_capital_ratio": {"type": "number", "exclusiveMinimum": 0},
+        "reinvestment_lag_periods": {"type": "integer", "minimum": 0},
+        "assumption_trace": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["input_name", "assertion_id", "evidence_refs", "rationale"],
+            "properties": {
+              "input_name": {"type": "string", "minLength": 1},
+              "assertion_id": {"type": "string", "pattern": "^NAR-A-[0-9]{3}$"},
+              "evidence_refs": {"$ref": "#/$defs/refList"},
+              "rationale": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    },
+    "going_concern": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["engine", "operating_asset_value", "fcff", "cumulative_discount_factors", "terminal_value", "risk_treatment"],
+      "properties": {
+        "engine": {"const": "WFL-VAL-001"},
+        "operating_asset_value": {"type": "number"},
+        "fcff": {"$ref": "#/$defs/numberSeries"},
+        "cumulative_discount_factors": {"$ref": "#/$defs/nonnegativeSeries"},
+        "terminal_value": {"type": "number"},
+        "risk_treatment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["operating_risk_in_discount_rates", "failure_risk_in_discount_rates"],
+          "properties": {
+            "operating_risk_in_discount_rates": {"const": true},
+            "failure_risk_in_discount_rates": {"const": false},
+            "notes": {"type": "string"}
+          }
+        }
+      }
+    },
+    "failure_scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["failure_probability", "survival_probability", "failure_value", "failure_value_basis", "probability_basis", "recovery_basis", "evidence_refs"],
+      "properties": {
+        "failure_probability": {"type": "number", "minimum": 0, "maximum": 1},
+        "survival_probability": {"type": "number", "minimum": 0, "maximum": 1},
+        "failure_value": {"type": "number", "minimum": 0},
+        "failure_value_basis": {"enum": ["operating-assets", "firm", "equity", "claim-specific"]},
+        "probability_basis": {"type": "string", "minLength": 1},
+        "recovery_basis": {"type": "string", "minLength": 1},
+        "beneficiary_or_claim": {"type": ["string", "null"]},
+        "evidence_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "survival_adjustment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["formula", "survival_component", "failure_component", "adjusted_operating_asset_value", "failure_adjustment_delta", "probability_tolerance", "double_counting_check"],
+      "properties": {
+        "formula": {"const": "survival_probability * going_concern_value + failure_probability * failure_value"},
+        "survival_component": {"type": "number"},
+        "failure_component": {"type": "number"},
+        "adjusted_operating_asset_value": {"type": "number"},
+        "failure_adjustment_delta": {"type": "number"},
+        "probability_tolerance": {"type": "number", "exclusiveMinimum": 0, "maximum": 0.01},
+        "double_counting_check": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["passed", "failure_premium_in_discount_rate", "failure_loss_in_cash_flows"],
+          "properties": {
+            "passed": {"type": "boolean"},
+            "failure_premium_in_discount_rate": {"const": false},
+            "failure_loss_in_cash_flows": {"const": false},
+            "review_notes": {"type": "string"}
+          }
+        }
+      }
+    },
+    "key_person_scenario": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["scenario_id", "operating_changes", "scenario_value", "status_quo_value", "discount_amount"],
+      "properties": {
+        "scenario_id": {"type": "string", "minLength": 1},
+        "operating_changes": {"type": "string", "minLength": 1},
+        "scenario_value": {"type": "number"},
+        "status_quo_value": {"type": "number"},
+        "discount_amount": {"type": "number"},
+        "evidence_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "equity_bridge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adjusted_operating_asset_value", "existing_cash", "authorized_financing_proceeds", "financing_authorized", "financing_retained", "debt_and_senior_claims", "option_and_other_equity_claim_value", "pre_money_common_equity_value", "post_money_common_equity_value", "current_share_count", "current_share_count_includes_financing_shares", "per_share_value", "future_financing_dilution_handling"],
+      "properties": {
+        "adjusted_operating_asset_value": {"type": "number"},
+        "existing_cash": {"type": "number", "minimum": 0},
+        "authorized_financing_proceeds": {"type": "number", "minimum": 0},
+        "financing_authorized": {"type": "boolean"},
+        "financing_retained": {"type": "boolean"},
+        "debt_and_senior_claims": {"type": "number", "minimum": 0},
+        "option_and_other_equity_claim_value": {"type": "number", "minimum": 0},
+        "pre_money_common_equity_value": {"type": "number"},
+        "post_money_common_equity_value": {"type": "number"},
+        "current_share_count": {"type": "number", "exclusiveMinimum": 0},
+        "current_share_count_includes_financing_shares": {"type": "boolean"},
+        "per_share_value": {"type": "number"},
+        "future_financing_dilution_handling": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["negative_fcff_present_value_included", "future_shares_added_to_current_denominator"],
+          "properties": {
+            "negative_fcff_present_value_included": {"const": true},
+            "future_shares_added_to_current_denominator": {"const": false},
+            "notes": {"type": "string"}
+          }
+        }
+      }
+    },
+    "traceability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_refs", "claim_refs", "narrative_assertion_refs"],
+      "properties": {
+        "source_refs": {"$ref": "#/$defs/refList"},
+        "claim_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^CLM-YNG-[0-9]{3}$"}
+        },
+        "narrative_assertion_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^NAR-A-[0-9]{3}$"}
+        }
+      }
+    },
+    "limitations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reviewer", "reviewed_at", "risk_separation_approved", "claim_structure_reviewed"],
+      "properties": {
+        "status": {"enum": ["unreviewed", "reviewed", "approved", "rejected"]},
+        "reviewer": {"type": ["string", "null"]},
+        "reviewed_at": {"type": ["string", "null"], "format": "date-time"},
+        "risk_separation_approved": {"type": "boolean"},
+        "claim_structure_reviewed": {"type": "boolean"},
+        "notes": {"type": "string"}
+      }
+    }
+  },
+  "$defs": {
+    "refList": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "numberSeries": {"type": "array", "minItems": 1, "items": {"type": "number"}},
+    "nonnegativeSeries": {"type": "array", "minItems": 1, "items": {"type": "number", "minimum": 0}},
+    "rateSeries": {"type": "array", "minItems": 1, "items": {"type": "number", "minimum": -1, "maximum": 1}}
+  }
+}

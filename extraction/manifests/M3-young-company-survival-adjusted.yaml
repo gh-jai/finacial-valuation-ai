@@ -1,0 +1,50 @@
+id: EXT-M3-YOUNG-COMPANY-SURVIVAL-ADJUSTED
+source_id: SRC-DAMODARAN-DARK-SIDE-2018
+scope:
+  chapter:
+    number: 9
+    title: "Baby Steps: Young and Start-Up Companies"
+    printed_pages:
+      start: 259
+      end: 321
+  sections:
+    - title: Young Companies in the Economy
+      printed_pages: "259-262"
+    - title: Characteristics of Young Companies
+      printed_pages: "260-263"
+    - title: Valuation Issues
+      printed_pages: "263-267"
+    - title: The Dark Side
+      printed_pages: "268-274"
+    - title: The Light Side — Discounted Cash Flow Valuation
+      printed_pages: "275-312"
+    - title: The Light Side — Relative Valuation and Real Options
+      printed_pages: "312-321"
+artifact_goal: Young-company survival-adjusted valuation vertical slice composed with M2 narrative and M1 FCFF workflows
+review_status: ready_for_human_review
+copyright_controls:
+  raw_text_committed: false
+  tables_or_figures_reproduced: false
+  sequential_extract_committed: false
+coverage:
+  - young_company_classification
+  - limited_history_and_operating_losses
+  - narrative_to_forecast_inputs
+  - top_down_and_bottom_up_revenue_forecasting
+  - margin_convergence
+  - tax_loss_carryforwards
+  - reinvestment_and_sales_to_capital
+  - time_varying_discount_rates
+  - going_concern_value
+  - survival_probability_and_failure_value
+  - negative_fcff_and_future_financing
+  - equity_claim_bridge
+  - key_person_scenarios
+  - valuation_controls_and_double_counting
+limitations:
+  - Chapter 10 growth-company methods are outside M3 and must not be silently imported.
+  - Relative valuation and real-option material is retained only for boundary and failure-mode claims; M3 implementation remains an intrinsic FCFF workflow.
+  - Public examples and benchmarks must use synthetic companies and synthetic evidence.
+  - M3 composes with existing M1 and M2 mechanics and must not duplicate their calculation or narrative logic.
+  - Failure probabilities and recovery values are deterministic reviewed inputs, not statistical forecasts.
+  - Preferred-stock waterfalls and negotiated ownership allocation remain outside the common-equity bridge.

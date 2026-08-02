@@ -39,7 +39,7 @@ sources:
     access: private
     private_locator: damodaran/the-dark-side-of-valuation-2018.pdf
     status: available
-    notes: Planned M3 source for probabilistic valuation, macro inputs, life-cycle adaptations, and special-company valuation.
+    notes: M3 primary source for young-company survival-adjusted valuation, Chapter 9, printed pages 259-321. Chapter 10 begins on printed page 323 and remains outside M3.
 
   - id: SRC-DAMODARAN-INVESTMENT-FABLES
     title: Investment Fables

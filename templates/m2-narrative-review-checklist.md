@@ -1,7 +1,7 @@
 # M2 Narrative-to-Numbers human review checklist
 
-Reviewer: `<name>`  
-Review date: `YYYY-MM-DD`  
+Reviewer: `<name>`
+Review date: `YYYY-MM-DD`
 Narrative ID/version: `<id>/<version>`
 
 ## Source fidelity and copyright

@@ -1,0 +1,64 @@
+id: EXT-M4-GROWTH-COMPANY-SCALING-AND-FADE
+source_id: SRC-DAMODARAN-DARK-SIDE-2018
+scope:
+  chapter:
+    number: 10
+    title: "Shooting Stars: Valuing Growth Companies"
+    printed_pages:
+      start: 323
+      end: 357
+    pdf_pages:
+      start: 371
+      end: 405
+  implementation_sections:
+    - title: Growth Companies and Life-Cycle Boundary
+      printed_pages: "323-325"
+    - title: Valuation Issues - Intrinsic Value
+      printed_pages: "325-327"
+    - title: The Dark Side of Valuation - Discounted Cash Flow Valuation
+      printed_pages: "328-333"
+    - title: The Light Side of Valuation - Discounted Cash Flow Valuation
+      printed_pages: "335-346"
+    - title: Conclusion - Discounted Cash Flow Summary
+      printed_pages: "356"
+  boundary_sections:
+    - title: From Operating Asset Value to Equity Value per Share
+      printed_pages: "346-350"
+      treatment: Composition and handoff rules only; M4 does not build a new equity-claim engine.
+    - title: Dealing with Uncertainty
+      printed_pages: "350-351"
+      treatment: Deterministic scenarios and break-even sensitivity only; no simulation engine.
+  excluded_sections:
+    - title: Relative Valuation
+      printed_pages: "333-335 and 352-356"
+      reason: M4 is a bounded intrinsic FCFF vertical slice.
+    - title: Chapter Notes
+      printed_pages: "356-357"
+      reason: Used only to verify cited chapter context; no executable claims depend on copied examples or tables.
+artifact_goal: Growth-company scaling-and-fade FCFF vertical slice composed with M2 narrative, M1 DCF, and bounded M3 risk and claim controls
+review_status: ready_for_human_review
+copyright_controls:
+  raw_text_committed: false
+  tables_or_figures_reproduced: false
+  sequential_extract_committed: false
+coverage:
+  - growth_company_classification
+  - current_period_normalization
+  - revenue_growth_scaling_and_fade
+  - target_margin_convergence
+  - growth_reinvestment_and_return_consistency
+  - invested_capital_and_implied_return_on_capital
+  - period_specific_discount_rate_convergence
+  - stable_state_and_terminal_value_consistency
+  - cumulative_discounting
+  - deterministic_sensitivity_and_break_even_review
+  - young_company_and_survival_handoff
+limitations:
+  - Chapter 9 young-company classification and forecasting remain owned by M3 and must not be duplicated.
+  - Chapter 11 mature-company methods are outside M4 and must not be silently imported.
+  - Relative valuation, PEG, forward-multiple, and sector-multiple engines are outside M4.
+  - Monte Carlo simulation, decision trees, real options, voting-right premiums, illiquidity discounts, and convertible-security decomposition are outside M4.
+  - Public examples and benchmarks must use synthetic companies and synthetic evidence.
+  - M4 delegates narrative construction to WFL-NAR-001 and DCF arithmetic to WFL-VAL-001.
+  - Material discrete failure risk uses M3 survival-adjustment semantics after the M4 going-concern value and must not be embedded again in FCFF or discount rates.
+  - M4 must not alter completed M1-M3 public contracts without a separately documented defect and migration.

@@ -13,6 +13,8 @@ The repository has completed and merged four milestones:
 - M2 — Narrative-to-Numbers vertical slice
 - M3 — Young-company survival-adjusted valuation vertical slice
 
+The M4 contract is approved for implementation. Its source boundary, 30 reviewed atomic claims, schema and workflow responsibilities, risk placement, benchmark designs, and acceptance criteria are locked as the implementation baseline. No M4 engine, schema, benchmark output, or executable workflow has been implemented yet.
+
 Current mainline architecture:
 
 ```text
@@ -201,6 +203,29 @@ Human review strengthened M3 so that the validator recomputes:
 
 The equity contract also requires that financing proceeds be authorized and retained, and that any post-money per-share denominator include shares issued in the financing round.
 
+### M4 — Growth-company scaling and fade
+
+Status: Contract approved; implementation-ready
+
+Primary source:
+
+- `SRC-DAMODARAN-DARK-SIDE-2018`
+
+Approved source boundary:
+
+- Chapter 10, “Shooting Stars: Valuing Growth Companies”
+- Printed pages 323–357
+- PDF pages 371–405 in the reviewed private edition
+
+Approved contract artifacts:
+
+- `docs/milestones/M4-growth-company-scaling-and-fade-contract.md`
+- `extraction/manifests/M4-growth-company-scaling-and-fade.yaml`
+- `extraction/reviewed/M4-growth-company-scaling-and-fade-claims.yaml`
+- `templates/m4-growth-company-review-checklist.md`
+
+Repository-wide implementation may proceed on a dedicated feature branch. It must preserve the approved source split, all 30 claims, M3/M4 life-cycle routing, schema and formula contract, M3 survival handoff, benchmark designs, and acceptance criteria.
+
 ## Current governed artifact graph
 
 ```text
@@ -297,12 +322,7 @@ M3 failure probabilities and recovery values are deterministic reviewed assumpti
 
 The next milestone should remain a bounded vertical slice rather than a broad platform expansion.
 
-Potential M4 directions already present in the source-coverage plan include:
-
-1. Growth-company valuation using `SRC-DAMODARAN-DARK-SIDE-2018`, Chapter 10.
-2. Distressed-company or declining-company valuation using later life-cycle sections from the same source.
-3. Cycle-aware valuation judgment using `SRC-MARKS-MASTERING-MARKET-CYCLE-2018`.
-4. Risk and second-level-thinking review using `SRC-MARKS-MOST-IMPORTANT-THING-ZH-2019`.
+The approved M4 direction is growth-company valuation using `SRC-DAMODARAN-DARK-SIDE-2018`, Chapter 10. The contract is implementation-ready; repository-wide implementation should proceed as a separate focused change.
 
 Recommended sequencing:
 

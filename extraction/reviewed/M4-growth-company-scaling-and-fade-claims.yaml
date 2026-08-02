@@ -1,0 +1,304 @@
+schema_version: 1.0.0
+source_id: SRC-DAMODARAN-DARK-SIDE-2018
+claims:
+  - id: CLM-GRW-001
+    claim_type: source_statement
+    statement: A growth company is best identified by the importance and expected value of future growth investments, including their prospective excess returns, rather than by sector labels, historical earnings growth, or market multiples alone.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Growth Companies and A Life Cycle View of Growth Companies, printed pages 323-324"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-002
+    claim_type: source_statement
+    statement: Growth companies have survived the earliest young-company stage and usually offer better data than start-ups, but they can still have short volatile histories, uncertain growth, and changing risk profiles.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, opening and life-cycle discussion, printed pages 323-324"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-003
+    claim_type: source_statement
+    statement: Growth-company financials can change materially within a fiscal year, so the latest annual statements may not represent the current revenue, earnings, cash, or financing base.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Characteristics of Growth Companies, printed pages 324-325"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-004
+    claim_type: source_statement
+    statement: Reported operating earnings can understate the economics of existing assets when current operating expenses also create future growth, and historical margins can be poor forecasts when profitability is shifting.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Valuation Issues - Existing Assets, printed pages 325-326"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-005
+    claim_type: source_statement
+    statement: Forecast growth should normally decline as the company becomes larger, successful growth attracts competition, and macroeconomic exposure can constrain demand and profitability.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Valuation Issues - Growth Assets, printed page 326"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-006
+    claim_type: source_statement
+    statement: Growth-company discount rates should usually be higher in early periods and move toward mature-company levels as operating risk, earnings stability, and financing capacity change.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Valuation Issues - Discount Rates, printed page 326"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-007
+    claim_type: source_statement
+    statement: Terminal value is commonly a large share of growth-company value while the terminal company's market, competitors, risk, reinvestment, and returns are unusually uncertain.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Valuation Issues - Terminal Value, printed pages 326-327"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-008
+    claim_type: source_statement
+    statement: Mechanical forecasts based blindly on current or historical line items can be nonsensical when the base values are small, volatile, stale, or distorted by accounting classification.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, The Dark Side - Using Current Numbers as a Base, printed page 328"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-009
+    claim_type: source_statement
+    statement: Extending a historical high growth rate without testing the resulting absolute scale, market share, and competitive position can overstate both the rate and duration of future growth.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, The Dark Side - Scaling Issues, printed pages 328-329"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-010
+    claim_type: source_statement
+    statement: Growth creates value only when supported by reinvestment that earns returns above the relevant cost of capital; growth without sufficient reinvestment is internally inconsistent.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Growth Reinvestment and Excess Returns, printed pages 329-330"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-011
+    claim_type: source_statement
+    statement: Holding reinvestment too low while forecasting high growth overvalues a company, while holding high-growth reinvestment after growth fades can undervalue it.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Growth Reinvestment and Excess Returns, printed pages 329-332"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-012
+    claim_type: source_statement
+    statement: Terminal cash flow should be rebuilt from stable-state growth, return on capital, and reinvestment rather than obtained by mechanically growing the final high-growth FCFF one more period.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Reinvestment Growth and Value - Effects of Inconsistencies, printed pages 331-332"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-013
+    claim_type: source_statement
+    statement: Leaving the cost of capital constant while growth falls and the business becomes more stable omits a benefit of maturity and can understate growth-company value.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Growth and Risk, printed page 332"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-014
+    claim_type: source_statement
+    statement: A short stock-price history and material changes in company fundamentals make regression beta a weak forward risk estimate for many growth companies.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Trusting Market-Based Risk Measures, printed pages 332-333"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-015
+    claim_type: source_statement
+    statement: Revising uncertain growth, return, or discount-rate assumptions merely to move estimated value toward the observed market price compromises an independent intrinsic valuation.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, The Market Price Magnet, printed page 333"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-016
+    claim_type: source_statement
+    statement: Firm-value FCFF models are generally more flexible than direct equity models for growth companies when debt ratios and financing practices are expected to change during maturation.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, The Light Side - Narrative and Choice of Model, printed pages 335-336"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-017
+    claim_type: source_statement
+    statement: Revenue growth, margins, reinvestment, and risk should be tied together by one plausible and internally consistent business narrative.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, The Light Side - Narrative and Choice of Model, printed page 336"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-018
+    claim_type: source_statement
+    statement: Revenue fade should be reviewed using absolute revenue changes, the company's own scale history, total market size and share, competition, and the growth of mature sector participants.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Revenue Growth Rates, printed pages 336-337"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-019
+    claim_type: source_statement
+    statement: A growth-company forecast should specify a defensible target operating margin and an explicit convergence path from the current margin, whether the current margin is unusually low or unusually high.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Current Margins Versus Target Margins, printed page 337"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-020
+    claim_type: source_statement
+    statement: For an early growth company, reinvestment can be estimated from the change in revenue divided by a reviewed sales-to-capital ratio, with an explicit lag when investment precedes revenue.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Reinvest to Sustain Growth, printed pages 337-338"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-021
+    claim_type: source_statement
+    statement: For a growth company with an established reinvestment record, expected operating-income growth can be reconciled to return on capital, reinvestment rate, and any separately identified efficiency growth.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Reinvest to Sustain Growth, printed page 338"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-022
+    claim_type: source_statement
+    statement: A company with prebuilt capacity may have a temporary investment holiday, but the forecast must state the available capacity, utilization path, and point when reinvestment resumes.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Reinvest to Sustain Growth, printed page 338"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-023
+    claim_type: source_statement
+    statement: Stable-phase reinvestment should reconcile to stable growth divided by stable return on capital, and forecast invested capital should be tracked to expose the implied return on capital during the transition.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Reinvest to Sustain Growth, printed page 338"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-024
+    claim_type: source_statement
+    statement: Period-specific costs of equity, debt, and capital should remain consistent with the forecast growth, margins, debt capacity, and tax benefits; bottom-up operating-risk estimates are generally preferable to a short regression history.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Risk Profile Consistent with Growth and Operating Numbers, printed page 338"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-025
+    claim_type: source_statement
+    statement: A growth period longer than ten years is difficult to defend without exceptional evidence, and the terminal company must carry mature growth, risk, leverage, reinvestment, and sustainable excess-return characteristics.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Stable Growth Assumptions, printed page 339"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-026
+    claim_type: source_statement
+    statement: When discount rates change by period, every forecast cash flow and terminal value must be discounted using the cumulative product of the applicable period-specific rates.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Valuing Operating Assets, printed pages 340-346"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-027
+    claim_type: source_statement
+    statement: When forecast negative FCFF already reduces operating-asset value, adding shares expected from future financing to today's denominator double counts the financing effect.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Valuing Operating Assets, printed pages 342-343"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-028
+    claim_type: source_statement
+    statement: The equity bridge should use a current cash estimate adjusted for cash burn and retained new financing and should subtract current debt rather than hypothetical debt expected to be issued later.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, Cash and Nonoperating Assets and Debt and Other Nonequity Claims, printed pages 346-347"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-029
+    claim_type: derived_rule
+    statement: A subject that meets the M3 young-company profile must be routed to WFL-YNG-001 rather than simultaneously receiving an independent M4 growth-company forecast; M4 begins only after the early-stage boundary is cleared.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 9 life-cycle boundary, printed pages 259-263; Chapter 10 opening and life-cycle discussion, printed pages 323-324"
+    derivation: Chapters 9 and 10 treat young and growth companies as adjacent life-cycle stages with different data quality and valuation emphasis, so applying both top-level forecasting workflows would duplicate assumptions and controls.
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-GRW-030
+    claim_type: derived_rule
+    statement: Material discrete failure risk in a growth company must be applied once after the M4 going-concern operating value using the M3 survival-adjustment semantics, while ordinary operating and scaling risk remains in forecast drivers and period-specific discount rates.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 10, growth-company risk and post-valuation survival discussion, printed pages 326, 338, and 347-349"
+    derivation: The chapter separates changes in operating risk from the probability and consequences of failure and refers material survival concerns back to the preceding chapter; keeping the two placements separate prevents double counting.
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers

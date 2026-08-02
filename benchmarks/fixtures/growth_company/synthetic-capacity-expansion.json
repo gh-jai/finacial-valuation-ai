@@ -56,9 +56,25 @@
     "forecast_present_value": 384.6759854766845, "terminal_fcff": 118.6767545278405,
     "terminal_value": 1977.9459087973414, "terminal_present_value": 713.0865704301649,
     "operating_asset_value": 1097.7625559068495, "terminal_value_share": 0.6495817939801126,
-    "calculation_trail": [{"step": "rebuilt_terminal_fcff", "value": 118.6767545278405},{"step": "terminal_value", "value": 1977.9459087973414},{"step": "operating_asset_value", "value": 1097.7625559068495}]
+    "calculation_trail": [
+      {"step": "discount_fcff", "period": 1, "fcff": 49.87, "discount_rate": 0.13, "cumulative_discount_factor": 0.8849557522123894, "value": 44.13274336283186},
+      {"step": "discount_fcff", "period": 2, "fcff": 60.7024, "discount_rate": 0.125, "cumulative_discount_factor": 0.7866273352999018, "value": 47.750167158308756},
+      {"step": "discount_fcff", "period": 3, "fcff": 29.33338399999998, "discount_rate": 0.12, "cumulative_discount_factor": 0.7023458350891979, "value": 20.602180081472103},
+      {"step": "discount_fcff", "period": 4, "fcff": 42.31891583999999, "discount_rate": 0.115, "cumulative_discount_factor": 0.6299065785553345, "value": 26.656963484945543},
+      {"step": "discount_fcff", "period": 5, "fcff": 57.23664575999999, "discount_rate": 0.11, "cumulative_discount_factor": 0.5674834041039049, "value": 32.48084657537412},
+      {"step": "discount_fcff", "period": 6, "fcff": 69.90036286463993, "discount_rate": 0.105, "cumulative_discount_factor": 0.5135596417229908, "value": 35.898005309071536},
+      {"step": "discount_fcff", "period": 7, "fcff": 83.69318859095037, "discount_rate": 0.1, "cumulative_discount_factor": 0.46687240156635523, "value": 39.07403995220288},
+      {"step": "discount_fcff", "period": 8, "fcff": 98.4226868694559, "discount_rate": 0.095, "cumulative_discount_factor": 0.4263674900149363, "value": 41.96423396105594},
+      {"step": "discount_fcff", "period": 9, "fcff": 118.47328240846863, "discount_rate": 0.09, "cumulative_discount_factor": 0.39116283487608833, "value": 46.342345003972},
+      {"step": "discount_fcff", "period": 10, "fcff": 138.06344806374727, "discount_rate": 0.085, "cumulative_discount_factor": 0.3605187418212796, "value": 49.774460587449745},
+      {"step": "rebuilt_terminal_fcff", "value": 118.6767545278405},
+      {"step": "terminal_value", "value": 1977.9459087973414},
+      {"step": "terminal_present_value", "value": 713.0865704301649},
+      {"step": "operating_asset_value", "value": 1097.7625559068495}
+    ]
   },
   "market_context": {
+    "base_addressable_market": 4000.0,
     "addressable_market": [4200.0,4410.0,4630.5,4862.025,5105.12625,5360.3825625,5628.401690625,5909.821775156252,6205.312863914065,6515.578507109768],
     "market_growth_rates": [0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05],
     "market_shares": [0.14047619047619048,0.15519274376417233,0.1684949789439585,0.17972797754022243,0.1882864526611854,0.19545926990542106,0.2010438204741474,0.20487322657841683,0.20487322657841683,0.20097087940549463],
@@ -81,8 +97,10 @@
   "equity_bridge_handoff": {"path": "M3-claim-controls", "operating_asset_value": 1047.8744281115069, "cash": 80.0, "debt": 150.0, "future_shares_added_to_current_denominator": false, "input_refs": ["EVD-SYN-GRW-BASE-002", "YCV-SYNTH-CAPITAL"]},
   "sensitivity": {
     "scenario_ids": ["SCN-GRW-B-LOW", "SCN-GRW-B-HIGH"],
-    "driver_grid": [{"scenario_id": "SCN-GRW-B-LOW", "driver_one": 0.02, "driver_two": 0.09, "operating_asset_value": 900.0},{"scenario_id": "SCN-GRW-B-HIGH", "driver_one": 0.03, "driver_two": 0.08, "operating_asset_value": 1320.0}],
-    "break_even_values": [{"driver": "sales_to_capital_ratio", "value": 1.7}],
+    "driver_one": "stable_growth_rate",
+    "driver_two": "stable_cost_of_capital",
+    "driver_grid": [{"scenario_id": "SCN-GRW-B-LOW", "driver_one": 0.02, "driver_two": 0.09, "operating_asset_value": 1033.1392078724693},{"scenario_id": "SCN-GRW-B-HIGH", "driver_one": 0.03, "driver_two": 0.08, "operating_asset_value": 1187.06117759058}],
+    "break_even_values": [{"driver": "sales_to_capital_ratio", "value": 1.0560549081912813}],
     "market_price_observation": 950.0, "base_case_unchanged": true
   },
   "traceability": {

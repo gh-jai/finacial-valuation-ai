@@ -61,12 +61,24 @@
     "terminal_value": 10140.040079977074, "terminal_present_value": 3975.088698580899,
     "operating_asset_value": 5439.052236570922, "terminal_value_share": 0.7308421625101018,
     "calculation_trail": [
+      {"step": "discount_fcff", "period": 1, "fcff": 34.19999999999999, "discount_rate": 0.12, "cumulative_discount_factor": 0.8928571428571428, "value": 30.535714285714274},
+      {"step": "discount_fcff", "period": 2, "fcff": 67.834, "discount_rate": 0.115, "cumulative_discount_factor": 0.8007687379884688, "value": 54.3193465727098},
+      {"step": "discount_fcff", "period": 3, "fcff": 113.74272000000005, "discount_rate": 0.11, "cumulative_discount_factor": 0.7214132774670889, "value": 82.05550842322144},
+      {"step": "discount_fcff", "period": 4, "fcff": 171.8189928, "discount_rate": 0.105, "cumulative_discount_factor": 0.6528626945403521, "value": 112.17421061261734},
+      {"step": "discount_fcff", "period": 5, "fcff": 236.98551239999995, "discount_rate": 0.1, "cumulative_discount_factor": 0.5935115404912291, "value": 140.65363653862724},
+      {"step": "discount_fcff", "period": 6, "fcff": 310.44394704959984, "discount_rate": 0.095, "cumulative_discount_factor": 0.5420196716814878, "value": 168.26672625532927},
+      {"step": "discount_fcff", "period": 7, "fcff": 385.11537023231995, "discount_rate": 0.09, "cumulative_discount_factor": 0.49726575383622723, "value": 191.50468489249232},
+      {"step": "discount_fcff", "period": 8, "fcff": 463.5841455108864, "discount_rate": 0.085, "cumulative_discount_factor": 0.45830945054030164, "value": 212.4649950082896},
+      {"step": "discount_fcff", "period": 9, "fcff": 542.5257501335992, "discount_rate": 0.0825, "cumulative_discount_factor": 0.4233805547716412, "value": 229.69485306946405},
+      {"step": "discount_fcff", "period": 10, "fcff": 618.0665795084133, "discount_rate": 0.08, "cumulative_discount_factor": 0.39201903219596407, "value": 242.29386233155805},
       {"step": "rebuilt_terminal_fcff", "value": 507.00200399885375},
       {"step": "terminal_value", "value": 10140.040079977074},
+      {"step": "terminal_present_value", "value": 3975.088698580899},
       {"step": "operating_asset_value", "value": 5439.052236570922}
     ]
   },
   "market_context": {
+    "base_addressable_market": 5000.0,
     "addressable_market": [5400.0,5832.0,6298.56,6802.4448,7346.640384,7934.37161472,8569.121343897605,9254.651051409413,9995.023135522166,10794.62498636394],
     "market_growth_rates": [0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08],
     "market_shares": [0.24074074074074073,0.28086419753086417,0.3172725194330132,0.34664960456569954,0.36911763449125407,0.3827886579909302,0.38987733684261405,0.38987733684261405,0.38265738616034345,0.36848489037662696],
@@ -76,11 +88,13 @@
   "equity_bridge_handoff": {"path": "M1-standard", "operating_asset_value": 5439.052236570922, "cash": 200.0, "debt": 100.0, "future_shares_added_to_current_denominator": false, "input_refs": ["EVD-SYN-GRW-BASE-001"]},
   "sensitivity": {
     "scenario_ids": ["SCN-GRW-A-LOW", "SCN-GRW-A-HIGH"],
+    "driver_one": "stable_growth_rate",
+    "driver_two": "stable_cost_of_capital",
     "driver_grid": [
-      {"scenario_id": "SCN-GRW-A-LOW", "driver_one": 0.02, "driver_two": 0.085, "operating_asset_value": 4800.0},
-      {"scenario_id": "SCN-GRW-A-HIGH", "driver_one": 0.035, "driver_two": 0.075, "operating_asset_value": 6200.0}
+      {"scenario_id": "SCN-GRW-A-LOW", "driver_one": 0.02, "driver_two": 0.085, "operating_asset_value": 4811.868405199346},
+      {"scenario_id": "SCN-GRW-A-HIGH", "driver_one": 0.035, "driver_two": 0.075, "operating_asset_value": 6202.617172901586}
     ],
-    "break_even_values": [{"driver": "stable_growth_rate", "value": 0.026}],
+    "break_even_values": [],
     "market_price_observation": null, "base_case_unchanged": true
   },
   "traceability": {

@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import math
 import sys
-from collections.abc import Mapping, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from datetime import date
 from itertools import pairwise
 from pathlib import Path
@@ -49,6 +49,46 @@ def _append_series_error(
 ) -> None:
     if not _series_close(actual, expected, tolerance):
         errors.append(f"stored {name} is inconsistent with recomputed values")
+
+
+def _trail_close(actual: Any, expected: Sequence[Mapping[str, Any]]) -> bool:
+    if not isinstance(actual, list) or len(actual) != len(expected):
+        return False
+    for actual_step, expected_step in zip(actual, expected):
+        if not isinstance(actual_step, Mapping) or set(actual_step) != set(expected_step):
+            return False
+        for key, expected_value in expected_step.items():
+            actual_value = actual_step[key]
+            if _finite_number(expected_value):
+                if not _close(actual_value, float(expected_value), 1e-10):
+                    return False
+            elif actual_value != expected_value:
+                return False
+    return True
+
+
+def _bisect_break_even(
+    function: Callable[[float], float], target: float, low: float, high: float
+) -> float:
+    low_delta = function(low) - target
+    high_delta = function(high) - target
+    if low_delta == 0:
+        return low
+    if high_delta == 0:
+        return high
+    if low_delta * high_delta > 0:
+        raise ValueError("break-even target is not bracketed by the supported driver range")
+    for _ in range(100):
+        midpoint = (low + high) / 2
+        midpoint_delta = function(midpoint) - target
+        if abs(midpoint_delta) <= 1e-10:
+            return midpoint
+        if low_delta * midpoint_delta <= 0:
+            high = midpoint
+        else:
+            low = midpoint
+            low_delta = midpoint_delta
+    return (low + high) / 2
 
 
 def validate_document(
@@ -153,6 +193,7 @@ def validate_document(
     except (TypeError, ValueError) as exc:
         errors.append(f"growth-company forecast cannot be recomputed: {exc}")
         recalculated = None
+    valuation = None
     if recalculated is not None:
         pairs = (
             ("revenues", recalculated.revenues),
@@ -230,6 +271,8 @@ def validate_document(
             for label, actual, expected in scalar_checks:
                 if not _close(actual, expected):
                     errors.append(f"stored {label} is inconsistent with recomputed value")
+            if not _trail_close(going.get("calculation_trail"), valuation.calculation_trail):
+                errors.append("stored calculation trail is inconsistent with recomputed steps")
 
     if len(years) > 10:
         errors.append("forecast longer than ten years requires an unsupported contract amendment")
@@ -286,6 +329,18 @@ def validate_document(
         for key in ("addressable_market", "market_growth_rates", "market_shares"):
             if len(market.get(key, [])) != len(years):
                 errors.append(f"market-context {key} length must match forecast years")
+        market_sizes = market.get("addressable_market", [])
+        market_growth_rates = market.get("market_growth_rates", [])
+        if len(market_sizes) == len(market_growth_rates) == len(years):
+            previous_market = market.get("base_addressable_market")
+            expected_market_sizes: list[float] = []
+            if _finite_number(previous_market):
+                for rate in market_growth_rates:
+                    previous_market = float(previous_market) * (1 + rate)
+                    expected_market_sizes.append(previous_market)
+                _append_series_error(
+                    errors, "addressable market", market_sizes, expected_market_sizes
+                )
         if len(market.get("addressable_market", [])) == len(forecast.get("revenues", [])):
             expected_shares = [
                 revenue / market_size
@@ -315,6 +370,20 @@ def validate_document(
                 )
             if len(holiday.get("utilization_rates", [])) != len(years):
                 errors.append("capacity utilization length must match forecast years")
+            available_capacity = holiday.get("available_capacity")
+            if _finite_number(available_capacity) and len(forecast.get("revenues", [])) == len(
+                holiday.get("utilization_rates", [])
+            ):
+                expected_utilization = [
+                    min(revenue / float(available_capacity), 1.0)
+                    for revenue in forecast["revenues"]
+                ]
+                _append_series_error(
+                    errors,
+                    "capacity utilization",
+                    holiday.get("utilization_rates"),
+                    expected_utilization,
+                )
             maximum = holiday.get("maximum_supported_output")
             if _finite_number(maximum):
                 for year in holiday_years:
@@ -376,8 +445,110 @@ def validate_document(
     ):
         errors.append("reviewed growth-company valuation requires all control approvals")
 
+    sensitivity = document.get("sensitivity", {})
+    scenario_ids = sensitivity.get("scenario_ids", [])
+    grid = sensitivity.get("driver_grid", [])
+    if scenario_ids != [item.get("scenario_id") for item in grid]:
+        errors.append("sensitivity scenario IDs must match the deterministic driver grid")
+    if valuation is not None:
+        if (
+            sensitivity.get("driver_one") != "stable_growth_rate"
+            or sensitivity.get("driver_two") != "stable_cost_of_capital"
+        ):
+            errors.append("sensitivity grid must identify its two supported terminal drivers")
+        else:
+            for item in grid:
+                try:
+                    scenario_rates = list(forecast.get("discount_rates", []))
+                    scenario_rates[-1] = item.get("driver_two")
+                    scenario = run_growth_company_valuation(
+                        recalculated,
+                        scenario_rates,
+                        stable_growth_rate=item.get("driver_one"),
+                        stable_operating_margin=stable.get("operating_margin"),
+                        stable_tax_rate=stable.get("tax_rate"),
+                        stable_return_on_capital=stable.get("return_on_capital"),
+                        stable_cost_of_capital=item.get("driver_two"),
+                    )
+                except (IndexError, TypeError, ValueError) as exc:
+                    errors.append(f"sensitivity scenario cannot be recomputed: {exc}")
+                    continue
+                if not _close(item.get("operating_asset_value"), scenario.operating_asset_value):
+                    errors.append(
+                        f"sensitivity scenario {item.get('scenario_id')} is inconsistent with recomputed value"
+                    )
+
+        market_observation = sensitivity.get("market_price_observation")
+        break_even_values = sensitivity.get("break_even_values", [])
+        if market_observation is None and break_even_values:
+            errors.append("break-even values require an observed comparison value")
+        elif _finite_number(market_observation):
+            for item in break_even_values:
+                driver = item.get("driver")
+                try:
+                    if driver == "stable_growth_rate":
+                        terminal_rate = stable.get("cost_of_capital")
+
+                        def value_at(candidate: float, terminal_rate: float = terminal_rate) -> float:
+                            return run_growth_company_valuation(
+                                recalculated,
+                                forecast.get("discount_rates", []),
+                                stable_growth_rate=candidate,
+                                stable_operating_margin=stable.get("operating_margin"),
+                                stable_tax_rate=stable.get("tax_rate"),
+                                stable_return_on_capital=stable.get("return_on_capital"),
+                                stable_cost_of_capital=terminal_rate,
+                            ).operating_asset_value
+
+                        expected_break_even = _bisect_break_even(
+                            value_at, float(market_observation), 0.0, terminal_rate - 1e-8
+                        )
+                    elif driver == "sales_to_capital_ratio":
+
+                        def value_at(candidate: float) -> float:
+                            scenario_forecast = build_growth_forecast(
+                                base_revenue=base.get("revenues"),
+                                revenue_growth_rates=forecast.get("revenue_growth_rates", []),
+                                operating_margins=forecast.get("operating_margins", []),
+                                marginal_tax_rate=forecast.get("marginal_tax_rate"),
+                                initial_nol=base.get("net_operating_loss"),
+                                initial_invested_capital=base.get("invested_capital"),
+                                reinvestment_methods=forecast.get("reinvestment_method", []),
+                                sales_to_capital_ratios=[
+                                    candidate if method == "revenue-change" else None
+                                    for method in forecast.get("reinvestment_method", [])
+                                ],
+                                fundamental_reinvestment_rates=forecast.get(
+                                    "fundamental_reinvestment_rates", []
+                                ),
+                                capacity_reinvestments=forecast.get(
+                                    "capacity_reinvestments", []
+                                ),
+                            )
+                            return run_growth_company_valuation(
+                                scenario_forecast,
+                                forecast.get("discount_rates", []),
+                                stable_growth_rate=stable.get("growth_rate"),
+                                stable_operating_margin=stable.get("operating_margin"),
+                                stable_tax_rate=stable.get("tax_rate"),
+                                stable_return_on_capital=stable.get("return_on_capital"),
+                                stable_cost_of_capital=stable.get("cost_of_capital"),
+                            ).operating_asset_value
+
+                        expected_break_even = _bisect_break_even(
+                            value_at, float(market_observation), 0.01, 1000.0
+                        )
+                    else:
+                        errors.append(f"unsupported break-even driver {driver}")
+                        continue
+                except (TypeError, ValueError) as exc:
+                    errors.append(f"break-even value cannot be recomputed: {exc}")
+                    continue
+                if not _close(item.get("value"), expected_break_even, 1e-8):
+                    errors.append(f"break-even driver {driver} is inconsistent with recomputed value")
+
     for ref in trace.get("source_refs", []):
-        if ref.startswith("SRC-") and ref not in source_ids:
+        if ref not in source_ids:
             errors.append(f"unknown source reference {ref}")
     for ref in trace.get("claim_refs", []):
         if ref not in claim_ids:
@@ -385,6 +556,14 @@ def validate_document(
     for ref in trace.get("narrative_assertion_refs", []):
         if ref not in narrative_assertions:
             errors.append(f"unknown narrative assertion reference {ref}")
+    assumption_assertions = {
+        item.get("assertion_id") for item in forecast.get("assumption_trace", [])
+    }
+    for ref in assumption_assertions:
+        if ref not in narrative_assertions:
+            errors.append(f"unknown assumption assertion reference {ref}")
+    if assumption_assertions != set(trace.get("narrative_assertion_refs", [])):
+        errors.append("assumption traces and narrative assertion references must match")
     return errors
 
 

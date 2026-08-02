@@ -6,14 +6,15 @@ Repository: `gh-jai/finacial-valuation-ai`
 
 ## Current state
 
-The repository has completed and merged four milestones:
+The repository has completed five milestones through delivery PR #10:
 
 - M0 — Repository foundation
 - M1 — Basic FCFF DCF vertical slice
 - M2 — Narrative-to-Numbers vertical slice
 - M3 — Young-company survival-adjusted valuation vertical slice
+- M4 — Growth-company scaling-and-fade vertical slice
 
-The M4 contract and repository-wide implementation are approved on `codex/m4-implementation`. The implementation includes the locked source boundary and 30 claims, seven Knowledge artifacts, nine Skills, `WFL-GRW-001`, a strict schema, deterministic engine, independent recomputation validator, two synthetic benchmarks, adversarial controls, and CI/pre-commit integration. Human checklist review and local validation are complete; publication and remote Python 3.10/3.12 CI remain pending.
+The M4 contract and repository-wide implementation were delivered through PR #10. The implementation includes the locked source boundary and 30 claims, seven Knowledge artifacts, nine Skills, `WFL-GRW-001`, a strict schema, deterministic engine, independent recomputation validator, two synthetic benchmarks, adversarial controls, and CI/pre-commit integration. Final review hardened registered bidirectional traceability and independent recomputation of market scale, capacity utilization, calculation trails, sensitivity points, and supported break-even values.
 
 Current mainline architecture:
 
@@ -206,7 +207,7 @@ The equity contract also requires that financing proceeds be authorized and reta
 
 ### M4 — Growth-company scaling and fade
 
-Status: Implementation approved; publication and remote CI pending
+Status: Complete (delivery PR #10)
 
 Primary source:
 
@@ -241,10 +242,12 @@ Implemented on `codex/m4-implementation`:
 - Adversarial coverage for boundary, stale base, scale, reinvestment, capacity, margin, risk, terminal state, failure, dilution, and market-price controls
 - M1–M3 composition regressions and local/CI validation integration
 
-Remaining acceptance gates:
+Acceptance evidence:
 
-- Pass the full remote Python 3.10 and Python 3.12 CI matrix
-- Commit, publish, review, and merge the implementation through a separate PR
+- Maintainer-approved implementation and human-review checklist
+- Full local repository validators and regression suite
+- Remote Python 3.10 and Python 3.12 CI on PR #10
+- Final adversarial review fixes for traceability, market/capacity series, calculation trail, sensitivity, and break-even recomputation
 
 ## Current governed artifact graph
 

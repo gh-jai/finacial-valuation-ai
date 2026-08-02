@@ -18,3 +18,4 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 - Claim validation now covers every reviewed claim collection and narrative validation is enforced locally and in CI.
 - Young-company schema and cross-field controls are enforced through pytest, pre-commit, and the Python 3.10/3.12 CI matrix.
 - Growth-company schema, cross-field recomputation, adversarial controls, and M1–M3 regressions are enforced through pytest, pre-commit, and the Python 3.10/3.12 CI matrix.
+- M4 validation now enforces bidirectional registered traceability and independently recomputes market scale, capacity utilization, the full calculation trail, terminal-driver sensitivity points, and supported break-even values.

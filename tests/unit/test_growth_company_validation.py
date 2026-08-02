@@ -136,3 +136,47 @@ def test_unknown_traceability_references_are_rejected() -> None:
     assert any("unknown source" in error for error in errors)
     assert any("unknown claim" in error for error in errors)
     assert any("unknown narrative assertion" in error for error in errors)
+
+
+def test_non_prefixed_unknown_source_reference_is_rejected() -> None:
+    document, _, _, _, _ = inputs()
+    document["traceability"]["source_refs"] = ["NOT-A-REGISTERED-SOURCE"]
+    assert any("unknown source" in error for error in errors_for(document))
+
+
+def test_unknown_assumption_assertion_is_rejected_bidirectionally() -> None:
+    document, _, _, _, _ = inputs()
+    document["forecast"]["assumption_trace"][0]["assertion_id"] = "NAR-A-999"
+    errors = errors_for(document)
+    assert any("unknown assumption assertion" in error for error in errors)
+    assert any("must match" in error for error in errors)
+
+
+def test_market_growth_series_is_recomputed() -> None:
+    document, _, _, _, _ = inputs()
+    document["market_context"]["market_growth_rates"][3] = 0.04
+    assert any("addressable market" in error for error in errors_for(document))
+
+
+def test_capacity_utilization_series_is_recomputed() -> None:
+    document, _, _, _, _ = inputs()
+    document["capacity_holiday"]["utilization_rates"][0] = 0.5
+    assert any("capacity utilization" in error for error in errors_for(document))
+
+
+def test_calculation_trail_is_recomputed() -> None:
+    document, _, _, _, _ = inputs()
+    document["going_concern"]["calculation_trail"][0]["value"] += 1
+    assert any("calculation trail" in error for error in errors_for(document))
+
+
+def test_sensitivity_grid_is_recomputed() -> None:
+    document, _, _, _, _ = inputs()
+    document["sensitivity"]["driver_grid"][0]["operating_asset_value"] += 1
+    assert any("sensitivity scenario" in error for error in errors_for(document))
+
+
+def test_break_even_value_is_recomputed() -> None:
+    document, _, _, _, _ = inputs()
+    document["sensitivity"]["break_even_values"][0]["value"] += 0.1
+    assert any("break-even driver" in error for error in errors_for(document))

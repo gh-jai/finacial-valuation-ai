@@ -48,3 +48,13 @@ Valuation IDs/versions: `GCV-SYNTH-ASSET-LIGHT/0.1.0`, `GCV-SYNTH-CAPACITY/0.1.0
 Decision: `[x] approve  [ ] request changes  [ ] reject`
 
 Findings: The implementation satisfies the approved M4 contract locally. The remaining release gate is the remote Python 3.10/3.12 CI matrix on the implementation pull request.
+
+## Final PR review hardening
+
+- [x] Every source and narrative assertion reference is registered, and assumption assertions match the top-level narrative assertion set in both directions.
+- [x] Addressable-market growth and capacity-utilization series are independently recomputed.
+- [x] Every stored calculation-trail step is compared with the engine-generated trail.
+- [x] Terminal-growth / terminal-cost sensitivity points and supported market-comparison break-even values are independently recomputed.
+- [x] Adversarial mutations for each control are rejected.
+
+Final release evidence: PR #10 Python 3.10/3.12 validation and the full repository test suite must pass on the hardened head before merge.

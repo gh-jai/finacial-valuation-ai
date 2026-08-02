@@ -189,8 +189,9 @@
     "market_context": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["addressable_market", "market_growth_rates", "market_shares", "mature_peer_evidence_refs", "competition_notes"],
+      "required": ["base_addressable_market", "addressable_market", "market_growth_rates", "market_shares", "mature_peer_evidence_refs", "competition_notes"],
       "properties": {
+        "base_addressable_market": {"type": "number", "exclusiveMinimum": 0},
         "addressable_market": {"$ref": "#/$defs/positiveSeries"},
         "market_growth_rates": {"$ref": "#/$defs/rateSeries"},
         "market_shares": {"$ref": "#/$defs/unitRateSeries"},
@@ -253,9 +254,11 @@
     "sensitivity": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["scenario_ids", "driver_grid", "break_even_values", "market_price_observation", "base_case_unchanged"],
+      "required": ["scenario_ids", "driver_one", "driver_two", "driver_grid", "break_even_values", "market_price_observation", "base_case_unchanged"],
       "properties": {
         "scenario_ids": {"$ref": "#/$defs/refList"},
+        "driver_one": {"const": "stable_growth_rate"},
+        "driver_two": {"const": "stable_cost_of_capital"},
         "driver_grid": {
           "type": "array", "minItems": 1,
           "items": {
@@ -270,11 +273,11 @@
           }
         },
         "break_even_values": {
-          "type": "array", "minItems": 1,
+          "type": "array",
           "items": {
             "type": "object", "additionalProperties": false,
             "required": ["driver", "value"],
-            "properties": {"driver": {"type": "string", "minLength": 1}, "value": {"type": "number"}}
+            "properties": {"driver": {"enum": ["stable_growth_rate", "sales_to_capital_ratio"]}, "value": {"type": "number"}}
           }
         },
         "market_price_observation": {"type": ["number", "null"]},

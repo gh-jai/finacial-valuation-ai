@@ -68,9 +68,39 @@ mappings:
     notes: M2 covers Chapters 6-10, printed pages 70-166, with the explicit pages 167-183 classification-terminology extension preserved; it uses 24 claims, six Knowledge artifacts, eight skills, and synthetic benchmarks.
 
   - source_id: SRC-DAMODARAN-DARK-SIDE-2018
-    artifacts: []
-    extraction_manifest: null
-    notes: Reserved for M3 probabilistic, lifecycle, macro-input, and special-situation valuation artifacts.
+    artifacts:
+      - extraction/reviewed/M3-young-company-survival-adjusted-claims.yaml
+      - knowledge/lifecycle/YNG-001-characteristics-and-consequences.md
+      - knowledge/lifecycle/YNG-002-revenue-forecasting.md
+      - knowledge/lifecycle/YNG-003-margin-tax-reinvestment.md
+      - knowledge/risk/YNG-004-time-varying-discount-rates.md
+      - knowledge/risk/YNG-005-survival-and-failure-value.md
+      - knowledge/valuation/YNG-006-negative-fcff-and-financing.md
+      - knowledge/valuation/YNG-007-equity-claims-and-options.md
+      - skills/SKL-YNG-001-classify-young-company.md
+      - skills/SKL-YNG-002-select-revenue-forecast-method.md
+      - skills/SKL-YNG-003-build-top-down-forecast.md
+      - skills/SKL-YNG-004-build-bottom-up-forecast.md
+      - skills/SKL-YNG-005-forecast-margin-tax-reinvestment.md
+      - skills/SKL-YNG-006-build-discount-rate-path.md
+      - skills/SKL-YNG-007-estimate-failure-scenario.md
+      - skills/SKL-YNG-008-run-survival-adjusted-fcff.md
+      - skills/SKL-YNG-009-bridge-young-equity.md
+      - workflows/WFL-YNG-001-young-company-survival-adjusted.md
+      - schemas/young-company-valuation.schema.json
+      - tools/young_company.py
+      - tools/validate_young_company_valuations.py
+      - benchmarks/fixtures/young_company/synthetic-software-platform.json
+      - benchmarks/fixtures/young_company/synthetic-capital-intensive.json
+      - benchmarks/expected/young-software-platform-output.json
+      - benchmarks/expected/young-capital-intensive-output.json
+      - tests/unit/test_young_company.py
+      - tests/unit/test_young_company_validation.py
+      - tests/integration/test_young_company_benchmarks.py
+      - tests/integration/test_m3_artifact_graph.py
+      - templates/m3-young-company-review-checklist.md
+    extraction_manifest: extraction/manifests/M3-young-company-survival-adjusted.yaml
+    notes: M3 covers Chapter 9, printed pages 259-321, using 30 claims, seven Knowledge artifacts, nine Skills, a compositional workflow, survival controls, and two synthetic benchmarks; Chapter 10 is excluded.
 
   - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
     artifacts: []

@@ -21,7 +21,7 @@ scope:
     - title: The Light Side — Relative Valuation and Real Options
       printed_pages: "312-321"
 artifact_goal: Young-company survival-adjusted valuation vertical slice composed with M2 narrative and M1 FCFF workflows
-review_status: in_progress
+review_status: ready_for_human_review
 copyright_controls:
   raw_text_committed: false
   tables_or_figures_reproduced: false
@@ -46,3 +46,5 @@ limitations:
   - Relative valuation and real-option material is retained only for boundary and failure-mode claims; M3 implementation remains an intrinsic FCFF workflow.
   - Public examples and benchmarks must use synthetic companies and synthetic evidence.
   - M3 composes with existing M1 and M2 mechanics and must not duplicate their calculation or narrative logic.
+  - Failure probabilities and recovery values are deterministic reviewed inputs, not statistical forecasts.
+  - Preferred-stock waterfalls and negotiated ownership allocation remain outside the common-equity bridge.

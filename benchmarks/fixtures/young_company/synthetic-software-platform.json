@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1.0",
+  "id": "YCV-SYNTH-SOFTWARE",
+  "narrative_id": "NAR-SYNTH-BASE",
+  "as_of_date": "2026-01-01",
+  "subject": "Synthetic Young Software Platform",
+  "currency": "USD",
+  "young_company_profile": {"stage": "early-commercial", "classification_reasoning": "Synthetic company has limited history, early revenue, operating losses, and private-capital dependence.", "history_years": 2, "commercial_status": "Early synthetic subscriptions", "operating_loss": true, "private_capital_dependence": true, "equity_claim_complexity": false, "evidence_refs": ["EVD-SYN-YNG-CLASS-001"]},
+  "forecast": {
+    "method": "top-down",
+    "revenues": [5.0, 12.0, 25.200000000000003, 42.5, 65.0],
+    "operating_margins": [-0.28, -0.15999999999999998, -0.039999999999999925, 0.08000000000000007, 0.20000000000000007],
+    "tax_rates": [0.0, 0.0, 0.0, 0.0, 0.23215384615384627],
+    "reinvestments": [1.25, 1.75, 3.3000000000000007, 4.324999999999999, 5.625],
+    "discount_rates": [0.18, 0.16, 0.14, 0.12, 0.1],
+    "terminal_growth_rate": 0.025,
+    "terminal_discount_rate": 0.095,
+    "mature_year": 5,
+    "net_operating_losses": [1.4000000000000001, 3.32, 4.327999999999998, 0.9279999999999946, 0.0],
+    "sales_to_capital_ratio": 4.0,
+    "reinvestment_lag_periods": 0,
+    "assumption_trace": [
+      {"input_name": "revenues", "assertion_id": "NAR-A-001", "evidence_refs": ["EVD-SYN-YNG-MARKET-001"], "rationale": "Synthetic market and share paths."},
+      {"input_name": "operating_margins", "assertion_id": "NAR-A-002", "evidence_refs": ["EVD-SYN-YNG-MARGIN-001"], "rationale": "Explicit convergence from losses to a mature margin."},
+      {"input_name": "tax_rates", "assertion_id": "NAR-A-007", "evidence_refs": ["EVD-SYN-YNG-NOL-001"], "rationale": "NOL shelters early taxable income."},
+      {"input_name": "reinvestments", "assertion_id": "NAR-A-003", "evidence_refs": ["EVD-SYN-YNG-REINVEST-001"], "rationale": "Revenue changes divided by synthetic sales-to-capital."},
+      {"input_name": "discount_rates", "assertion_id": "NAR-A-004", "evidence_refs": ["EVD-SYN-YNG-RISK-001"], "rationale": "Operating risk converges toward maturity without failure premium."},
+      {"input_name": "failure_probability", "assertion_id": "NAR-A-005", "evidence_refs": ["EVD-SYN-YNG-FAIL-001"], "rationale": "Synthetic discrete failure estimate."}
+    ]
+  },
+  "going_concern": {"engine": "WFL-VAL-001", "operating_asset_value": 27.23561022623808, "fcff": [-2.6500000000000004, -3.67, -4.307999999999999, -0.9249999999999963, 4.357000000000001], "cumulative_discount_factors": [0.8474576271186441, 0.7305669199298657, 0.6408481753770751, 0.5721858708723884, 0.520168973520353], "terminal_value": 63.79892857142857, "risk_treatment": {"operating_risk_in_discount_rates": true, "failure_risk_in_discount_rates": false, "notes": "Discrete failure is applied only after the M1 going-concern value."}},
+  "failure_scenario": {"failure_probability": 0.25, "survival_probability": 0.75, "failure_value": 0.0, "failure_value_basis": "operating-assets", "probability_basis": "Synthetic early-stage survival assumption.", "recovery_basis": "Synthetic platform has no assumed transferable operating-asset recovery.", "beneficiary_or_claim": "Operating asset claimholders", "evidence_refs": ["EVD-SYN-YNG-FAIL-001"]},
+  "survival_adjustment": {"formula": "survival_probability * going_concern_value + failure_probability * failure_value", "survival_component": 20.42670766967856, "failure_component": 0.0, "adjusted_operating_asset_value": 20.42670766967856, "probability_tolerance": 1e-09, "double_counting_check": {"passed": true, "failure_premium_in_discount_rate": false, "failure_loss_in_cash_flows": false, "review_notes": "Operating risk and discrete failure risk remain separate."}},
+  "key_person_scenario": null,
+  "equity_bridge": {"adjusted_operating_asset_value": 20.42670766967856, "existing_cash": 4.0, "authorized_financing_proceeds": 0.0, "debt_and_senior_claims": 0.0, "option_and_other_equity_claim_value": 0.0, "common_equity_value": 24.42670766967856, "current_share_count": 10.0, "per_share_value": 2.442670766967856, "future_financing_dilution_handling": {"negative_fcff_present_value_included": true, "future_shares_added_to_current_denominator": false, "notes": "Future funding shares are not added to today's denominator."}},
+  "traceability": {"source_refs": ["SRC-DAMODARAN-DARK-SIDE-2018"], "claim_refs": ["CLM-YNG-014", "CLM-YNG-016", "CLM-YNG-017", "CLM-YNG-018", "CLM-YNG-020", "CLM-YNG-021", "CLM-YNG-022", "CLM-YNG-023", "CLM-YNG-027", "CLM-YNG-028"], "narrative_assertion_refs": ["NAR-A-001", "NAR-A-002", "NAR-A-003", "NAR-A-004", "NAR-A-005", "NAR-A-007"]},
+  "limitations": ["Synthetic benchmark; not investment advice.", "Zero failure value is case-specific and supported only by synthetic evidence."],
+  "review": {"status": "reviewed", "reviewer": "synthetic-reviewer", "reviewed_at": "2026-01-01T00:00:00Z", "risk_separation_approved": true, "claim_structure_reviewed": true, "notes": "Synthetic benchmark review."}
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1.0",
+  "id": "YCV-SYNTH-CAPITAL",
+  "narrative_id": "NAR-SYNTH-ALT",
+  "as_of_date": "2026-01-01",
+  "subject": "Synthetic Young Capacity Company",
+  "currency": "USD",
+  "young_company_profile": {"stage": "second-stage", "classification_reasoning": "Synthetic company has short history, early losses, external funding needs, and complex claims.", "history_years": 4, "commercial_status": "Early synthetic production", "operating_loss": true, "private_capital_dependence": true, "equity_claim_complexity": true, "evidence_refs": ["EVD-SYN-YNG-CLASS-002"]},
+  "forecast": {
+    "method": "bottom-up",
+    "revenues": [50.0, 79.56, 123.75999999999999, 181.89600000000002, 230.256],
+    "operating_margins": [-0.20000000000000004, 0.0035193564605329455, 0.13800904977375572, 0.2375423318819545, 0.2982593287471336],
+    "tax_rates": [0.0, 0.0, 0.107728337236534, 0.25, 0.25],
+    "reinvestments": [6.0, 8.0, 10.0, 8.0, 0.0],
+    "discount_rates": [0.2, 0.17250000000000001, 0.14500000000000002, 0.1175, 0.09],
+    "terminal_growth_rate": 0.02,
+    "terminal_discount_rate": 0.09,
+    "mature_year": 5,
+    "net_operating_losses": [10.000000000000002, 9.72, 0.0, 0.0, 0.0],
+    "sales_to_capital_ratio": 2.0,
+    "reinvestment_lag_periods": 1,
+    "assumption_trace": [
+      {"input_name": "revenues", "assertion_id": "NAR-A-001", "evidence_refs": ["EVD-SYN-YNG-CAPACITY-001"], "rationale": "Synthetic capacity, utilization, and price path."},
+      {"input_name": "operating_margins", "assertion_id": "NAR-A-002", "evidence_refs": ["EVD-SYN-YNG-UNIT-001"], "rationale": "Unit economics and fixed costs derive the margin path."},
+      {"input_name": "tax_rates", "assertion_id": "NAR-A-007", "evidence_refs": ["EVD-SYN-YNG-NOL-002"], "rationale": "NOL shelters taxable operating income."},
+      {"input_name": "reinvestments", "assertion_id": "NAR-A-003", "evidence_refs": ["EVD-SYN-YNG-CAPEX-001"], "rationale": "Capacity investment precedes growth by one period."},
+      {"input_name": "discount_rates", "assertion_id": "NAR-A-004", "evidence_refs": ["EVD-SYN-YNG-RISK-002"], "rationale": "Operating risk converges without survival premium."},
+      {"input_name": "failure_probability", "assertion_id": "NAR-A-005", "evidence_refs": ["EVD-SYN-YNG-FAIL-002"], "rationale": "Synthetic discrete failure estimate."},
+      {"input_name": "authorized_financing_proceeds", "assertion_id": "NAR-A-007", "evidence_refs": ["EVD-SYN-YNG-FINANCE-001"], "rationale": "Synthetic financing is authorized and retained."},
+      {"input_name": "option_and_other_equity_claim_value", "assertion_id": "NAR-A-007", "evidence_refs": ["EVD-SYN-YNG-OPTION-001"], "rationale": "Employee options have an explicit synthetic value."}
+    ]
+  },
+  "going_concern": {"engine": "WFL-VAL-001", "operating_asset_value": 406.70447459539525, "fcff": [-16.0, -7.719999999999999, 5.2400000000000055, 24.406, 51.507000000000005], "cumulative_discount_factors": [0.8333333333333334, 0.7107320540156361, 0.6207266847298132, 0.5554601205635913, 0.5095964408840287], "terminal_value": 750.5305714285716, "risk_treatment": {"operating_risk_in_discount_rates": true, "failure_risk_in_discount_rates": false, "notes": "Discrete failure is outside the going-concern cost of capital."}},
+  "failure_scenario": {"failure_probability": 0.2, "survival_probability": 0.8, "failure_value": 20.0, "failure_value_basis": "operating-assets", "probability_basis": "Synthetic second-stage survival assumption.", "recovery_basis": "Synthetic recoverable capacity assets net of sale costs.", "beneficiary_or_claim": "Operating asset claimholders before the equity bridge", "evidence_refs": ["EVD-SYN-YNG-FAIL-002", "EVD-SYN-YNG-RECOVERY-001"]},
+  "survival_adjustment": {"formula": "survival_probability * going_concern_value + failure_probability * failure_value", "survival_component": 325.36357967631625, "failure_component": 4.0, "adjusted_operating_asset_value": 329.36357967631625, "probability_tolerance": 1e-09, "double_counting_check": {"passed": true, "failure_premium_in_discount_rate": false, "failure_loss_in_cash_flows": false, "review_notes": "Recovery is applied once at operating-assets level."}},
+  "key_person_scenario": null,
+  "equity_bridge": {"adjusted_operating_asset_value": 329.36357967631625, "existing_cash": 5.0, "authorized_financing_proceeds": 15.0, "debt_and_senior_claims": 30.0, "option_and_other_equity_claim_value": 4.0, "common_equity_value": 315.36357967631625, "current_share_count": 8.0, "per_share_value": 39.42044745953953, "future_financing_dilution_handling": {"negative_fcff_present_value_included": true, "future_shares_added_to_current_denominator": false, "notes": "Only current shares are used; negative FCFF already captures funding needs."}},
+  "traceability": {"source_refs": ["SRC-DAMODARAN-DARK-SIDE-2018"], "claim_refs": ["CLM-YNG-015", "CLM-YNG-016", "CLM-YNG-017", "CLM-YNG-018", "CLM-YNG-020", "CLM-YNG-021", "CLM-YNG-022", "CLM-YNG-025", "CLM-YNG-027", "CLM-YNG-028", "CLM-YNG-029"], "narrative_assertion_refs": ["NAR-A-001", "NAR-A-002", "NAR-A-003", "NAR-A-004", "NAR-A-005", "NAR-A-007"]},
+  "limitations": ["Synthetic benchmark; not investment advice.", "Preferred-stock waterfalls and negotiated ownership rights are excluded."],
+  "review": {"status": "reviewed", "reviewer": "synthetic-reviewer", "reviewed_at": "2026-01-01T00:00:00Z", "risk_separation_approved": true, "claim_structure_reviewed": true, "notes": "Synthetic benchmark review."}
+}

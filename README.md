@@ -56,6 +56,7 @@ python tools/validate_schemas.py
 python tools/validate_sources.py
 python tools/validate_claims.py
 python tools/validate_narratives.py
+python tools/validate_young_company_valuations.py
 python tools/check_repository_policy.py
 pytest
 ```
@@ -66,5 +67,6 @@ Run `pre-commit install` once to enable local checks. See [CONTRIBUTING.md](CONT
 
 - M1: traceable basic FCFF DCF, enterprise-to-equity bridge, sensitivity review, structured output, and synthetic benchmarks.
 - M2: evidence-backed narrative construction, 3P review, assertion-to-value-driver mapping, separate alternative valuations, and feedback revision composed with the M1 workflow.
+- M3: young-company top-down and bottom-up forecasts, NOL and reinvestment handling, time-varying rates, discrete survival adjustment, and controlled pre/post-money equity bridges composed with M1 and M2.
 
 FVI remains pre-v1.0 and is not investment advice. Interfaces and schemas may change before release.

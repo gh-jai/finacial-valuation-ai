@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fvi.example/schemas/source-snapshot.schema.json",
+  "title": "FVI Immutable Public-Data Snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "snapshot_id",
+    "request_id",
+    "created_at",
+    "company_identity",
+    "records",
+    "freshness",
+    "license_review",
+    "snapshot_hash",
+    "status",
+    "warnings"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "snapshot_id": {"type": "string", "pattern": "^SNP-[A-Z0-9-]+$"},
+    "request_id": {"type": "string", "pattern": "^REQ-[A-Z0-9-]+$"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "company_identity": {"$ref": "#/$defs/companyIdentity"},
+    "records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/sourceRecord"}
+    },
+    "freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evaluated_at", "financials_as_of", "market_data_as_of", "policy_id", "stale"],
+      "properties": {
+        "evaluated_at": {"type": "string", "format": "date-time"},
+        "financials_as_of": {"type": "string", "format": "date"},
+        "market_data_as_of": {"type": ["string", "null"], "format": "date-time"},
+        "policy_id": {"type": "string", "minLength": 1},
+        "stale": {"type": "boolean"}
+      }
+    },
+    "license_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reviewer", "reviewed_at", "display_allowed", "redistribution_allowed"],
+      "properties": {
+        "status": {"enum": ["pending", "approved", "rejected"]},
+        "reviewer": {"type": ["string", "null"]},
+        "reviewed_at": {"type": ["string", "null"], "format": "date-time"},
+        "display_allowed": {"type": "boolean"},
+        "redistribution_allowed": {"type": "boolean"}
+      }
+    },
+    "snapshot_hash": {"$ref": "#/$defs/hash"},
+    "status": {"enum": ["complete", "needs_review", "unsupported", "stale", "provider_failure"]},
+    "warnings": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/warning"}}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "companyIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cik", "legal_name", "ticker", "exchange", "identity_status"],
+      "properties": {
+        "cik": {"type": "string", "pattern": "^[0-9]{10}$"},
+        "legal_name": {"type": "string", "minLength": 1},
+        "ticker": {"type": "string", "pattern": "^[A-Z][A-Z0-9.-]{0,9}$"},
+        "exchange": {"type": "string", "minLength": 1},
+        "identity_status": {"enum": ["verified", "ambiguous", "not_found"]}
+      }
+    },
+    "sourceRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_id",
+        "provider",
+        "record_type",
+        "retrieved_at",
+        "as_of",
+        "period_start",
+        "period_end",
+        "currency",
+        "unit_basis",
+        "source_url",
+        "content_hash",
+        "license_ref"
+      ],
+      "properties": {
+        "record_id": {"type": "string", "pattern": "^REC-[A-Z0-9-]+$"},
+        "provider": {"enum": ["sec-edgar", "licensed-market-data", "manual-upload"]},
+        "record_type": {"enum": ["10-K", "10-Q", "8-K", "companyfacts", "submissions", "market-snapshot", "manual-financials"]},
+        "accession": {"type": ["string", "null"], "pattern": "^[0-9]{10}-[0-9]{2}-[0-9]{6}$"},
+        "retrieved_at": {"type": "string", "format": "date-time"},
+        "as_of": {"type": "string", "format": "date-time"},
+        "period_start": {"type": ["string", "null"], "format": "date"},
+        "period_end": {"type": ["string", "null"], "format": "date"},
+        "currency": {"type": ["string", "null"], "pattern": "^[A-Z]{3}$"},
+        "unit_basis": {"type": "string", "minLength": 1},
+        "source_url": {"type": "string", "format": "uri"},
+        "content_hash": {"$ref": "#/$defs/hash"},
+        "license_ref": {"type": "string", "minLength": 1}
+      }
+    },
+    "warning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "severity", "message", "record_refs"],
+      "properties": {
+        "code": {"type": "string", "pattern": "^DATA-[A-Z0-9-]+$"},
+        "severity": {"enum": ["info", "review", "blocking"]},
+        "message": {"type": "string", "minLength": 1},
+        "record_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^REC-[A-Z0-9-]+$"}}
+      }
+    }
+  }
+}

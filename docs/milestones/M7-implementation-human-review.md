@@ -1,6 +1,6 @@
 # M7 Governed Agentization - Implementation Human Review
 
-Status: Implementation complete; publication pending
+Status: Published and merged through PR #16
 Contract: `docs/milestones/M7-governed-agentization-contract.md`
 Review date: 2026-08-08
 
@@ -44,10 +44,10 @@ Review date: 2026-08-08
 - Ruff passed for all new M7 Python modules and tests.
 - All 16 pre-commit hooks passed, including the M7 validator.
 - Full Python 3.12 local suite: `275 passed`.
-- Python 3.10 and 3.12 remote CI remains the publication checkpoint.
+- Python 3.10 and 3.12 remote CI passed in Actions run #48.
 
-## Publication boundary
+## Publication evidence
 
-The project owner approved the M7 implementation direction on 2026-08-08. Local implementation and validation may be completed under that approval. Staging, committing, pushing, opening a pull request, marking it ready, and merging each remain separate repository publication actions.
+The project owner separately approved staging, commit, push, PR creation, Ready for review, and merge. PR #16 merged the exact reviewed tree into `main` as `75503192255053bffa42f2a2debe9a2668fe6f96`. The feature branch was not deleted as part of that authorization.
 
 Decision: `[x] implementation complete  [ ] request changes  [ ] reject`

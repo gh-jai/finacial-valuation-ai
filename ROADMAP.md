@@ -32,6 +32,30 @@ Add bounded cycle evidence, scenario implications, price-versus-value review, co
 
 Define constrained agent roles, tool contracts, prompt suites, evaluator policies, handoffs, and human approval controls.
 
-## M8 v1.0 release
+## M8 Retail product contract and safety boundary
 
-Stabilize schemas and identifiers, complete documentation, publish reproducible synthetic benchmarks, perform security and copyright audits, and tag v1.0.
+Define the supported retail user and issuer scope, five real-data interface schemas, safe-stop behavior, data and output policies, threat model, provider/legal/security review gates, and the pilot/holdout design. M8 is contract-only and does not add live data, LLM, API, CLI, or Web implementation.
+
+## M9 Public data ingestion and accounting normalization
+
+Implement ticker/CIK resolution, SEC and licensed market-data adapters, immutable snapshots, manual import, US-GAAP normalization, reconciliation, data-quality findings, and offline provider fixtures.
+
+## M10 Assumption, routing, and scenario engine
+
+Implement transparent WACC and operating assumptions, lifecycle routing, stable-state controls, bear/base/bull scenarios, provenance-preserving overrides, and deterministic stop rules.
+
+## M11 Governed real-case runtime and stable interfaces
+
+Expose one domain service through a stable Python API, CLI, and service API. Extend M7 from one synthetic allowlisted fixture to schema-valid, content-addressed, human-approved real cases without weakening exact-hash gates or role separation.
+
+## M12 Retail Web experience and explainable reports
+
+Build the Traditional Chinese-first Web journey, source/formula inspection, assumption editing, approvals, range/sensitivity explanations, and share-safe PDF/JSON exports to WCAG 2.2 AA.
+
+## M13 Real-company pilots and product hardening
+
+Validate eight development pilots and at least two holdouts, independently reconcile identical-assumption values, test data and advice mutations, complete accessibility/usability review, and close security, privacy, and licensing findings.
+
+## M14 v1.0 release and operations
+
+Freeze schemas and stable interfaces only after all launch gates pass. Complete documentation, migrations, SBOM, incident/rollback/restore drills, closed beta, go/no-go review, and then tag `v1.0.0`. A failed gate permits beta only, not a retail-ready claim.

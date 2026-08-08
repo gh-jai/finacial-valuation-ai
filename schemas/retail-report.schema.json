@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fvi.example/schemas/retail-report.schema.json",
+  "title": "FVI Retail Valuation Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "report_id",
+    "run_id",
+    "generated_at",
+    "locale",
+    "company",
+    "as_of",
+    "artifact_refs",
+    "status",
+    "scenario_values",
+    "valuation_range",
+    "sensitivity",
+    "value_drivers",
+    "counterevidence",
+    "data_gaps",
+    "limitations",
+    "source_index",
+    "wording_controls",
+    "output_approval",
+    "version_manifest",
+    "report_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "report_id": {"type": "string", "pattern": "^RPT-[A-Z0-9-]+$"},
+    "run_id": {"type": "string", "pattern": "^RUN-[A-Z0-9-]+$"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "locale": {"enum": ["zh-Hant", "en"]},
+    "company": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["legal_name", "ticker", "cik", "currency"],
+      "properties": {
+        "legal_name": {"type": "string", "minLength": 1},
+        "ticker": {"type": "string", "pattern": "^[A-Z][A-Z0-9.-]{0,9}$"},
+        "cik": {"type": "string", "pattern": "^[0-9]{10}$"},
+        "currency": {"const": "USD"}
+      }
+    },
+    "as_of": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["valuation_date", "financial_period_end", "market_data_at"],
+      "properties": {
+        "valuation_date": {"type": "string", "format": "date"},
+        "financial_period_end": {"type": "string", "format": "date"},
+        "market_data_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "artifact_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["snapshot_hash", "normalized_hash", "case_hash", "valuation_output_hash", "evaluation_result_hash"],
+      "properties": {
+        "snapshot_hash": {"$ref": "#/$defs/hash"},
+        "normalized_hash": {"$ref": "#/$defs/hash"},
+        "case_hash": {"$ref": "#/$defs/hash"},
+        "valuation_output_hash": {"$ref": "#/$defs/hash"},
+        "evaluation_result_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "status": {"enum": ["approved", "expired"]},
+    "scenario_values": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/scenarioValue"},
+      "allOf": [
+        {"contains": {"type": "object", "required": ["kind"], "properties": {"kind": {"const": "bear"}}}, "minContains": 1, "maxContains": 1},
+        {"contains": {"type": "object", "required": ["kind"], "properties": {"kind": {"const": "base"}}}, "minContains": 1, "maxContains": 1},
+        {"contains": {"type": "object", "required": ["kind"], "properties": {"kind": {"const": "bull"}}}, "minContains": 1, "maxContains": 1}
+      ]
+    },
+    "valuation_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["basis", "low", "high", "currency", "not_a_price_prediction"],
+      "properties": {
+        "basis": {"const": "per-share"},
+        "low": {"type": "number"},
+        "high": {"type": "number"},
+        "currency": {"const": "USD"},
+        "not_a_price_prediction": {"const": true}
+      }
+    },
+    "sensitivity": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/sensitivityPoint"}},
+    "value_drivers": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/explainedItem"}},
+    "counterevidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/explainedItem"}},
+    "data_gaps": {"type": "array", "items": {"$ref": "#/$defs/explainedItem"}},
+    "limitations": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "source_index": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/sourceIndexItem"}},
+    "wording_controls": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["research_not_advice", "buy_signal", "sell_signal", "hold_signal", "position_size", "trade_timing", "personal_suitability"],
+      "properties": {
+        "research_not_advice": {"const": true},
+        "buy_signal": {"type": "null"},
+        "sell_signal": {"type": "null"},
+        "hold_signal": {"type": "null"},
+        "position_size": {"type": "null"},
+        "trade_timing": {"type": "null"},
+        "personal_suitability": {"type": "null"}
+      }
+    },
+    "output_approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approval_id", "approved_hash", "actor_id", "actor_type", "approved_at", "status"],
+      "properties": {
+        "approval_id": {"type": "string", "minLength": 1},
+        "approved_hash": {"$ref": "#/$defs/hash"},
+        "actor_id": {"type": "string", "minLength": 1},
+        "actor_type": {"const": "human"},
+        "approved_at": {"type": "string", "format": "date-time"},
+        "status": {"const": "active"}
+      }
+    },
+    "version_manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_versions", "engine_version", "validator_version", "registry_version", "prompt_versions"],
+      "properties": {
+        "schema_versions": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"}},
+        "engine_version": {"type": "string", "minLength": 1},
+        "validator_version": {"type": "string", "minLength": 1},
+        "registry_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "prompt_versions": {"type": "object", "additionalProperties": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"}}
+      }
+    },
+    "report_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "refList": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "scenarioValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "scenario_id", "per_share_value", "currency", "assumption_refs", "probability"],
+      "properties": {
+        "kind": {"enum": ["bear", "base", "bull"]},
+        "scenario_id": {"type": "string", "pattern": "^SCN-[A-Z0-9-]+$"},
+        "per_share_value": {"type": "number"},
+        "currency": {"const": "USD"},
+        "assumption_refs": {"$ref": "#/$defs/refList"},
+        "probability": {"type": "null"}
+      }
+    },
+    "sensitivityPoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["discount_rate", "terminal_growth_rate", "per_share_value"],
+      "properties": {
+        "discount_rate": {"type": "number"},
+        "terminal_growth_rate": {"type": "number"},
+        "per_share_value": {"type": "number"}
+      }
+    },
+    "explainedItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "explanation", "evidence_refs"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "explanation": {"type": "string", "minLength": 1},
+        "evidence_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "sourceIndexItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_ref", "provider", "accession", "period_end", "unit", "as_of", "content_hash", "display_url"],
+      "properties": {
+        "source_ref": {"type": "string", "minLength": 1},
+        "provider": {"type": "string", "minLength": 1},
+        "accession": {"type": ["string", "null"], "pattern": "^[0-9]{10}-[0-9]{2}-[0-9]{6}$"},
+        "period_end": {"type": ["string", "null"], "format": "date"},
+        "unit": {"type": "string", "minLength": 1},
+        "as_of": {"type": "string", "format": "date-time"},
+        "content_hash": {"$ref": "#/$defs/hash"},
+        "display_url": {"type": "string", "format": "uri"}
+      }
+    }
+  }
+}

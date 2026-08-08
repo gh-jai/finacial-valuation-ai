@@ -45,7 +45,7 @@ Here, **Source** means the redistributable metadata record. A private local inpu
 
 ## Milestone model
 
-M0 established repository governance and provenance. M1-M6 added bounded deterministic valuation and judgment vertical slices. M7 completes the governed `Workflow -> Agent -> Prompt -> Test` path without granting agents autonomous approval, private-source, network, shell, or trading authority. See [ROADMAP.md](ROADMAP.md) and [PROJECT_STATUS.md](PROJECT_STATUS.md).
+M0 established repository governance and provenance. M1-M6 added bounded deterministic valuation and judgment vertical slices. M7 completes the governed `Workflow -> Agent -> Prompt -> Test` path without granting agents autonomous approval, private-source, network, shell, or trading authority. M8-M14 now define the remaining retail-product path; the current M8 work is contract-only and does not provide live issuer ingestion or a user interface. See [ROADMAP.md](ROADMAP.md) and [PROJECT_STATUS.md](PROJECT_STATUS.md).
 
 ## Validate
 
@@ -77,5 +77,6 @@ Run `pre-commit install` once to enable local checks. See [CONTRIBUTING.md](CONT
 - M5: declining-company routing, negative reinvestment and divestitures, financing and tax-benefit paths, closure alternatives, deterministic distress-sale adjustment, and one current-claim bridge composed with M1–M4.
 - M6: company-specific cycle routing, complete-input normalization or current-expectations scenarios, dated five-dimension evidence, immutable intrinsic-value references, and bounded non-numeric review posture composed with M1–M5.
 - M7: deny-by-default agent roles and prompts, exact-hash artifact handoffs, two human-only approval gates, executor-reviewer separation, offline allowlisted adapters, independent run validation, and three adversarial synthetic benchmarks composed with M1–M6.
+- M8 draft: retail product scope, five real-data interface contracts, safe-stop policy, threat model, and pilot/holdout gates. No M9-M14 runtime or user interface is implemented.
 
 FVI remains pre-v1.0 and is not investment advice. Interfaces and schemas may change before release.

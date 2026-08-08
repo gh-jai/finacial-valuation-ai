@@ -6,7 +6,7 @@ Repository: `gh-jai/financial-valuation-ai`
 
 ## Current state
 
-The repository has merged seven implementation milestones through delivery PR #14:
+The repository has merged eight implementation milestones through delivery PR #16:
 
 - M0 — Repository foundation
 - M1 — Basic FCFF DCF vertical slice
@@ -15,12 +15,17 @@ The repository has merged seven implementation milestones through delivery PR #1
 - M4 — Growth-company scaling-and-fade vertical slice
 - M5 — Decline, distress, and contingent-survival vertical slice
 - M6 — Cycle-aware judgment layer
+- M7 — Governed agentization and human-gated orchestration
 
 The M4 contract and repository-wide implementation were delivered through PR #10. The implementation includes the locked source boundary and 30 claims, seven Knowledge artifacts, nine Skills, `WFL-GRW-001`, a strict schema, deterministic engine, independent recomputation validator, two synthetic benchmarks, adversarial controls, and CI/pre-commit integration. Final review hardened registered bidirectional traceability and independent recomputation of market scale, capacity utilization, calculation trails, sensitivity points, and supported break-even values.
 
 The M5 contract was approved and merged through PR #12, and the repository-wide implementation was delivered through PR #13. Its locked boundary is Chapter 12, printed pages 397-436 / PDF pages 445-484, with 32 reviewed atomic claims. Final review hardened partial-liquidation routing, bidirectional divestiture support, turnaround probability dating, and the one-bridge rule. The full suite reports 179 passing tests, and the Python 3.10/3.12 matrix passes.
 
 M6 contract-first planning, source-fidelity/financial review, repository-wide implementation, and publication are complete. The implementation preserves the dual-source boundary and 36 reviewed claims, adds eight Knowledge artifacts, ten Skills, `WFL-CYC-001`, a strict schema, deterministic engine, independent validator, two synthetic benchmarks, 54 focused tests, and CI/pre-commit integration. PR #14 passed the Python 3.10/3.12 matrix and merged as `f4175ee`; the post-merge Actions run also passed. The complete merged suite reports 242 passing tests.
+
+M7 governed agentization is complete and merged through PR #16. It adds 20 reviewed claims, four Knowledge artifacts, five Skills, five agents, five prompts, `WFL-AGT-001`, five strict schemas, a deny-by-default registry, exact-hash handoffs, two human-only approvals, append-only events, executor/reviewer separation, offline adapters, independent validation, and three synthetic governance benchmarks. PR #16 Actions run #48 passed on Python 3.10 and 3.12 and merged as `75503192255053bffa42f2a2debe9a2668fe6f96`. The merged suite reports 275 passing tests.
+
+P0 publication-state synchronization is complete in the current M8 contract checkpoint. M8 product and safety contracts are drafts for human review; no M9 implementation is authorized or present.
 
 Current mainline architecture:
 
@@ -37,6 +42,7 @@ Evidence
 → Per-share Value
 → Optional Dated Cycle Judgment Overlay
 → Feedback Revision
+→ Exact-hash Human-Gated Agent Review and Memo
 ```
 
 The project remains pre-v1.0 and is not investment advice.
@@ -376,6 +382,32 @@ Acceptance and publication evidence:
 - PR #14 merged to `main` as `f4175ee64212288862e37eba74c43b570f6d598a`
 - Post-merge Actions run `31252836713` passed
 
+### M7 — Governed agentization
+
+Status: Complete and merged through PR #16
+
+Merge commit: `75503192255053bffa42f2a2debe9a2668fe6f96`
+
+Delivered:
+
+- 20 reviewed atomic claims and four cross-domain Knowledge artifacts
+- Five bounded agent Skills, five deny-by-default agents, and five versioned prompts
+- `WFL-AGT-001` and `REG-AGT-001`
+- Exact-hash artifacts, handoffs, and human-only `case_lock` / `output_approval`
+- Append-only events, independently derived state, and stale-approval invalidation
+- Executor/reviewer separation, per-agent and global action budgets, and offline allowlisted adapters
+- Independent validation of schemas, hashes, state, traceability, budgets, tool authority, separation of duties, and prohibited output
+- Happy-path, adversarial-stop, and approval-tampering synthetic benchmarks
+
+Acceptance and publication evidence:
+
+- 16 schemas, 121 governed documents, 184 reviewed claims, and three M7 run fixtures validated
+- Full local suite: 275 passed
+- All 16 pre-commit hooks passed without rewriting files
+- PR #16 exact-head Actions run #48 passed on Python 3.10 and 3.12
+- PR #16 merged to `main` as `75503192255053bffa42f2a2debe9a2668fe6f96`
+- No private PDF, ebook, extract, secret, or live external call is a release dependency
+
 ## Current governed artifact graph
 
 ```text
@@ -390,6 +422,7 @@ Sources
 → Synthetic Fixtures
 → Expected Benchmark Outputs
 → Unit and Integration Tests
+→ Governed Agents, Prompts, Handoffs, and Human Approvals
 → CI
 ```
 
@@ -401,17 +434,18 @@ WFL-NAR-001 + WFL-VAL-001 → WFL-YNG-001
 WFL-NAR-001 + WFL-VAL-001 + bounded WFL-YNG-001 handoff → WFL-GRW-001
 WFL-NAR-001 + WFL-VAL-001 + bounded WFL-GRW-001/WFL-YNG-001 reuse → WFL-DST-001
 WFL-NAR-001 + WFL-VAL-001 + bounded WFL-GRW-001/WFL-DST-001 reuse → WFL-CYC-001 treatment handoff → intrinsic valuation → separate judgment overlay
+Approved M1-M6 route → WFL-AGT-001 exact-hash orchestration → independent review → human-approved memo
 ```
 
 ## Validation and CI
 
 Latest merged implementation PR CI:
 
-- GitHub Actions run 44
+- GitHub Actions run 48
 - Python 3.10: Passed
 - Python 3.12: Passed
 
-The M6 implementation passed local validation and PR #14 remote matrix validation on Python 3.10 and Python 3.12. The post-merge `main` run also passed after merge commit `f4175ee`.
+The M7 implementation passed local validation and PR #16 remote matrix validation on Python 3.10 and Python 3.12 before merge commit `7550319`.
 
 Validated controls include:
 
@@ -451,7 +485,7 @@ Validated controls include:
 - Repository copyright policy
 - Unit, integration, benchmark, and regression tests
 
-At M3 completion, the full suite reported 88 passing tests. M4 and its final review fixes brought the suite to 125. M5 brought the merged suite to 179 passing tests. M6 brings the complete merged suite to 242 passing tests, including 54 focused M6 engine, validator, benchmark, artifact-graph, adversarial, mutation, and composition tests.
+At M3 completion, the full suite reported 88 passing tests. M4 and its final review fixes brought the suite to 125. M5 brought the merged suite to 179 passing tests. M6 brought the merged suite to 242 passing tests, and M7 brought it to 275. The local P0+M8 contract checkpoint adds 10 contract tests for a current total of 285 without changing valuation behavior.
 
 ## Source and copyright policy
 
@@ -479,6 +513,12 @@ Public artifacts must use original paraphrases, precise source locations, and ex
 The repository does not yet provide:
 
 - Live company or market-data ingestion
+- Accounting normalization for real SEC filings
+- Stable retail Python API, CLI, or service API
+- Retail Web UI or PDF/JSON report renderer
+- General real-case M7 routing beyond its allowlisted synthetic fixture
+- Qualified legal/compliance approval for retail distribution
+- Market-data display and redistribution approvals
 - Autonomous investment recommendations
 - Preferred-stock liquidation waterfalls
 - Venture-capital ownership negotiation
@@ -493,27 +533,26 @@ M3 failure probabilities and recovery values are deterministic reviewed assumpti
 
 ## Recommended next milestone
 
-The next milestone should remain a bounded vertical slice rather than a broad platform expansion.
-
-M4, M5, and M6 are merged. The next checkpoint is to select and lock the next bounded milestone's source boundary, claims, financial controls, schema contract, composition rules, benchmarks, and acceptance criteria before implementation begins.
+M8 is the current contract-only checkpoint. Its product, financial, security, legal/compliance, and data-licensing reviews must be completed before M9 implementation planning.
 
 Recommended sequencing:
 
 ```text
-M6: Merged implementation and remote Python 3.10/3.12 validation complete
-→ Next milestone: Contract-first scope and source review
+M7: Merged implementation and remote Python 3.10/3.12 validation complete
+→ M8: Retail product and safety contract review
+→ Human approval
+→ M9: Public-data ingestion and accounting normalization implementation
 ```
 
-Before implementation, each milestone should first lock:
+Before M9 implementation, M8 must lock:
 
-- Exact source boundary
-- Atomic claims
-- Model scope and exclusions
-- Schema contract
-- Risk placement
-- Composition with existing workflows
-- Synthetic benchmark design
-- Acceptance criteria
+- Supported and unsupported issuers and territories
+- Five input/output interface schemas
+- Data provenance, freshness, normalization, and error contracts
+- Advice, privacy, retention, copyright, and provider-license boundaries
+- Data/LLM/upload/report threat model
+- Eight pilot and two holdout acceptance designs
+- Product, financial, security, and legal/compliance approvals
 
 ## Working model
 
@@ -539,12 +578,13 @@ Use this file as the canonical project handoff for a new ChatGPT or Codex sessio
 Minimum startup instruction:
 
 ```text
-Read PROJECT_STATUS.md, README.md, sources/source-coverage-plan.md,
-sources/catalog.yaml, sources/source-map.yaml, and the existing M1–M6
-workflows before proposing or implementing the next milestone.
+Read PROJECT_STATUS.md, README.md, ROADMAP.md,
+docs/milestones/M8-retail-product-safety-contract.md, and the existing M1-M7
+workflows before proposing or implementing M9.
 
 Do not alter completed milestone contracts without identifying a concrete defect.
 Do not commit private source material.
 Preserve composition with WFL-NAR-001, WFL-VAL-001, WFL-YNG-001,
-WFL-GRW-001, and WFL-DST-001.
+WFL-GRW-001, WFL-DST-001, WFL-CYC-001, and WFL-AGT-001.
+Do not treat draft M8 schemas as implemented ingestion or a retail-ready release.
 ```

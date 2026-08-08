@@ -52,3 +52,23 @@ WFL-NAR-001
 `WFL-AGT-001` wraps an approved M1-M6 route without taking ownership of its calculations. Evidence assembly, deterministic execution, independent review, orchestration, memo rendering, and human approval are separate authorities. The initial adapter accepts only the registered established-cycle synthetic fixture.
 
 Every artifact revision has a canonical SHA-256 hash. Handoffs and the two human gates bind that exact hash; any later mutation invalidates the approval and returns the run to the appropriate gate. State is independently derived from an append-only event chain. Agents have no approval, network, shell, arbitrary filesystem, private-source, secret, GitHub, brokerage, or trade authority.
+
+## Retail target boundary
+
+M8 defines, but does not implement, a future retail data path:
+
+```text
+Allowlisted data gateway
+-> immutable public-data snapshot
+-> deterministic accounting normalization
+-> evidence-backed valuation case
+-> human case_lock
+-> network-denied M1-M6 runtime
+-> independent review
+-> human output_approval
+-> immutable retail report
+```
+
+The gateway alone may fetch external data. Provider payloads, filings, uploads, and LLM text are untrusted data and cannot authorize actions. The valuation runtime remains offline and content-addressed. The report renderer may explain an approved range but cannot alter numbers or emit buy, sell, hold, sizing, timing, suitability, or execution instructions.
+
+The five M8 schemas are unstable `0.1.0` interface contracts. Implementations begin in M9 and schema freeze is deferred until M14 after real-company pilots and holdouts.

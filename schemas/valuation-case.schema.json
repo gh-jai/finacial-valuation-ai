@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fvi.example/schemas/valuation-case.schema.json",
+  "title": "FVI Retail Valuation Case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "case_id",
+    "valuation_date",
+    "company",
+    "input_refs",
+    "support_decision",
+    "route",
+    "scenarios",
+    "evidence",
+    "overrides",
+    "case_hash",
+    "case_lock"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "case_id": {"type": "string", "pattern": "^CASE-[A-Z0-9-]+$"},
+    "valuation_date": {"type": "string", "format": "date"},
+    "company": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cik", "legal_name", "ticker", "currency"],
+      "properties": {
+        "cik": {"type": "string", "pattern": "^[0-9]{10}$"},
+        "legal_name": {"type": "string", "minLength": 1},
+        "ticker": {"type": "string", "pattern": "^[A-Z][A-Z0-9.-]{0,9}$"},
+        "currency": {"const": "USD"}
+      }
+    },
+    "input_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["snapshot_id", "snapshot_hash", "normalized_id", "normalized_hash"],
+      "properties": {
+        "snapshot_id": {"type": "string", "pattern": "^SNP-[A-Z0-9-]+$"},
+        "snapshot_hash": {"$ref": "#/$defs/hash"},
+        "normalized_id": {"type": "string", "pattern": "^NRM-[A-Z0-9-]+$"},
+        "normalized_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "support_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "sector_class", "reason_codes", "reviewed_by", "reviewed_at"],
+      "properties": {
+        "status": {"const": "supported"},
+        "sector_class": {"const": "non-financial-operating"},
+        "reason_codes": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^SCOPE-[A-Z0-9-]+$"}},
+        "reviewed_by": {"type": ["string", "null"]},
+        "reviewed_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workflow_id", "lifecycle", "evidence_refs", "status", "approved_by", "approved_at"],
+      "properties": {
+        "workflow_id": {"enum": ["WFL-VAL-001", "WFL-YNG-001", "WFL-GRW-001", "WFL-DST-001", "WFL-CYC-001"]},
+        "lifecycle": {"enum": ["mature", "young", "growth", "decline-distress", "cyclical"]},
+        "evidence_refs": {"$ref": "#/$defs/refList"},
+        "status": {"enum": ["proposed", "approved", "rejected"]},
+        "approved_by": {"type": ["string", "null"]},
+        "approved_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/scenario"},
+      "allOf": [
+        {"contains": {"type": "object", "required": ["kind"], "properties": {"kind": {"const": "bear"}}}, "minContains": 1, "maxContains": 1},
+        {"contains": {"type": "object", "required": ["kind"], "properties": {"kind": {"const": "base"}}}, "minContains": 1, "maxContains": 1},
+        {"contains": {"type": "object", "required": ["kind"], "properties": {"kind": {"const": "bull"}}}, "minContains": 1, "maxContains": 1}
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["supporting_refs", "counterevidence_refs", "missing_evidence", "stale_evidence_refs"],
+      "properties": {
+        "supporting_refs": {"$ref": "#/$defs/refList"},
+        "counterevidence_refs": {"$ref": "#/$defs/refList"},
+        "missing_evidence": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "stale_evidence_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "overrides": {"type": "array", "items": {"$ref": "#/$defs/override"}},
+    "case_hash": {"$ref": "#/$defs/hash"},
+    "case_lock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "approved_hash", "actor_id", "actor_type", "approved_at", "invalidated_at"],
+      "properties": {
+        "status": {"enum": ["pending", "active", "invalidated", "rejected"]},
+        "approved_hash": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "actor_id": {"type": ["string", "null"]},
+        "actor_type": {"enum": ["human", null]},
+        "approved_at": {"type": ["string", "null"], "format": "date-time"},
+        "invalidated_at": {"type": ["string", "null"], "format": "date-time"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "active"}}, "required": ["status"]},
+          "then": {
+            "properties": {
+              "approved_hash": {"$ref": "#/$defs/hash"},
+              "actor_id": {"type": "string", "minLength": 1},
+              "actor_type": {"const": "human"},
+              "approved_at": {"type": "string", "format": "date-time"},
+              "invalidated_at": {"type": "null"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"status": {"const": "pending"}}, "required": ["status"]},
+          "then": {
+            "properties": {
+              "approved_hash": {"type": "null"},
+              "actor_id": {"type": "null"},
+              "actor_type": {"type": "null"},
+              "approved_at": {"type": "null"},
+              "invalidated_at": {"type": "null"}
+            }
+          }
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "refList": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scenario_id", "kind", "probability", "assumptions", "limitations"],
+      "properties": {
+        "scenario_id": {"type": "string", "pattern": "^SCN-[A-Z0-9-]+$"},
+        "kind": {"enum": ["bear", "base", "bull"]},
+        "probability": {"type": "null"},
+        "assumptions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/assumption"}},
+        "limitations": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "assumption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assumption_id", "name", "value", "unit", "provenance_kind", "source_refs", "as_of", "rationale", "status"],
+      "properties": {
+        "assumption_id": {"type": "string", "pattern": "^ASM-[A-Z0-9-]+$"},
+        "name": {"type": "string", "minLength": 1},
+        "value": {"type": "number"},
+        "unit": {"type": "string", "minLength": 1},
+        "provenance_kind": {"enum": ["filing", "market_data", "deterministic_rule", "user_override"]},
+        "source_refs": {"$ref": "#/$defs/refList"},
+        "as_of": {"type": "string", "format": "date-time"},
+        "rationale": {"type": "string", "minLength": 1},
+        "status": {"enum": ["proposed", "approved", "rejected"]}
+      }
+    },
+    "override": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["override_id", "assumption_id", "original_value", "new_value", "reason", "actor_id", "timestamp", "prior_case_hash"],
+      "properties": {
+        "override_id": {"type": "string", "pattern": "^OVR-[A-Z0-9-]+$"},
+        "assumption_id": {"type": "string", "pattern": "^ASM-[A-Z0-9-]+$"},
+        "original_value": {"type": "number"},
+        "new_value": {"type": "number"},
+        "reason": {"type": "string", "minLength": 1},
+        "actor_id": {"type": "string", "minLength": 1},
+        "timestamp": {"type": "string", "format": "date-time"},
+        "prior_case_hash": {"$ref": "#/$defs/hash"}
+      }
+    }
+  }
+}

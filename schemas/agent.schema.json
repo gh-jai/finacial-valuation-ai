@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fvi.example/schemas/agent.schema.json",
+  "title": "FVI Agent Document Frontmatter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "type", "status", "version", "domain", "source_refs", "dependencies", "owner", "last_updated", "role", "permitted_tools", "prohibited_actions", "context_limits", "escalation_rules", "handoff_contracts"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^AGT-[A-Z]+-[0-9]{3}$"},
+    "title": {"type": "string", "minLength": 1},
+    "type": {"const": "agent"},
+    "status": {"enum": ["draft", "reviewed", "approved", "deprecated"]},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "domain": {"enum": ["accounting", "valuation", "risk", "narrative", "lifecycle", "market-pricing", "special-situations", "cross-domain"]},
+    "source_refs": {"$ref": "#/$defs/idList"},
+    "dependencies": {"$ref": "#/$defs/idList"},
+    "owner": {"type": "string", "minLength": 1},
+    "last_updated": {"type": "string", "format": "date"},
+    "role": {"type": "string", "minLength": 1},
+    "permitted_tools": {"$ref": "#/$defs/idList"},
+    "prohibited_actions": {"$ref": "#/$defs/nonEmptyList"},
+    "context_limits": {"$ref": "#/$defs/nonEmptyList"},
+    "escalation_rules": {"$ref": "#/$defs/nonEmptyList"},
+    "handoff_contracts": {"$ref": "#/$defs/idList"}
+  },
+  "$defs": {
+    "idList": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "nonEmptyList": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+  }
+}

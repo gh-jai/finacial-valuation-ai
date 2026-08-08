@@ -1,0 +1,17 @@
+{
+  "active_gates": [
+    "case_lock",
+    "output_approval"
+  ],
+  "artifact_kinds": [
+    "case",
+    "evaluation_result",
+    "memo",
+    "valuation_output"
+  ],
+  "intrinsic_value": 95,
+  "review_posture": "balanced_review",
+  "run_id": "RUN-AGT-HAPPY-001",
+  "status": "completed",
+  "tool_call_count": 3
+}

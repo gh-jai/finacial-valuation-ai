@@ -1,0 +1,445 @@
+{
+  "approvals": [
+    {
+      "actor_id": "human-maintainer",
+      "actor_type": "human",
+      "approval_id": "APR-0001",
+      "approved_at": "2026-08-08T00:03:00Z",
+      "artifact_id": "ART-CASE-HAPPY",
+      "gate_id": "case_lock",
+      "invalidated_at": null,
+      "payload_hash": "6e5498ed263e1c7d175f86afb8974c0fad6b866b6ea5fd5a7e4e6d28fd397adb",
+      "status": "active"
+    },
+    {
+      "actor_id": "human-maintainer",
+      "actor_type": "human",
+      "approval_id": "APR-0002",
+      "approved_at": "2026-08-08T00:08:00Z",
+      "artifact_id": "ART-OUTPUT-HAPPY",
+      "gate_id": "output_approval",
+      "invalidated_at": null,
+      "payload_hash": "a8095cedb871cfe455b8c61743f8087326990a64f878d72dc87ea0eaf9d10351",
+      "status": "active"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "ART-CASE-HAPPY",
+      "created_by": "AGT-EVD-001",
+      "kind": "case",
+      "payload": {
+        "assumptions": {
+          "route_locked": true,
+          "synthetic_only": true,
+          "trade_actions_excluded": true
+        },
+        "claim_refs": [
+          "CLM-CYC-001",
+          "CLM-CYC-021"
+        ],
+        "evidence_review": {
+          "alternative_explanations": [
+            "Structural decline",
+            "Firm-specific execution weakness"
+          ],
+          "base_rate_context": "Use the registered established-cycle class without erasing company-specific evidence.",
+          "counterevidence_refs": [
+            "EVID-MARGIN-CONTRA"
+          ],
+          "counterevidence_search": "Synthetic M6 evidence ledger reviewed across all five dimensions.",
+          "missing_evidence": [],
+          "prohibited_requests": [],
+          "stale_evidence_refs": [],
+          "supporting_evidence_refs": [
+            "EVID-INDPRO",
+            "EVID-PROFIT"
+          ]
+        },
+        "fixture_id": "synthetic-established-cycle-industrial",
+        "limitations": [
+          "Synthetic benchmark only.",
+          "Human approval does not make this investment advice."
+        ],
+        "route": {
+          "route_reason": "Established mature industrial with supported recurring cycle exposure.",
+          "workflow_id": "WFL-CYC-001"
+        },
+        "source_refs": [
+          "SRC-DAMODARAN-DARK-SIDE-2018",
+          "SRC-MARKS-MASTERING-MARKET-CYCLE-2018"
+        ],
+        "valuation_id": "VAL-ESTABLISHED-INDUSTRIAL"
+      },
+      "payload_hash": "6e5498ed263e1c7d175f86afb8974c0fad6b866b6ea5fd5a7e4e6d28fd397adb",
+      "revision": 1
+    },
+    {
+      "artifact_id": "ART-OUTPUT-HAPPY",
+      "created_by": "AGT-VAL-001",
+      "kind": "valuation_output",
+      "payload": {
+        "company": {
+          "currency": "USD",
+          "name": "Synthetic Cycle Industrial"
+        },
+        "deterministic_validation": {
+          "passed": true,
+          "validator": "validate_cycle_aware_judgments"
+        },
+        "fixture_id": "synthetic-established-cycle-industrial",
+        "intrinsic_value_reference": {
+          "basis": "common-equity",
+          "computed_before_overlay": true,
+          "currency": "USD",
+          "expected_value": 95,
+          "scenario_values": [
+            {
+              "scenario_id": "BASE",
+              "value": 95
+            }
+          ],
+          "valuation_id": "VAL-ESTABLISHED-INDUSTRIAL",
+          "value_range": {
+            "high": 95,
+            "low": 95
+          },
+          "workflow_ref": "WFL-VAL-001"
+        },
+        "judgment_overlay": {
+          "confidence": "medium",
+          "market_cycle_position": "below_midpoint",
+          "review_posture": "balanced_review"
+        },
+        "limitations": [
+          "Synthetic evidence and values prove controls, not an investment conclusion."
+        ],
+        "trade_instruction": null,
+        "valuation_date": "2026-08-01",
+        "valuation_id": "VAL-ESTABLISHED-INDUSTRIAL",
+        "workflow_id": "WFL-CYC-001"
+      },
+      "payload_hash": "a8095cedb871cfe455b8c61743f8087326990a64f878d72dc87ea0eaf9d10351",
+      "revision": 1
+    },
+    {
+      "artifact_id": "ART-EVAL-HAPPY",
+      "created_by": "AGT-REV-001",
+      "kind": "evaluation_result",
+      "payload": {
+        "artifact_hash": "a8095cedb871cfe455b8c61743f8087326990a64f878d72dc87ea0eaf9d10351",
+        "artifact_id": "ART-OUTPUT-HAPPY",
+        "conclusion": "pass",
+        "deterministic_checks": [
+          {
+            "check_id": "m6-schema-and-recomputation",
+            "details": "Existing M6 independent validator passed.",
+            "passed": true
+          },
+          {
+            "check_id": "m7-hash-state-approval",
+            "details": "Hashes, events, actors, approvals, and budgets independently recomputed.",
+            "passed": true
+          },
+          {
+            "check_id": "adversarial-evidence-policy",
+            "details": "Support, counterevidence, base rate, limitations, and alternative explanations are explicit.",
+            "passed": true
+          }
+        ],
+        "evaluation_id": "EVL-HAPPY-001",
+        "executor_agent_id": "AGT-VAL-001",
+        "findings": [
+          {
+            "finding_id": "EVF-001",
+            "message": "Synthetic offline benchmark; no live data or trade authority.",
+            "severity": "info"
+          }
+        ],
+        "reviewed_at": "2026-08-08T00:07:00Z",
+        "reviewer_agent_id": "AGT-REV-001",
+        "run_id": "RUN-AGT-HAPPY-001",
+        "schema_version": "1.0.0"
+      },
+      "payload_hash": "a25318197199a8d19a8cccaaa3ec9031229084cf04476c238288eb2615cef4f2",
+      "revision": 1
+    },
+    {
+      "artifact_id": "ART-MEMO-HAPPY",
+      "created_by": "AGT-MEM-001",
+      "kind": "memo",
+      "payload": {
+        "intrinsic_value_reference": {
+          "basis": "common-equity",
+          "computed_before_overlay": true,
+          "currency": "USD",
+          "expected_value": 95,
+          "scenario_values": [
+            {
+              "scenario_id": "BASE",
+              "value": 95
+            }
+          ],
+          "valuation_id": "VAL-ESTABLISHED-INDUSTRIAL",
+          "value_range": {
+            "high": 95,
+            "low": 95
+          },
+          "workflow_ref": "WFL-VAL-001"
+        },
+        "judgment_overlay": {
+          "confidence": "medium",
+          "market_cycle_position": "below_midpoint",
+          "review_posture": "balanced_review"
+        },
+        "limitations": [
+          "Synthetic evidence and values prove controls, not an investment conclusion."
+        ],
+        "non_advice_notice": "Research workflow output; not investment advice or a trade instruction.",
+        "title": "Governed valuation memo - VAL-ESTABLISHED-INDUSTRIAL",
+        "valuation_id": "VAL-ESTABLISHED-INDUSTRIAL"
+      },
+      "payload_hash": "a975441b62dfd65b90d8309b8f2e86e6b635b345c7256950e7e5d124f65014bc",
+      "revision": 1
+    }
+  ],
+  "budgets": {
+    "max_actions": 10,
+    "used_actions": 3
+  },
+  "events": [
+    {
+      "actor_id": "M7-RUNTIME",
+      "actor_type": "runtime",
+      "artifact_id": null,
+      "details": {},
+      "event_id": "EVT-0001",
+      "event_type": "run_initialized",
+      "parent_event_id": null,
+      "timestamp": "2026-08-08T00:00:00Z"
+    },
+    {
+      "actor_id": "AGT-EVD-001",
+      "actor_type": "agent",
+      "artifact_id": "ART-CASE-HAPPY",
+      "details": {},
+      "event_id": "EVT-0002",
+      "event_type": "case_assembled",
+      "parent_event_id": "EVT-0001",
+      "timestamp": "2026-08-08T00:01:00Z"
+    },
+    {
+      "actor_id": "AGT-ORC-001",
+      "actor_type": "agent",
+      "artifact_id": "ART-CASE-HAPPY",
+      "details": {},
+      "event_id": "EVT-0003",
+      "event_type": "case_lock_requested",
+      "parent_event_id": "EVT-0002",
+      "timestamp": "2026-08-08T00:02:00Z"
+    },
+    {
+      "actor_id": "human-maintainer",
+      "actor_type": "human",
+      "artifact_id": "ART-CASE-HAPPY",
+      "details": {
+        "approval_id": "APR-0001",
+        "payload_hash": "6e5498ed263e1c7d175f86afb8974c0fad6b866b6ea5fd5a7e4e6d28fd397adb"
+      },
+      "event_id": "EVT-0004",
+      "event_type": "case_lock_approved",
+      "parent_event_id": "EVT-0003",
+      "timestamp": "2026-08-08T00:03:00Z"
+    },
+    {
+      "actor_id": "AGT-VAL-001",
+      "actor_type": "agent",
+      "artifact_id": "ART-OUTPUT-HAPPY",
+      "details": {
+        "tool_call_id": "CALL-0001"
+      },
+      "event_id": "EVT-0005",
+      "event_type": "valuation_executed",
+      "parent_event_id": "EVT-0004",
+      "timestamp": "2026-08-08T00:04:00Z"
+    },
+    {
+      "actor_id": "M7-VALIDATOR",
+      "actor_type": "validator",
+      "artifact_id": "ART-OUTPUT-HAPPY",
+      "details": {},
+      "event_id": "EVT-0006",
+      "event_type": "deterministic_validation_passed",
+      "parent_event_id": "EVT-0005",
+      "timestamp": "2026-08-08T00:05:00Z"
+    },
+    {
+      "actor_id": "AGT-REV-001",
+      "actor_type": "agent",
+      "artifact_id": "ART-EVAL-HAPPY",
+      "details": {},
+      "event_id": "EVT-0007",
+      "event_type": "independent_review_passed",
+      "parent_event_id": "EVT-0006",
+      "timestamp": "2026-08-08T00:06:00Z"
+    },
+    {
+      "actor_id": "AGT-ORC-001",
+      "actor_type": "agent",
+      "artifact_id": "ART-OUTPUT-HAPPY",
+      "details": {},
+      "event_id": "EVT-0008",
+      "event_type": "output_approval_requested",
+      "parent_event_id": "EVT-0007",
+      "timestamp": "2026-08-08T00:07:00Z"
+    },
+    {
+      "actor_id": "human-maintainer",
+      "actor_type": "human",
+      "artifact_id": "ART-OUTPUT-HAPPY",
+      "details": {
+        "approval_id": "APR-0002",
+        "payload_hash": "a8095cedb871cfe455b8c61743f8087326990a64f878d72dc87ea0eaf9d10351"
+      },
+      "event_id": "EVT-0009",
+      "event_type": "output_approved",
+      "parent_event_id": "EVT-0008",
+      "timestamp": "2026-08-08T00:08:00Z"
+    },
+    {
+      "actor_id": "AGT-MEM-001",
+      "actor_type": "agent",
+      "artifact_id": "ART-MEMO-HAPPY",
+      "details": {},
+      "event_id": "EVT-0010",
+      "event_type": "memo_rendered",
+      "parent_event_id": "EVT-0009",
+      "timestamp": "2026-08-08T00:09:00Z"
+    },
+    {
+      "actor_id": "AGT-ORC-001",
+      "actor_type": "agent",
+      "artifact_id": "ART-MEMO-HAPPY",
+      "details": {},
+      "event_id": "EVT-0011",
+      "event_type": "run_completed",
+      "parent_event_id": "EVT-0010",
+      "timestamp": "2026-08-08T00:10:00Z"
+    }
+  ],
+  "findings": [
+    {
+      "agent_id": "AGT-REV-001",
+      "code": "synthetic_only",
+      "finding_id": "FND-INFO-001",
+      "message": "Offline synthetic benchmark only.",
+      "severity": "info"
+    }
+  ],
+  "handoffs": [
+    {
+      "artifact_id": "ART-CASE-HAPPY",
+      "created_at": "2026-08-08T00:02:00Z",
+      "handoff_id": "HND-0001",
+      "payload_hash": "6e5498ed263e1c7d175f86afb8974c0fad6b866b6ea5fd5a7e4e6d28fd397adb",
+      "recipient": "human-maintainer",
+      "sender": "AGT-EVD-001"
+    },
+    {
+      "artifact_id": "ART-CASE-HAPPY",
+      "created_at": "2026-08-08T00:03:00Z",
+      "handoff_id": "HND-0002",
+      "payload_hash": "6e5498ed263e1c7d175f86afb8974c0fad6b866b6ea5fd5a7e4e6d28fd397adb",
+      "recipient": "AGT-VAL-001",
+      "sender": "AGT-ORC-001"
+    },
+    {
+      "artifact_id": "ART-OUTPUT-HAPPY",
+      "created_at": "2026-08-08T00:05:00Z",
+      "handoff_id": "HND-0003",
+      "payload_hash": "a8095cedb871cfe455b8c61743f8087326990a64f878d72dc87ea0eaf9d10351",
+      "recipient": "AGT-REV-001",
+      "sender": "AGT-VAL-001"
+    },
+    {
+      "artifact_id": "ART-OUTPUT-HAPPY",
+      "created_at": "2026-08-08T00:07:00Z",
+      "handoff_id": "HND-0004",
+      "payload_hash": "a8095cedb871cfe455b8c61743f8087326990a64f878d72dc87ea0eaf9d10351",
+      "recipient": "human-maintainer",
+      "sender": "AGT-REV-001"
+    },
+    {
+      "artifact_id": "ART-OUTPUT-HAPPY",
+      "created_at": "2026-08-08T00:08:00Z",
+      "handoff_id": "HND-0005",
+      "payload_hash": "a8095cedb871cfe455b8c61743f8087326990a64f878d72dc87ea0eaf9d10351",
+      "recipient": "AGT-MEM-001",
+      "sender": "AGT-ORC-001"
+    },
+    {
+      "artifact_id": "ART-MEMO-HAPPY",
+      "created_at": "2026-08-08T00:09:00Z",
+      "handoff_id": "HND-0006",
+      "payload_hash": "a975441b62dfd65b90d8309b8f2e86e6b635b345c7256950e7e5d124f65014bc",
+      "recipient": "AGT-ORC-001",
+      "sender": "AGT-MEM-001"
+    }
+  ],
+  "limitations": [
+    "No live data.",
+    "No model API.",
+    "No autonomous approval.",
+    "No investment or trade advice."
+  ],
+  "registry_version": "1.0.0",
+  "run_id": "RUN-AGT-HAPPY-001",
+  "schema_version": "1.0.0",
+  "status": "completed",
+  "tool_calls": [
+    {
+      "agent_id": "AGT-VAL-001",
+      "approval_ref": "APR-0001",
+      "call_id": "CALL-0001",
+      "error_code": null,
+      "input_hash": "6e5498ed263e1c7d175f86afb8974c0fad6b866b6ea5fd5a7e4e6d28fd397adb",
+      "output_hash": "a8095cedb871cfe455b8c61743f8087326990a64f878d72dc87ea0eaf9d10351",
+      "parent_event_id": "EVT-0004",
+      "prompt_id": "PRM-VAL-001",
+      "remaining_action_budget": 9,
+      "status": "success",
+      "timestamp": "2026-08-08T00:04:00Z",
+      "tool_id": "TL-CYCLE-FIXTURE"
+    },
+    {
+      "agent_id": "AGT-REV-001",
+      "approval_ref": null,
+      "call_id": "CALL-0002",
+      "error_code": null,
+      "input_hash": "a8095cedb871cfe455b8c61743f8087326990a64f878d72dc87ea0eaf9d10351",
+      "output_hash": "a25318197199a8d19a8cccaaa3ec9031229084cf04476c238288eb2615cef4f2",
+      "parent_event_id": "EVT-0006",
+      "prompt_id": "PRM-REV-001",
+      "remaining_action_budget": 8,
+      "status": "success",
+      "timestamp": "2026-08-08T00:06:00Z",
+      "tool_id": "TL-INDEPENDENT-VALIDATE"
+    },
+    {
+      "agent_id": "AGT-MEM-001",
+      "approval_ref": "APR-0002",
+      "call_id": "CALL-0003",
+      "error_code": null,
+      "input_hash": "a8095cedb871cfe455b8c61743f8087326990a64f878d72dc87ea0eaf9d10351",
+      "output_hash": "a975441b62dfd65b90d8309b8f2e86e6b635b345c7256950e7e5d124f65014bc",
+      "parent_event_id": "EVT-0009",
+      "prompt_id": "PRM-MEM-001",
+      "remaining_action_budget": 7,
+      "status": "success",
+      "timestamp": "2026-08-08T00:09:00Z",
+      "tool_id": "TL-MEMO-RENDER"
+    }
+  ],
+  "valuation_id": "VAL-ESTABLISHED-INDUSTRIAL",
+  "workflow_id": "WFL-AGT-001"
+}

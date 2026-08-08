@@ -1,0 +1,17 @@
+{
+  "active_gates": [],
+  "approval_statuses": [
+    "invalidated"
+  ],
+  "artifact_kinds": [
+    "case"
+  ],
+  "case_revisions": [
+    1,
+    2
+  ],
+  "latest_normalized_margin": 0.11,
+  "run_id": "RUN-AGT-TAMPER-001",
+  "status": "awaiting_case_lock",
+  "tool_call_count": 0
+}

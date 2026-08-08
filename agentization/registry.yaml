@@ -1,0 +1,98 @@
+schema_version: 1.0.0
+registry_id: REG-AGT-001
+version: 1.0.0
+status: approved
+agents:
+  - agent_id: AGT-ORC-001
+    prompt_id: PRM-ORC-001
+    allowed_tools: [TL-STATE, TL-HANDOFF]
+    allowed_actions: [derive_state, authorize_action, create_handoff]
+    max_actions: 20
+    can_approve: false
+    can_modify_prior_artifacts: false
+  - agent_id: AGT-EVD-001
+    prompt_id: PRM-EVD-001
+    allowed_tools: [TL-ARTIFACT-READ, TL-HANDOFF]
+    allowed_actions: [assemble_case, create_handoff]
+    max_actions: 12
+    can_approve: false
+    can_modify_prior_artifacts: false
+  - agent_id: AGT-VAL-001
+    prompt_id: PRM-VAL-001
+    allowed_tools: [TL-CYCLE-FIXTURE, TL-HANDOFF]
+    allowed_actions: [execute_workflow, create_handoff]
+    max_actions: 6
+    can_approve: false
+    can_modify_prior_artifacts: false
+  - agent_id: AGT-REV-001
+    prompt_id: PRM-REV-001
+    allowed_tools: [TL-INDEPENDENT-VALIDATE, TL-HANDOFF]
+    allowed_actions: [validate_run, create_handoff]
+    max_actions: 10
+    can_approve: false
+    can_modify_prior_artifacts: false
+  - agent_id: AGT-MEM-001
+    prompt_id: PRM-MEM-001
+    allowed_tools: [TL-ARTIFACT-READ, TL-MEMO-RENDER]
+    allowed_actions: [render_memo, create_handoff]
+    max_actions: 6
+    can_approve: false
+    can_modify_prior_artifacts: false
+tools:
+  - tool_id: TL-STATE
+    adapter: agent_runtime:derive_state
+    allowed_workflows: [WFL-AGT-001]
+    network_access: false
+    filesystem_access: none
+    shell_access: false
+    mutates_run: false
+  - tool_id: TL-HANDOFF
+    adapter: agent_runtime:create_handoff
+    allowed_workflows: [WFL-AGT-001]
+    network_access: false
+    filesystem_access: none
+    shell_access: false
+    mutates_run: true
+  - tool_id: TL-ARTIFACT-READ
+    adapter: agent_adapters:read_approved_artifact
+    allowed_workflows: [WFL-AGT-001]
+    network_access: false
+    filesystem_access: approved_artifacts_read_only
+    shell_access: false
+    mutates_run: false
+  - tool_id: TL-CYCLE-FIXTURE
+    adapter: agent_adapters:execute_cycle_fixture
+    allowed_workflows: [WFL-AGT-001, WFL-CYC-001]
+    network_access: false
+    filesystem_access: approved_artifacts_read_only
+    shell_access: false
+    mutates_run: false
+  - tool_id: TL-INDEPENDENT-VALIDATE
+    adapter: validate_agent_runs:validate_document
+    allowed_workflows: [WFL-AGT-001]
+    network_access: false
+    filesystem_access: approved_artifacts_read_only
+    shell_access: false
+    mutates_run: false
+  - tool_id: TL-MEMO-RENDER
+    adapter: agent_adapters:render_approved_memo
+    allowed_workflows: [WFL-AGT-001]
+    network_access: false
+    filesystem_access: none
+    shell_access: false
+    mutates_run: false
+separation_of_duties:
+  executor_agent: AGT-VAL-001
+  reviewer_agent: AGT-REV-001
+  must_differ: true
+  human_gates: [case_lock, output_approval]
+global_denials:
+  - network access
+  - shell access
+  - arbitrary filesystem access
+  - private-source access
+  - secret access
+  - autonomous approval
+  - self-modifying registry or prompts
+  - trading or portfolio action
+  - hidden-reasoning storage

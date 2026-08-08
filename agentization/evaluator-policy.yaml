@@ -1,0 +1,30 @@
+schema_version: 1.0.0
+policy_id: POL-AGT-001
+version: 1.0.0
+blocking_checks:
+  - schema_valid
+  - canonical_hashes_match
+  - legal_event_sequence
+  - reported_state_matches_events
+  - approvals_are_human_and_current
+  - executor_and_reviewer_differ
+  - registered_actions_and_tools_only
+  - action_budget_not_exceeded
+  - deterministic_validator_passed
+  - no_private_source_dependency
+  - no_trade_or_portfolio_instruction
+evidence_checks:
+  - supporting_evidence_present
+  - counterevidence_or_search_recorded
+  - missing_and_stale_evidence_explicit
+  - base_rate_or_outside_view_considered
+  - empirical_scope_and_limits_disclosed
+  - alternative_explanations_tested
+  - fundamentals_preserved
+revision_policy:
+  case_kinds: [case]
+  output_kinds: [valuation_output, evaluation_result, memo]
+  case_return_state: awaiting_case_lock
+  output_return_state: awaiting_output_approval
+  stale_approvals_must_be_invalidated: true
+prohibited_output_terms: [buy, sell, position size, leverage target, hedge order, trade timing]

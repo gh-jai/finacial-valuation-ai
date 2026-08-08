@@ -1,0 +1,211 @@
+{
+  "approvals": [
+    {
+      "actor_id": "human-maintainer",
+      "actor_type": "human",
+      "approval_id": "APR-TAMPER-0001",
+      "approved_at": "2026-08-08T00:03:00Z",
+      "artifact_id": "ART-CASE-TAMPER",
+      "gate_id": "case_lock",
+      "invalidated_at": "2026-08-08T00:05:00Z",
+      "payload_hash": "fd59ef5668ff5d503e7355c4c8c266acda656f508677c32594b3f55a1da2650b",
+      "status": "invalidated"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "ART-CASE-TAMPER",
+      "created_by": "AGT-EVD-001",
+      "kind": "case",
+      "payload": {
+        "assumptions": {
+          "normalized_margin": 0.1,
+          "synthetic_only": true,
+          "trade_actions_excluded": true
+        },
+        "claim_refs": [
+          "CLM-CYC-001"
+        ],
+        "evidence_review": {
+          "alternative_explanations": [
+            "Structural decline"
+          ],
+          "base_rate_context": "Established-cycle reference class.",
+          "counterevidence_refs": [
+            "EVID-MARGIN-CONTRA"
+          ],
+          "counterevidence_search": "Recorded.",
+          "missing_evidence": [],
+          "prohibited_requests": [],
+          "stale_evidence_refs": [],
+          "supporting_evidence_refs": [
+            "EVID-INDPRO"
+          ]
+        },
+        "fixture_id": "synthetic-established-cycle-industrial",
+        "limitations": [
+          "Synthetic."
+        ],
+        "route": {
+          "route_reason": "Approved synthetic route.",
+          "workflow_id": "WFL-CYC-001"
+        },
+        "source_refs": [
+          "SRC-DAMODARAN-DARK-SIDE-2018"
+        ],
+        "valuation_id": "VAL-ESTABLISHED-INDUSTRIAL"
+      },
+      "payload_hash": "fd59ef5668ff5d503e7355c4c8c266acda656f508677c32594b3f55a1da2650b",
+      "revision": 1
+    },
+    {
+      "artifact_id": "ART-CASE-TAMPER",
+      "created_by": "AGT-EVD-001",
+      "kind": "case",
+      "payload": {
+        "assumptions": {
+          "normalized_margin": 0.11,
+          "synthetic_only": true,
+          "trade_actions_excluded": true
+        },
+        "claim_refs": [
+          "CLM-CYC-001"
+        ],
+        "evidence_review": {
+          "alternative_explanations": [
+            "Structural decline"
+          ],
+          "base_rate_context": "Established-cycle reference class.",
+          "counterevidence_refs": [
+            "EVID-MARGIN-CONTRA"
+          ],
+          "counterevidence_search": "Recorded.",
+          "missing_evidence": [],
+          "prohibited_requests": [],
+          "stale_evidence_refs": [],
+          "supporting_evidence_refs": [
+            "EVID-INDPRO"
+          ]
+        },
+        "fixture_id": "synthetic-established-cycle-industrial",
+        "limitations": [
+          "Synthetic."
+        ],
+        "route": {
+          "route_reason": "Approved synthetic route.",
+          "workflow_id": "WFL-CYC-001"
+        },
+        "source_refs": [
+          "SRC-DAMODARAN-DARK-SIDE-2018"
+        ],
+        "valuation_id": "VAL-ESTABLISHED-INDUSTRIAL"
+      },
+      "payload_hash": "ae2ba5a21b4b1ea69e58ecdc3abd5da798b60a587ed8ab13b842123da99e495a",
+      "revision": 2
+    }
+  ],
+  "budgets": {
+    "max_actions": 10,
+    "used_actions": 0
+  },
+  "events": [
+    {
+      "actor_id": "M7-RUNTIME",
+      "actor_type": "runtime",
+      "artifact_id": null,
+      "details": {},
+      "event_id": "EVT-0001",
+      "event_type": "run_initialized",
+      "parent_event_id": null,
+      "timestamp": "2026-08-08T00:00:00Z"
+    },
+    {
+      "actor_id": "AGT-EVD-001",
+      "actor_type": "agent",
+      "artifact_id": "ART-CASE-TAMPER",
+      "details": {},
+      "event_id": "EVT-0002",
+      "event_type": "case_assembled",
+      "parent_event_id": "EVT-0001",
+      "timestamp": "2026-08-08T00:01:00Z"
+    },
+    {
+      "actor_id": "AGT-ORC-001",
+      "actor_type": "agent",
+      "artifact_id": "ART-CASE-TAMPER",
+      "details": {},
+      "event_id": "EVT-0003",
+      "event_type": "case_lock_requested",
+      "parent_event_id": "EVT-0002",
+      "timestamp": "2026-08-08T00:02:00Z"
+    },
+    {
+      "actor_id": "human-maintainer",
+      "actor_type": "human",
+      "artifact_id": "ART-CASE-TAMPER",
+      "details": {
+        "approval_id": "APR-TAMPER-0001",
+        "payload_hash": "fd59ef5668ff5d503e7355c4c8c266acda656f508677c32594b3f55a1da2650b"
+      },
+      "event_id": "EVT-0004",
+      "event_type": "case_lock_approved",
+      "parent_event_id": "EVT-0003",
+      "timestamp": "2026-08-08T00:03:00Z"
+    },
+    {
+      "actor_id": "AGT-EVD-001",
+      "actor_type": "agent",
+      "artifact_id": "ART-CASE-TAMPER",
+      "details": {
+        "return_to_state": "awaiting_case_lock",
+        "revision": 2
+      },
+      "event_id": "EVT-0005",
+      "event_type": "artifact_revised",
+      "parent_event_id": "EVT-0004",
+      "timestamp": "2026-08-08T00:04:00Z"
+    },
+    {
+      "actor_id": "M7-RUNTIME",
+      "actor_type": "runtime",
+      "artifact_id": "ART-CASE-TAMPER",
+      "details": {
+        "approval_id": "APR-TAMPER-0001",
+        "return_to_state": "awaiting_case_lock"
+      },
+      "event_id": "EVT-0006",
+      "event_type": "approval_invalidated",
+      "parent_event_id": "EVT-0005",
+      "timestamp": "2026-08-08T00:05:00Z"
+    }
+  ],
+  "findings": [
+    {
+      "agent_id": "AGT-REV-001",
+      "code": "stale_approval",
+      "finding_id": "FND-TAMPER-001",
+      "message": "Case assumption changed after approval; a new human case lock is required.",
+      "severity": "blocking"
+    }
+  ],
+  "handoffs": [
+    {
+      "artifact_id": "ART-CASE-TAMPER",
+      "created_at": "2026-08-08T00:02:00Z",
+      "handoff_id": "HND-TAMPER-0001",
+      "payload_hash": "fd59ef5668ff5d503e7355c4c8c266acda656f508677c32594b3f55a1da2650b",
+      "recipient": "human-maintainer",
+      "sender": "AGT-EVD-001"
+    }
+  ],
+  "limitations": [
+    "Synthetic approval-tampering benchmark."
+  ],
+  "registry_version": "1.0.0",
+  "run_id": "RUN-AGT-TAMPER-001",
+  "schema_version": "1.0.0",
+  "status": "awaiting_case_lock",
+  "tool_calls": [],
+  "valuation_id": "VAL-ESTABLISHED-INDUSTRIAL",
+  "workflow_id": "WFL-AGT-001"
+}

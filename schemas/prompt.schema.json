@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fvi.example/schemas/prompt.schema.json",
+  "title": "FVI Prompt Document Frontmatter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "type", "status", "version", "domain", "source_refs", "dependencies", "owner", "last_updated", "prompt_type", "agent_ref", "input_contract", "output_contract"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^PRM-[A-Z]+-[0-9]{3}$"},
+    "title": {"type": "string", "minLength": 1},
+    "type": {"const": "prompt"},
+    "status": {"enum": ["draft", "reviewed", "approved", "deprecated"]},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "domain": {"enum": ["accounting", "valuation", "risk", "narrative", "lifecycle", "market-pricing", "special-situations", "cross-domain"]},
+    "source_refs": {"$ref": "#/$defs/idList"},
+    "dependencies": {"$ref": "#/$defs/idList"},
+    "owner": {"type": "string", "minLength": 1},
+    "last_updated": {"type": "string", "format": "date"},
+    "prompt_type": {"enum": ["system", "task", "evaluator"]},
+    "agent_ref": {"type": "string", "pattern": "^AGT-[A-Z]+-[0-9]{3}$"},
+    "input_contract": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "output_contract": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+  },
+  "$defs": {
+    "idList": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+  }
+}

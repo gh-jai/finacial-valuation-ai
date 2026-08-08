@@ -18,11 +18,15 @@ DOCUMENT_SCHEMAS = {
     "knowledge": SCHEMA_DIR / "knowledge.schema.json",
     "skill": SCHEMA_DIR / "skill.schema.json",
     "workflow": SCHEMA_DIR / "workflow.schema.json",
+    "agent": SCHEMA_DIR / "agent.schema.json",
+    "prompt": SCHEMA_DIR / "prompt.schema.json",
 }
 DOCUMENT_ROOTS = {
     "knowledge": ROOT / "knowledge",
     "skill": ROOT / "skills",
     "workflow": ROOT / "workflows",
+    "agent": ROOT / "agents",
+    "prompt": ROOT / "prompts",
 }
 
 

@@ -1,0 +1,102 @@
+{
+  "schema_version": "0.1.0",
+  "judgment_id": "CYJ-ESTABLISHED-INDUSTRIAL",
+  "valuation_id": "VAL-ESTABLISHED-INDUSTRIAL",
+  "valuation_date": "2026-08-01",
+  "company": {"name": "Synthetic Cycle Industrial", "currency": "USD"},
+  "narrative_id": "NAR-SYNTH-BASE",
+  "subject_classification": {
+    "exposure_type": "economic_cycle",
+    "external_driver": "synthetic industrial-production index",
+    "linked_financial_series": ["revenue", "operating_margin", "reinvestment", "invested_capital", "return_on_capital", "leverage", "financing_cost"],
+    "observation_window": {"start": "2016-01-01", "end": "2025-12-31", "observation_years": 10, "strong_and_weak_conditions": true},
+    "supporting_evidence_refs": ["EVID-ECON", "EVID-PROFIT"],
+    "contradicting_evidence_refs": ["EVID-PSYCH"],
+    "lifecycle_boundaries": {"m3_cleared": true, "m4_cleared": true, "m5_cleared": true, "mature_company": true, "route": "M6"},
+    "route_approved": true
+  },
+  "current_base": {
+    "valuation_date": "2026-08-01", "reporting_period": "2026-06-30", "currency": "USD", "continuing_operations": true,
+    "current_driver": {"value": 80, "unit": "index"},
+    "financials": {"revenue": 100, "operating_margin": 0.04, "operating_income": 4, "reinvestment": 2, "invested_capital": 60, "return_on_capital": 0.05, "cash": 10, "debt": 20, "fixed_obligations": 4, "leverage": 0.4, "financing_cost": 0.09},
+    "reconciliations": [{"item": "none", "amount": 0, "basis": "Synthetic continuing operations already reconciled.", "evidence_refs": ["EVID-PROFIT"]}]
+  },
+  "evidence_staleness_policy": {"max_age_days": 120, "basis": "Point evidence older than 120 days cannot support current confidence or extremes."},
+  "cycle_evidence": {
+    "items": [
+      {"evidence_id": "EVID-ECON", "dimension": "economic", "availability": "available", "indicator_name": "industrial-production index", "observation": "Below its synthetic full-cycle midpoint.", "unit": "index", "as_of_date": "2026-07-15", "window_start": "2016-01-01", "window_end": "2026-07-15", "source_ref": "SYNTH-ECON-001", "direction": "negative", "strength": "strong", "supports": ["subject_classification", "cycle_assessment", "judgment_overlay"], "limitations": ["Synthetic public benchmark evidence."], "stale": false},
+      {"evidence_id": "EVID-PROFIT", "dimension": "company_profit", "availability": "available", "indicator_name": "operating margin", "observation": "Current margin is near the weak end of the ten-year company range.", "unit": "ratio", "as_of_date": "2026-06-30", "window_start": "2016-01-01", "window_end": "2026-06-30", "source_ref": "SYNTH-COMPANY-001", "direction": "deep_negative", "strength": "strong", "supports": ["subject_classification", "cycle_assessment", "judgment_overlay"], "limitations": ["Synthetic accounting series."], "stale": false},
+      {"evidence_id": "EVID-PSYCH", "dimension": "psychology_valuation", "availability": "available", "indicator_name": "price-to-intrinsic-value", "observation": "Price is below value, but the discount is not an extreme.", "unit": "ratio", "as_of_date": "2026-08-01", "window_start": null, "window_end": null, "source_ref": "SYNTH-MARKET-001", "direction": "negative", "strength": "moderate", "supports": ["subject_classification_counterevidence", "cycle_assessment_counterevidence", "judgment_overlay"], "limitations": ["One price observation is not sufficient on its own."], "stale": false},
+      {"evidence_id": "EVID-RISK", "dimension": "risk_attitude", "availability": "not_available", "indicator_name": "not available", "observation": "No independent current risk-attitude series was approved.", "unit": "not_available", "as_of_date": "2026-08-01", "window_start": null, "window_end": null, "source_ref": "SYNTH-GAP-001", "direction": "neutral", "strength": "weak", "supports": ["judgment_overlay_counterevidence"], "limitations": ["Unavailable dimensions cannot count as neutral evidence."], "stale": false},
+      {"evidence_id": "EVID-CREDIT", "dimension": "credit", "availability": "available", "indicator_name": "broad lending terms", "observation": "Credit is conservative but functioning.", "unit": "ordinal", "as_of_date": "2026-07-20", "window_start": null, "window_end": null, "source_ref": "SYNTH-CREDIT-001", "direction": "neutral", "strength": "moderate", "supports": ["judgment_overlay"], "limitations": ["Broad credit is distinct from issuer-specific distress."], "stale": false}
+    ]
+  },
+  "cycle_assessment": {
+    "regime": "established_recurring", "company_cycle_position": "trough",
+    "regime_reasoning": "Ten synthetic years include strong and weak conditions and support one scale-adjusted normal anchor.",
+    "break_assessment": null,
+    "supporting_evidence_refs": ["EVID-ECON", "EVID-PROFIT"],
+    "counterevidence_refs": ["EVID-PSYCH"],
+    "counterevidence_search": "Reviewed company, market, and credit evidence for a structural break; none was supported."
+  },
+  "valuation_treatment": {
+    "mode": "transition_to_normal",
+    "transition_to_normal": {
+      "normalization_window": {"start": "2016-01-01", "end": "2025-12-31", "representative": true, "strong_and_weak_conditions": true, "basis": "Ten-year synthetic company cycle with scale adjustment."},
+      "current_input_set": {"driver": 80, "revenue": 100, "operating_margin": 0.04, "reinvestment": 2, "invested_capital": 60, "leverage": 0.4, "financing_cost": 0.09},
+      "normalized_anchor": {"driver": 100, "revenue": 120, "operating_margin": 0.1, "reinvestment": 8, "invested_capital": 75, "leverage": 0.3, "financing_cost": 0.07},
+      "transition_periods": 3,
+      "tax_rate": 0.25,
+      "period_inputs": [
+        {"period": 0, "driver": 80.0, "revenue": 100.0, "operating_margin": 0.04, "reinvestment": 2.0, "invested_capital": 60.0, "leverage": 0.4, "financing_cost": 0.09, "operating_income": 4.0, "after_tax_operating_income": 3.0, "return_on_capital": 0.05},
+        {"period": 1, "driver": 86.666666666667, "revenue": 106.666666666667, "operating_margin": 0.06, "reinvestment": 4.0, "invested_capital": 65.0, "leverage": 0.366666666667, "financing_cost": 0.083333333333, "operating_income": 6.4, "after_tax_operating_income": 4.8, "return_on_capital": 0.073846153846},
+        {"period": 2, "driver": 93.333333333333, "revenue": 113.333333333333, "operating_margin": 0.08, "reinvestment": 6.0, "invested_capital": 70.0, "leverage": 0.333333333333, "financing_cost": 0.076666666667, "operating_income": 9.066666666667, "after_tax_operating_income": 6.8, "return_on_capital": 0.097142857143},
+        {"period": 3, "driver": 100.0, "revenue": 120.0, "operating_margin": 0.1, "reinvestment": 8.0, "invested_capital": 75.0, "leverage": 0.3, "financing_cost": 0.07, "operating_income": 12.0, "after_tax_operating_income": 9.0, "return_on_capital": 0.12}
+      ],
+      "driver_to_financial_mapping": ["Driver, revenue, margin, reinvestment, capital, return, leverage, and funding cost converge once."],
+      "recovery_growth_applied": false,
+      "limitations": ["The transition is a deterministic synthetic handoff, not a turning-point forecast."]
+    }
+  },
+  "valuation_input_handoff": {
+    "status": "produced", "workflow_ref": "WFL-VAL-001", "treatment_mode": "transition_to_normal",
+    "period_inputs": [
+      {"period": 0, "driver": 80.0, "revenue": 100.0, "operating_margin": 0.04, "reinvestment": 2.0, "invested_capital": 60.0, "leverage": 0.4, "financing_cost": 0.09, "operating_income": 4.0, "after_tax_operating_income": 3.0, "return_on_capital": 0.05},
+      {"period": 1, "driver": 86.666666666667, "revenue": 106.666666666667, "operating_margin": 0.06, "reinvestment": 4.0, "invested_capital": 65.0, "leverage": 0.366666666667, "financing_cost": 0.083333333333, "operating_income": 6.4, "after_tax_operating_income": 4.8, "return_on_capital": 0.073846153846},
+      {"period": 2, "driver": 93.333333333333, "revenue": 113.333333333333, "operating_margin": 0.08, "reinvestment": 6.0, "invested_capital": 70.0, "leverage": 0.333333333333, "financing_cost": 0.076666666667, "operating_income": 9.066666666667, "after_tax_operating_income": 6.8, "return_on_capital": 0.097142857143},
+      {"period": 3, "driver": 100.0, "revenue": 120.0, "operating_margin": 0.1, "reinvestment": 8.0, "invested_capital": 75.0, "leverage": 0.3, "financing_cost": 0.07, "operating_income": 12.0, "after_tax_operating_income": 9.0, "return_on_capital": 0.12}
+    ],
+    "scenario_ids": [], "normalized_input_set": null,
+    "limitations": ["M1 owns discounting and terminal arithmetic."]
+  },
+  "intrinsic_value_reference": {
+    "workflow_ref": "WFL-VAL-001", "valuation_id": "VAL-ESTABLISHED-INDUSTRIAL", "basis": "common-equity", "currency": "USD",
+    "scenario_values": [{"scenario_id": "BASE", "value": 95}], "value_range": {"low": 95, "high": 95}, "expected_value": 95, "computed_before_overlay": true
+  },
+  "judgment_overlay": {
+    "market_cycle_position": "below_midpoint", "confidence": "medium",
+    "dimension_assessments": [
+      {"dimension": "economic", "availability": "available", "signal": "negative", "signal_definition": "Below-cycle economic activity implies below midpoint.", "band_implication": "below_midpoint", "evidence_refs": ["EVID-ECON"], "stale_evidence_refs": [], "counterevidence_refs": [], "unresolved_strong_contradiction": false, "limitations": ["Synthetic indicator."]},
+      {"dimension": "company_profit", "availability": "available", "signal": "deep_negative", "signal_definition": "Trough profitability implies extreme low for this dimension.", "band_implication": "extreme_low", "evidence_refs": ["EVID-PROFIT"], "stale_evidence_refs": [], "counterevidence_refs": [], "unresolved_strong_contradiction": false, "limitations": ["Company results do not determine the market band alone."]},
+      {"dimension": "psychology_valuation", "availability": "available", "signal": "negative", "signal_definition": "A moderate price discount implies below midpoint, not an extreme.", "band_implication": "below_midpoint", "evidence_refs": ["EVID-PSYCH"], "stale_evidence_refs": [], "counterevidence_refs": [], "unresolved_strong_contradiction": false, "limitations": ["One price observation is insufficient alone."]},
+      {"dimension": "risk_attitude", "availability": "not_available", "signal": "neutral", "signal_definition": "Neutral is a serialization placeholder only.", "band_implication": "indeterminate", "evidence_refs": [], "stale_evidence_refs": [], "counterevidence_refs": ["EVID-RISK"], "unresolved_strong_contradiction": false, "limitations": ["No approved current evidence."]},
+      {"dimension": "credit", "availability": "available", "signal": "neutral", "signal_definition": "Conservative but functioning credit implies midpoint.", "band_implication": "midpoint", "evidence_refs": ["EVID-CREDIT"], "stale_evidence_refs": [], "counterevidence_refs": [], "unresolved_strong_contradiction": false, "limitations": ["Broad credit only."]}
+    ],
+    "supporting_evidence_refs": ["EVID-ECON", "EVID-PROFIT", "EVID-PSYCH", "EVID-CREDIT"],
+    "counterevidence_refs": ["EVID-RISK"],
+    "price_value_observation": {"market_price": 80, "intrinsic_value": 95, "ratio": 0.842105263158, "as_of_date": "2026-08-01", "evidence_ref": "EVID-PSYCH", "stale": false, "observed_after_intrinsic_value": true},
+    "alignment_count": 4, "review_posture": "balanced_review",
+    "invalidation_conditions": ["A durable structural break invalidates the historical anchor."],
+    "limitations": ["The overlay cannot change intrinsic value or authorize a trade."]
+  },
+  "risk_controls": {"distress_material": false, "distress_handoff": null, "m6_distress_adjustment": false, "recovery_growth_applied": false, "overlay_changes_intrinsic_value": false, "hidden_numeric_score": false, "trade_instruction": null, "excluded_methods": []},
+  "calculation_trail": [
+    {"step": "transition_start", "reference": "period_inputs[0].revenue", "value": 100},
+    {"step": "transition_end", "reference": "period_inputs[3].revenue", "value": 120},
+    {"step": "alignment", "reference": "judgment_overlay.alignment_count", "value": 4},
+    {"step": "posture", "reference": "judgment_overlay.review_posture", "value": "balanced_review"}
+  ],
+  "traceability": {"source_refs": ["SRC-DAMODARAN-DARK-SIDE-2018", "SRC-MARKS-MASTERING-MARKET-CYCLE-2018"], "claim_refs": ["CLM-CYC-001", "CLM-CYC-007", "CLM-CYC-010", "CLM-CYC-012", "CLM-CYC-032", "CLM-CYC-034"], "narrative_assertion_refs": ["NAR-A-001", "NAR-A-003"]},
+  "limitations": ["Synthetic evidence and values prove controls, not an investment conclusion."],
+  "review": {"status": "approved", "reviewer": "fvi-maintainers", "reviewed_at": "2026-08-01T00:00:00Z", "classification_approved": true, "treatment_approved": true, "evidence_approved": true, "scenario_approved": true, "risk_separation_approved": true, "overlay_approved": true, "notes": "Synthetic Benchmark A approved for deterministic control testing."}
+}

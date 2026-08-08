@@ -1,0 +1,14 @@
+{
+  "judgment_id": "CYJ-ESTABLISHED-INDUSTRIAL",
+  "regime": "established_recurring",
+  "treatment_mode": "transition_to_normal",
+  "handoff_status": "produced",
+  "value_range": {"low": 95, "high": 95},
+  "expected_value": 95,
+  "market_cycle_position": "below_midpoint",
+  "confidence": "medium",
+  "alignment_count": 4,
+  "review_posture": "balanced_review",
+  "overlay_changes_intrinsic_value": false,
+  "distress_handoff": false
+}

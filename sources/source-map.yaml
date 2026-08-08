@@ -79,6 +79,35 @@ mappings:
       - docs/milestones/M5-decline-distress-contingent-survival-contract.md
       - docs/milestones/M5-implementation-human-review.md
       - templates/m5-decline-distress-review-checklist.md
+      - extraction/manifests/M6-cycle-aware-judgment-layer.yaml
+      - extraction/reviewed/M6-cycle-aware-judgment-layer-claims.yaml
+      - docs/milestones/M6-cycle-aware-judgment-layer-contract.md
+      - docs/milestones/M6-implementation-human-review.md
+      - templates/m6-cycle-aware-judgment-review-checklist.md
+      - knowledge/lifecycle/CYC-001-exposure-boundary-and-regime-routing.md
+      - knowledge/lifecycle/CYC-002-complete-input-and-no-double-counting-controls.md
+      - knowledge/valuation/CYC-003-full-input-normalization.md
+      - knowledge/valuation/CYC-004-current-expectations-and-scenarios.md
+      - skills/SKL-CYC-001-classify-cycle-exposure.md
+      - skills/SKL-CYC-002-reconcile-current-base.md
+      - skills/SKL-CYC-004-assess-regime-and-position.md
+      - skills/SKL-CYC-005-select-valuation-treatment.md
+      - skills/SKL-CYC-006-build-normalization-or-transition.md
+      - skills/SKL-CYC-007-build-current-expectations-scenarios.md
+      - skills/SKL-CYC-008-handoff-intrinsic-value-and-distress.md
+      - skills/SKL-CYC-010-review-and-return-feedback.md
+      - workflows/WFL-CYC-001-cycle-aware-judgment-layer.md
+      - schemas/cycle-aware-judgment.schema.json
+      - tools/cycle_aware.py
+      - tools/validate_cycle_aware_judgments.py
+      - benchmarks/fixtures/cycle_aware/synthetic-established-cycle-industrial.json
+      - benchmarks/fixtures/cycle_aware/synthetic-structural-break-commodity.json
+      - benchmarks/expected/cycle-established-industrial-output.json
+      - benchmarks/expected/cycle-structural-break-commodity-output.json
+      - tests/unit/test_cycle_aware.py
+      - tests/unit/test_cycle_aware_validation.py
+      - tests/integration/test_cycle_aware_benchmarks.py
+      - tests/integration/test_m6_artifact_graph.py
       - knowledge/lifecycle/DST-001-boundary-routing-and-normalized-base.md
       - knowledge/valuation/DST-002-declining-fcff-and-capital-release.md
       - knowledge/valuation/DST-003-divestiture-and-orderly-liquidation.md
@@ -167,7 +196,7 @@ mappings:
       - tests/integration/test_m3_artifact_graph.py
       - templates/m3-young-company-review-checklist.md
     extraction_manifest: extraction/manifests/M3-young-company-survival-adjusted.yaml
-    notes: M3 covers Chapter 9, printed pages 259-321, using 30 claims, seven Knowledge artifacts, nine Skills, a compositional workflow, survival controls, and two synthetic benchmarks. M4 covers Chapter 10, printed pages 323-357, using 30 reviewed claims, seven Knowledge artifacts, nine Skills, a compositional growth-and-fade workflow, a strict schema and validator, and two deterministic synthetic benchmarks. M5 covers Chapter 12, printed pages 397-436, using 32 reviewed claims, eight Knowledge artifacts, ten Skills, a compositional decline-and-distress workflow, a strict schema and independent validator, and two deterministic synthetic benchmarks; Chapter 11 is outside its boundary. The singular extraction_manifest field remains the M3 primary manifest, while the M4 and M5 manifests are explicitly listed in artifacts.
+    notes: M3 covers Chapter 9, printed pages 259-321, using 30 claims, seven Knowledge artifacts, nine Skills, a compositional workflow, survival controls, and two synthetic benchmarks. M4 covers Chapter 10, printed pages 323-357, using 30 reviewed claims, seven Knowledge artifacts, nine Skills, a compositional growth-and-fade workflow, a strict schema and validator, and two deterministic synthetic benchmarks. M5 covers Chapter 12, printed pages 397-436, using 32 reviewed claims, eight Knowledge artifacts, ten Skills, a compositional decline-and-distress workflow, a strict schema and independent validator, and two deterministic synthetic benchmarks; Chapter 11 is outside its boundary. M6 uses Chapter 13, printed pages 438-458, for the valuation-treatment half of eight Knowledge artifacts, ten Skills, a compositional workflow, a strict schema, deterministic engine, independent validator, and two synthetic benchmarks. The singular extraction_manifest field remains the M3 primary manifest, while later manifests are explicitly listed in artifacts.
 
   - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
     artifacts: []
@@ -180,9 +209,34 @@ mappings:
     notes: Reserved for risk, second-level thinking, price-value, and market-psychology artifacts.
 
   - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
-    artifacts: []
-    extraction_manifest: null
-    notes: Reserved for market-cycle and risk-attitude artifacts.
+    artifacts:
+      - extraction/reviewed/M6-cycle-aware-judgment-layer-claims.yaml
+      - docs/milestones/M6-cycle-aware-judgment-layer-contract.md
+      - docs/milestones/M6-implementation-human-review.md
+      - templates/m6-cycle-aware-judgment-review-checklist.md
+      - knowledge/market-pricing/CYC-005-cycle-nature-position-and-limits.md
+      - knowledge/market-pricing/CYC-006-profit-and-psychology-evidence.md
+      - knowledge/risk/CYC-007-risk-attitude-credit-and-distress-separation.md
+      - knowledge/market-pricing/CYC-008-evidence-synthesis-and-review-posture.md
+      - skills/SKL-CYC-003-build-evidence-ledger.md
+      - skills/SKL-CYC-004-assess-regime-and-position.md
+      - skills/SKL-CYC-008-handoff-intrinsic-value-and-distress.md
+      - skills/SKL-CYC-009-create-judgment-overlay.md
+      - skills/SKL-CYC-010-review-and-return-feedback.md
+      - workflows/WFL-CYC-001-cycle-aware-judgment-layer.md
+      - schemas/cycle-aware-judgment.schema.json
+      - tools/cycle_aware.py
+      - tools/validate_cycle_aware_judgments.py
+      - benchmarks/fixtures/cycle_aware/synthetic-established-cycle-industrial.json
+      - benchmarks/fixtures/cycle_aware/synthetic-structural-break-commodity.json
+      - benchmarks/expected/cycle-established-industrial-output.json
+      - benchmarks/expected/cycle-structural-break-commodity-output.json
+      - tests/unit/test_cycle_aware.py
+      - tests/unit/test_cycle_aware_validation.py
+      - tests/integration/test_cycle_aware_benchmarks.py
+      - tests/integration/test_m6_artifact_graph.py
+    extraction_manifest: extraction/manifests/M6-cycle-aware-judgment-layer.yaml
+    notes: M6 uses selected cycle, profit, psychology, risk-attitude, credit, market-synthesis, and positioning chapters for the dated non-numeric half of eight Knowledge artifacts, ten Skills, the compositional workflow, strict validation, and two synthetic benchmarks. The overlay remains separate from intrinsic value and autonomous decisions.
 
   - source_id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
     artifacts: []

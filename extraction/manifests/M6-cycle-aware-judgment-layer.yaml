@@ -1,0 +1,99 @@
+id: EXT-M6-CYCLE-AWARE-JUDGMENT-LAYER
+source_ids:
+  - SRC-DAMODARAN-DARK-SIDE-2018
+  - SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+scope:
+  methodology_source:
+    source_id: SRC-DAMODARAN-DARK-SIDE-2018
+    chapter:
+      number: 13
+      title: "Ups and Downs: Cyclical and Commodity Companies"
+      printed_pages:
+        start: 438
+        end: 458
+      pdf_pages:
+        start: 486
+        end: 506
+    implementation_sections:
+      - title: Classification, characteristics, and valuation issues
+        printed_pages: "438-440"
+      - title: Forecasting and selective-normalization failure modes
+        printed_pages: "440-441"
+      - title: Normalized DCF methods
+        printed_pages: "444-448"
+      - title: Current-price and current-expectations valuation
+        printed_pages: "448-450"
+      - title: Scenario-analysis boundary
+        printed_pages: "450"
+    excluded_sections:
+      - title: Simulation implementation and example
+        printed_pages: "450-452"
+        reason: M6 permits deterministic scenario ranges but does not add Monte Carlo or statistical distribution estimation.
+      - title: Relative valuation
+        printed_pages: "452-454"
+        reason: M6 preserves intrinsic-value composition and does not add a multiples engine.
+      - title: Natural-resource real options
+        printed_pages: "454-458"
+        reason: Generalized real-option valuation remains outside the v1 roadmap.
+  judgment_source:
+    source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+    included_chapters:
+      - numbers: "I-III"
+        titles: "Why Study Cycles?; The Nature of Cycles; The Regularity of Cycles"
+        pdf_pages: "13-44"
+      - numbers: "VI-IX"
+        titles: "Profit, psychology, risk-attitude, and credit cycles"
+        pdf_pages: "69-149"
+      - numbers: "XII-XIII"
+        titles: "The market cycle and coping with market cycles"
+        pdf_pages: "170-227"
+      - numbers: "XIV-XV"
+        titles: "Cycle positioning and limits on coping"
+        pdf_pages: "228-250"
+        treatment: Source support for probabilistic posture and limitations only; no autonomous allocation or trade engine.
+    summary_support:
+      - number: XVIII
+        title: "The Essence of Cycles"
+        pdf_pages: "272-291"
+        treatment: Cross-check and location verification only; no separate executable claim depends on the chapter summary.
+    excluded_chapters:
+      - numbers: "IV-V"
+        titles: "The Economic Cycle; Government Involvement with the Economic Cycle"
+        reason: M6 observes dated economic evidence but does not build a macroeconomic or policy-forecasting engine.
+      - numbers: "X-XI"
+        titles: "The Distressed Debt Cycle; The Real Estate Cycle"
+        reason: Distress mechanics remain governed by M5, and sector-specific real-estate valuation is outside M6.
+      - numbers: "XVI-XVII"
+        titles: "The Cycle in Success; The Future of Cycles"
+        reason: These reflective chapters do not add a required control to the bounded M6 judgment layer.
+artifact_goal: A cycle-aware valuation-input and judgment overlay that preserves intrinsic-value mechanics, uncertainty, and human decision authority
+review_status: approved
+copyright_controls:
+  raw_text_committed: false
+  tables_or_figures_reproduced: false
+  sequential_extract_committed: false
+coverage:
+  - cyclical_and_commodity_boundary
+  - established_cycle_vs_structural_break
+  - dated_multi_dimension_evidence
+  - full_input_normalization
+  - transition_to_normal_controls
+  - current_expectations_driver_path
+  - scenario_range_without_simulation
+  - company_vs_macro_view_separation
+  - psychology_risk_credit_and_valuation_overlay
+  - confidence_counterevidence_and_staleness
+  - price_value_separation
+  - no_timing_no_trade_instruction
+  - M1_M2_M4_M5_composition
+  - risk_and_double_counting_controls
+limitations:
+  - M6 does not forecast exact cycle turning points, durations, or future macro events.
+  - M6 does not ingest live economic, market, credit, futures, or company data.
+  - All market and company observations are dated reviewed inputs with explicit provenance.
+  - M6 does not issue autonomous investment recommendations, portfolio weights, trade instructions, or leverage decisions.
+  - M6 does not implement relative valuation, Monte Carlo simulation, statistical regime estimation, derivatives hedging, or real-option valuation.
+  - Discrete distress and forced-sale adjustments remain exclusively governed by WFL-DST-001.
+  - Psychological, risk-attitude, credit, and valuation observations cannot directly alter FCFF or discount rates without an explicit financial mapping governed by an existing workflow.
+  - Public examples and benchmarks must use synthetic companies, indicators, prices, and evidence.
+schema_version: 1.0.0

@@ -36,6 +36,8 @@ jobs:
         run: python tools/validate_growth_company_valuations.py
       - name: Validate decline-distress valuations and controls
         run: python tools/validate_decline_distress_valuations.py
+      - name: Validate cycle-aware judgments and controls
+        run: python tools/validate_cycle_aware_judgments.py
       - name: Enforce repository policy
         run: python tools/check_repository_policy.py
       - name: Run tests

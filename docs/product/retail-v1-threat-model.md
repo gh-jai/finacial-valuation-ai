@@ -1,6 +1,6 @@
 # Retail v1 Threat Model
 
-Status: M8 reviewed contract; implementation not authorized
+Status: M8 reviewed contract; M9 planning authorized; implementation not authorized
 Security baselines: OWASP ASVS 5.0.0 and OWASP LLMSVS v2.0, revalidated before release
 
 ## Assets

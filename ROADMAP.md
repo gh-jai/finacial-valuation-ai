@@ -36,11 +36,13 @@ Define constrained agent roles, tool contracts, prompt suites, evaluator policie
 
 Define the supported retail user and issuer scope, five real-data interface schemas, safe-stop behavior, data and output policies, threat model, provider/legal/security review gates, and the pilot/holdout design. M8 is contract-only and does not add live data, LLM, API, CLI, or Web implementation.
 
-Status: Cross-functional design review complete. M9 implementation planning is recommended with conditions; project-owner authorization remains pending.
+Status: Cross-functional design review complete. The project owner authorized M9 implementation planning with the seven recorded conditions on 2026-08-08; M9 implementation remains separately gated.
 
 ## M9 Public data ingestion and accounting normalization
 
 Implement ticker/CIK resolution, SEC and licensed market-data adapters, immutable snapshots, manual import, US-GAAP normalization, reconciliation, data-quality findings, and offline provider fixtures.
+
+Planning status: Reviewed and approved. The planning baseline divides implementation into six separately approved offline-first slices, keeps every adapter disabled by default, and requires a separate live-readiness approval. No M9 implementation is authorized by the planning decision or baseline approval.
 
 ## M10 Assumption, routing, and scenario engine
 

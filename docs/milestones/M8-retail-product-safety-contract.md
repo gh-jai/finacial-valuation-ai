@@ -1,6 +1,6 @@
 # M8 Retail Product Contract and Safety Boundary
 
-Status: Cross-functional design review complete; M9 planning recommended with conditions; authorization pending
+Status: Cross-functional design review complete; M9 planning authorized with conditions; implementation pending
 Contract version: 0.1.0
 Baseline: P0+M8 contract merged at `9099a287caf7c8e363d99586db1173f76d63956a`
 Target release: FVI v1.0 after M9-M14 launch gates
@@ -162,4 +162,4 @@ M8 is accepted only when all of the following are true:
 - repository validators, policy checks, pre-commit, and the full existing suite remain green;
 - no PDF, ebook, private extract, real issuer snapshot, provider credential, or network runtime is committed.
 
-The completed cross-functional review recommends approval of M9 implementation planning, subject to the recorded conditions in `M8-cross-functional-review.md`. Project-owner authorization for that planning remains a separate action, as do stage, commit, push, PR creation, implementation, release, qualified legal approval, provider approval, and any private-source extraction.
+The completed cross-functional review recommended M9 implementation planning subject to the recorded conditions in `M8-cross-functional-review.md`, and the project owner authorized that planning on 2026-08-08. Accepting or publishing the planning baseline, stage, commit, push, PR creation, every implementation slice, live access, release, qualified legal approval, provider approval, and any private-source extraction remain separate actions.

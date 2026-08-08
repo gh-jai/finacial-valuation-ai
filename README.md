@@ -45,7 +45,7 @@ Here, **Source** means the redistributable metadata record. A private local inpu
 
 ## Milestone model
 
-M0 established repository governance and provenance. M1-M6 added bounded deterministic valuation and judgment vertical slices. M7 completes the governed `Workflow -> Agent -> Prompt -> Test` path without granting agents autonomous approval, private-source, network, shell, or trading authority. M8's cross-functional design review is complete and recommends M9 planning with conditions; project-owner authorization remains pending. M9-M14 remain the retail-product delivery path. M8 is still contract-only and does not provide live issuer ingestion or a user interface. See [ROADMAP.md](ROADMAP.md) and [PROJECT_STATUS.md](PROJECT_STATUS.md).
+M0 established repository governance and provenance. M1-M6 added bounded deterministic valuation and judgment vertical slices. M7 completes the governed `Workflow -> Agent -> Prompt -> Test` path without granting agents autonomous approval, private-source, network, shell, or trading authority. M8's cross-functional design review is complete, and the project owner has authorized M9 implementation planning with its seven recorded conditions. M9 implementation and every live-data capability remain separately gated. M9-M14 are the retail-product delivery path; no live issuer ingestion or user interface exists. See [ROADMAP.md](ROADMAP.md) and [PROJECT_STATUS.md](PROJECT_STATUS.md).
 
 ## Validate
 
@@ -77,6 +77,7 @@ Run `pre-commit install` once to enable local checks. See [CONTRIBUTING.md](CONT
 - M5: declining-company routing, negative reinvestment and divestitures, financing and tax-benefit paths, closure alternatives, deterministic distress-sale adjustment, and one current-claim bridge composed with M1–M4.
 - M6: company-specific cycle routing, complete-input normalization or current-expectations scenarios, dated five-dimension evidence, immutable intrinsic-value references, and bounded non-numeric review posture composed with M1–M5.
 - M7: deny-by-default agent roles and prompts, exact-hash artifact handoffs, two human-only approval gates, executor-reviewer separation, offline allowlisted adapters, independent run validation, and three adversarial synthetic benchmarks composed with M1–M6.
-- M8 reviewed contract: retail product scope, five real-data interface contracts, safe-stop policy, threat model, pilot/holdout gates, and seven mandatory later-stage conditions. M9 planning is recommended but not yet authorized; no M9-M14 runtime or user interface is implemented.
+- M8 reviewed contract: retail product scope, five real-data interface contracts, safe-stop policy, threat model, pilot/holdout gates, and seven mandatory later-stage conditions.
+- M9 planning: reviewed and approved baseline for six separately approved public-data and normalization slices; implementation, live retrieval, provider activation, real-company fixtures, uploads, API, LLM, and UI remain unauthorized.
 
 FVI remains pre-v1.0 and is not investment advice. Interfaces and schemas may change before release.

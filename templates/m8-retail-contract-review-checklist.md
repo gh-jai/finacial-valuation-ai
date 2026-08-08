@@ -55,7 +55,9 @@ Reviewed baseline: `9099a287caf7c8e363d99586db1173f76d63956a`
 
 Recommendation: `[x] approve M9 implementation planning with conditions  [ ] request changes  [ ] reject`
 
-Project-owner decision: `[ ] authorize M9 implementation planning  [ ] request further M8 changes`
+Project-owner decision: `[x] authorize M9 implementation planning  [ ] request further M8 changes`
+
+Authorization recorded: 2026-08-08. This authorizes planning only; accepting or publishing the planning baseline, M9 implementation, live retrieval, provider activation, and later release actions remain separate checkpoints.
 
 Reviewer record and evidence:
 

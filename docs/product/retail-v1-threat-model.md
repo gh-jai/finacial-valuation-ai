@@ -1,6 +1,6 @@
 # Retail v1 Threat Model
 
-Status: M8 draft
+Status: M8 reviewed contract; implementation not authorized
 Security baselines: OWASP ASVS 5.0.0 and OWASP LLMSVS v2.0, revalidated before release
 
 ## Assets
@@ -31,6 +31,7 @@ Security baselines: OWASP ASVS 5.0.0 and OWASP LLMSVS v2.0, revalidated before r
 |---|---|---|
 | Issuer confusion | ticker reuse or ambiguous name | CIK/exchange/legal-name verification and explicit user selection |
 | Provider tampering | malformed JSON, unit changes, replayed stale response | TLS, allowlist, schema checks, content hashes, dates, cache provenance, no silent fallback |
+| SSRF and redirect escape | crafted URL, DNS rebinding, redirect to private or metadata service | fixed provider adapters, scheme/host/port allowlist, redirect revalidation, private-address denial, egress proxy and tests |
 | Fair-access abuse | runaway SEC requests | declared User-Agent, global limiter at or below current policy, cache, bounded retry/backoff, circuit breaker |
 | Filing injection | hostile text or XBRL label instructs an agent | treat content as data, structured extraction, no authority from evidence, output schema/policy checks |
 | CSV attack | formulas, oversized archives, traversal, mixed encoding | size/type limits, archive/path rejection, formula neutralization, malware scan, strict parser |
@@ -39,6 +40,7 @@ Security baselines: OWASP ASVS 5.0.0 and OWASP LLMSVS v2.0, revalidated before r
 | LLM fabrication | invented financial fact or arithmetic | evidence-required structured output, deterministic facts/calculation, independent validation, fail closed |
 | Prompt injection | filing or user text requests tools/secrets | separated instructions/data, fixed allowlists, no shell/browser in runtime, redaction and adversarial tests |
 | Approval tampering | reuse approval after assumption edit | canonical hashes, append-only events, automatic invalidation, human-only actor type |
+| Browser approval forgery | CSRF, session theft, replay, or request field claims approval | authenticated object authorization, CSRF protection, step-up/recent authentication, nonce/idempotency, server-side territory and approval registries |
 | Role collapse | executor reviews own output | executor/reviewer identity and implementation separation inherited from M7 |
 | Advice leakage | report says buy/hold or position size | null schema fields, lexical/semantic policy validator, mutation tests, legal wording review |
 | Unauthorized export | licensed price included in public PDF | provider-specific display/export flags and report source filtering |
@@ -47,7 +49,7 @@ Security baselines: OWASP ASVS 5.0.0 and OWASP LLMSVS v2.0, revalidated before r
 | Availability attack | expensive repeated valuations or provider outage | quotas, idempotency, queues, timeouts, cached snapshots, manual import fallback |
 | Supply-chain compromise | malicious dependency/build | lockfiles, provenance, dependency/license scan, SBOM, signed release process |
 
-Provider payloads, filings, uploads, user text, and model output are untrusted data and cannot authorize actions, expand an allowlist, create an approval, or suppress a finding.
+Provider payloads, filings, uploads, browser request fields, user text, and model output are untrusted data and cannot authorize actions, approve a territory, expand an allowlist, create an approval, or suppress a finding.
 The M7 valuation zone remains a network-denied M1-M6 runtime; only the separately governed data gateway may retrieve external issuer data.
 
 ## Security acceptance boundary

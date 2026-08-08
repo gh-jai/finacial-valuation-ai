@@ -1,6 +1,6 @@
 # Retail v1 Issuer Support Matrix
 
-Status: M8 draft
+Status: M8 reviewed contract; implementation not authorized
 
 | Issuer class | v1 decision | Required route or reason |
 |---|---|---|

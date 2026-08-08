@@ -15,6 +15,7 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 - M6 cycle-aware judgment vertical slice with 36 reviewed claims, eight Knowledge artifacts, ten bounded Skills, company-specific exposure and regime routing, complete-input normalization and transition controls, dated current-expectations scenarios, five-dimension evidence and staleness controls, immutable intrinsic-value references, one M5 distress handoff, and two deterministic synthetic benchmarks.
 - M7 governed-agentization vertical slice with 20 reviewed claims, four Knowledge artifacts, five Skills, five agents, five prompts, a deny-by-default registry, exact-hash handoffs and human approvals, append-only events, independent state and integrity validation, offline adapters, and three synthetic governance benchmarks.
 - M8 contract-only retail-product boundary with five draft interface schemas, issuer support rules, error/data/output policy, threat model, pilot/holdout design, and cross-functional review checklist.
+- M8 cross-functional review record with product, financial, data, security, internal legal/licensing, accessibility, engineering, and operations findings plus seven mandatory M9-M14 conditions.
 
 ### Changed
 
@@ -27,3 +28,4 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 - M6 validation independently recomputes evidence dates and staleness, normalization methods, transition paths, complete driver mappings, scenario isolation and ranges, dimension alignment, confidence, posture, price-value ordering, and distress separation; local pytest and pre-commit enforce the same controls before the Python 3.10/3.12 CI matrix.
 - Agent and prompt frontmatter now validate as governed artifacts; M7 validation independently recomputes hashes, state transitions, approval freshness, budgets, actor separation, tool authorization, and prohibited-output controls in pytest, pre-commit, and the Python 3.10/3.12 CI matrix.
 - The roadmap now defers v1.0 until M9-M14 deliver real-data ingestion, assumptions/routing, governed real-case interfaces, retail UX, pilots, security/licensing review, and operational release gates.
+- M8 draft schemas now prevent request-side territory self-approval and impossible complete/approved states, bind routes to lifecycle classes, separate case/output/report hash subjects, require server-side distribution approval, and invalidate approvals on expired reports.

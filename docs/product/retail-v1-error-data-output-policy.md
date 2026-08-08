@@ -1,6 +1,6 @@
 # Retail v1 Error, Data, and Output Policy
 
-Status: M8 draft
+Status: M8 reviewed contract; implementation not authorized
 
 ## Error taxonomy
 
@@ -8,6 +8,7 @@ Status: M8 draft
 |---|---|---|---|
 | `IDENTITY-*` | ambiguous ticker/CIK or delisted identity mismatch | Blocking | Ask the user to select a verified issuer or stop |
 | `SCOPE-*` | bank, insurer, REIT, fund, SPAC, non-US/non-USD | Blocking | Explain unsupported scope; do not run another method |
+| `TERRITORY-*` | requested country has no current server-side distribution approval | Blocking | Explain unavailable territory; request data cannot override the registry |
 | `PROVIDER-*` | outage, timeout, rate limit, malformed response | Retry or blocking | Bounded retry; offer explicit manual import; never reuse stale data silently |
 | `LICENSE-*` | display/redistribution right pending or rejected | Blocking for affected output | Suppress affected data/export and stop if it is material |
 | `DATA-*` | missing fact, duplicate, amendment, custom tag, mixed unit/currency | Review or blocking | Preserve raw facts, show finding, require reconciliation |
@@ -33,7 +34,7 @@ Every error object in M9 must include a stable code, user-safe message, severity
 
 ## Provider and license register fields
 
-Before a provider adapter is enabled, M9 must record: owner, endpoint, data categories, authentication, terms URL and version/date, allowed storage, display, export, redistribution, attribution, retention, rate limits, territorial restrictions, fallback, reviewer, review date, and approval status.
+Before a provider adapter is enabled, M9 must record: owner, endpoint, data categories, authentication, terms URL and version/date, allowed storage, display, export, redistribution, attribution, retention, rate limits, territorial restrictions, fallback, reviewer, review date, and approval status. Rights are evaluated per provider and requested output; one aggregate boolean cannot expand narrower record-level rights.
 
 SEC public access does not automatically authorize every downstream market-data field or export. Each provider is reviewed independently.
 
@@ -45,3 +46,5 @@ SEC public access does not automatically authorize every downstream market-data 
 - Report prose cannot change numbers or omit blocking findings from the approved artifacts.
 - PDF/JSON exports carry the same report hash, version manifest, data dates, sources, and limitations.
 - A superseded or stale report is visibly expired and must not be silently refreshed under the old approval.
+- The server-side territory registry is default deny. A request's country code and acknowledgements are context only and cannot create a distribution approval.
+- `case_lock.approved_hash` equals the recomputed canonical `case_hash`; `output_approval.approved_hash` equals the independently validated `valuation_output_hash`; `report_hash` protects the final export and is not substituted for either approval target.

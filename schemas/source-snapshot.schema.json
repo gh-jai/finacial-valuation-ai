@@ -25,7 +25,6 @@
     "company_identity": {"$ref": "#/$defs/companyIdentity"},
     "records": {
       "type": "array",
-      "minItems": 1,
       "items": {"$ref": "#/$defs/sourceRecord"}
     },
     "freshness": {
@@ -43,19 +42,82 @@
     "license_review": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["status", "reviewer", "reviewed_at", "display_allowed", "redistribution_allowed"],
+      "required": ["status", "reviewer", "reviewed_at", "storage_allowed", "display_allowed", "export_allowed", "redistribution_allowed"],
       "properties": {
         "status": {"enum": ["pending", "approved", "rejected"]},
         "reviewer": {"type": ["string", "null"]},
         "reviewed_at": {"type": ["string", "null"], "format": "date-time"},
+        "storage_allowed": {"type": "boolean"},
         "display_allowed": {"type": "boolean"},
+        "export_allowed": {"type": "boolean"},
         "redistribution_allowed": {"type": "boolean"}
-      }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "pending"}}, "required": ["status"]},
+          "then": {
+            "properties": {
+              "reviewer": {"type": "null"},
+              "reviewed_at": {"type": "null"},
+              "storage_allowed": {"const": false},
+              "display_allowed": {"const": false},
+              "export_allowed": {"const": false},
+              "redistribution_allowed": {"const": false}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"status": {"enum": ["approved", "rejected"]}}, "required": ["status"]},
+          "then": {
+            "properties": {
+              "reviewer": {"type": "string", "minLength": 1},
+              "reviewed_at": {"type": "string", "format": "date-time"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"status": {"const": "rejected"}}, "required": ["status"]},
+          "then": {
+            "properties": {
+              "storage_allowed": {"const": false},
+              "display_allowed": {"const": false},
+              "export_allowed": {"const": false},
+              "redistribution_allowed": {"const": false}
+            }
+          }
+        }
+      ]
     },
     "snapshot_hash": {"$ref": "#/$defs/hash"},
     "status": {"enum": ["complete", "needs_review", "unsupported", "stale", "provider_failure"]},
     "warnings": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/warning"}}
   },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "provider_failure"}}, "required": ["status"]},
+      "else": {"properties": {"records": {"minItems": 1}}}
+    },
+    {
+      "if": {"properties": {"status": {"const": "complete"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "company_identity": {"properties": {"identity_status": {"const": "verified"}}},
+          "freshness": {"properties": {"stale": {"const": false}}},
+          "license_review": {
+            "properties": {
+              "status": {"const": "approved"},
+              "storage_allowed": {"const": true}
+            }
+          },
+          "warnings": {"not": {"contains": {"properties": {"severity": {"const": "blocking"}}, "required": ["severity"]}}}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"status": {"const": "stale"}}, "required": ["status"]},
+      "then": {"properties": {"freshness": {"properties": {"stale": {"const": true}}}}}
+    }
+  ],
   "$defs": {
     "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
     "companyIdentity": {

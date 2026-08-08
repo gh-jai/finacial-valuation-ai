@@ -54,10 +54,9 @@
     "jurisdiction": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["country_code", "distribution_approved"],
+      "required": ["country_code"],
       "properties": {
-        "country_code": {"type": "string", "pattern": "^[A-Z]{2}$"},
-        "distribution_approved": {"type": "boolean"}
+        "country_code": {"type": "string", "pattern": "^[A-Z]{2}$"}
       }
     },
     "acknowledgements": {

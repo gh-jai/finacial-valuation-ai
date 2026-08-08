@@ -1,8 +1,8 @@
 # M8 Retail Product Contract and Safety Boundary
 
-Status: Draft for human review; implementation not authorized
+Status: Cross-functional design review complete; M9 planning recommended with conditions; authorization pending
 Contract version: 0.1.0
-Baseline: M0-M7 merged at `75503192255053bffa42f2a2debe9a2668fe6f96`
+Baseline: P0+M8 contract merged at `9099a287caf7c8e363d99586db1173f76d63956a`
 Target release: FVI v1.0 after M9-M14 launch gates
 
 ## Decision
@@ -19,6 +19,7 @@ The v1.0 target is a non-personalized research tool for US-listed, USD-reporting
 - Existing M1, M3, M4, M5, and M6 routes, using FCFF DCF as the primary method.
 - Bear, base, and bull scenarios without hidden or automatically invented probabilities.
 - Traditional Chinese user experience with English source names, filing identifiers, and technical fields preserved.
+- Server-side, default-deny territory decisions; a request-supplied country code never grants distribution authority.
 - Human `case_lock` and `output_approval` bound to exact artifact hashes.
 - Human-readable and machine-readable report contracts with source, date, unit, calculation, uncertainty, and limitation disclosures.
 
@@ -51,11 +52,11 @@ The following schemas are draft interfaces. Schema validation does not imply tha
 
 | Schema | Authority boundary |
 |---|---|
-| `company-request.schema.json` | Captures only company lookup and jurisdiction acknowledgement; it must not collect portfolio or suitability data. |
+| `company-request.schema.json` | Captures only company lookup, requested country, and acknowledgements; it must not collect portfolio or suitability data or self-approve a territory. |
 | `source-snapshot.schema.json` | Binds issuer identity, each provider record, dates, units, license review, warnings, and immutable hashes. |
 | `normalized-financials.schema.json` | Preserves filing/derived/override provenance and explicit reconciliation results; no silent fill is allowed. |
 | `valuation-case.schema.json` | Binds route, scenarios, assumptions, evidence, overrides, and human `case_lock` to one exact hash. |
-| `retail-report.schema.json` | Requires range, scenarios, sensitivity, sources, counterevidence, gaps, limitations, approval, and null action fields. |
+| `retail-report.schema.json` | Requires range, scenarios, sensitivity, sources, counterevidence, gaps, limitations, a server-approved distribution decision, approval, and null action fields. |
 
 All five use schema version `0.1.0`. They remain unstable until M13 pilots and must not be frozen before M14.
 
@@ -77,9 +78,18 @@ Allowlisted public or licensed provider
 - The data gateway is the only component allowed to retrieve external issuer data.
 - The valuation runtime retains M7's deny-by-default network and arbitrary-path boundary.
 - A provider response, filing, CSV cell, XBRL label, or LLM output is untrusted data and cannot grant authority.
+- A browser-supplied country code, acknowledgement, or other request field is also untrusted and cannot approve distribution, licensing, a route, or an artifact.
 - Every material model input must resolve to a filing fact, licensed market snapshot, deterministic calculation, or recorded user override.
 - A user override preserves the original value, new value, reason, actor, timestamp, and prior case hash. Any change invalidates existing approvals.
 - CI uses fixed, redistributable or appropriately licensed offline fixtures and never depends on a live provider.
+
+## Hash and approval semantics
+
+- `case_hash` is SHA-256 over the canonical approvable valuation-case payload, excluding `case_hash` and `case_lock`. An active `case_lock.approved_hash` must equal that `case_hash`.
+- `valuation_output_hash` is SHA-256 over the independently validated deterministic valuation output. `output_approval.approval_subject` is `valuation-output`, and its `approved_hash` must equal `artifact_refs.valuation_output_hash`.
+- `report_hash` is SHA-256 over the canonical report payload after the output approval is attached, excluding only `report_hash`. It is an export-integrity hash, not the object approved by `output_approval`.
+- Draft 2020-12 cannot express equality, ordering, uniqueness across selected fields, or deterministic arithmetic between instance fields. M9 validators must recompute these hashes, enforce the equalities above, and reject cyclic, ambiguous, or unknown canonicalization versions.
+- The independent retail validator must also require finite numeric values, `bear <= base <= bull`, `valuation_range.low <= valuation_range.high`, exact agreement between the stored range and approved scenario outputs, unique sensitivity coordinate pairs, complete reference resolution, and a different human for `case_lock` and `output_approval`.
 
 ## LLM boundary
 
@@ -129,7 +139,7 @@ This is a product control, not a substitute for qualified legal advice. Release 
 
 ## External design baselines
 
-The following were checked on 2026-08-08 and must be rechecked before implementation review and again before M14 release:
+The following were rechecked on 2026-08-08 during the cross-functional design review and must be rechecked before implementation review and again before M14 release:
 
 - SEC EDGAR Data APIs: <https://www.sec.gov/search-filings/edgar-application-programming-interfaces>
 - SEC fair-access policy, including the current 10 requests/second ceiling: <https://www.sec.gov/search-filings/edgar-search-assistance/accessing-edgar-data>
@@ -147,8 +157,9 @@ M8 is accepted only when all of the following are true:
 - error taxonomy maps every blocking condition to a user-visible recovery or terminal stop;
 - threat model covers public data, uploads, LLMs, approvals, exports, and operations;
 - pilot matrix contains eight development pilots and at least two holdouts without selecting issuers to flatter model output;
-- product owner, financial reviewer, security reviewer, and legal/compliance reviewer complete the M8 checklist;
+- product, financial, security, and internal legal/data-perimeter reviewers complete the M8 checklist;
+- qualified legal/compliance counsel and every provider-license owner remain named, blocking M13/M14 launch gates; M8 approval is not their sign-off;
 - repository validators, policy checks, pre-commit, and the full existing suite remain green;
 - no PDF, ebook, private extract, real issuer snapshot, provider credential, or network runtime is committed.
 
-Approval of this contract would authorize M9 implementation planning only. Stage, commit, push, PR creation, implementation, release, and any private-source extraction remain separate actions.
+The completed cross-functional review recommends approval of M9 implementation planning, subject to the recorded conditions in `M8-cross-functional-review.md`. Project-owner authorization for that planning remains a separate action, as do stage, commit, push, PR creation, implementation, release, qualified legal approval, provider approval, and any private-source extraction.

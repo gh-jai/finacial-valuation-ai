@@ -25,7 +25,7 @@ M6 contract-first planning, source-fidelity/financial review, repository-wide im
 
 M7 governed agentization is complete and merged through PR #16. It adds 20 reviewed claims, four Knowledge artifacts, five Skills, five agents, five prompts, `WFL-AGT-001`, five strict schemas, a deny-by-default registry, exact-hash handoffs, two human-only approvals, append-only events, executor/reviewer separation, offline adapters, independent validation, and three synthetic governance benchmarks. PR #16 Actions run #48 passed on Python 3.10 and 3.12 and merged as `75503192255053bffa42f2a2debe9a2668fe6f96`. The merged suite reports 275 passing tests.
 
-P0 publication-state synchronization is complete in the current M8 contract checkpoint. M8 product and safety contracts are drafts for human review; no M9 implementation is authorized or present.
+P0 publication-state synchronization and the M8 cross-functional design review are complete. The review recommends M9 implementation planning with seven recorded conditions, but project-owner authorization for M9 planning remains pending; no M9 planning artifact or implementation is present. Qualified legal/compliance, provider-license, privacy, security, accessibility, and real-company evidence remain later blocking gates.
 
 Current mainline architecture:
 
@@ -485,7 +485,7 @@ Validated controls include:
 - Repository copyright policy
 - Unit, integration, benchmark, and regression tests
 
-At M3 completion, the full suite reported 88 passing tests. M4 and its final review fixes brought the suite to 125. M5 brought the merged suite to 179 passing tests. M6 brought the merged suite to 242 passing tests, and M7 brought it to 275. The local P0+M8 contract checkpoint adds 10 contract tests for a current total of 285 without changing valuation behavior.
+At M3 completion, the full suite reported 88 passing tests. M4 and its final review fixes brought the suite to 125. M5 brought the merged suite to 179 passing tests. M6 brought the merged suite to 242 passing tests, and M7 brought it to 275. The merged P0+M8 contract checkpoint added 10 contract tests for 285; the cross-functional review adds two conditional-schema regressions for a current total of 287 without changing valuation behavior.
 
 ## Source and copyright policy
 
@@ -533,18 +533,20 @@ M3 failure probabilities and recovery values are deterministic reviewed assumpti
 
 ## Recommended next milestone
 
-M8 is the current contract-only checkpoint. Its product, financial, security, legal/compliance, and data-licensing reviews must be completed before M9 implementation planning.
+M8's internal cross-functional contract review is complete and recommends approval of M9 implementation planning with conditions. The next checkpoint is the project-owner decision on that planning; it must not be confused with authority to implement, retrieve live data, enable a provider, or distribute a report.
 
 Recommended sequencing:
 
 ```text
 M7: Merged implementation and remote Python 3.10/3.12 validation complete
-→ M8: Retail product and safety contract review
-→ Human approval
-→ M9: Public-data ingestion and accounting normalization implementation
+→ M8: Retail product and safety contract review complete
+→ Conditional recommendation for M9 planning
+→ Project-owner planning authorization
+→ M9: Public-data ingestion and accounting-normalization plan
+→ Separate implementation approval
 ```
 
-Before M9 implementation, M8 must lock:
+M8 has locked:
 
 - Supported and unsupported issuers and territories
 - Five input/output interface schemas
@@ -552,7 +554,9 @@ Before M9 implementation, M8 must lock:
 - Advice, privacy, retention, copyright, and provider-license boundaries
 - Data/LLM/upload/report threat model
 - Eight pilot and two holdout acceptance designs
-- Product, financial, security, and legal/compliance approvals
+- Product, financial, security, and internal legal/data-perimeter decisions
+
+The seven conditions in `docs/milestones/M8-cross-functional-review.md` remain mandatory. In particular, M8 does not represent qualified legal advice, provider permission, privacy approval, implemented security controls, accessibility evidence, or successful real-company pilots.
 
 ## Working model
 

@@ -1,6 +1,6 @@
 # Retail v1 Pilot and Holdout Matrix
 
-Status: M8 design only; issuer selection and data acquisition are not authorized
+Status: M8 reviewed design only; issuer selection and data acquisition are not authorized
 
 Issuer names are deliberately not selected in M8. Selection happens under M13 data-license and conflict-of-interest review, before viewing whether an issuer produces an attractive valuation.
 

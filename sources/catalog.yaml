@@ -52,7 +52,7 @@ sources:
     access: private
     private_locator: damodaran/investment-fables.pdf
     status: available
-    notes: Planned post-M6 source for empirical strategy testing, base-rate discipline, portfolio inspection, and investment-fable failure modes.
+    notes: Approved M7 reviewer-policy source. M7 uses the preface at PDF pages 2-4, Chapter 1 introduction at PDF pages 5-6, and Chapter 15 at printed pages 413-417 / PDF pages 417-421 for complete-evidence, strategy-failure, hidden-risk, probabilistic-study, and alternative-explanation controls. It does not create a screener, backtest, or trading method.
 
   - id: SRC-MARKS-MOST-IMPORTANT-THING-ZH-2019
     title: 投资最重要的事：顶尖价值投资者的忠告
@@ -92,7 +92,7 @@ sources:
     access: private
     private_locator: baid/the-joys-of-compounding-zh-2024.pdf
     status: available
-    notes: Planned post-M6 source for multidisciplinary mental models, temperament, checklists, intrinsic value, margin of safety, portfolio sizing, decision journals, and compounding.
+    notes: Approved M7 translated decision-process source. M7 uses Chapters 14-15 at PDF pages 141-157 and Chapter 27 at PDF pages 304-318 for concise checklists, decision journals, base rates, counterevidence, and belief revision. PDF pages 319-322 and portfolio or trading actions are excluded.
 
   - id: SRC-GRAHAM-DODD-SECURITY-ANALYSIS-2008-EXTRACT
     title: Security Analysis

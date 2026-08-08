@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fvi.example/schemas/agentization-registry.schema.json",
+  "title": "FVI Agentization Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "registry_id", "version", "status", "agents", "tools", "separation_of_duties", "global_denials"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "registry_id": {"const": "REG-AGT-001"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "status": {"enum": ["draft", "reviewed", "approved", "deprecated"]},
+    "agents": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["agent_id", "prompt_id", "allowed_tools", "allowed_actions", "max_actions", "can_approve", "can_modify_prior_artifacts"],
+        "properties": {
+          "agent_id": {"type": "string", "pattern": "^AGT-[A-Z]+-[0-9]{3}$"},
+          "prompt_id": {"type": "string", "pattern": "^PRM-[A-Z]+-[0-9]{3}$"},
+          "allowed_tools": {"$ref": "#/$defs/idList"},
+          "allowed_actions": {"$ref": "#/$defs/idList"},
+          "max_actions": {"type": "integer", "minimum": 1, "maximum": 100},
+          "can_approve": {"const": false},
+          "can_modify_prior_artifacts": {"const": false}
+        }
+      }
+    },
+    "tools": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["tool_id", "adapter", "allowed_workflows", "network_access", "filesystem_access", "shell_access", "mutates_run"],
+        "properties": {
+          "tool_id": {"type": "string", "pattern": "^TL-[A-Z0-9-]+$"},
+          "adapter": {"type": "string", "pattern": "^[a-z_][a-z0-9_]*:[a-z_][a-z0-9_]*$"},
+          "allowed_workflows": {"$ref": "#/$defs/idList"},
+          "network_access": {"const": false},
+          "filesystem_access": {"enum": ["none", "approved_artifacts_read_only"]},
+          "shell_access": {"const": false},
+          "mutates_run": {"type": "boolean"}
+        }
+      }
+    },
+    "separation_of_duties": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["executor_agent", "reviewer_agent", "must_differ", "human_gates"],
+      "properties": {
+        "executor_agent": {"const": "AGT-VAL-001"},
+        "reviewer_agent": {"const": "AGT-REV-001"},
+        "must_differ": {"const": true},
+        "human_gates": {"type": "array", "const": ["case_lock", "output_approval"]}
+      }
+    },
+    "global_denials": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+  },
+  "$defs": {
+    "idList": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+  }
+}

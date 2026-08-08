@@ -34,17 +34,18 @@ Here, **Source** means the redistributable metadata record. A private local inpu
 | `knowledge/` | Reviewed domain knowledge units |
 | `skills/` | Bounded, reusable valuation capabilities |
 | `workflows/` | Ordered combinations of skills and review gates |
-| `agents/` | Future agent role and policy definitions |
+| `agents/` | Governed agent role, authority, and handoff definitions |
 | `prompts/` | System, task, and evaluator prompts |
+| `agentization/` | Agent registry, tool allowlists, evaluator policy, and separation-of-duties controls |
 | `templates/` | Authoring templates for consistent contributions |
 | `benchmarks/` | Synthetic fixtures, expected results, and scoring rules |
 | `tests/` | Schema, unit, integration, regression, and adversarial tests |
 | `tools/` | Lightweight validation utilities |
 | `docs/` | Extended project documentation |
 
-## First milestone
+## Milestone model
 
-M0 establishes repository governance, provenance rules, schemas, templates, validation tooling, and one synthetic vertical slice: intrinsic-value knowledge, a basic DCF skill, and a standard valuation workflow. M1 will exercise the complete pipeline against one privately held source without publishing that source or substantial extracts.
+M0 established repository governance and provenance. M1-M6 added bounded deterministic valuation and judgment vertical slices. M7 completes the governed `Workflow -> Agent -> Prompt -> Test` path without granting agents autonomous approval, private-source, network, shell, or trading authority. See [ROADMAP.md](ROADMAP.md) and [PROJECT_STATUS.md](PROJECT_STATUS.md).
 
 ## Validate
 
@@ -60,6 +61,7 @@ python tools/validate_young_company_valuations.py
 python tools/validate_growth_company_valuations.py
 python tools/validate_decline_distress_valuations.py
 python tools/validate_cycle_aware_judgments.py
+python tools/validate_agent_runs.py
 python tools/check_repository_policy.py
 pytest
 ```
@@ -74,5 +76,6 @@ Run `pre-commit install` once to enable local checks. See [CONTRIBUTING.md](CONT
 - M4: growth-company revenue scaling and fade, margin convergence, segment-specific reinvestment, implied returns, risk convergence, stable-state terminal rebuild, and bounded M3 failure handoff composed with M1–M3.
 - M5: declining-company routing, negative reinvestment and divestitures, financing and tax-benefit paths, closure alternatives, deterministic distress-sale adjustment, and one current-claim bridge composed with M1–M4.
 - M6: company-specific cycle routing, complete-input normalization or current-expectations scenarios, dated five-dimension evidence, immutable intrinsic-value references, and bounded non-numeric review posture composed with M1–M5.
+- M7: deny-by-default agent roles and prompts, exact-hash artifact handoffs, two human-only approval gates, executor-reviewer separation, offline allowlisted adapters, independent run validation, and three adversarial synthetic benchmarks composed with M1–M6.
 
 FVI remains pre-v1.0 and is not investment advice. Interfaces and schemas may change before release.

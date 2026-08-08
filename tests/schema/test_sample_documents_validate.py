@@ -10,6 +10,8 @@ SAMPLES = [
     (ROOT / "knowledge" / "valuation" / "VAL-001-intrinsic-value.md", "knowledge"),
     (ROOT / "skills" / "SKL-VAL-001-validate-dcf-inputs.md", "skill"),
     (ROOT / "workflows" / "WFL-VAL-001-standard-company-valuation.md", "workflow"),
+    (ROOT / "agents" / "AGT-ORC-001-case-orchestrator.md", "agent"),
+    (ROOT / "prompts" / "PRM-ORC-001-system.md", "prompt"),
 ]
 
 

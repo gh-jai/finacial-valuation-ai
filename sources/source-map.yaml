@@ -199,9 +199,42 @@ mappings:
     notes: M3 covers Chapter 9, printed pages 259-321, using 30 claims, seven Knowledge artifacts, nine Skills, a compositional workflow, survival controls, and two synthetic benchmarks. M4 covers Chapter 10, printed pages 323-357, using 30 reviewed claims, seven Knowledge artifacts, nine Skills, a compositional growth-and-fade workflow, a strict schema and validator, and two deterministic synthetic benchmarks. M5 covers Chapter 12, printed pages 397-436, using 32 reviewed claims, eight Knowledge artifacts, ten Skills, a compositional decline-and-distress workflow, a strict schema and independent validator, and two deterministic synthetic benchmarks; Chapter 11 is outside its boundary. M6 uses Chapter 13, printed pages 438-458, for the valuation-treatment half of eight Knowledge artifacts, ten Skills, a compositional workflow, a strict schema, deterministic engine, independent validator, and two synthetic benchmarks. The singular extraction_manifest field remains the M3 primary manifest, while later manifests are explicitly listed in artifacts.
 
   - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
-    artifacts: []
-    extraction_manifest: null
-    notes: Reserved for post-M6 evidence-testing and investment-strategy failure-mode artifacts.
+    artifacts:
+      - extraction/reviewed/M7-governed-agentization-claims.yaml
+      - docs/milestones/M7-governed-agentization-contract.md
+      - docs/milestones/M7-implementation-human-review.md
+      - templates/m7-agentization-review-checklist.md
+      - knowledge/cross-domain/AGT-003-adversarial-evidence-review.md
+      - skills/SKL-AGT-001-validate-governed-case.md
+      - skills/SKL-AGT-004-review-agent-output.md
+      - agents/AGT-EVD-001-evidence-builder.md
+      - agents/AGT-REV-001-independent-reviewer.md
+      - prompts/PRM-EVD-001-system.md
+      - prompts/PRM-REV-001-evaluator.md
+      - workflows/WFL-AGT-001-governed-valuation-case.md
+      - agentization/registry.yaml
+      - agentization/evaluator-policy.yaml
+      - schemas/agent.schema.json
+      - schemas/prompt.schema.json
+      - schemas/agentization-registry.schema.json
+      - schemas/agent-run.schema.json
+      - schemas/evaluation-result.schema.json
+      - tools/agent_runtime.py
+      - tools/agent_adapters.py
+      - tools/validate_agent_runs.py
+      - benchmarks/fixtures/agentization/synthetic-happy-path.json
+      - benchmarks/fixtures/agentization/synthetic-adversarial-stop.json
+      - benchmarks/fixtures/agentization/synthetic-approval-tampering.json
+      - benchmarks/expected/agentization-happy-path-output.json
+      - benchmarks/expected/agentization-adversarial-stop-output.json
+      - benchmarks/expected/agentization-approval-tampering-output.json
+      - tests/unit/test_m7_contract.py
+      - tests/unit/test_agent_runtime.py
+      - tests/unit/test_agent_run_validation.py
+      - tests/integration/test_agentization_benchmarks.py
+      - tests/integration/test_m7_artifact_graph.py
+    extraction_manifest: extraction/manifests/M7-governed-agentization.yaml
+    notes: M7 uses the approved preface, Chapter 1 introduction, and Chapter 15 ranges for adversarial evidence review, hidden-risk, probabilistic-study, and alternative-explanation controls. The source does not authorize screening, backtesting, portfolio action, or trading.
 
   - source_id: SRC-MARKS-MOST-IMPORTANT-THING-ZH-2019
     artifacts: []
@@ -239,9 +272,43 @@ mappings:
     notes: M6 uses selected cycle, profit, psychology, risk-attitude, credit, market-synthesis, and positioning chapters for the dated non-numeric half of eight Knowledge artifacts, ten Skills, the compositional workflow, strict validation, and two synthetic benchmarks. The overlay remains separate from intrinsic value and autonomous decisions.
 
   - source_id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
-    artifacts: []
-    extraction_manifest: null
-    notes: Reserved for decision-process, checklist, temperament, compounding, and portfolio-management artifacts.
+    artifacts:
+      - extraction/reviewed/M7-governed-agentization-claims.yaml
+      - docs/milestones/M7-governed-agentization-contract.md
+      - docs/milestones/M7-implementation-human-review.md
+      - templates/m7-agentization-review-checklist.md
+      - knowledge/cross-domain/AGT-003-adversarial-evidence-review.md
+      - skills/SKL-AGT-001-validate-governed-case.md
+      - skills/SKL-AGT-004-review-agent-output.md
+      - agents/AGT-EVD-001-evidence-builder.md
+      - agents/AGT-REV-001-independent-reviewer.md
+      - prompts/PRM-EVD-001-system.md
+      - prompts/PRM-REV-001-evaluator.md
+      - workflows/WFL-AGT-001-governed-valuation-case.md
+      - agentization/registry.yaml
+      - agentization/evaluator-policy.yaml
+      - schemas/agent.schema.json
+      - schemas/prompt.schema.json
+      - schemas/agentization-registry.schema.json
+      - schemas/agent-run.schema.json
+      - schemas/evaluation-result.schema.json
+      - tools/agent_runtime.py
+      - tools/agent_adapters.py
+      - tools/validate_agent_runs.py
+      - benchmarks/fixtures/agentization/synthetic-happy-path.json
+      - benchmarks/fixtures/agentization/synthetic-adversarial-stop.json
+      - benchmarks/fixtures/agentization/synthetic-approval-tampering.json
+      - benchmarks/expected/agentization-happy-path-output.json
+      - benchmarks/expected/agentization-adversarial-stop-output.json
+      - benchmarks/expected/agentization-approval-tampering-output.json
+      - tests/unit/test_m7_contract.py
+      - tests/unit/test_agent_runtime.py
+      - tests/unit/test_agent_run_validation.py
+      - tests/integration/test_agentization_benchmarks.py
+      - tests/integration/test_m7_artifact_graph.py
+      - knowledge/cross-domain/AGT-004-decision-journal-and-revision.md
+    extraction_manifest: extraction/manifests/M7-governed-agentization.yaml
+    notes: M7 uses the approved translated-edition ranges for concise checklists, contemporaneous journals, base rates, counterevidence, and belief revision. PDF pages 319-322 and portfolio or trading actions are explicitly excluded.
 
   - source_id: SRC-GRAHAM-DODD-SECURITY-ANALYSIS-2008-EXTRACT
     artifacts: []

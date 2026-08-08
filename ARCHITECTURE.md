@@ -46,3 +46,9 @@ WFL-NAR-001
 `WFL-DST-001` independently classifies reversibility and distress, owns negative-growth and capital-release paths, financing and tax-benefit recomputation, divestiture integrity, closure, orderly-liquidation, and forced-sale controls, and delegates cumulative FCFF discounting to `WFL-VAL-001`. Reversible operating alternatives remain separate final values. Material cessation or forced-sale risk is applied once through M3-compatible contingent-survival arithmetic before one dated claim bridge.
 
 `WFL-CYC-001` selects one complete-input normalization, current-to-normal transition, current-expectations path, or stop decision. It delegates intrinsic-value arithmetic to `WFL-VAL-001`, reuses bounded M4 series controls, and routes discrete issuer distress once to `WFL-DST-001`. Its dated five-dimension judgment overlay is produced only after intrinsic value and cannot modify value, predict timing, or authorize a trade.
+
+## Governed agentization
+
+`WFL-AGT-001` wraps an approved M1-M6 route without taking ownership of its calculations. Evidence assembly, deterministic execution, independent review, orchestration, memo rendering, and human approval are separate authorities. The initial adapter accepts only the registered established-cycle synthetic fixture.
+
+Every artifact revision has a canonical SHA-256 hash. Handoffs and the two human gates bind that exact hash; any later mutation invalidates the approval and returns the run to the appropriate gate. State is independently derived from an append-only event chain. Agents have no approval, network, shell, arbitrary filesystem, private-source, secret, GitHub, brokerage, or trade authority.

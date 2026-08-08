@@ -1,0 +1,60 @@
+id: EXT-M7-GOVERNED-AGENTIZATION
+source_ids:
+  - SRC-DAMODARAN-INVESTMENT-FABLES
+  - SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+scope:
+  evidence_review_source:
+    source_id: SRC-DAMODARAN-INVESTMENT-FABLES
+    included_ranges:
+      - title: Preface and method boundary
+        pdf_pages: "2-4"
+        treatment: Complete-evidence, broad-sample, long-period, changing-threshold, and portfolio-inspection controls.
+      - title: Chapter 1 introduction
+        pdf_pages: "5-6"
+        treatment: Story appeal, partial-evidence, downside, and close-scrutiny controls.
+      - title: Chapter 15, Ten Lessons for Investors
+        printed_pages: "413-417"
+        pdf_pages: "417-421"
+        treatment: Strategy-failure, hidden-risk, fundamentals, probabilistic-study, alternative-explanation, and uncertainty controls.
+  decision_process_source:
+    source_id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+    edition_status: Traditional Chinese translation, 2024
+    included_ranges:
+      - chapter: 14
+        title: 檢查清單在決策過程中的重要性
+        pdf_pages: "141-151"
+        treatment: Concise checklists, disqualifiers, bias checks, counterevidence, and objective-bound review only.
+      - chapter: 15
+        title: 寫日誌是自省的有力工具
+        pdf_pages: "152-157"
+        treatment: Contemporaneous decision records, memory limits, error review, and self-reflection only.
+      - chapter: 27
+        title: 以新證據更新我們的信念
+        pdf_pages: "304-318"
+        treatment: Belief revision, base-rate and outside-view checks, signal-noise separation, and disconfirming evidence only.
+    excluded_ranges:
+      - pdf_pages: "319-322"
+        reason: The discussion turns to position holding and sale decisions, which cannot authorize M7 trading or portfolio actions.
+artifact_goal: A governed offline agent protocol with adversarial evidence review and exact-hash human approvals
+review_status: approved
+copyright_controls:
+  raw_text_committed: false
+  tables_or_figures_reproduced: false
+  sequential_extract_committed: false
+coverage:
+  - agent_authority_and_tool_allowlists
+  - immutable_artifact_handoffs
+  - exact_hash_human_approval
+  - state_machine_and_event_audit
+  - executor_reviewer_separation
+  - adversarial_evidence_and_base_rate_review
+  - decision_journal_and_revision
+  - offline_deterministic_validation
+  - no_trade_no_portfolio_action
+limitations:
+  - Repository governance, not either private source, is authoritative for software permissions, approval binding, and state-machine rules.
+  - Source-backed claims guide reviewer behavior only and do not create a strategy screener, backtest, probability estimator, or trade engine.
+  - M7 does not ingest live data, call a model API in CI, read private source files at runtime, or expose shell, network, arbitrary filesystem, or GitHub tools.
+  - M7 preserves M1-M6 numerical ownership and never permits an agent to replace deterministic engines with prompt arithmetic.
+  - Public fixtures are synthetic and contain no copied source text, tables, or historical portfolios.
+schema_version: 1.0.0

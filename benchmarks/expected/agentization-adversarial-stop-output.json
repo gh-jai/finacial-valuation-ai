@@ -1,0 +1,15 @@
+{
+  "active_gates": [],
+  "artifact_kinds": [
+    "case"
+  ],
+  "blocking_codes": [
+    "missing_counterevidence",
+    "prohibited_action_request",
+    "prompt_injection",
+    "stale_evidence"
+  ],
+  "run_id": "RUN-AGT-BLOCKED-001",
+  "status": "blocked_missing_evidence",
+  "tool_call_count": 0
+}

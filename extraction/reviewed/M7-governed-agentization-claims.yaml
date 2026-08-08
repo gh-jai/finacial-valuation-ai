@@ -1,0 +1,204 @@
+schema_version: 1.0.0
+source_ids:
+  - SRC-DAMODARAN-INVESTMENT-FABLES
+  - SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+claims:
+  - id: CLM-AGT-001
+    claim_type: source_statement
+    statement: A persuasive investment story may cite anecdotal or statistical support yet fail to reproduce when implemented, so evidence presented with a claim is not sufficient proof of operational reliability.
+    source_refs:
+      - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
+        location: "Preface, PDF pages 2-3"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-002
+    claim_type: source_statement
+    statement: A complete empirical view of an investment strategy should examine long periods, a broad cross-section, supporting and skeptical evidence, and the problems that can qualify the reported result.
+    source_refs:
+      - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
+        location: "Preface, PDF page 3"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-003
+    claim_type: source_statement
+    statement: Fixed screening rules of thumb can become misleading as market distributions change, so thresholds require a dated frame of reference rather than timeless treatment.
+    source_refs:
+      - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
+        location: "Preface, PDF page 3"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-004
+    claim_type: source_statement
+    statement: Inspecting the portfolio produced by a strategy can reveal composition, fit, and weaknesses that a headline performance claim obscures.
+    source_refs:
+      - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
+        location: "Preface, PDF page 3"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-005
+    claim_type: source_statement
+    statement: Investment stories can be compelling because they connect to human motives and present selected evidence, but closer examination may show that the evidence supports only part of the story.
+    source_refs:
+      - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
+        location: "Chapter 1 introduction, PDF page 5"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-006
+    claim_type: source_statement
+    statement: Complexity and novel labels do not establish that an investment strategy is genuinely new or sound.
+    source_refs:
+      - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
+        location: "Chapter 15, Lesson 1, printed page 413 / PDF page 417"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-007
+    claim_type: source_statement
+    statement: A strategy promising high returns necessarily carries risk, and apparently smooth success can conceal infrequent but large losses.
+    source_refs:
+      - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
+        location: "Chapter 15, Lessons 2-3, printed pages 413-414 / PDF pages 417-418"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-008
+    claim_type: source_statement
+    statement: Business value remains anchored in cash-flow capacity, growth, and uncertainty; a new narrative does not remove the need to test those fundamentals.
+    source_refs:
+      - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
+        location: "Chapter 15, Lesson 4, printed page 414 / PDF page 418"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-009
+    claim_type: source_statement
+    statement: Quantitative studies create probabilistic rather than certain conclusions, depend on assumptions and historical periods, and can fail when conditions change.
+    source_refs:
+      - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
+        location: "Chapter 15, Lesson 7, printed page 415 / PDF page 419"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-010
+    claim_type: source_statement
+    statement: Before treating an apparent market mispricing as an opportunity, analysis should presume that material information or an alternative explanation may be missing and actively test those possibilities.
+    source_refs:
+      - source_id: SRC-DAMODARAN-INVESTMENT-FABLES
+        location: "Chapter 15, Lesson 8, printed page 416 / PDF page 420"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-011
+    claim_type: source_statement
+    statement: A useful checklist is concise, clear, efficient under pressure, and focused on critical steps rather than exhaustive detail.
+    source_refs:
+      - source_id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+        location: "Traditional Chinese edition, Chapter 14, PDF page 141"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-012
+    claim_type: source_statement
+    statement: A decision checklist should include explicit disqualifying questions and other matters that require a documented trade-off.
+    source_refs:
+      - source_id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+        location: "Traditional Chinese edition, Chapter 14, PDF pages 141-142"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-013
+    claim_type: source_statement
+    statement: Checklists counter overconfidence by reminding a decision maker that expertise does not eliminate the possibility of error.
+    source_refs:
+      - source_id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+        location: "Traditional Chinese edition, Chapter 14, PDF page 141"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-014
+    claim_type: source_statement
+    statement: Confirmation bias encourages a person to preserve an earlier conclusion, so a rigorous process should seek contradictory possibilities and engage reasoned opposing views.
+    source_refs:
+      - source_id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+        location: "Traditional Chinese edition, Chapter 14, PDF pages 148-150"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-015
+    claim_type: source_statement
+    statement: Recording the contemporaneous reasons and emotions behind a decision helps reveal sunk effort, fear of missing out, social proof, and resistance to contrary opinions.
+    source_refs:
+      - source_id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+        location: "Traditional Chinese edition, Chapter 14, PDF page 151"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-016
+    claim_type: source_statement
+    statement: A contemporaneous journal preserves the information and reasoning available at decision time, limiting hindsight reconstruction and supporting later review of process quality.
+    source_refs:
+      - source_id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+        location: "Traditional Chinese edition, Chapter 15, PDF pages 152-157"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-017
+    claim_type: source_statement
+    statement: A sound belief-revision process should deliberately notice evidence that conflicts with a prior view and should change the view when material facts change.
+    source_refs:
+      - source_id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+        location: "Traditional Chinese edition, Chapter 27, PDF pages 304-310"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-018
+    claim_type: source_statement
+    statement: An outside-view base rate provides a necessary reference for a vivid company-specific story, while case evidence may revise but should not silently erase that reference.
+    source_refs:
+      - source_id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+        location: "Traditional Chinese edition, Chapter 27, PDF pages 312-316"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-019
+    claim_type: source_statement
+    statement: More information does not automatically create more insight; review should distinguish durable financial signals from distracting short-term noise.
+    source_refs:
+      - source_id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+        location: "Traditional Chinese edition, Chapter 27, PDF pages 316-317"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-AGT-020
+    claim_type: source_statement
+    statement: A credible conclusion should record disconfirming facts promptly and be able to state the opposing case clearly enough for independent review.
+    source_refs:
+      - source_id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
+        location: "Traditional Chinese edition, Chapter 27, PDF pages 317-318"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers

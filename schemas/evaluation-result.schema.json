@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fvi.example/schemas/evaluation-result.schema.json",
+  "title": "FVI Independent Evaluation Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "evaluation_id", "run_id", "reviewer_agent_id", "executor_agent_id", "artifact_id", "artifact_hash", "deterministic_checks", "findings", "conclusion", "reviewed_at"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "evaluation_id": {"type": "string", "pattern": "^EVL-[A-Z0-9-]+$"},
+    "run_id": {"type": "string", "pattern": "^RUN-[A-Z0-9-]+$"},
+    "reviewer_agent_id": {"const": "AGT-REV-001"},
+    "executor_agent_id": {"const": "AGT-VAL-001"},
+    "artifact_id": {"type": "string", "minLength": 1},
+    "artifact_hash": {"$ref": "#/$defs/hash"},
+    "deterministic_checks": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["check_id", "passed", "details"], "properties": {"check_id": {"type": "string", "minLength": 1}, "passed": {"type": "boolean"}, "details": {"type": "string", "minLength": 1}}}},
+    "findings": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["finding_id", "severity", "message"], "properties": {"finding_id": {"type": "string", "minLength": 1}, "severity": {"enum": ["info", "warning", "blocking"]}, "message": {"type": "string", "minLength": 1}}}},
+    "conclusion": {"enum": ["pass", "fail", "blocked"]},
+    "reviewed_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}

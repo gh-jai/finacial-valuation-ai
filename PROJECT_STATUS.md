@@ -25,7 +25,7 @@ M6 contract-first planning, source-fidelity/financial review, repository-wide im
 
 M7 governed agentization is complete and merged through PR #16. It adds 20 reviewed claims, four Knowledge artifacts, five Skills, five agents, five prompts, `WFL-AGT-001`, five strict schemas, a deny-by-default registry, exact-hash handoffs, two human-only approvals, append-only events, executor/reviewer separation, offline adapters, independent validation, and three synthetic governance benchmarks. PR #16 Actions run #48 passed on Python 3.10 and 3.12 and merged as `75503192255053bffa42f2a2debe9a2668fe6f96`. The merged suite reports 275 passing tests.
 
-P0 publication-state synchronization and the M8 cross-functional design review are complete. The review recommends M9 implementation planning with seven recorded conditions, but project-owner authorization for M9 planning remains pending; no M9 planning artifact or implementation is present. Qualified legal/compliance, provider-license, privacy, security, accessibility, and real-company evidence remain later blocking gates.
+P0 publication-state synchronization and the M8 cross-functional design review are complete. The project owner authorized M9 implementation planning with the seven recorded conditions on 2026-08-08. The local planning baseline defines six separately approved, offline-first implementation slices; it does not authorize M9 implementation, live retrieval, provider activation, real-company fixtures, user uploads, API, LLM, or UI work. Qualified legal/compliance, provider-license, privacy, security, accessibility, and real-company evidence remain later blocking gates.
 
 Current mainline architecture:
 
@@ -408,6 +408,38 @@ Acceptance and publication evidence:
 - PR #16 merged to `main` as `75503192255053bffa42f2a2debe9a2668fe6f96`
 - No private PDF, ebook, extract, secret, or live external call is a release dependency
 
+### M8 — Retail product contract and cross-functional review
+
+Status: Complete and merged through PR #18
+
+Merge commit: `e6a791a827a2a37457494ae0b184d3a37f3040a3`
+
+Delivered:
+
+- Narrow retail user, issuer, territory, method, data, output, and advice boundaries
+- Five strict draft interface schemas with safe-stop invariants
+- Error/data/output policy, issuer support matrix, threat model, and pilot/holdout design
+- Product, financial, data-governance, security, internal legal/data-perimeter, accessibility, engineering, and operations review
+- Five closed contract defects and seven mandatory M9-M14 conditions
+
+The review recommended M9 implementation planning with conditions. The project owner separately
+authorized that planning on 2026-08-08; the decision did not authorize implementation or live data.
+
+### M9 — Public data ingestion and accounting normalization
+
+Status: Implementation planning baseline approved; implementation not authorized
+
+Planning artifact:
+
+- `docs/milestones/M9-public-data-ingestion-normalization-plan.md`
+- `templates/m9-implementation-planning-review-checklist.md`
+
+The approved baseline ends M9 at an independently validated normalized-financials handoff. It divides
+implementation into six separately approved slices covering primitives and registries, issuer
+resolution, immutable storage/manual import, disabled SEC adapters, US-GAAP normalization and
+reconciliation, and an offline end-to-end validator. All adapters remain disabled by default; live
+readiness and each implementation slice require separate authorization.
+
 ## Current governed artifact graph
 
 ```text
@@ -485,7 +517,7 @@ Validated controls include:
 - Repository copyright policy
 - Unit, integration, benchmark, and regression tests
 
-At M3 completion, the full suite reported 88 passing tests. M4 and its final review fixes brought the suite to 125. M5 brought the merged suite to 179 passing tests. M6 brought the merged suite to 242 passing tests, and M7 brought it to 275. The merged P0+M8 contract checkpoint added 10 contract tests for 285; the cross-functional review adds two conditional-schema regressions for a current total of 287 without changing valuation behavior.
+At M3 completion, the full suite reported 88 passing tests. M4 and its final review fixes brought the suite to 125. M5 brought the merged suite to 179 passing tests. M6 brought the merged suite to 242 passing tests, and M7 brought it to 275. The merged P0+M8 contract checkpoint added 10 contract tests for 285; the cross-functional review added two conditional-schema regressions for a merged total of 287. The local M9 planning baseline adds five planning-contract tests for 292 without changing valuation behavior.
 
 ## Source and copyright policy
 
@@ -533,7 +565,7 @@ M3 failure probabilities and recovery values are deterministic reviewed assumpti
 
 ## Recommended next milestone
 
-M8's internal cross-functional contract review is complete and recommends approval of M9 implementation planning with conditions. The next checkpoint is the project-owner decision on that planning; it must not be confused with authority to implement, retrieve live data, enable a provider, or distribute a report.
+M8's internal cross-functional contract review is complete, and the project owner authorized M9 implementation planning with conditions. The M9 planning baseline is reviewed and approved; the next checkpoint, after publishing this baseline, is a separate decision on `M9-I1` implementation. Baseline approval must not be confused with authority to implement, retrieve live data, enable a provider, or distribute a report.
 
 Recommended sequencing:
 
@@ -541,9 +573,10 @@ Recommended sequencing:
 M7: Merged implementation and remote Python 3.10/3.12 validation complete
 → M8: Retail product and safety contract review complete
 → Conditional recommendation for M9 planning
-→ Project-owner planning authorization
-→ M9: Public-data ingestion and accounting-normalization plan
-→ Separate implementation approval
+→ Project-owner planning authorization complete
+→ M9: Public-data ingestion and accounting-normalization planning baseline
+→ Planning review and approval complete
+→ Separate approval for each implementation slice
 ```
 
 M8 has locked:
@@ -583,12 +616,14 @@ Minimum startup instruction:
 
 ```text
 Read PROJECT_STATUS.md, README.md, ROADMAP.md,
-docs/milestones/M8-retail-product-safety-contract.md, and the existing M1-M7
-workflows before proposing or implementing M9.
+docs/milestones/M8-retail-product-safety-contract.md,
+docs/milestones/M9-public-data-ingestion-normalization-plan.md,
+and the existing M1-M7 workflows before proposing or implementing M9.
 
 Do not alter completed milestone contracts without identifying a concrete defect.
 Do not commit private source material.
 Preserve composition with WFL-NAR-001, WFL-VAL-001, WFL-YNG-001,
 WFL-GRW-001, WFL-DST-001, WFL-CYC-001, and WFL-AGT-001.
 Do not treat draft M8 schemas as implemented ingestion or a retail-ready release.
+Do not treat M9 planning authorization as implementation or live-network authority.
 ```

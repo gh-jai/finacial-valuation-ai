@@ -29,8 +29,8 @@ def test_m8_is_contract_only_and_not_implementation_authority() -> None:
     text = CONTRACT.read_text(encoding="utf-8")
     assert "Status: Cross-functional design review complete" in text
     assert "It does not ingest live data" in text
-    assert "recommends approval of M9 implementation planning" in text
-    assert "stage, commit, push, PR creation, implementation, release" in text
+    assert "authorized that planning on 2026-08-08" in text
+    assert "stage, commit, push, PR creation, every implementation slice" in text
 
 
 def test_m8_five_schemas_are_strict_unstable_drafts() -> None:
@@ -278,7 +278,7 @@ def test_m8_review_is_complete_with_later_external_conditions() -> None:
     review = REVIEW.read_text(encoding="utf-8")
     assert "Review status: Complete" in text
     assert "[x] approve M9 implementation planning with conditions" in text
-    assert "[ ] authorize M9 implementation planning" in text
+    assert "[x] authorize M9 implementation planning" in text
     assert "qualified legal/compliance reviewer" in text
     assert "this is not external counsel or provider sign-off" in text
     for finding in ["M8-R01", "M8-R02", "M8-R03", "M8-R04", "M8-R05"]:

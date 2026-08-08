@@ -1,9 +1,9 @@
 # M8 Retail Product and Safety — Cross-Functional Review
 
-Status: Complete — recommend approval of M9 implementation planning with conditions
+Status: Complete — M9 implementation planning authorized with conditions
 Review date: 2026-08-08
 Reviewed baseline: P0+M8 merge `9099a287caf7c8e363d99586db1173f76d63956a`
-Decision authority: project owner; M9 planning authorization pending
+Decision authority: project owner; M9 planning authorized on 2026-08-08
 
 ## Decision
 
@@ -102,4 +102,4 @@ No private PDF, ebook, extract, page image, real issuer record, provider respons
 
 Recommendation: `[x] approve M9 implementation planning with conditions  [ ] request changes  [ ] reject`
 
-Separate project-owner authorization remains required for staging, committing, pushing, creating a PR, M9 implementation planning, M9 implementation, live network/provider access, and every later release action.
+The project owner authorized M9 implementation planning on 2026-08-08. Separate authorization remains required for accepting or publishing the planning baseline, staging, committing, pushing, creating a PR, every M9 implementation slice, live network/provider access, and every later release action.

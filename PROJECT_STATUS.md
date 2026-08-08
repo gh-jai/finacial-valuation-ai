@@ -1,12 +1,12 @@
 # Financial Valuation Intelligence — Project Status
 
-Last updated: 2026-08-02
+Last updated: 2026-08-08
 
-Repository: `gh-jai/finacial-valuation-ai`
+Repository: `gh-jai/financial-valuation-ai`
 
 ## Current state
 
-The repository has completed six implementation milestones through delivery PR #13:
+The repository has merged six implementation milestones through delivery PR #13 and completed the local M6 implementation checkpoint:
 
 - M0 — Repository foundation
 - M1 — Basic FCFF DCF vertical slice
@@ -14,10 +14,13 @@ The repository has completed six implementation milestones through delivery PR #
 - M3 — Young-company survival-adjusted valuation vertical slice
 - M4 — Growth-company scaling-and-fade vertical slice
 - M5 — Decline, distress, and contingent-survival vertical slice
+- M6 — Cycle-aware judgment layer (local implementation; publication pending)
 
 The M4 contract and repository-wide implementation were delivered through PR #10. The implementation includes the locked source boundary and 30 claims, seven Knowledge artifacts, nine Skills, `WFL-GRW-001`, a strict schema, deterministic engine, independent recomputation validator, two synthetic benchmarks, adversarial controls, and CI/pre-commit integration. Final review hardened registered bidirectional traceability and independent recomputation of market scale, capacity utilization, calculation trails, sensitivity points, and supported break-even values.
 
 The M5 contract was approved and merged through PR #12, and the repository-wide implementation was delivered through PR #13. Its locked boundary is Chapter 12, printed pages 397-436 / PDF pages 445-484, with 32 reviewed atomic claims. Final review hardened partial-liquidation routing, bidirectional divestiture support, turnaround probability dating, and the one-bridge rule. The full suite reports 179 passing tests, and the Python 3.10/3.12 matrix passes.
+
+M6 contract-first planning, source-fidelity/financial review, and repository-wide implementation are complete locally on `codex/m6-contract-draft`. The implementation preserves the dual-source boundary and 36 reviewed claims, adds eight Knowledge artifacts, ten Skills, `WFL-CYC-001`, a strict schema, deterministic engine, independent validator, two synthetic benchmarks, 54 focused tests, and CI/pre-commit integration. The complete local suite reports 242 passing tests. No commit, push, PR, or remote CI has been performed for M6.
 
 Current mainline architecture:
 
@@ -32,6 +35,7 @@ Evidence
 → Optional Survival / Distress-sale Adjustment
 → Equity and Claim Bridge
 → Per-share Value
+→ Optional Dated Cycle Judgment Overlay
 → Feedback Revision
 ```
 
@@ -308,7 +312,66 @@ Acceptance evidence:
 - Repository copyright policy passes with no private source content
 - Full local suite: 179 passed
 - Maintainer final review approved on 2026-08-02
-- PR #13 Actions run #41 passed on Python 3.10 and Python 3.12
+- PR #13 final-head Actions run #42 passed on Python 3.10 and Python 3.12
+
+### M6 — Cycle-aware judgment layer
+
+Status: Local repository-wide implementation complete; publication and remote CI pending
+
+Primary sources:
+
+- `SRC-DAMODARAN-DARK-SIDE-2018` for cycle-aware valuation-input methods
+- `SRC-MARKS-MASTERING-MARKET-CYCLE-2018` for the non-numeric judgment overlay
+
+Approved source boundary:
+
+- Damodaran Chapter 13, printed pages 438-458 / PDF pages 486-506
+- Marks Chapters I-III, VI-IX, and XII-XV, with Chapter XVIII used only as a summary cross-check
+- Damodaran simulation, relative valuation, and natural-resource real-options sections are excluded
+- Marks macro/policy forecasting, distressed-debt, real-estate, allocation, and trade instructions are excluded
+
+Approved contract artifacts:
+
+- `docs/milestones/M6-cycle-aware-judgment-layer-contract.md`
+- `extraction/manifests/M6-cycle-aware-judgment-layer.yaml`
+- `extraction/reviewed/M6-cycle-aware-judgment-layer-claims.yaml`
+- `templates/m6-cycle-aware-judgment-review-checklist.md`
+
+Implemented artifacts:
+
+- Eight `CYC-*` Knowledge artifacts split across lifecycle, valuation, risk, and market-pricing domains
+- Ten bounded `SKL-CYC-*` Skills
+- `WFL-CYC-001-cycle-aware-judgment-layer.md`
+- `schemas/cycle-aware-judgment.schema.json`
+- `tools/cycle_aware.py`
+- `tools/validate_cycle_aware_judgments.py`
+- Established-cycle industrial and structural-break commodity synthetic fixtures
+- Two expected benchmark outputs
+- Engine, validator, benchmark, artifact-graph, adversarial, mutation, and composition tests
+- CI and pre-commit validator integration
+- `docs/milestones/M6-implementation-human-review.md`
+
+Approved decisions:
+
+- Keep the `valuation_input_handoff` separate from the `judgment_overlay`
+- Route exactly one of normalized inputs, transition to normal, current expectations, or stop
+- Require dated five-dimension evidence, counterevidence, staleness controls, and an indeterminate result
+- Normalize the complete cycle-sensitive input vector rather than one earnings line
+- Use deterministic scenario ranges without invented probabilities or Monte Carlo simulation
+- Treat price relative to intrinsic value as an observation, never as an intrinsic-value input
+- Keep discrete distress and forced-sale treatment exclusively in `WFL-DST-001`
+- Produce only bounded human-review posture labels, never timing, trading, leverage, or sizing instructions
+
+Implementation remains within the approved source boundary, all 36 reviewed claims, financial and evidence controls, schema invariants, benchmark designs, and review checklist. Publication requires a separate commit/push/PR checkpoint and Python 3.10/3.12 CI on the exact implementation head.
+
+Local implementation evidence:
+
+- 11 schemas and 101 governed documents validate
+- 10 source records, 10 source mappings, 164 atomic claims, and 172 Knowledge references validate
+- Two M6 documents independently recompute
+- Full local suite: 242 passed
+- Maintainer checklist approved on 2026-08-02 after separating market-wide credit evidence from issuer-specific refinancing risk in Benchmark B
+- Repository copyright policy and all-candidate pre-commit pass with no private source content
 
 ## Current governed artifact graph
 
@@ -334,17 +397,18 @@ WFL-NAR-001 → WFL-VAL-001
 WFL-NAR-001 + WFL-VAL-001 → WFL-YNG-001
 WFL-NAR-001 + WFL-VAL-001 + bounded WFL-YNG-001 handoff → WFL-GRW-001
 WFL-NAR-001 + WFL-VAL-001 + bounded WFL-GRW-001/WFL-YNG-001 reuse → WFL-DST-001
+WFL-NAR-001 + WFL-VAL-001 + bounded WFL-GRW-001/WFL-DST-001 reuse → WFL-CYC-001 treatment handoff → intrinsic valuation → separate judgment overlay
 ```
 
 ## Validation and CI
 
-Latest implementation PR CI:
+Latest merged implementation PR CI:
 
-- GitHub Actions run 41
+- GitHub Actions run 42
 - Python 3.10: Passed
 - Python 3.12: Passed
 
-The M5 implementation passed local validation on Python 3.12 and remote matrix validation on Python 3.10 and Python 3.12 after the final validator hardening.
+The M5 implementation passed local validation on Python 3.12 and remote matrix validation on Python 3.10 and Python 3.12 after the final validator hardening. M6 currently has local Python 3.12 evidence only; its remote matrix remains pending because no PR has been created.
 
 Validated controls include:
 
@@ -374,10 +438,17 @@ Validated controls include:
 - Finite-life, stabilized-smaller-company, and negative-perpetuity closure controls
 - Turnaround and orderly-liquidation alternative separation
 - Distress event, horizon, recovery, common-basis, and one-bridge controls
+- Cycle exposure, life-cycle, recurrence, structural-break, and treatment routing
+- Evidence dating, staleness, availability, bidirectional references, and counterevidence
+- Complete normalization, single-transition, driver-curve, carry, and scenario-isolation controls
+- Scenario range and reviewed-probability controls
+- Five-dimension alignment, confidence, extreme, and posture recomputation
+- Intrinsic-value immutability, price-value ordering, and M5 distress separation
+- Hidden-score, market-timing, trade-instruction, and excluded-method rejection
 - Repository copyright policy
 - Unit, integration, benchmark, and regression tests
 
-At M3 completion, the full suite reported 88 passing tests. M4 and its final review fixes brought the suite to 125. M5 adds 51 engine, validator, benchmark, artifact-graph, adversarial, mutation, and composition tests; the complete local suite reports 179 passing tests, including the three previously merged M5 contract regressions.
+At M3 completion, the full suite reported 88 passing tests. M4 and its final review fixes brought the suite to 125. M5 brought the merged suite to 179 passing tests. M6 contract review and implementation bring the complete local suite to 242 passing tests, including 54 focused M6 engine, validator, benchmark, artifact-graph, adversarial, mutation, and composition tests.
 
 ## Source and copyright policy
 
@@ -421,12 +492,13 @@ M3 failure probabilities and recovery values are deterministic reviewed assumpti
 
 The next milestone should remain a bounded vertical slice rather than a broad platform expansion.
 
-M4 and M5 implementation are complete. M6 should begin with a contract-first source and scope review.
+M4 and M5 are merged. M6 contract, source review, and repository-wide local implementation are complete. The next checkpoint is publication review: final local pre-commit and scope audit, then a separately authorized commit, push, PR, remote CI, human thread review, and merge.
 
 Recommended sequencing:
 
 ```text
-M6: Cycle-aware judgment layer
+M6: Local implementation checkpoint
+→ M6: Publication and remote Python 3.10/3.12 review after separate authorization
 ```
 
 Before implementation, each milestone should first lock:
@@ -445,21 +517,14 @@ Before implementation, each milestone should first lock:
 Recommended division of work:
 
 ```text
-ChatGPT
-→ Source boundary
-→ Atomic claims
-→ Financial rules
-→ Schema and workflow contracts
-→ Human source-fidelity and financial review
+ChatGPT and maintainer review
+→ Approved source boundary, claims, financial rules, schema contract, and review gates
 
-Codex
-→ Repository-wide implementation
-→ Engines
-→ Validators
-→ Knowledge and Skills scaffolding
-→ Benchmarks
-→ Tests
-→ CI integration
+Codex local implementation
+→ Knowledge, Skills, Workflow, schema, engine, validator, benchmarks, tests, and CI integration
+
+Publication review
+→ Commit and PR authorization, exact-head remote CI, review-thread resolution, Ready, and merge
 ```
 
 Codex should be used after the method, source, and financial-control contracts are locked.
@@ -472,10 +537,11 @@ Minimum startup instruction:
 
 ```text
 Read PROJECT_STATUS.md, README.md, sources/source-coverage-plan.md,
-sources/catalog.yaml, sources/source-map.yaml, and the existing M1–M4
+sources/catalog.yaml, sources/source-map.yaml, and the existing M1–M6
 workflows before proposing or implementing the next milestone.
 
 Do not alter completed milestone contracts without identifying a concrete defect.
 Do not commit private source material.
-Preserve composition with WFL-NAR-001, WFL-VAL-001, WFL-YNG-001, and WFL-GRW-001.
+Preserve composition with WFL-NAR-001, WFL-VAL-001, WFL-YNG-001,
+WFL-GRW-001, and WFL-DST-001.
 ```

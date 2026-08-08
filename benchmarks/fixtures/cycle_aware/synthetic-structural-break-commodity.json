@@ -1,0 +1,133 @@
+{
+  "schema_version": "0.1.0",
+  "judgment_id": "CYJ-STRUCTURAL-BREAK-COMMODITY",
+  "valuation_id": "VAL-STRUCTURAL-BREAK-COMMODITY",
+  "valuation_date": "2026-08-01",
+  "company": {"name": "Synthetic Structural Break Commodity", "currency": "USD"},
+  "narrative_id": "NAR-SYNTH-REVISED",
+  "subject_classification": {
+    "exposure_type": "commodity_price", "external_driver": "synthetic storable commodity price",
+    "linked_financial_series": ["revenue", "operating_cost", "operating_margin", "reinvestment", "invested_capital", "return_on_capital", "financing_cost"],
+    "observation_window": {"start": "2012-01-01", "end": "2026-07-31", "observation_years": 14, "strong_and_weak_conditions": true},
+    "supporting_evidence_refs": ["EVID-COMMODITY", "EVID-BREAK"], "contradicting_evidence_refs": ["EVID-BREAK-COUNTER"],
+    "lifecycle_boundaries": {"m3_cleared": true, "m4_cleared": true, "m5_cleared": true, "mature_company": true, "route": "M6"}, "route_approved": true
+  },
+  "current_base": {
+    "valuation_date": "2026-08-01", "reporting_period": "2026-06-30", "currency": "USD", "continuing_operations": true,
+    "current_driver": {"value": 60, "unit": "USD/unit"},
+    "financials": {"revenue": 120, "operating_margin": 0.583333333333, "operating_income": 70, "reinvestment": 5, "invested_capital": 50, "return_on_capital": 1.05, "cash": 4, "debt": 45, "fixed_obligations": 12, "leverage": 0.6, "financing_cost": 0.08},
+    "reconciliations": [{"item": "restructuring", "amount": 0, "basis": "Synthetic cost reset incorporated without changing continuing-operation perimeter.", "evidence_refs": ["EVID-BREAK"]}]
+  },
+  "evidence_staleness_policy": {"max_age_days": 90, "basis": "Current market evidence older than 90 days cannot support an extreme."},
+  "cycle_evidence": {
+    "items": [
+      {"evidence_id": "EVID-COMMODITY", "dimension": "economic", "availability": "available", "indicator_name": "commodity demand and spot price", "observation": "Current demand and price remain above the revised post-break midpoint.", "unit": "ordinal", "as_of_date": "2026-07-28", "window_start": "2022-01-01", "window_end": "2026-07-28", "source_ref": "SYNTH-COMMODITY-001", "direction": "positive", "strength": "strong", "supports": ["subject_classification", "cycle_assessment", "judgment_overlay"], "limitations": ["Synthetic market series."], "stale": false},
+      {"evidence_id": "EVID-BREAK", "dimension": "company_profit", "availability": "available", "indicator_name": "post-break margin and cost curve", "observation": "Demand substitution and a durable cost reset invalidate the old price-profit relationship.", "unit": "ratio", "as_of_date": "2026-06-30", "window_start": "2012-01-01", "window_end": "2026-06-30", "source_ref": "SYNTH-COMPANY-002", "direction": "excess_positive", "strength": "strong", "supports": ["subject_classification", "cycle_assessment", "judgment_overlay"], "limitations": ["Synthetic company data."], "stale": false},
+      {"evidence_id": "EVID-BREAK-COUNTER", "dimension": "company_profit", "availability": "available", "indicator_name": "legacy capacity utilization", "observation": "Some legacy capacity remains usable and partially counters the break hypothesis.", "unit": "ratio", "as_of_date": "2026-06-30", "window_start": null, "window_end": null, "source_ref": "SYNTH-COMPANY-003", "direction": "neutral", "strength": "moderate", "supports": ["subject_classification_counterevidence", "cycle_assessment_counterevidence", "judgment_overlay_counterevidence"], "limitations": ["Does not restore the old demand and cost regime."], "stale": false},
+      {"evidence_id": "EVID-PSYCH", "dimension": "psychology_valuation", "availability": "available", "indicator_name": "price-to-intrinsic-value", "observation": "Market price materially exceeds the independently computed base intrinsic value.", "unit": "ratio", "as_of_date": "2026-08-01", "window_start": null, "window_end": null, "source_ref": "SYNTH-MARKET-002", "direction": "excess_positive", "strength": "strong", "supports": ["judgment_overlay"], "limitations": ["Price remains an observation after valuation."], "stale": false},
+      {"evidence_id": "EVID-RISK", "dimension": "risk_attitude", "availability": "available", "indicator_name": "risk compensation and issuance behavior", "observation": "Low compensation and eager issuance indicate unusually high risk tolerance.", "unit": "ordinal", "as_of_date": "2026-07-25", "window_start": null, "window_end": null, "source_ref": "SYNTH-RISK-001", "direction": "excess_positive", "strength": "strong", "supports": ["judgment_overlay"], "limitations": ["Broad risk attitude is not an issuer default probability."], "stale": false},
+      {"evidence_id": "EVID-CREDIT", "dimension": "credit", "availability": "available", "indicator_name": "broad credit availability", "observation": "Broad markets show eager lending and permissive terms.", "unit": "ordinal", "as_of_date": "2026-07-20", "window_start": null, "window_end": null, "source_ref": "SYNTH-CREDIT-002", "direction": "excess_positive", "strength": "strong", "supports": ["judgment_overlay"], "limitations": ["Issuer-specific refinancing weakness is routed separately to M5."], "stale": false}
+    ]
+  },
+  "cycle_assessment": {
+    "regime": "structural_break", "company_cycle_position": "above_midpoint",
+    "regime_reasoning": "A dated demand-substitution and cost-reset mechanism invalidates the old historical normal while the commodity driver remains material.",
+    "break_assessment": {"hypothesis": "Demand substitution and a durable cost reset broke the legacy price-profit regime.", "date_or_interval": "2022-01-01/2024-12-31", "mechanism": "Lower long-run demand intensity and a shifted operating cost curve.", "affected_inputs": ["commodity price", "volume", "operating cost", "margin", "reinvestment", "financing cost"], "counterevidence_refs": ["EVID-BREAK-COUNTER"]},
+    "supporting_evidence_refs": ["EVID-COMMODITY", "EVID-BREAK"], "counterevidence_refs": ["EVID-BREAK-COUNTER"],
+    "counterevidence_search": "Reviewed legacy capacity, price, demand, and cost evidence; usable capacity does not restore the former regime."
+  },
+  "valuation_treatment": {
+    "mode": "current_expectations",
+    "current_expectations": {
+      "driver_curve": [
+        {"period": "2026-spot", "value": 60, "unit": "USD/unit", "source_type": "spot", "as_of_date": "2026-08-01", "source_ref": "SYNTH-CURVE-BASE", "future_period": false},
+        {"period": "2027", "value": 65, "unit": "USD/unit", "source_type": "forward_or_futures", "as_of_date": "2026-08-01", "source_ref": "SYNTH-CURVE-BASE", "future_period": true},
+        {"period": "2028", "value": 70, "unit": "USD/unit", "source_type": "forward_or_futures", "as_of_date": "2026-08-01", "source_ref": "SYNTH-CURVE-BASE", "future_period": true}
+      ],
+      "storable_commodity": true, "carry_limitation_disclosed": true, "historical_normal_reused": false,
+      "scenarios": [
+        {
+          "scenario_id": "SCN-LOW", "calculation_trail_id": "TRAIL-LOW",
+          "input_set": {
+            "driver_curve": [
+              {"period": "2026-spot", "value": 45, "unit": "USD/unit", "source_type": "reviewed_assumption", "as_of_date": "2026-08-01", "source_ref": "SYNTH-SCENARIO-LOW", "future_period": false},
+              {"period": "2027", "value": 50, "unit": "USD/unit", "source_type": "reviewed_assumption", "as_of_date": "2026-08-01", "source_ref": "SYNTH-SCENARIO-LOW", "future_period": true},
+              {"period": "2028", "value": 55, "unit": "USD/unit", "source_type": "reviewed_assumption", "as_of_date": "2026-08-01", "source_ref": "SYNTH-SCENARIO-LOW", "future_period": true}
+            ],
+            "volumes": [2, 2.1, 2.2], "fixed_costs": [20, 20, 20], "unit_costs": [15, 15, 15], "base_reinvestments": [5, 5, 5], "reinvestment_sensitivity": 0.1, "base_driver": 60, "initial_invested_capital": 50, "tax_rate": 0.25, "base_financing_cost": 0.08, "funding_sensitivity": -0.001
+          },
+          "period_inputs": [
+            {"period": 1, "driver": 45.0, "volume": 2.0, "revenue": 90.0, "operating_cost": 50.0, "operating_margin": 0.444444444444, "operating_income": 40.0, "after_tax_operating_income": 30.0, "reinvestment": 3.5, "invested_capital": 53.5, "return_on_capital": 0.6, "financing_cost": 0.095},
+            {"period": 2, "driver": 50.0, "volume": 2.1, "revenue": 105.0, "operating_cost": 51.5, "operating_margin": 0.509523809524, "operating_income": 53.5, "after_tax_operating_income": 40.125, "reinvestment": 4.0, "invested_capital": 57.5, "return_on_capital": 0.75, "financing_cost": 0.09},
+            {"period": 3, "driver": 55.0, "volume": 2.2, "revenue": 121.0, "operating_cost": 53.0, "operating_margin": 0.561983471074, "operating_income": 68.0, "after_tax_operating_income": 51.0, "reinvestment": 4.5, "invested_capital": 62.0, "return_on_capital": 0.886956521739, "financing_cost": 0.085}
+          ],
+          "intrinsic_value": 80, "probability": null
+        },
+        {
+          "scenario_id": "SCN-BASE", "calculation_trail_id": "TRAIL-BASE",
+          "input_set": {
+            "driver_curve": [
+              {"period": "2026-spot", "value": 60, "unit": "USD/unit", "source_type": "spot", "as_of_date": "2026-08-01", "source_ref": "SYNTH-CURVE-BASE", "future_period": false},
+              {"period": "2027", "value": 65, "unit": "USD/unit", "source_type": "forward_or_futures", "as_of_date": "2026-08-01", "source_ref": "SYNTH-CURVE-BASE", "future_period": true},
+              {"period": "2028", "value": 70, "unit": "USD/unit", "source_type": "forward_or_futures", "as_of_date": "2026-08-01", "source_ref": "SYNTH-CURVE-BASE", "future_period": true}
+            ],
+            "volumes": [2, 2.1, 2.2], "fixed_costs": [20, 20, 20], "unit_costs": [15, 15, 15], "base_reinvestments": [5, 5, 5], "reinvestment_sensitivity": 0.1, "base_driver": 60, "initial_invested_capital": 50, "tax_rate": 0.25, "base_financing_cost": 0.08, "funding_sensitivity": -0.001
+          },
+          "period_inputs": [
+            {"period": 1, "driver": 60.0, "volume": 2.0, "revenue": 120.0, "operating_cost": 50.0, "operating_margin": 0.583333333333, "operating_income": 70.0, "after_tax_operating_income": 52.5, "reinvestment": 5.0, "invested_capital": 55.0, "return_on_capital": 1.05, "financing_cost": 0.08},
+            {"period": 2, "driver": 65.0, "volume": 2.1, "revenue": 136.5, "operating_cost": 51.5, "operating_margin": 0.622710622711, "operating_income": 85.0, "after_tax_operating_income": 63.75, "reinvestment": 5.5, "invested_capital": 60.5, "return_on_capital": 1.159090909091, "financing_cost": 0.075},
+            {"period": 3, "driver": 70.0, "volume": 2.2, "revenue": 154.0, "operating_cost": 53.0, "operating_margin": 0.655844155844, "operating_income": 101.0, "after_tax_operating_income": 75.75, "reinvestment": 6.0, "invested_capital": 66.5, "return_on_capital": 1.252066115702, "financing_cost": 0.07}
+          ],
+          "intrinsic_value": 110, "probability": null
+        },
+        {
+          "scenario_id": "SCN-HIGH", "calculation_trail_id": "TRAIL-HIGH",
+          "input_set": {
+            "driver_curve": [
+              {"period": "2026-spot", "value": 75, "unit": "USD/unit", "source_type": "reviewed_assumption", "as_of_date": "2026-08-01", "source_ref": "SYNTH-SCENARIO-HIGH", "future_period": false},
+              {"period": "2027", "value": 80, "unit": "USD/unit", "source_type": "reviewed_assumption", "as_of_date": "2026-08-01", "source_ref": "SYNTH-SCENARIO-HIGH", "future_period": true},
+              {"period": "2028", "value": 85, "unit": "USD/unit", "source_type": "reviewed_assumption", "as_of_date": "2026-08-01", "source_ref": "SYNTH-SCENARIO-HIGH", "future_period": true}
+            ],
+            "volumes": [2, 2.1, 2.2], "fixed_costs": [20, 20, 20], "unit_costs": [15, 15, 15], "base_reinvestments": [5, 5, 5], "reinvestment_sensitivity": 0.1, "base_driver": 60, "initial_invested_capital": 50, "tax_rate": 0.25, "base_financing_cost": 0.08, "funding_sensitivity": -0.001
+          },
+          "period_inputs": [
+            {"period": 1, "driver": 75.0, "volume": 2.0, "revenue": 150.0, "operating_cost": 50.0, "operating_margin": 0.666666666667, "operating_income": 100.0, "after_tax_operating_income": 75.0, "reinvestment": 6.5, "invested_capital": 56.5, "return_on_capital": 1.5, "financing_cost": 0.065},
+            {"period": 2, "driver": 80.0, "volume": 2.1, "revenue": 168.0, "operating_cost": 51.5, "operating_margin": 0.693452380952, "operating_income": 116.5, "after_tax_operating_income": 87.375, "reinvestment": 7.0, "invested_capital": 63.5, "return_on_capital": 1.546460176991, "financing_cost": 0.06},
+            {"period": 3, "driver": 85.0, "volume": 2.2, "revenue": 187.0, "operating_cost": 53.0, "operating_margin": 0.716577540107, "operating_income": 134.0, "after_tax_operating_income": 100.5, "reinvestment": 7.5, "invested_capital": 71.0, "return_on_capital": 1.582677165354, "financing_cost": 0.055}
+          ],
+          "intrinsic_value": 140, "probability": null
+        }
+      ],
+      "probability_basis": null,
+      "limitations": ["Forward prices can reflect storage and financing carry and are not labeled pure forecasts."]
+    }
+  },
+  "valuation_input_handoff": {"status": "produced", "workflow_ref": "WFL-VAL-001", "treatment_mode": "current_expectations", "period_inputs": [], "normalized_input_set": null, "scenario_ids": ["SCN-LOW", "SCN-BASE", "SCN-HIGH"], "limitations": ["Each scenario is an isolated complete input set; M1 owns intrinsic valuation."]},
+  "intrinsic_value_reference": {"workflow_ref": "WFL-VAL-001", "valuation_id": "VAL-STRUCTURAL-BREAK-COMMODITY", "basis": "common-equity", "currency": "USD", "scenario_values": [{"scenario_id": "SCN-LOW", "value": 80}, {"scenario_id": "SCN-BASE", "value": 110}, {"scenario_id": "SCN-HIGH", "value": 140}], "value_range": {"low": 80, "high": 140}, "expected_value": null, "computed_before_overlay": true},
+  "judgment_overlay": {
+    "market_cycle_position": "extreme_high", "confidence": "high",
+    "dimension_assessments": [
+      {"dimension": "economic", "availability": "available", "signal": "positive", "signal_definition": "Above revised demand midpoint implies above midpoint.", "band_implication": "above_midpoint", "evidence_refs": ["EVID-COMMODITY"], "stale_evidence_refs": [], "counterevidence_refs": [], "unresolved_strong_contradiction": false, "limitations": ["Synthetic evidence."]},
+      {"dimension": "company_profit", "availability": "available", "signal": "excess_positive", "signal_definition": "Strong post-break profit conditions imply extreme high.", "band_implication": "extreme_high", "evidence_refs": ["EVID-BREAK"], "stale_evidence_refs": [], "counterevidence_refs": ["EVID-BREAK-COUNTER"], "unresolved_strong_contradiction": false, "limitations": ["Counterevidence is moderate and resolved."]},
+      {"dimension": "psychology_valuation", "availability": "available", "signal": "excess_positive", "signal_definition": "Price materially above value implies extreme high for this dimension.", "band_implication": "extreme_high", "evidence_refs": ["EVID-PSYCH"], "stale_evidence_refs": [], "counterevidence_refs": [], "unresolved_strong_contradiction": false, "limitations": ["Price is observed after valuation."]},
+      {"dimension": "risk_attitude", "availability": "available", "signal": "excess_positive", "signal_definition": "Low risk compensation and eager issuance imply extreme high.", "band_implication": "extreme_high", "evidence_refs": ["EVID-RISK"], "stale_evidence_refs": [], "counterevidence_refs": [], "unresolved_strong_contradiction": false, "limitations": ["No portfolio instruction follows."]},
+      {"dimension": "credit", "availability": "available", "signal": "excess_positive", "signal_definition": "Permissive broad credit implies extreme high.", "band_implication": "extreme_high", "evidence_refs": ["EVID-CREDIT"], "stale_evidence_refs": [], "counterevidence_refs": [], "unresolved_strong_contradiction": false, "limitations": ["Issuer distress remains separate."]}
+    ],
+    "supporting_evidence_refs": ["EVID-COMMODITY", "EVID-BREAK", "EVID-PSYCH", "EVID-RISK", "EVID-CREDIT"], "counterevidence_refs": ["EVID-BREAK-COUNTER"],
+    "price_value_observation": {"market_price": 160, "intrinsic_value": 110, "ratio": 1.454545454545, "as_of_date": "2026-08-01", "evidence_ref": "EVID-PSYCH", "stale": false, "observed_after_intrinsic_value": true},
+    "alignment_count": 5, "review_posture": "defensive_review",
+    "invalidation_conditions": ["Broad credit tightening or price convergence invalidates the current extreme-high posture."],
+    "limitations": ["The overlay cannot change the scenario value range or authorize a sale."]
+  },
+  "risk_controls": {"distress_material": true, "distress_handoff": {"workflow_ref": "WFL-DST-001", "reference_id": "DDV-SYNTH-COMMODITY", "issuer_specific_basis": "Issuer leverage, liquidity, and refinancing weakness are distinct from abundant broad market credit."}, "m6_distress_adjustment": false, "recovery_growth_applied": false, "overlay_changes_intrinsic_value": false, "hidden_numeric_score": false, "trade_instruction": null, "excluded_methods": []},
+  "calculation_trail": [
+    {"step": "scenario_low", "reference": "intrinsic_value_reference.value_range.low", "value": 80},
+    {"step": "scenario_high", "reference": "intrinsic_value_reference.value_range.high", "value": 140},
+    {"step": "probability_aggregation", "reference": "intrinsic_value_reference.expected_value", "value": "not_computed"},
+    {"step": "alignment", "reference": "judgment_overlay.alignment_count", "value": 5},
+    {"step": "posture", "reference": "judgment_overlay.review_posture", "value": "defensive_review"}
+  ],
+  "traceability": {"source_refs": ["SRC-DAMODARAN-DARK-SIDE-2018", "SRC-MARKS-MASTERING-MARKET-CYCLE-2018"], "claim_refs": ["CLM-CYC-004", "CLM-CYC-015", "CLM-CYC-016", "CLM-CYC-017", "CLM-CYC-018", "CLM-CYC-028", "CLM-CYC-030", "CLM-CYC-032", "CLM-CYC-034"], "narrative_assertion_refs": ["NAR-A-001", "NAR-A-003"]},
+  "limitations": ["Synthetic scenarios demonstrate governed mappings and do not forecast a real commodity."],
+  "review": {"status": "approved", "reviewer": "fvi-maintainers", "reviewed_at": "2026-08-01T00:00:00Z", "classification_approved": true, "treatment_approved": true, "evidence_approved": true, "scenario_approved": true, "risk_separation_approved": true, "overlay_approved": true, "notes": "Synthetic Benchmark B approved for deterministic control testing."}
+}

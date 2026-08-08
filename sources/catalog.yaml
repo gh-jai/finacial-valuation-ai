@@ -39,7 +39,7 @@ sources:
     access: private
     private_locator: damodaran/the-dark-side-of-valuation-2018.pdf
     status: available
-    notes: M3 primary source for young-company survival-adjusted valuation, Chapter 9, printed pages 259-321. Approved M4 primary source for growth-company scaling and fade, Chapter 10, printed pages 323-357. Approved M5 source for decline, distress, and contingent survival, Chapter 12, printed pages 397-436; Chapter 11 mature-company methods are not part of the M5 boundary.
+    notes: M3 primary source for young-company survival-adjusted valuation, Chapter 9, printed pages 259-321. Approved M4 primary source for growth-company scaling and fade, Chapter 10, printed pages 323-357. Approved M5 source for decline, distress, and contingent survival, Chapter 12, printed pages 397-436; Chapter 11 mature-company methods are not part of the M5 boundary. Approved M6 methodology boundary is Chapter 13, printed pages 438-458, for cycle-aware valuation-input treatment; simulation, relative valuation, and natural-resource real options remain excluded.
 
   - id: SRC-DAMODARAN-INVESTMENT-FABLES
     title: Investment Fables
@@ -79,7 +79,7 @@ sources:
     access: private
     private_locator: marks/mastering-the-market-cycle-2018.pdf
     status: available
-    notes: Planned M6 source for economic, profit, psychology, risk-attitude, credit, distressed-debt, real-estate, and market-cycle knowledge.
+    notes: Approved M6 primary judgment source for cycle nature, profit, psychology, risk-attitude, credit, market synthesis, and bounded review posture. Distressed-debt, real-estate, allocation, trade, and timing methods remain excluded from M6.
 
   - id: SRC-BAID-JOYS-COMPOUNDING-ZH-2024
     title: 複利的喜悅

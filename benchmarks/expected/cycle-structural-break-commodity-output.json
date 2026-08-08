@@ -1,0 +1,14 @@
+{
+  "judgment_id": "CYJ-STRUCTURAL-BREAK-COMMODITY",
+  "regime": "structural_break",
+  "treatment_mode": "current_expectations",
+  "handoff_status": "produced",
+  "value_range": {"low": 80, "high": 140},
+  "expected_value": null,
+  "market_cycle_position": "extreme_high",
+  "confidence": "high",
+  "alignment_count": 5,
+  "review_posture": "defensive_review",
+  "overlay_changes_intrinsic_value": false,
+  "distress_handoff": true
+}

@@ -37,9 +37,12 @@ WFL-NAR-001
 ├─ WFL-YNG-001 for young and early-commercial companies
 ├─ WFL-GRW-001 for established growth companies
 ├─ WFL-DST-001 for structurally or potentially reversibly declining companies
-└─ WFL-VAL-001 for standard mature operating cases
+├─ WFL-CYC-001 for mature companies with supported cycle exposure
+└─ WFL-VAL-001 for standard mature operating cases without a specialized route
 ```
 
 `WFL-GRW-001` owns revenue scale and fade, margin convergence, reinvestment, invested-capital and implied-return checks, and risk convergence. It delegates cumulative FCFF discounting and Gordon-growth arithmetic to `WFL-VAL-001`. Material discrete failure is applied once through the expected-value semantics of `WFL-YNG-001` without running a second young-company forecast.
 
 `WFL-DST-001` independently classifies reversibility and distress, owns negative-growth and capital-release paths, financing and tax-benefit recomputation, divestiture integrity, closure, orderly-liquidation, and forced-sale controls, and delegates cumulative FCFF discounting to `WFL-VAL-001`. Reversible operating alternatives remain separate final values. Material cessation or forced-sale risk is applied once through M3-compatible contingent-survival arithmetic before one dated claim bridge.
+
+`WFL-CYC-001` selects one complete-input normalization, current-to-normal transition, current-expectations path, or stop decision. It delegates intrinsic-value arithmetic to `WFL-VAL-001`, reuses bounded M4 series controls, and routes discrete issuer distress once to `WFL-DST-001`. Its dated five-dimension judgment overlay is produced only after intrinsic value and cannot modify value, predict timing, or authorize a trade.

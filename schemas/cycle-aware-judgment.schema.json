@@ -1,0 +1,464 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fvi.example/schemas/cycle-aware-judgment.schema.json",
+  "title": "FVI Cycle-Aware Judgment Layer",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "judgment_id", "valuation_id", "valuation_date", "company",
+    "narrative_id", "subject_classification", "current_base", "evidence_staleness_policy",
+    "cycle_evidence", "cycle_assessment", "valuation_treatment", "valuation_input_handoff",
+    "intrinsic_value_reference", "judgment_overlay", "risk_controls", "calculation_trail",
+    "traceability", "limitations", "review"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "judgment_id": {"type": "string", "pattern": "^CYJ-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+    "valuation_id": {"type": "string", "pattern": "^VAL-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+    "valuation_date": {"type": "string", "format": "date"},
+    "company": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "currency"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "currency": {"type": "string", "pattern": "^[A-Z]{3}$"}
+      }
+    },
+    "narrative_id": {"type": "string", "pattern": "^NAR-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+    "subject_classification": {"$ref": "#/$defs/subjectClassification"},
+    "current_base": {"$ref": "#/$defs/currentBase"},
+    "evidence_staleness_policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["max_age_days", "basis"],
+      "properties": {
+        "max_age_days": {"type": "integer", "minimum": 0},
+        "basis": {"type": "string", "minLength": 1}
+      }
+    },
+    "cycle_evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["items"],
+      "properties": {
+        "items": {"type": "array", "minItems": 5, "items": {"$ref": "#/$defs/evidenceItem"}}
+      }
+    },
+    "cycle_assessment": {"$ref": "#/$defs/cycleAssessment"},
+    "valuation_treatment": {"$ref": "#/$defs/valuationTreatment"},
+    "valuation_input_handoff": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "workflow_ref", "treatment_mode", "period_inputs", "scenario_ids", "limitations"],
+      "properties": {
+        "status": {"enum": ["produced", "stopped"]},
+        "workflow_ref": {"enum": ["WFL-VAL-001", "WFL-GRW-001"]},
+        "treatment_mode": {"enum": ["normalized_inputs", "transition_to_normal", "current_expectations", "stop"]},
+        "period_inputs": {"type": "array", "items": {"$ref": "#/$defs/financialPeriod"}},
+        "normalized_input_set": {"anyOf": [{"$ref": "#/$defs/financialVector"}, {"type": "null"}]},
+        "scenario_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^SCN-[A-Z0-9-]+$"}},
+        "limitations": {"$ref": "#/$defs/stringList"}
+      }
+    },
+    "intrinsic_value_reference": {
+      "type": "object", "additionalProperties": false,
+      "required": ["workflow_ref", "valuation_id", "basis", "currency", "scenario_values", "value_range", "expected_value", "computed_before_overlay"],
+      "properties": {
+        "workflow_ref": {"const": "WFL-VAL-001"},
+        "valuation_id": {"type": "string", "pattern": "^VAL-[A-Z0-9]+(?:-[A-Z0-9]+)*$"},
+        "basis": {"enum": ["operating-assets", "firm", "common-equity"]},
+        "currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+        "scenario_values": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["scenario_id", "value"],
+            "properties": {
+              "scenario_id": {"type": "string", "pattern": "^(BASE|SCN-[A-Z0-9-]+)$"},
+              "value": {"type": "number"}
+            }
+          }
+        },
+        "value_range": {
+          "type": "object", "additionalProperties": false,
+          "required": ["low", "high"],
+          "properties": {"low": {"type": "number"}, "high": {"type": "number"}}
+        },
+        "expected_value": {"anyOf": [{"type": "number"}, {"type": "null"}]},
+        "computed_before_overlay": {"const": true}
+      }
+    },
+    "judgment_overlay": {"$ref": "#/$defs/judgmentOverlay"},
+    "risk_controls": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "distress_material", "distress_handoff", "m6_distress_adjustment",
+        "recovery_growth_applied", "overlay_changes_intrinsic_value", "hidden_numeric_score",
+        "trade_instruction", "excluded_methods"
+      ],
+      "properties": {
+        "distress_material": {"type": "boolean"},
+        "distress_handoff": {
+          "anyOf": [
+            {"type": "null"},
+            {
+              "type": "object", "additionalProperties": false,
+              "required": ["workflow_ref", "reference_id", "issuer_specific_basis"],
+              "properties": {
+                "workflow_ref": {"const": "WFL-DST-001"},
+                "reference_id": {"type": "string", "minLength": 1},
+                "issuer_specific_basis": {"type": "string", "minLength": 1}
+              }
+            }
+          ]
+        },
+        "m6_distress_adjustment": {"const": false},
+        "recovery_growth_applied": {"const": false},
+        "overlay_changes_intrinsic_value": {"const": false},
+        "hidden_numeric_score": {"const": false},
+        "trade_instruction": {"type": "null"},
+        "excluded_methods": {"type": "array", "maxItems": 0}
+      }
+    },
+    "calculation_trail": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["step", "reference", "value"],
+        "properties": {
+          "step": {"type": "string", "minLength": 1},
+          "reference": {"type": "string", "minLength": 1},
+          "value": {"anyOf": [{"type": "number"}, {"type": "string"}, {"type": "boolean"}]}
+        }
+      }
+    },
+    "traceability": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_refs", "claim_refs", "narrative_assertion_refs"],
+      "properties": {
+        "source_refs": {"$ref": "#/$defs/refList"},
+        "claim_refs": {"$ref": "#/$defs/refList"},
+        "narrative_assertion_refs": {"$ref": "#/$defs/refList"}
+      }
+    },
+    "limitations": {"$ref": "#/$defs/stringList"},
+    "review": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "status", "reviewer", "reviewed_at", "classification_approved", "treatment_approved",
+        "evidence_approved", "scenario_approved", "risk_separation_approved",
+        "overlay_approved", "notes"
+      ],
+      "properties": {
+        "status": {"enum": ["unreviewed", "reviewed", "approved"]},
+        "reviewer": {"type": "string", "minLength": 1},
+        "reviewed_at": {"type": "string", "format": "date-time"},
+        "classification_approved": {"type": "boolean"},
+        "treatment_approved": {"type": "boolean"},
+        "evidence_approved": {"type": "boolean"},
+        "scenario_approved": {"type": "boolean"},
+        "risk_separation_approved": {"type": "boolean"},
+        "overlay_approved": {"type": "boolean"},
+        "notes": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "$defs": {
+    "refList": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "stringList": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "nullableString": {"anyOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
+    "subjectClassification": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "exposure_type", "external_driver", "linked_financial_series", "observation_window",
+        "supporting_evidence_refs", "contradicting_evidence_refs", "lifecycle_boundaries", "route_approved"
+      ],
+      "properties": {
+        "exposure_type": {"enum": ["economic_cycle", "commodity_price", "mixed_cycle", "not_supported"]},
+        "external_driver": {"type": "string", "minLength": 1},
+        "linked_financial_series": {"type": "array", "uniqueItems": true, "items": {"enum": ["revenue", "operating_cost", "operating_margin", "reinvestment", "invested_capital", "return_on_capital", "leverage", "financing_cost"]}},
+        "observation_window": {
+          "type": "object", "additionalProperties": false,
+          "required": ["start", "end", "observation_years", "strong_and_weak_conditions"],
+          "properties": {
+            "start": {"type": "string", "format": "date"},
+            "end": {"type": "string", "format": "date"},
+            "observation_years": {"type": "integer", "minimum": 1},
+            "strong_and_weak_conditions": {"type": "boolean"}
+          }
+        },
+        "supporting_evidence_refs": {"$ref": "#/$defs/refList"},
+        "contradicting_evidence_refs": {"$ref": "#/$defs/refList"},
+        "lifecycle_boundaries": {
+          "type": "object", "additionalProperties": false,
+          "required": ["m3_cleared", "m4_cleared", "m5_cleared", "mature_company", "route"],
+          "properties": {
+            "m3_cleared": {"type": "boolean"},
+            "m4_cleared": {"type": "boolean"},
+            "m5_cleared": {"type": "boolean"},
+            "mature_company": {"type": "boolean"},
+            "route": {"enum": ["M1", "M3", "M4", "M5", "M6"]}
+          }
+        },
+        "route_approved": {"type": "boolean"}
+      }
+    },
+    "financialVector": {
+      "type": "object", "additionalProperties": false,
+      "required": ["driver", "revenue", "operating_margin", "reinvestment", "invested_capital", "leverage", "financing_cost"],
+      "properties": {
+        "driver": {"type": "number"}, "revenue": {"type": "number", "minimum": 0},
+        "operating_margin": {"type": "number"}, "reinvestment": {"type": "number"},
+        "invested_capital": {"type": "number", "exclusiveMinimum": 0},
+        "leverage": {"type": "number", "minimum": 0, "maximum": 1},
+        "financing_cost": {"type": "number", "exclusiveMinimum": -1}
+      }
+    },
+    "currentBase": {
+      "type": "object", "additionalProperties": false,
+      "required": ["valuation_date", "reporting_period", "currency", "continuing_operations", "current_driver", "financials", "reconciliations"],
+      "properties": {
+        "valuation_date": {"type": "string", "format": "date"},
+        "reporting_period": {"type": "string", "format": "date"},
+        "currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+        "continuing_operations": {"const": true},
+        "current_driver": {
+          "type": "object", "additionalProperties": false,
+          "required": ["value", "unit"],
+          "properties": {"value": {"type": "number"}, "unit": {"type": "string", "minLength": 1}}
+        },
+        "financials": {
+          "type": "object", "additionalProperties": false,
+          "required": ["revenue", "operating_margin", "operating_income", "reinvestment", "invested_capital", "return_on_capital", "cash", "debt", "fixed_obligations", "leverage", "financing_cost"],
+          "properties": {
+            "revenue": {"type": "number", "minimum": 0}, "operating_margin": {"type": "number"},
+            "operating_income": {"type": "number"}, "reinvestment": {"type": "number"},
+            "invested_capital": {"type": "number", "exclusiveMinimum": 0}, "return_on_capital": {"type": "number"},
+            "cash": {"type": "number", "minimum": 0}, "debt": {"type": "number", "minimum": 0},
+            "fixed_obligations": {"type": "number", "minimum": 0},
+            "leverage": {"type": "number", "minimum": 0, "maximum": 1},
+            "financing_cost": {"type": "number", "exclusiveMinimum": -1}
+          }
+        },
+        "reconciliations": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["item", "amount", "basis", "evidence_refs"],
+            "properties": {
+              "item": {"enum": ["disposal", "acquisition", "restructuring", "accounting_discontinuity", "none"]},
+              "amount": {"type": "number"}, "basis": {"type": "string", "minLength": 1},
+              "evidence_refs": {"$ref": "#/$defs/refList"}
+            }
+          }
+        }
+      }
+    },
+    "evidenceItem": {
+      "type": "object", "additionalProperties": false,
+      "required": ["evidence_id", "dimension", "availability", "indicator_name", "observation", "unit", "as_of_date", "window_start", "window_end", "source_ref", "direction", "strength", "supports", "limitations", "stale"],
+      "properties": {
+        "evidence_id": {"type": "string", "pattern": "^EVID-[A-Z0-9-]+$"},
+        "dimension": {"enum": ["economic", "company_profit", "psychology_valuation", "risk_attitude", "credit"]},
+        "availability": {"enum": ["available", "not_available"]},
+        "indicator_name": {"type": "string", "minLength": 1}, "observation": {"type": "string", "minLength": 1},
+        "unit": {"type": "string", "minLength": 1}, "as_of_date": {"type": "string", "format": "date"},
+        "window_start": {"anyOf": [{"type": "string", "format": "date"}, {"type": "null"}]},
+        "window_end": {"anyOf": [{"type": "string", "format": "date"}, {"type": "null"}]},
+        "source_ref": {"type": "string", "minLength": 1},
+        "direction": {"enum": ["deep_negative", "negative", "neutral", "positive", "excess_positive"]},
+        "strength": {"enum": ["weak", "moderate", "strong"]},
+        "supports": {"type": "array", "uniqueItems": true, "items": {"enum": ["subject_classification", "subject_classification_counterevidence", "cycle_assessment", "cycle_assessment_counterevidence", "judgment_overlay", "judgment_overlay_counterevidence"]}},
+        "limitations": {"$ref": "#/$defs/stringList"}, "stale": {"type": "boolean"}
+      }
+    },
+    "cycleAssessment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["regime", "company_cycle_position", "regime_reasoning", "break_assessment", "supporting_evidence_refs", "counterevidence_refs", "counterevidence_search"],
+      "properties": {
+        "regime": {"enum": ["established_recurring", "unstable", "structural_break", "insufficient_evidence"]},
+        "company_cycle_position": {"enum": ["trough", "below_midpoint", "midpoint", "above_midpoint", "peak", "indeterminate"]},
+        "regime_reasoning": {"type": "string", "minLength": 1},
+        "break_assessment": {
+          "anyOf": [
+            {"type": "null"},
+            {
+              "type": "object", "additionalProperties": false,
+              "required": ["hypothesis", "date_or_interval", "mechanism", "affected_inputs", "counterevidence_refs"],
+              "properties": {
+                "hypothesis": {"type": "string", "minLength": 1}, "date_or_interval": {"type": "string", "minLength": 1},
+                "mechanism": {"type": "string", "minLength": 1}, "affected_inputs": {"$ref": "#/$defs/stringList"},
+                "counterevidence_refs": {"$ref": "#/$defs/refList"}
+              }
+            }
+          ]
+        },
+        "supporting_evidence_refs": {"$ref": "#/$defs/refList"},
+        "counterevidence_refs": {"$ref": "#/$defs/refList"},
+        "counterevidence_search": {"type": "string", "minLength": 1}
+      }
+    },
+    "financialPeriod": {
+      "type": "object", "additionalProperties": false,
+      "required": ["period", "driver", "revenue", "operating_margin", "operating_income", "after_tax_operating_income", "reinvestment", "invested_capital", "return_on_capital", "financing_cost"],
+      "properties": {
+        "period": {"type": "integer", "minimum": 0}, "driver": {"type": "number"},
+        "volume": {"type": "number"}, "revenue": {"type": "number", "minimum": 0},
+        "operating_cost": {"type": "number"}, "operating_margin": {"type": "number"},
+        "operating_income": {"type": "number"}, "after_tax_operating_income": {"type": "number"},
+        "reinvestment": {"type": "number"}, "invested_capital": {"type": "number", "exclusiveMinimum": 0},
+        "return_on_capital": {"type": "number"}, "leverage": {"type": "number", "minimum": 0, "maximum": 1},
+        "financing_cost": {"type": "number", "exclusiveMinimum": -1}
+      }
+    },
+    "curvePoint": {
+      "type": "object", "additionalProperties": false,
+      "required": ["period", "value", "unit", "source_type", "as_of_date", "source_ref", "future_period"],
+      "properties": {
+        "period": {"type": "string", "minLength": 1}, "value": {"type": "number"}, "unit": {"type": "string", "minLength": 1},
+        "source_type": {"enum": ["spot", "forward_or_futures", "survey_or_consensus", "reviewed_assumption"]},
+        "as_of_date": {"type": "string", "format": "date"}, "source_ref": {"type": "string", "minLength": 1},
+        "future_period": {"type": "boolean"}
+      }
+    },
+    "scenario": {
+      "type": "object", "additionalProperties": false,
+      "required": ["scenario_id", "calculation_trail_id", "input_set", "period_inputs", "intrinsic_value", "probability"],
+      "properties": {
+        "scenario_id": {"type": "string", "pattern": "^SCN-[A-Z0-9-]+$"},
+        "calculation_trail_id": {"type": "string", "pattern": "^TRAIL-[A-Z0-9-]+$"},
+        "input_set": {
+          "type": "object", "additionalProperties": false,
+          "required": ["driver_curve", "volumes", "fixed_costs", "unit_costs", "base_reinvestments", "reinvestment_sensitivity", "base_driver", "initial_invested_capital", "tax_rate", "base_financing_cost", "funding_sensitivity"],
+          "properties": {
+            "driver_curve": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/curvePoint"}},
+            "volumes": {"$ref": "#/$defs/numberSeries"}, "fixed_costs": {"$ref": "#/$defs/numberSeries"},
+            "unit_costs": {"$ref": "#/$defs/numberSeries"}, "base_reinvestments": {"$ref": "#/$defs/numberSeries"},
+            "reinvestment_sensitivity": {"type": "number"}, "base_driver": {"type": "number"},
+            "initial_invested_capital": {"type": "number", "exclusiveMinimum": 0},
+            "tax_rate": {"type": "number", "minimum": 0, "maximum": 1},
+            "base_financing_cost": {"type": "number", "exclusiveMinimum": -1}, "funding_sensitivity": {"type": "number"}
+          }
+        },
+        "period_inputs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/financialPeriod"}},
+        "intrinsic_value": {"type": "number"},
+        "probability": {
+          "anyOf": [
+            {"type": "null"},
+            {
+              "type": "object", "additionalProperties": false,
+              "required": ["value", "as_of_date", "event_definition", "horizon", "provenance"],
+              "properties": {
+                "value": {"type": "number", "minimum": 0, "maximum": 1}, "as_of_date": {"type": "string", "format": "date"},
+                "event_definition": {"type": "string", "minLength": 1}, "horizon": {"type": "string", "minLength": 1},
+                "provenance": {"type": "string", "minLength": 1}
+              }
+            }
+          ]
+        }
+      }
+    },
+    "valuationTreatment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mode"],
+      "properties": {
+        "mode": {"enum": ["normalized_inputs", "transition_to_normal", "current_expectations", "stop"]},
+        "normalized_inputs": {
+          "type": "object", "additionalProperties": false,
+          "required": ["normalization_window", "input_methods", "normalized_input_set", "limitations", "recovery_growth_applied"],
+          "properties": {
+            "normalization_window": {"$ref": "#/$defs/dateWindow"},
+            "input_methods": {
+              "type": "array", "minItems": 1,
+              "items": {
+                "type": "object", "additionalProperties": false,
+                "required": ["input_name", "method", "observations", "current_scale", "company_adjustment", "driver_sensitivity", "intercept", "scale_change_material", "comparability_documented", "calculated_value"],
+                "properties": {
+                  "input_name": {"type": "string", "minLength": 1},
+                  "method": {"enum": ["absolute_historical_average", "relative_historical_average", "sector_average_with_adjustment", "normalized_external_driver"]},
+                  "observations": {"$ref": "#/$defs/numberSeries"}, "current_scale": {"anyOf": [{"type": "number"}, {"type": "null"}]},
+                  "company_adjustment": {"anyOf": [{"type": "number"}, {"type": "null"}]},
+                  "driver_sensitivity": {"anyOf": [{"type": "number"}, {"type": "null"}]}, "intercept": {"anyOf": [{"type": "number"}, {"type": "null"}]},
+                  "scale_change_material": {"type": "boolean"}, "comparability_documented": {"type": "boolean"}, "calculated_value": {"type": "number"}
+                }
+              }
+            },
+            "normalized_input_set": {"$ref": "#/$defs/financialVector"}, "limitations": {"$ref": "#/$defs/stringList"},
+            "recovery_growth_applied": {"const": false}
+          }
+        },
+        "transition_to_normal": {
+          "type": "object", "additionalProperties": false,
+          "required": ["normalization_window", "current_input_set", "normalized_anchor", "transition_periods", "tax_rate", "period_inputs", "driver_to_financial_mapping", "recovery_growth_applied", "limitations"],
+          "properties": {
+            "normalization_window": {"$ref": "#/$defs/dateWindow"}, "current_input_set": {"$ref": "#/$defs/financialVector"},
+            "normalized_anchor": {"$ref": "#/$defs/financialVector"}, "transition_periods": {"type": "integer", "minimum": 1},
+            "tax_rate": {"type": "number", "minimum": 0, "maximum": 1},
+            "period_inputs": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/financialPeriod"}},
+            "driver_to_financial_mapping": {"$ref": "#/$defs/stringList"}, "recovery_growth_applied": {"const": false},
+            "limitations": {"$ref": "#/$defs/stringList"}
+          }
+        },
+        "current_expectations": {
+          "type": "object", "additionalProperties": false,
+          "required": ["driver_curve", "storable_commodity", "carry_limitation_disclosed", "historical_normal_reused", "scenarios", "probability_basis", "limitations"],
+          "properties": {
+            "driver_curve": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/curvePoint"}},
+            "storable_commodity": {"type": "boolean"}, "carry_limitation_disclosed": {"type": "boolean"},
+            "historical_normal_reused": {"const": false}, "scenarios": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/scenario"}},
+            "probability_basis": {"anyOf": [{"type": "null"}, {"type": "string", "minLength": 1}]},
+            "limitations": {"$ref": "#/$defs/stringList"}
+          }
+        },
+        "stop": {
+          "type": "object", "additionalProperties": false,
+          "required": ["missing_evidence", "reason"],
+          "properties": {"missing_evidence": {"$ref": "#/$defs/stringList"}, "reason": {"type": "string", "minLength": 1}}
+        }
+      }
+    },
+    "dimensionAssessment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["dimension", "availability", "signal", "signal_definition", "band_implication", "evidence_refs", "stale_evidence_refs", "counterevidence_refs", "unresolved_strong_contradiction", "limitations"],
+      "properties": {
+        "dimension": {"enum": ["economic", "company_profit", "psychology_valuation", "risk_attitude", "credit"]},
+        "availability": {"enum": ["available", "not_available"]},
+        "signal": {"enum": ["deep_negative", "negative", "neutral", "positive", "excess_positive"]},
+        "signal_definition": {"type": "string", "minLength": 1},
+        "band_implication": {"enum": ["extreme_low", "below_midpoint", "midpoint", "above_midpoint", "extreme_high", "indeterminate"]},
+        "evidence_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "stale_evidence_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "counterevidence_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "unresolved_strong_contradiction": {"type": "boolean"}, "limitations": {"$ref": "#/$defs/stringList"}
+      }
+    },
+    "judgmentOverlay": {
+      "type": "object", "additionalProperties": false,
+      "required": ["market_cycle_position", "confidence", "dimension_assessments", "supporting_evidence_refs", "counterevidence_refs", "price_value_observation", "alignment_count", "review_posture", "invalidation_conditions", "limitations"],
+      "properties": {
+        "market_cycle_position": {"enum": ["extreme_low", "below_midpoint", "midpoint", "above_midpoint", "extreme_high", "indeterminate"]},
+        "confidence": {"enum": ["low", "medium", "high"]},
+        "dimension_assessments": {"type": "array", "minItems": 5, "maxItems": 5, "items": {"$ref": "#/$defs/dimensionAssessment"}},
+        "supporting_evidence_refs": {"$ref": "#/$defs/refList"}, "counterevidence_refs": {"$ref": "#/$defs/refList"},
+        "price_value_observation": {
+          "type": "object", "additionalProperties": false,
+          "required": ["market_price", "intrinsic_value", "ratio", "as_of_date", "evidence_ref", "stale", "observed_after_intrinsic_value"],
+          "properties": {
+            "market_price": {"type": "number", "minimum": 0}, "intrinsic_value": {"type": "number"}, "ratio": {"type": "number"},
+            "as_of_date": {"type": "string", "format": "date"}, "evidence_ref": {"type": "string", "minLength": 1},
+            "stale": {"type": "boolean"}, "observed_after_intrinsic_value": {"const": true}
+          }
+        },
+        "alignment_count": {"type": "integer", "minimum": 0, "maximum": 5},
+        "review_posture": {"enum": ["defensive_review", "balanced_review", "opportunity_review", "insufficient_evidence"]},
+        "invalidation_conditions": {"$ref": "#/$defs/stringList"}, "limitations": {"$ref": "#/$defs/stringList"}
+      }
+    },
+    "dateWindow": {
+      "type": "object", "additionalProperties": false,
+      "required": ["start", "end", "representative", "strong_and_weak_conditions", "basis"],
+      "properties": {
+        "start": {"type": "string", "format": "date"}, "end": {"type": "string", "format": "date"},
+        "representative": {"type": "boolean"}, "strong_and_weak_conditions": {"type": "boolean"}, "basis": {"type": "string", "minLength": 1}
+      }
+    },
+    "numberSeries": {"type": "array", "minItems": 1, "items": {"type": "number"}}
+  }
+}

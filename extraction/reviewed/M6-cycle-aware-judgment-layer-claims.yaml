@@ -1,0 +1,370 @@
+schema_version: 1.0.0
+source_ids:
+  - SRC-DAMODARAN-DARK-SIDE-2018
+  - SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+claims:
+  - id: CLM-CYC-001
+    claim_type: source_statement
+    statement: A cyclical or commodity company's latest fiscal year can materially overstate value near a peak and understate value near a trough because current earnings and cash flows reflect cycle position.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, opening and Valuation Issues, printed pages 438-440 / PDF pages 486-488"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-002
+    claim_type: source_statement
+    statement: Cyclical classification should use the company's own relationship with economic conditions when sufficient history exists; a sector label alone can hide material company differences.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, The Setting - Cyclical Companies, printed page 438 / PDF page 486"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-003
+    claim_type: source_statement
+    statement: Commodity producers are generally price takers whose revenue and operating results depend heavily on the relevant commodity price, especially after production volume matures.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, Commodity Companies and Characteristics, printed pages 438-439 / PDF pages 486-487"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-004
+    claim_type: source_statement
+    statement: Economic and commodity cycles can vary greatly in length and shape and can undergo structural breaks, making both current cycle position and future path uncertain.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, Characteristics, printed page 439 / PDF page 487"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-005
+    claim_type: source_statement
+    statement: High fixed operating costs magnify revenue volatility into operating-income volatility, while debt financing can magnify the resulting variation in net income and equity value.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, Characteristics, printed page 439 / PDF page 487"
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter VI, The Cycle in Profits, PDF pages 69-75"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-006
+    claim_type: source_statement
+    statement: A prolonged macro or commodity downturn can create survival risk even for an otherwise healthy company, and finite natural resources can make a perpetual-growth closure inappropriate for some commodity producers.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, Characteristics, printed page 439 / PDF page 487"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-007
+    claim_type: source_statement
+    statement: Cycle position can distort profitability, reinvestment, leverage, and funding costs as well as earnings, so a governed valuation cannot normalize only one line while retaining incompatible current-period inputs.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, Valuation Issues and Selective Normalization, printed pages 440-441 / PDF pages 488-489"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-008
+    claim_type: source_statement
+    statement: Building a long-horizon valuation around forecasts of the dates and magnitudes of future economic or commodity cycles usually adds noise because even professional macro forecasts are unreliable.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, The Dark Side - Forecasting Cycles, printed pages 440-441 / PDF pages 488-489"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-009
+    claim_type: source_statement
+    statement: A valuation that embeds a non-consensus macro or commodity view jointly reflects the analyst's company-specific and cycle views, making the source of apparent mispricing difficult to disentangle.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, The Dark Side - Macro Point of View Valuations, printed page 441 / PDF page 489"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-010
+    claim_type: source_statement
+    statement: Replacing depressed current earnings with normalized earnings and then also applying recovery growth double counts the same cyclical rebound.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, The Dark Side - Selective Normalization, printed page 441 / PDF page 489"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-011
+    claim_type: source_statement
+    statement: A normal year represents a mid-cycle operating state rather than the latest reported year, but selecting that state remains a reviewed judgment rather than an objective constant.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, Normalized Valuations - What Are Normal Numbers?, printed page 444 / PDF page 492"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-012
+    claim_type: source_statement
+    statement: Cyclical-company normalization may use an absolute historical average, a scale-adjusted ratio such as margin, or a sector average, but each method has specific scale, history, and company-difference limitations.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, Measuring Normalized Values for Cyclical Companies, printed pages 444-445 / PDF pages 492-493"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-013
+    claim_type: source_statement
+    statement: A normalized DCF must use a mutually consistent set of normalized earnings or cash flow, growth, reinvestment, and financing-risk inputs rather than mixing cycle states.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, Discounted Cash Flow Valuation and Normalized Valuations, printed pages 444-447 / PDF pages 492-495"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-014
+    claim_type: source_statement
+    statement: Commodity-company normalization should begin with an explicit normalized commodity price supported either by a sufficiently long inflation-adjusted history or by reviewed demand-and-supply fundamentals.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, Measuring Normalized Earnings for Commodity Companies, printed page 447 / PDF page 495"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-015
+    claim_type: source_statement
+    statement: Normalized-price valuation is most defensible when the cycle is stable and recurring; after an unstable period or structural break, a historical normal can dominate the result without representing current conditions.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, Normalized Commodity Prices and Valuing Commodity Companies with Normalized Prices, printed pages 447-448 / PDF pages 495-496"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-016
+    claim_type: source_statement
+    statement: When a commodity cycle is unstable, unpredictable, or structurally broken, a valuation can use dated current and market-implied prices instead of asserting an unsupported normal price, while exposing the resulting uncertainty.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, opening and Current Price Valuations, printed pages 438 and 448 / PDF pages 486 and 496"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-017
+    claim_type: source_statement
+    statement: For storable commodities, forward or futures prices are linked to spot prices, financing, and storage through arbitrage and should not automatically be described as independent forecasts of future fundamentals.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, Current Price Valuations, printed page 448 / PDF page 496"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-018
+    claim_type: source_statement
+    statement: When one or two observable macro drivers dominate value, separate scenarios can disclose the value range; an expected value requires scenario probabilities, and each driver must map consistently to earnings, reinvestment, and financing inputs.
+    source_refs:
+      - source_id: SRC-DAMODARAN-DARK-SIDE-2018
+        location: "Chapter 13, Probabilistic Valuations, printed pages 450-451 / PDF pages 498-499"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-019
+    claim_type: source_statement
+    statement: The investment future is better represented as a distribution of possible outcomes and relative likelihoods than as one fixed forecast, and a favorable tendency never guarantees a particular outcome.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter I, Why Study Cycles?, PDF pages 13-24"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-020
+    claim_type: source_statement
+    statement: Cycle awareness is primarily an assessment of present conditions and future tendencies, not a claim to know the next macro event or exact market path.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter I, Why Study Cycles?, PDF pages 13-24"
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter XIII, How to Cope with Market Cycles, PDF pages 192-227"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-021
+    claim_type: source_statement
+    statement: A cycle is better understood as a causal progression with feedback between developments than as a calendar sequence in which one phase merely follows another.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter II, The Nature of Cycles, PDF pages 25-38"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-022
+    claim_type: source_statement
+    statement: Cycle timing, duration, speed, amplitude, and detailed order vary, so historical recurrence supports tendencies and comparisons but not a deterministic periodic formula.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapters II-III, The Nature and Regularity of Cycles, PDF pages 25-44"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-023
+    claim_type: source_statement
+    statement: Cyclical variables often oscillate around a midpoint, norm, or secular trend, while moves toward an extreme can create momentum that carries the variable past its midpoint toward the opposite extreme.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter II, The Nature of Cycles, PDF pages 25-38"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-024
+    claim_type: source_statement
+    statement: The farther a cycle progresses toward an extreme, the greater the potential damage when behavior and decisions suited to that extreme prove unsustainable elsewhere in the cycle.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter II, The Nature of Cycles, PDF pages 25-38"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-025
+    claim_type: source_statement
+    statement: The economic cycle affects companies unevenly, and operating leverage, financial leverage, management choices, industry structure, and technological change can make company profits diverge from aggregate conditions.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter VI, The Cycle in Profits, PDF pages 69-75"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-026
+    claim_type: source_statement
+    statement: Investor psychology can amplify fundamental developments into overshoots, making excessive optimism, pessimism, credulity, and skepticism relevant evidence about market-cycle extremes.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter VII, The Pendulum of Investor Psychology, PDF pages 76-94"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-027
+    claim_type: source_statement
+    statement: Market psychology rarely rests at a neutral midpoint for long, so sentiment is better understood by its changing direction and degree than by a permanent label.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter VII, The Pendulum of Investor Psychology, PDF pages 76-94"
+    confidence: 0.97
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-028
+    claim_type: source_statement
+    statement: Changes in risk tolerance and risk aversion alter required compensation, security prices, financing behavior, and the quality of opportunities, making risk attitude a separate observable cycle dimension.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter VIII, The Cycle in Attitudes toward Risk, PDF pages 95-127"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-029
+    claim_type: source_statement
+    statement: Extended good conditions can suppress perceived risk and risk compensation while encouraging behavior that increases actual risk; severe losses can later produce excessive risk aversion and unusually low prices.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter VIII, The Cycle in Attitudes toward Risk, PDF pages 95-127"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-030
+    claim_type: source_statement
+    statement: The credit cycle is observable through capital availability, lender eagerness, underwriting standards, financing terms, and the ease or difficulty of refinancing.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter IX, The Credit Cycle, PDF pages 128-149"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-031
+    claim_type: source_statement
+    statement: Open credit markets can enable weak deals and excessive leverage, while abruptly closed markets can impair sound borrowers and force asset sales, so credit conditions can affect operating outcomes as well as financing.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter IX, The Credit Cycle, PDF pages 128-149"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-032
+    claim_type: source_statement
+    statement: A market-cycle assessment should synthesize economic and profit conditions, investor psychology, risk attitudes, credit availability, valuation levels, and price relative to intrinsic value rather than infer position from one indicator.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter XII, Putting It All Together - The Market Cycle, PDF pages 170-191"
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter XIII, How to Cope with Market Cycles, PDF pages 192-227"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-033
+    claim_type: source_statement
+    statement: Present valuation metrics, financing terms, market behavior, and investor conduct can be observed and compared with history even when the next event and its timing cannot be forecast reliably.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter XIII, How to Cope with Market Cycles, PDF pages 192-227"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-034
+    claim_type: source_statement
+    statement: Price and intrinsic value remain the governing relationship for investment judgment; cycle observations change the assessed distribution of outcomes but do not replace fundamental valuation.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapters XII-XIV, market cycle, coping, and positioning, PDF pages 170-244"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-035
+    claim_type: source_statement
+    statement: Cycle positioning is a continuous choice between greater aggressiveness and greater defensiveness based on assessed odds, not a binary prediction that the market must rise or fall.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapter XIV, Cycle Positioning, PDF pages 228-244"
+    confidence: 0.98
+    status: reviewed
+    reviewer: fvi-maintainers
+
+  - id: CLM-CYC-036
+    claim_type: source_statement
+    statement: Cycle conclusions are most useful at pronounced extremes; distinctions near fair-value middle ground carry less confidence, and no assessment provides dependable short-term timing.
+    source_refs:
+      - source_id: SRC-MARKS-MASTERING-MARKET-CYCLE-2018
+        location: "Chapters XIV-XV, Cycle Positioning and Limits on Coping, PDF pages 228-250"
+    confidence: 0.99
+    status: reviewed
+    reviewer: fvi-maintainers

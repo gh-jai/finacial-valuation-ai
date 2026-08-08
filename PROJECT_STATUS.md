@@ -6,7 +6,7 @@ Repository: `gh-jai/financial-valuation-ai`
 
 ## Current state
 
-The repository has merged six implementation milestones through delivery PR #13 and completed the local M6 implementation checkpoint:
+The repository has merged seven implementation milestones through delivery PR #14:
 
 - M0 — Repository foundation
 - M1 — Basic FCFF DCF vertical slice
@@ -14,13 +14,13 @@ The repository has merged six implementation milestones through delivery PR #13 
 - M3 — Young-company survival-adjusted valuation vertical slice
 - M4 — Growth-company scaling-and-fade vertical slice
 - M5 — Decline, distress, and contingent-survival vertical slice
-- M6 — Cycle-aware judgment layer (local implementation; publication pending)
+- M6 — Cycle-aware judgment layer
 
 The M4 contract and repository-wide implementation were delivered through PR #10. The implementation includes the locked source boundary and 30 claims, seven Knowledge artifacts, nine Skills, `WFL-GRW-001`, a strict schema, deterministic engine, independent recomputation validator, two synthetic benchmarks, adversarial controls, and CI/pre-commit integration. Final review hardened registered bidirectional traceability and independent recomputation of market scale, capacity utilization, calculation trails, sensitivity points, and supported break-even values.
 
 The M5 contract was approved and merged through PR #12, and the repository-wide implementation was delivered through PR #13. Its locked boundary is Chapter 12, printed pages 397-436 / PDF pages 445-484, with 32 reviewed atomic claims. Final review hardened partial-liquidation routing, bidirectional divestiture support, turnaround probability dating, and the one-bridge rule. The full suite reports 179 passing tests, and the Python 3.10/3.12 matrix passes.
 
-M6 contract-first planning, source-fidelity/financial review, and repository-wide implementation are complete locally on `codex/m6-contract-draft`. The implementation preserves the dual-source boundary and 36 reviewed claims, adds eight Knowledge artifacts, ten Skills, `WFL-CYC-001`, a strict schema, deterministic engine, independent validator, two synthetic benchmarks, 54 focused tests, and CI/pre-commit integration. The complete local suite reports 242 passing tests. No commit, push, PR, or remote CI has been performed for M6.
+M6 contract-first planning, source-fidelity/financial review, repository-wide implementation, and publication are complete. The implementation preserves the dual-source boundary and 36 reviewed claims, adds eight Knowledge artifacts, ten Skills, `WFL-CYC-001`, a strict schema, deterministic engine, independent validator, two synthetic benchmarks, 54 focused tests, and CI/pre-commit integration. PR #14 passed the Python 3.10/3.12 matrix and merged as `f4175ee`; the post-merge Actions run also passed. The complete merged suite reports 242 passing tests.
 
 Current mainline architecture:
 
@@ -316,7 +316,7 @@ Acceptance evidence:
 
 ### M6 — Cycle-aware judgment layer
 
-Status: Local repository-wide implementation complete; publication and remote CI pending
+Status: Merged through PR #14; local and remote validation complete
 
 Primary sources:
 
@@ -362,9 +362,9 @@ Approved decisions:
 - Keep discrete distress and forced-sale treatment exclusively in `WFL-DST-001`
 - Produce only bounded human-review posture labels, never timing, trading, leverage, or sizing instructions
 
-Implementation remains within the approved source boundary, all 36 reviewed claims, financial and evidence controls, schema invariants, benchmark designs, and review checklist. Publication requires a separate commit/push/PR checkpoint and Python 3.10/3.12 CI on the exact implementation head.
+Implementation remains within the approved source boundary, all 36 reviewed claims, financial and evidence controls, schema invariants, benchmark designs, and review checklist. PR #14 validated the exact implementation tree on Python 3.10 and Python 3.12 before merge.
 
-Local implementation evidence:
+Acceptance and publication evidence:
 
 - 11 schemas and 101 governed documents validate
 - 10 source records, 10 source mappings, 164 atomic claims, and 172 Knowledge references validate
@@ -372,6 +372,9 @@ Local implementation evidence:
 - Full local suite: 242 passed
 - Maintainer checklist approved on 2026-08-02 after separating market-wide credit evidence from issuer-specific refinancing risk in Benchmark B
 - Repository copyright policy and all-candidate pre-commit pass with no private source content
+- PR #14 exact-head Actions run #44 passed on Python 3.10 and Python 3.12
+- PR #14 merged to `main` as `f4175ee64212288862e37eba74c43b570f6d598a`
+- Post-merge Actions run `31252836713` passed
 
 ## Current governed artifact graph
 
@@ -404,11 +407,11 @@ WFL-NAR-001 + WFL-VAL-001 + bounded WFL-GRW-001/WFL-DST-001 reuse → WFL-CYC-00
 
 Latest merged implementation PR CI:
 
-- GitHub Actions run 42
+- GitHub Actions run 44
 - Python 3.10: Passed
 - Python 3.12: Passed
 
-The M5 implementation passed local validation on Python 3.12 and remote matrix validation on Python 3.10 and Python 3.12 after the final validator hardening. M6 currently has local Python 3.12 evidence only; its remote matrix remains pending because no PR has been created.
+The M6 implementation passed local validation and PR #14 remote matrix validation on Python 3.10 and Python 3.12. The post-merge `main` run also passed after merge commit `f4175ee`.
 
 Validated controls include:
 
@@ -448,7 +451,7 @@ Validated controls include:
 - Repository copyright policy
 - Unit, integration, benchmark, and regression tests
 
-At M3 completion, the full suite reported 88 passing tests. M4 and its final review fixes brought the suite to 125. M5 brought the merged suite to 179 passing tests. M6 contract review and implementation bring the complete local suite to 242 passing tests, including 54 focused M6 engine, validator, benchmark, artifact-graph, adversarial, mutation, and composition tests.
+At M3 completion, the full suite reported 88 passing tests. M4 and its final review fixes brought the suite to 125. M5 brought the merged suite to 179 passing tests. M6 brings the complete merged suite to 242 passing tests, including 54 focused M6 engine, validator, benchmark, artifact-graph, adversarial, mutation, and composition tests.
 
 ## Source and copyright policy
 
@@ -492,13 +495,13 @@ M3 failure probabilities and recovery values are deterministic reviewed assumpti
 
 The next milestone should remain a bounded vertical slice rather than a broad platform expansion.
 
-M4 and M5 are merged. M6 contract, source review, and repository-wide local implementation are complete. The next checkpoint is publication review: final local pre-commit and scope audit, then a separately authorized commit, push, PR, remote CI, human thread review, and merge.
+M4, M5, and M6 are merged. The next checkpoint is to select and lock the next bounded milestone's source boundary, claims, financial controls, schema contract, composition rules, benchmarks, and acceptance criteria before implementation begins.
 
 Recommended sequencing:
 
 ```text
-M6: Local implementation checkpoint
-→ M6: Publication and remote Python 3.10/3.12 review after separate authorization
+M6: Merged implementation and remote Python 3.10/3.12 validation complete
+→ Next milestone: Contract-first scope and source review
 ```
 
 Before implementation, each milestone should first lock:
